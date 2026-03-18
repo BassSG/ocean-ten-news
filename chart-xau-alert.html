@@ -38,7 +38,7 @@ body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transp
   <div class="toolbar">
     <span class="pill">Timeframe: 15m</span>
     <label class="pill" style="display:flex;gap:6px;align-items:center">Source <select id="sourceSel" class="sel"><option value="EBass">EBass</option><option value="EKlaETun">EKlaETun</option></select></label>
-    <span class="pill" id="livePill">Alert source: loading...</span>
+    <button class="pill" id="autoBtn" type="button">Auto: ON (60s)</button><span class="pill" id="livePill">Alert source: loading...</span>
   </div>
 </div>
 
@@ -68,6 +68,12 @@ const ALERT_ENDPOINTS={
   EKlaETun:'https://script.google.com/macros/s/AKfycbyoQMFqut3uEJ_x1u4PkbtTax_IUkPtLP1RnSoKB9Qbj5G_JyJSKl5ZiF4ydRUCYQ/exec?mode=pull&token=271063'
 };
 const fallback={ENTRY:4968.5,SL:4960,TP1:4984.28,TPMOST:4996.28,orderType:'BUY_LIMIT'};
+
+let autoOn = true;
+let autoTimer = null;
+const AUTO_MS = 60000;
+let chartObj = null;
+
 
 function toNum(v){const n=Number(v); return Number.isFinite(n)?n:null;}
 
@@ -121,6 +127,7 @@ function draw(lv,sourceText){
       <div class='box'><b>Reward (TPMost)</b><br/>${reward.toFixed(2)} จุด | R:R ≈ ${rr}</div>
     </div>`;
 
+  if (chartObj) { try { chartObj.remove(); } catch(e){} chartObj=null; }
   const chart=LightweightCharts.createChart(document.getElementById('chart'),{
     layout:{background:{color:'#0a0f1f'},textColor:'#d6e4ff'},
     grid:{vertLines:{color:'#1b2740'},horzLines:{color:'#1b2740'}},
@@ -128,6 +135,7 @@ function draw(lv,sourceText){
     timeScale:{borderColor:'#2e426d',timeVisible:true,secondsVisible:false}
   });
 
+  chartObj = chart;
   const cs=chart.addCandlestickSeries({upColor:'#42d392',downColor:'#ff5f73',borderVisible:false,wickUpColor:'#42d392',wickDownColor:'#ff5f73'});
   cs.setData(data);
 
@@ -200,7 +208,22 @@ async function init(){
   try { draw(lv,source); } catch(e) { document.getElementById('err').textContent='Render error: '+e.message; }
 }
 
+function setupAuto(){
+  const btn=document.getElementById('autoBtn');
+  const tick=()=>{ if(autoOn) init(); };
+  if (autoTimer) clearInterval(autoTimer);
+  autoTimer=setInterval(tick, AUTO_MS);
+  if(btn){
+    btn.textContent = autoOn ? 'Auto: ON (60s)' : 'Auto: OFF';
+    btn.onclick = ()=>{
+      autoOn = !autoOn;
+      btn.textContent = autoOn ? 'Auto: ON (60s)' : 'Auto: OFF';
+    };
+  }
+}
+
 init();
+setupAuto();
 const sel=document.getElementById('sourceSel');
-if(sel){ sel.addEventListener('change', ()=>{ document.getElementById('chart').innerHTML=''; init(); }); }
+if(sel){ sel.addEventListener('change', ()=>{ init(); }); }
 </script></body></html>
