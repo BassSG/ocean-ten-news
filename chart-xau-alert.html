@@ -230,7 +230,7 @@ Status: ${ev.status}`;
     layout:{background:{color:'#0a0f1f'},textColor:'#d6e4ff'},
     grid:{vertLines:{color:'#1b2740'},horzLines:{color:'#1b2740'}},
     rightPriceScale:{borderColor:'#2e426d'},
-    timeScale:{borderColor:'#2e426d',timeVisible:true,secondsVisible:false}
+    timeScale:{borderColor:'#2e426d',timeVisible:true,secondsVisible:false,rightOffset:10}
   });
 
   chartObj = chart;
@@ -293,7 +293,9 @@ Status: ${ev.status}`;
   const anchor=chart.addLineSeries({color:'rgba(0,0,0,0)',lineWidth:1,priceLineVisible:false,lastValueVisible:false});
   anchor.setData([{time:tStartSeg,value:minLv},{time:tEnd,value:maxLv}]);
 
-  chart.timeScale().setVisibleRange({from:data[Math.max(0,data.length-140)].time,to:tEnd});
+  const viewFrom = data[Math.max(0,data.length-120)].time;
+  const viewTo = data[data.length-1].time + 60*60*3;
+  chart.timeScale().setVisibleRange({from:viewFrom,to:viewTo});
   window.__chart = chart;
 }
 
