@@ -246,6 +246,8 @@ Status: ${ev.status}`;
     if(!price) return;
     const ls = chart.addLineSeries({color, lineWidth:2, priceLineVisible:false, lastValueVisible:false});
     ls.setData([{time:tStartSeg,value:price},{time:tEndSeg,value:price}]);
+    // keep label text on right axis for readability
+    cs.createPriceLine({price,color,lineWidth:1,lineStyle:2,axisLabelVisible:true,title});
   }
   seg(entry,'#4da3ff','ENTRY');
   seg(sl,'#ff5f73','SL');
