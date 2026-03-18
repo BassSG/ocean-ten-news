@@ -1,17 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="Ocean Ten News icon">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ff5f73"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0c1326"/>
+      <stop offset="100%" stop-color="#111f3f"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd987"/>
+      <stop offset="55%" stop-color="#ffb347"/>
       <stop offset="100%" stop-color="#ff8a3d"/>
     </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#2e4a86" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#101a33" stop-opacity="0"/>
+    </radialGradient>
   </defs>
-  <rect width="192" height="192" rx="42" fill="#0b1120"/>
-  <rect x="18" y="18" width="156" height="156" rx="34" fill="url(#g)"/>
-  <rect x="34" y="46" width="124" height="100" rx="16" fill="#11192d"/>
-  <rect x="46" y="60" width="72" height="10" rx="5" fill="#ffe4b8"/>
-  <rect x="46" y="78" width="100" height="8" rx="4" fill="#ffd2d9"/>
-  <rect x="46" y="92" width="90" height="8" rx="4" fill="#ffd2d9"/>
-  <rect x="46" y="106" width="96" height="8" rx="4" fill="#ffd2d9"/>
-  <circle cx="145" cy="48" r="12" fill="#ff425d"/>
-  <text x="145" y="53" text-anchor="middle" font-size="10" fill="#fff" font-family="Arial, sans-serif">LIVE</text>
+
+  <rect width="192" height="192" rx="42" fill="url(#bg)"/>
+  <rect x="10" y="10" width="172" height="172" rx="36" fill="url(#glow)"/>
+
+  <rect x="25" y="25" width="142" height="142" rx="34" fill="#0e162d" stroke="#2b3f72"/>
+  <rect x="34" y="34" width="124" height="124" rx="28" fill="#101c38"/>
+
+  <circle cx="96" cy="96" r="46" fill="none" stroke="url(#gold)" stroke-width="5" opacity="0.95"/>
+
+  <path d="M68 111V81h16.5c7 0 12 4.6 12 11.2 0 6.7-5 10.8-12 10.8H75v8H68zm7-14h8.8c3.4 0 5.6-1.8 5.6-4.9s-2.2-5.1-5.6-5.1H75v10z"
+        fill="url(#gold)"/>
+  <path d="M102 81h7v24h15v6h-22V81z" fill="#dce8ff"/>
+
+  <rect x="130" y="47" width="26" height="14" rx="7" fill="#ff4c66"/>
+  <text x="143" y="57" text-anchor="middle" font-size="8" font-family="Arial, sans-serif" font-weight="700" fill="#fff">LIVE</text>
 </svg>
