@@ -73,6 +73,39 @@ function renderHero() {
   `;
 }
 
+function scoreMustKnow(x) {
+  const h = (x.item.headline || '').toLowerCase();
+  const s = (x.item.summary || '').toLowerCase();
+  const text = `${h} ${s}`;
+  let score = 0;
+  const hotKeywords = ['ด่วน','วิกฤต','สงคราม','เฟด','fomc','ดอกเบี้ย','น้ำมัน','ทองคำ','ตลาด','นโยบาย'];
+  hotKeywords.forEach(k => { if (text.includes(k)) score += 2; });
+  if ((x.item.confidence || 'B') === 'A') score += 2;
+  if ((x.item.sourceTier || 'B') === 'A') score += 2;
+  if ((x.item.impact || '').length > 40) score += 1;
+  return score;
+}
+
+function renderMustKnow() {
+  const el = document.getElementById('mustKnow');
+  const ranked = allItems()
+    .map(x => ({...x, mkScore: scoreMustKnow(x)}))
+    .sort((a,b) => b.mkScore - a.mkScore)
+    .slice(0,3);
+
+  el.innerHTML = `
+    <h3>🚨 ข่าวที่ต้องรู้วันนี้ (Must Know)</h3>
+    <div class="must-know-grid">
+      ${ranked.map((x, i) => `
+        <a class="must-know-item" href="${x.item.url}" target="_blank" rel="noopener noreferrer">
+          <span class="label">${i===0?'สำคัญที่สุด':'ต้องรู้'}</span>
+          <p>${x.item.headline}</p>
+        </a>
+      `).join('')}
+    </div>
+  `;
+}
+
 function renderMustRead() {
   const el = document.getElementById('mustRead');
   const top3 = allItems().slice(0, 3);
@@ -153,6 +186,7 @@ async function init() {
   await loadData();
   renderMeta();
   buildFilters();
+  renderMustKnow();
   renderHero();
   renderMustRead();
   renderBreaking();

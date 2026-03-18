@@ -253,6 +253,27 @@ body.compact .hero { min-height: 300px; }
   .content-layout { grid-template-columns: 1fr; }
   .sidebar { position: static; }
   .must-grid { grid-template-columns: 1fr; }
+  .must-know-grid { grid-template-columns: 1fr; }
+  .topbar { padding: 8px 0; }
+  .actions { justify-content: flex-start; }
+}
+@media (max-width: 700px) {
+  .hero { min-height: 300px; }
+  .grid { grid-template-columns: 1fr; }
+  .brand h1 { font-size: 18px; }
+  .search { min-width: 130px; width: 100%; }
+  .actions { width: 100%; }
+  .topbar { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .must-item { min-height: auto; }
+}
+@media (max-width: 460px) {
+  .hero-content { left: 14px; right: 14px; bottom: 14px; }
+  .hero h2 { font-size: 22px; }
+  .pill, .btn { font-size: 11px; padding: 7px 10px; }
+}
+  .content-layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .must-grid { grid-template-columns: 1fr; }
   .topbar { padding: 8px 0; }
   .actions { justify-content: flex-start; }
 }
