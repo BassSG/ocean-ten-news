@@ -200,6 +200,8 @@ main { padding: 18px 16px 24px; }
 .card-body { padding: 12px; }
 .card h3 { margin: 2px 0 8px; font-size: 16px; line-height: 1.35; }
 .meta { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+.meta-badges { display:flex; gap:6px; margin: 0 0 8px; flex-wrap:wrap; }
+.meta-pill { font-size:11px; color:#d9e7ff; border:1px solid #37527f; background:#12213e; border-radius:999px; padding:3px 8px; }
 .card p { margin: 0 0 10px; color: #d9e6ff; font-size: 14px; }
 .impact { border-left: 3px solid var(--green); padding-left: 8px; color: #c9fbe3; }
 .link { color: #9ec2ff; text-decoration: none; font-weight: 600; }

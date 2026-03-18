@@ -34,6 +34,8 @@ function createCard(sectionId, sectionName, item, idx) {
   const thumb = item.image || heroImageMap[sectionId] || heroImageMap.world;
   const score = Math.max(7, 10 - idx);
 
+  const confidence = item.confidence || 'B';
+  const sourceTier = item.sourceTier || 'B';
   return `
     <article class="card">
       <div class="thumb" style="background-image:url('${thumb}')">
@@ -43,6 +45,7 @@ function createCard(sectionId, sectionName, item, idx) {
       <div class="card-body">
         <h3>${item.headline}</h3>
         <div class="meta">${style.readTime} · แหล่งข่าว: ${item.source}</div>
+        <div class="meta-badges"><span class="meta-pill">Source ${sourceTier}</span><span class="meta-pill">Confidence ${confidence}</span></div>
         <p>${item.summary}</p>
         <p class="impact"><strong>Impact:</strong> ${item.impact}</p>
         <a class="link" href="${item.url}" target="_blank" rel="noopener noreferrer">อ่านต่อทันที ↗</a>
