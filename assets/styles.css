@@ -44,6 +44,7 @@ body {
 .pill { border: 1px solid #2a3a5e; background: #131d33; color: #dbe7ff; border-radius: 999px; padding: 8px 12px; font-size: 12px; }
 button.pill { cursor: pointer; }
 .live { border-color: #254c3e; color: #8ef0be; background: #0f2a22; }
+.install { border-color: #7b4b00; background: linear-gradient(90deg,#ff9f2f,#ff7a3d); color: #fff; font-weight: 700; }
 
 .breaking-wrap {
   border-bottom: 1px solid #272f44;

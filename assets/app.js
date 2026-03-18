@@ -19,6 +19,7 @@ let rawData = null;
 let currentFilter = 'all';
 let searchTerm = '';
 let compactMode = false;
+let deferredPrompt = null;
 
 function allItems() {
   return rawData.sections.flatMap((s, idxS) => s.items.map((item, idxI) => ({
@@ -170,6 +171,32 @@ document.getElementById('viewToggle').addEventListener('click', () => {
   document.body.classList.toggle('compact', compactMode);
   document.getElementById('viewToggle').textContent = compactMode ? 'Comfort' : 'Compact';
 });
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const btn = document.getElementById('installBtn');
+  btn.hidden = false;
+});
+
+document.getElementById('installBtn').addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  document.getElementById('installBtn').hidden = true;
+});
+
+window.addEventListener('appinstalled', () => {
+  const btn = document.getElementById('installBtn');
+  btn.hidden = true;
+});
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
 
 init().catch(err => {
   document.getElementById('cards').innerHTML = `<p>โหลดข่าวไม่สำเร็จ: ${err.message}</p>`;
