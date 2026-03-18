@@ -14,7 +14,7 @@ body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transp
 .pill{font-size:12px;border:1px solid #38558a;background:#132244;color:#cfe0ff;border-radius:999px;padding:7px 11px}
 .sel{background:#0f1a33;color:#dbe7ff;border:1px solid #35507e;border-radius:8px;padding:3px 8px}
 #chart{height:68vh;border:1px solid var(--line);border-radius:14px;background:rgba(10,16,31,.8)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0}\n.card-full{grid-column:1/-1}
 .c{background:linear-gradient(180deg,#121d36,#10182c);border:1px solid var(--line);border-radius:12px;padding:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
 .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
 .v{font-size:19px;font-weight:800;margin-top:3px}
@@ -27,7 +27,7 @@ body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transp
 .section{margin-top:10px}
 .err{margin-top:8px;color:#ff9aa9;font-size:12px}
 .note{color:var(--muted);font-size:12px}
-@media (max-width:900px){.grid2{grid-template-columns:1fr} #chart{height:58vh} .title{font-size:20px}}
+@media (max-width:900px){#chart{height:54vh} .title{font-size:20px}}\n@media (max-width:700px){\n  .wrap{padding:12px}\n  .head{padding:10px}\n  .subtitle{font-size:11px}\n  .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}\n  .c{padding:8px;border-radius:10px}\n  .k{font-size:10px}\n  .v{font-size:16px}\n  #pos{padding:10px;border-radius:10px;font-size:14px}\n  .grid2{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}\n  .box{padding:8px;font-size:12px}\n}\n@media (max-width:420px){\n  #chart{height:48vh}\n  .cards{grid-template-columns:1fr}\n  .card-full{grid-column:auto}\n  .grid2{grid-template-columns:1fr}\n}
 </style>
 </head><body><div class="wrap">
 <div class="head">
@@ -53,8 +53,8 @@ body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transp
     <div class="c"><div class="k">SL</div><div class="v" id="slV">-</div></div>
     <div class="c"><div class="k">TP1</div><div class="v" id="tp1V">-</div></div>
     <div class="c"><div class="k">TPMost</div><div class="v" id="tpmV">-</div></div>
-    <div class="c"><div class="k">Last Price</div><div class="v" id="lastV">-</div></div>
-    <div class="c"><div class="k">R:R</div><div class="v" id="rrV">-</div></div>
+    <div class="c card-full"><div class="k">Last Price</div><div class="v" id="lastV">-</div></div>
+    <div class="c card-full"><div class="k">R:R</div><div class="v" id="rrV">-</div></div>
   </div>
 
   <p class="note">Candles: FMP 15m snapshot | Levels: live pull from Apps Script endpoint</p>
@@ -107,10 +107,16 @@ function draw(lv,sourceText){
 
   const pos=document.getElementById('pos');
   pos.className=isLong?'pos-long':'pos-short';
-  pos.innerHTML=(isLong
-    ? `🟢 <b>Long Position (Buy Limit)</b> | Entry ${entry} | SL ${sl} | TP1 ${tp1??'-'} | TPMost ${tpMost??'-'}`
-    : `🔴 <b>Short Position (Sell Limit)</b> | Entry ${entry} | SL ${sl} | TP1 ${tp1??'-'} | TPMost ${tpMost??'-'}`) +
-    `<div class='grid2'>
+  const side = isLong ? '🟢 Long Position (Buy Limit)' : '🔴 Short Position (Sell Limit)';
+  pos.innerHTML = `
+    <div style='font-weight:700;margin-bottom:6px'>${side}</div>
+    <div style='display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;font-size:13px;margin-bottom:8px'>
+      <div class='box'><b>Entry</b><br/>${entry}</div>
+      <div class='box'><b>SL</b><br/>${sl}</div>
+      <div class='box'><b>TP1</b><br/>${tp1??'-'}</div>
+      <div class='box'><b>TPMost</b><br/>${tpMost??'-'}</div>
+    </div>
+    <div class='grid2'>
       <div class='box'><b>Risk</b><br/>${risk.toFixed(2)} จุด</div>
       <div class='box'><b>Reward (TPMost)</b><br/>${reward.toFixed(2)} จุด | R:R ≈ ${rr}</div>
     </div>`;
