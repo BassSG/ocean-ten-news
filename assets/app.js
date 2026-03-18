@@ -30,7 +30,7 @@ function allItems() {
 
 function createCard(sectionId, sectionName, item, idx) {
   const style = sectionStyle[sectionId] || { badge: sectionName, tone: 'focus', readTime: 'อ่าน 2 นาที' };
-  const thumb = heroImageMap[sectionId] || heroImageMap.world;
+  const thumb = item.image || heroImageMap[sectionId] || heroImageMap.world;
   const score = Math.max(7, 10 - idx);
 
   return `
@@ -53,7 +53,7 @@ function createCard(sectionId, sectionName, item, idx) {
 function renderHero() {
   const first = allItems()[0];
   const hero = document.getElementById('hero');
-  const bg = heroImageMap[first.section.id] || heroImageMap.world;
+  const bg = first.item.image || heroImageMap[first.section.id] || heroImageMap.world;
 
   hero.style.backgroundImage = `url('${bg}')`;
   hero.innerHTML = `
