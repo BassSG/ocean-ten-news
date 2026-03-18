@@ -163,7 +163,9 @@ function draw(lv,sourceText){
   const ev = evaluateStatusPostOrder(lv);
   latestPlanText = `XAU/USD Plan\nEntry: ${entry}\nSL: ${sl}\nTP1: ${tp1??'-'}\nTPMost: ${tpMost??'-'}\nR:R(TP1): ${rr}\nStatus: ${ev.status}`;
 
-  document.getElementById('livePill').textContent=sourceText;
+  const lastTs = data[data.length-1]?.time;
+  const lastTH = lastTs ? new Date(lastTs*1000).toLocaleString('th-TH',{timeZone:'Asia/Bangkok',hour12:false}) : '-';
+  document.getElementById('livePill').textContent = `${sourceText} | Candle ล่าสุด(TH): ${lastTH}`;
 
   const pos=document.getElementById('pos');
   pos.className=isLong?'pos-long':'pos-short';
@@ -185,7 +187,7 @@ function draw(lv,sourceText){
   if (chartObj) { try { chartObj.remove(); } catch(e){} chartObj=null; }
   const chart=LightweightCharts.createChart(document.getElementById('chart'),{
     localization:{
-      timeFormatter:(t)=>{ const d=new Date((t+7*3600)*1000); return d.toLocaleString('th-TH',{hour12:false}); }
+      timeFormatter:(t)=>{ const d=new Date(t*1000); return d.toLocaleString('th-TH',{timeZone:'Asia/Bangkok',hour12:false}); }
     },
     layout:{background:{color:'#0a0f1f'},textColor:'#d6e4ff'},
     grid:{vertLines:{color:'#1b2740'},horzLines:{color:'#1b2740'}},
