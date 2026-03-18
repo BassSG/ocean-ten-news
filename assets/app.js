@@ -96,12 +96,19 @@ function renderMustKnow() {
   el.innerHTML = `
     <h3>🚨 ข่าวที่ต้องรู้วันนี้ (Must Know)</h3>
     <div class="must-know-grid">
-      ${ranked.map((x, i) => `
-        <a class="must-know-item" href="${x.item.url}" target="_blank" rel="noopener noreferrer">
-          <span class="label">${i===0?'สำคัญที่สุด':'ต้องรู้'}</span>
-          <p>${x.item.headline}</p>
-        </a>
-      `).join('')}
+      ${ranked.map((x, i) => {
+        const img = x.item.image || heroImageMap[x.section.id] || heroImageMap.world;
+        const tag = i===0 ? 'สำคัญที่สุด' : i===1 ? 'ต้องรู้มาก' : 'ต้องรู้';
+        return `
+          <a class="must-know-item" href="${x.item.url}" target="_blank" rel="noopener noreferrer" style="background-image:url('${img}')">
+            <div class="overlay">
+              <span class="label">${tag}</span>
+              <p>${x.item.headline}</p>
+              <span class="cta">อ่านข่าวนี้ ↗</span>
+            </div>
+          </a>
+        `;
+      }).join('')}
     </div>
   `;
 }
