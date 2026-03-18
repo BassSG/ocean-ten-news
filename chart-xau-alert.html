@@ -42,19 +42,23 @@ body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transp
   </div>
 </div>
 
-<div class="cards">
-  <div class="c"><div class="k">ENTRY</div><div class="v" id="entryV">-</div></div>
-  <div class="c"><div class="k">SL</div><div class="v" id="slV">-</div></div>
-  <div class="c"><div class="k">TP1</div><div class="v" id="tp1V">-</div></div>
-  <div class="c"><div class="k">TPMost</div><div class="v" id="tpmV">-</div></div>
-  <div class="c"><div class="k">Last Price</div><div class="v" id="lastV">-</div></div>
-  <div class="c"><div class="k">R:R</div><div class="v" id="rrV">-</div></div>
-</div>
-
-<div id="pos"></div>
 <div id="chart"></div>
 <div id="err" class="err"></div>
-<p style="color:#9db0e0">Candles: FMP 15m snapshot | Levels: live pull from Apps Script endpoint</p>
+
+<div class="section">
+  <div id="pos"></div>
+
+  <div class="cards">
+    <div class="c"><div class="k">ENTRY</div><div class="v" id="entryV">-</div></div>
+    <div class="c"><div class="k">SL</div><div class="v" id="slV">-</div></div>
+    <div class="c"><div class="k">TP1</div><div class="v" id="tp1V">-</div></div>
+    <div class="c"><div class="k">TPMost</div><div class="v" id="tpmV">-</div></div>
+    <div class="c"><div class="k">Last Price</div><div class="v" id="lastV">-</div></div>
+    <div class="c"><div class="k">R:R</div><div class="v" id="rrV">-</div></div>
+  </div>
+
+  <p class="note">Candles: FMP 15m snapshot | Levels: live pull from Apps Script endpoint</p>
+</div>
 </div>
 
 <script>
