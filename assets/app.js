@@ -17,6 +17,8 @@ const sectionStyle = {
 
 let rawData = null;
 let currentFilter = 'all';
+let searchTerm = '';
+let compactMode = false;
 
 function allItems() {
   return rawData.sections.flatMap((s, idxS) => s.items.map((item, idxI) => ({
@@ -104,7 +106,13 @@ function renderCards() {
   const root = document.getElementById('cards');
   const rows = rawData.sections
     .filter(s => currentFilter === 'all' || s.id === currentFilter)
-    .flatMap(s => s.items.map((item, i) => createCard(s.id, s.name, item, i)))
+    .flatMap(s => s.items
+      .filter(item => {
+        if (!searchTerm) return true;
+        const hay = `${item.headline} ${item.summary} ${item.impact} ${s.name}`.toLowerCase();
+        return hay.includes(searchTerm.toLowerCase());
+      })
+      .map((item, i) => createCard(s.id, s.name, item, i)))
     .join('');
 
   root.innerHTML = rows || '<p>ไม่พบข่าวในหมวดนี้</p>';
@@ -150,6 +158,17 @@ async function init() {
 
 document.getElementById('refreshBtn').addEventListener('click', async () => {
   await init();
+});
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  searchTerm = e.target.value || '';
+  renderCards();
+});
+
+document.getElementById('viewToggle').addEventListener('click', () => {
+  compactMode = !compactMode;
+  document.body.classList.toggle('compact', compactMode);
+  document.getElementById('viewToggle').textContent = compactMode ? 'Comfort' : 'Compact';
 });
 
 init().catch(err => {
