@@ -4,18 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ocean Ten News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <main class="container">
-    <section class="header">
-      <h1>🗞️ Ocean Ten News Forum</h1>
-      <p id="brief-title">กำลังโหลด...</p>
-      <p id="brief-date"></p>
-      <div class="toolbar" id="filters"></div>
-    </section>
+  <div class="topbar-wrap">
+    <header class="topbar container">
+      <div class="brand">
+        <span class="logo">📰</span>
+        <div>
+          <h1>Ocean Ten News</h1>
+          <p id="brief-date">กำลังโหลด...</p>
+        </div>
+      </div>
+      <div class="actions">
+        <span class="pill live">● LIVE</span>
+        <button class="pill" id="refreshBtn">Refresh</button>
+      </div>
+    </header>
+  </div>
 
-    <section class="grid" id="cards"></section>
+  <main class="container">
+    <section class="hero" id="hero"></section>
+
+    <nav class="toolbar" id="filters"></nav>
+
+    <section class="content-layout">
+      <div>
+        <h2 class="section-title">ข่าวเด่นประจำวัน</h2>
+        <section class="grid" id="cards"></section>
+      </div>
+      <aside class="sidebar">
+        <h3>สรุปเร็ว (Quick Scan)</h3>
+        <ul id="quickList"></ul>
+      </aside>
+    </section>
 
     <p class="footer-note" id="brief-note"></p>
   </main>
