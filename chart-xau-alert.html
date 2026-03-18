@@ -3,28 +3,42 @@
 <title>XAU/USD Position Chart (15m)</title>
 <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 <style>
-body{margin:0;background:#0a0f1f;color:#e8efff;font-family:Inter,system-ui}
-.wrap{max-width:1240px;margin:0 auto;padding:16px}
-.head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-.pill{font-size:12px;border:1px solid #35507e;background:#132244;color:#cfe0ff;border-radius:999px;padding:6px 10px}
-#chart{height:68vh;border:1px solid #24345f;border-radius:12px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin:12px 0}
-.c{background:#121a33;border:1px solid #24345f;border-radius:10px;padding:8px}
-.k{font-size:12px;color:#9db0e0} .v{font-size:18px;font-weight:700}
+:root{--bg:#070b16;--panel:#111a2e;--line:#27395f;--text:#eaf2ff;--muted:#9eb3db;--accent:#6aa8ff;--good:#37d39b;--bad:#ff5f73;--gold:#ffd166;--vio:#b388ff}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transparent 45%),radial-gradient(900px 500px at 80% -25%,#3a1744,transparent 50%),var(--bg);color:var(--text);font-family:Inter,system-ui}
+.wrap{max-width:1260px;margin:0 auto;padding:18px}
+.head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border:1px solid var(--line);background:rgba(15,24,44,.82);backdrop-filter: blur(8px);border-radius:14px}
+.title{margin:0;font-size:24px;letter-spacing:.2px}
+.subtitle{margin:4px 0 0;color:var(--muted);font-size:12px}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pill{font-size:12px;border:1px solid #38558a;background:#132244;color:#cfe0ff;border-radius:999px;padding:7px 11px}
+.sel{background:#0f1a33;color:#dbe7ff;border:1px solid #35507e;border-radius:8px;padding:3px 8px}
+#chart{height:68vh;border:1px solid var(--line);border-radius:14px;background:rgba(10,16,31,.8)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0}
+.c{background:linear-gradient(180deg,#121d36,#10182c);border:1px solid var(--line);border-radius:12px;padding:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
+.k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.v{font-size:19px;font-weight:800;margin-top:3px}
+#entryV{color:var(--accent)} #slV{color:var(--bad)} #tp1V{color:var(--gold)} #tpmV{color:var(--vio)}
 #pos{margin:8px 0 12px;padding:12px;border-radius:12px;border:1px solid #2b3f72;background:#101a33;line-height:1.45}
-.pos-long{border-color:#2f7d60!important;background:#0f1f1b!important}
-.pos-short{border-color:#8a3b4b!important;background:#2a1218!important}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-.box{border:1px solid #29416f;background:#101c36;border-radius:10px;padding:8px;font-size:13px}
+.pos-long{border-color:#2f7d60!important;background:linear-gradient(180deg,#0f1f1b,#0f1916)!important}
+.pos-short{border-color:#8a3b4b!important;background:linear-gradient(180deg,#2a1218,#241017)!important}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.box{border:1px solid #29416f;background:#101c36;border-radius:10px;padding:9px;font-size:13px}
+.section{margin-top:10px}
 .err{margin-top:8px;color:#ff9aa9;font-size:12px}
-@media (max-width:800px){ .grid2{grid-template-columns:1fr} #chart{height:58vh} }
+.note{color:var(--muted);font-size:12px}
+@media (max-width:900px){.grid2{grid-template-columns:1fr} #chart{height:58vh} .title{font-size:20px}}
 </style>
 </head><body><div class="wrap">
 <div class="head">
-  <h2 style="margin:0">📊 XAU/USD Position Overlay (TradingView-like)</h2>
-  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+  <div>
+    <h2 class="title">📊 XAU/USD Position Overlay</h2>
+    <p class="subtitle">TradingView-like Pro · Timeframe 15m · Entry/SL/TP live</p>
+  </div>
+  <div class="toolbar">
     <span class="pill">Timeframe: 15m</span>
-    <label class="pill" style="display:flex;gap:6px;align-items:center">Source <select id="sourceSel" style="background:#0f1a33;color:#dbe7ff;border:1px solid #35507e;border-radius:8px;padding:2px 6px"><option value="EBass">EBass</option><option value="EKlaETun">EKlaETun</option></select></label><span class="pill" id="livePill">Alert source: loading...</span>
+    <label class="pill" style="display:flex;gap:6px;align-items:center">Source <select id="sourceSel" class="sel"><option value="EBass">EBass</option><option value="EKlaETun">EKlaETun</option></select></label>
+    <span class="pill" id="livePill">Alert source: loading...</span>
   </div>
 </div>
 
