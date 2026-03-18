@@ -47,6 +47,10 @@ function createCard(sectionId, sectionName, item, idx) {
         <div class="meta">${style.readTime} · แหล่งข่าว: ${item.source}</div>
         <div class="meta-badges"><span class="meta-pill">Source ${sourceTier}</span><span class="meta-pill">Confidence ${confidence}</span></div>
         <p>${item.summary}</p>
+        <div class="ai-summary">
+          <div class="ai-title">🤖 AI Summary</div>
+          <p>${item.aiSummary || 'กำลังรอสรุปอัตโนมัติจาก Minimax...'}</p>
+        </div>
         <p class="impact"><strong>Impact:</strong> ${item.impact}</p>
         <a class="link" href="${item.url}" target="_blank" rel="noopener noreferrer">อ่านต่อทันที ↗</a>
       </div>

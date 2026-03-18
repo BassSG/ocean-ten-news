@@ -248,6 +248,9 @@ main { padding: 18px 16px 24px; }
 .meta { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
 .meta-badges { display:flex; gap:6px; margin: 0 0 8px; flex-wrap:wrap; }
 .meta-pill { font-size:11px; color:#d9e7ff; border:1px solid #37527f; background:#12213e; border-radius:999px; padding:3px 8px; }
+.ai-summary { border:1px solid #2d446f; background:#0f1b33; border-radius:10px; padding:8px; margin: 0 0 10px; }
+.ai-summary .ai-title { font-size:12px; color:#9ec7ff; font-weight:700; margin-bottom:4px; }
+.ai-summary p { margin:0; font-size:13px; color:#d8e7ff; line-height:1.45; }
 .card p { margin: 0 0 10px; color: #d9e6ff; font-size: 14px; }
 .impact { border-left: 3px solid var(--green); padding-left: 8px; color: #c9fbe3; }
 .link { color: #9ec2ff; text-decoration: none; font-weight: 600; }
