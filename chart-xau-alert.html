@@ -38,11 +38,11 @@ body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transp
   <div class="toolbar">
     <span class="pill">Timeframe: 15m</span>
     <label class="pill" style="display:flex;gap:6px;align-items:center">Source <select id="sourceSel" class="sel"><option value="EBass">EBass</option><option value="EKlaETun">EKlaETun</option></select></label>
-    <button class="pill" id="autoBtn" type="button">Auto: ON (60s)</button><span class="pill" id="livePill">Alert source: loading...</span>
+    <button class="pill" id="autoBtn" type="button">Auto: ON (60s)</button><button class="pill" id="z1d" type="button">1D</button><button class="pill" id="z3d" type="button">3D</button><button class="pill" id="z1w" type="button">1W</button><button class="pill" id="z1m" type="button">1M</button><button class="pill" id="copyPlan" type="button">Copy Plan</button><span class="pill" id="livePill">Alert source: loading...</span>
   </div>
 </div>
 
-<div id="chart"></div>
+<div style="position:relative"><div id="chart"></div><div id="pnlBox" style="position:absolute;right:10px;top:10px;z-index:9;background:rgba(10,18,36,.86);border:1px solid #35507e;border-radius:10px;padding:8px 10px;font-size:12px;line-height:1.35">P/L: -</div></div>
 <div id="err" class="err"></div>
 
 <div class="section">
@@ -55,6 +55,8 @@ body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transp
     <div class="c"><div class="k">TPMost</div><div class="v" id="tpmV">-</div></div>
     <div class="c card-full"><div class="k">Last Price</div><div class="v" id="lastV">-</div></div>
     <div class="c card-full"><div class="k">R:R</div><div class="v" id="rrV">-</div></div>
+  <div class="c"><div class="k">Range(20)</div><div class="v" id="rangeV">-</div></div>
+  <div class="c"><div class="k">Volatility</div><div class="v" id="volV">-</div></div>
   </div>
 
   <p class="note">Candles: FMP 15m snapshot | Levels: live pull from Apps Script endpoint</p>
@@ -109,6 +111,13 @@ function draw(lv,sourceText){
 
   const set=(id,v)=>document.getElementById(id).textContent=(v??'-');
   set('entryV',entry); set('slV',sl); set('tp1V',tp1); set('tpmV',tpMost); set('lastV',last.toFixed(2)); set('rrV',rr);
+  const last20=data.slice(-20);
+  const hi=Math.max(...last20.map(x=>x.high));
+  const lo=Math.min(...last20.map(x=>x.low));
+  const rg=(hi-lo).toFixed(2);
+  const vol=(rg/Math.max(1,last)).toFixed(4);
+  set('rangeV',rg);
+  set('volV', Number(vol)>0.01 ? 'High' : Number(vol)>0.006 ? 'Medium' : 'Low');
   document.getElementById('livePill').textContent=sourceText;
 
   const pos=document.getElementById('pos');
@@ -126,6 +135,13 @@ function draw(lv,sourceText){
       <div class='box'><b>Risk</b><br/>${risk.toFixed(2)} จุด</div>
       <div class='box'><b>Reward (TPMost)</b><br/>${reward.toFixed(2)} จุด | R:R ≈ ${rr}</div>
     </div>`;
+  const pnl=(isLong ? (last-entry) : (entry-last));
+  const pnlPct = entry ? ((pnl/entry)*100).toFixed(3) : '-';
+  const toTp1 = tp1 ? (isLong ? (tp1-last) : (last-tp1)).toFixed(2) : '-';
+  const toMost = tpMost ? (isLong ? (tpMost-last) : (last-tpMost)).toFixed(2) : '-';
+  const pb=document.getElementById('pnlBox');
+  const col=pnl>=0?'#8df0c2':'#ff9fb0';
+  pb.innerHTML = `<div style='color:${col};font-weight:700'>Unrealized: ${pnl.toFixed(2)} (${pnlPct}%)</div><div>to TP1: ${toTp1}</div><div>to TPMost: ${toMost}</div>`;
 
   if (chartObj) { try { chartObj.remove(); } catch(e){} chartObj=null; }
   const chart=LightweightCharts.createChart(document.getElementById('chart'),{
@@ -188,6 +204,7 @@ function draw(lv,sourceText){
   anchor.setData([{time:tStart,value:minLv},{time:tEnd,value:maxLv}]);
 
   chart.timeScale().setVisibleRange({from:data[Math.max(0,data.length-140)].time,to:tEnd});
+  window.__chart = chart;
 }
 
 async function init(){
@@ -220,6 +237,17 @@ function setupAuto(){
       btn.textContent = autoOn ? 'Auto: ON (60s)' : 'Auto: OFF';
     };
   }
+  const z=(bars)=>{ const ch=window.__chart; if(!ch) return; const arr=data; const to=arr[arr.length-1].time; const from=arr[Math.max(0,arr.length-bars)].time; ch.timeScale().setVisibleRange({from,to}); };
+  const byId=(id,fn)=>{ const el=document.getElementById(id); if(el) el.onclick=fn; };
+  byId('z1d',()=>z(96));
+  byId('z3d',()=>z(96*3));
+  byId('z1w',()=>z(96*7));
+  byId('z1m',()=>z(96*30));
+  byId('copyPlan',()=>{
+    const txt=`XAU/USD Plan\nEntry: ${document.getElementById('entryV').textContent}\nSL: ${document.getElementById('slV').textContent}\nTP1: ${document.getElementById('tp1V').textContent}\nTPMost: ${document.getElementById('tpmV').textContent}`;
+    navigator.clipboard?.writeText(txt);
+    const cp=document.getElementById('copyPlan'); if(cp){ cp.textContent='Copied ✓'; setTimeout(()=>cp.textContent='Copy Plan',1200);}
+  });
 }
 
 init();
