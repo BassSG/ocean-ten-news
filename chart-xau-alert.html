@@ -150,10 +150,14 @@ function evaluateStatusPostOrder(lv){
   if(hitTP1) status='แตะ TP1 แล้ว';
   if(hitTPMost) status='แตะ TPMost แล้ว';
   if(hitSL) status='โดน SL แล้ว';
-  return {status, orderTs};
+  let endTs=null, endReason='ยังไม่จบ';
+  if(hitSL){ endReason='SL'; endTs = post.find(b=> (isLong ? b.low<=sl : b.high>=sl))?.time || null; }
+  else if(hitTPMost){ endReason='TPMost'; endTs = post.find(b=> (isLong ? b.high>=tpMost : b.low<=tpMost))?.time || null; }
+  const endTH = endTs ? new Date(endTs*1000).toLocaleString('th-TH',{timeZone:'Asia/Bangkok',hour12:false}) : null;
+  return {status, orderTs, endTs, endReason, endTH};
 }
 
-function draw(lv,sourceText){
+function draw(lv,sourceText,run,runs){
   const entry=lv.ENTRY, sl=lv.SL, tp1=lv.TP1, tpMost=lv.TPMOST || tp1;
   const isLong=(lv.orderType||'').includes('BUY');
 
@@ -161,7 +165,13 @@ function draw(lv,sourceText){
   const risk=Math.abs(entry-sl);
   const rr=(reward&&risk)?(reward/risk).toFixed(2):'-';
   const ev = evaluateStatusPostOrder(lv);
-  latestPlanText = `XAU/USD Plan\nEntry: ${entry}\nSL: ${sl}\nTP1: ${tp1??'-'}\nTPMost: ${tpMost??'-'}\nR:R(TP1): ${rr}\nStatus: ${ev.status}`;
+  latestPlanText = `XAU/USD Plan
+Entry: ${entry}
+SL: ${sl}
+TP1: ${tp1??'-'}
+TPMost: ${tpMost??'-'}
+R:R(TP1): ${rr}
+Status: ${ev.status}`;
 
   const lastTs = data[data.length-1]?.time;
   const lastTH = lastTs ? new Date(lastTs*1000).toLocaleString('th-TH',{timeZone:'Asia/Bangkok',hour12:false}) : '-';
@@ -170,9 +180,18 @@ function draw(lv,sourceText){
   const pos=document.getElementById('pos');
   pos.className=isLong?'pos-long':'pos-short';
   const side = isLong ? '🟢 Long Position (Buy Limit)' : '🔴 Short Position (Sell Limit)';
+
+  const listHtml = (runs||[]).slice(0,10).map(r=>{
+    const ex=extractLevelsFromItems(r.items||[]);
+    if(!ex) return '';
+    const e=evaluateStatusPostOrder(ex);
+    const t=toThaiTimeStr(ex.createdAt || r.createdAt);
+    return `<div class='box' style='font-size:12px'><b>${t}</b><br/>${e.status}<br/><span style='color:#9db3db'>${r.runId}</span></div>`;
+  }).join('');
+
   pos.innerHTML = `
     <div style='font-weight:700;margin-bottom:6px'>${side}</div>
-    <div class='box' style='margin-bottom:8px;border-color:#40639a'><b>สถานะ (นับจากเวลาออเดอร์):</b> ${ev.status}<br/><span style='color:#9db3db'>Order Time (TH): ${toThaiTimeStr(lv.createdAt)}</span></div>
+    <div class='box' style='margin-bottom:8px;border-color:#40639a'><b>สถานะ (นับจากเวลาออเดอร์):</b> ${ev.status}<br/><span style='color:#9db3db'>Order Time (TH): ${toThaiTimeStr(lv.createdAt)}</span><br/><span style='color:#9db3db'>จบที่: ${ev.endReason||'-'} @ ${ev.endTH||'-'}</span></div>
     <div style='display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;font-size:13px;margin-bottom:8px'>
       <div class='box' style='border-color:#3f66b0'><b style='color:#89b4ff'>Entry</b><br/><span style='font-size:22px;font-weight:700;color:#89b4ff'>${entry}</span></div>
       <div class='box' style='border-color:#8a3f4f'><b style='color:#ff8fa2'>SL</b><br/><span style='font-size:22px;font-weight:700;color:#ff8fa2'>${sl}</span></div>
@@ -182,13 +201,12 @@ function draw(lv,sourceText){
     <div class='grid2'>
       <div class='box'><b>Risk</b><br/>${risk.toFixed(2)} จุด</div>
       <div class='box'><b>Reward (TP1)</b><br/>${reward.toFixed(2)} จุด | R:R ≈ ${rr}</div>
-    </div>`;
+    </div>
+    <div style='margin-top:8px'><b style='font-size:12px;color:#9db3db'>ประวัติออเดอร์ล่าสุด</b><div class='grid2' style='margin-top:6px'>${listHtml || '<div class="box">ไม่มีข้อมูล</div>'}</div></div>`;
 
   if (chartObj) { try { chartObj.remove(); } catch(e){} chartObj=null; }
   const chart=LightweightCharts.createChart(document.getElementById('chart'),{
-    localization:{
-      timeFormatter:(t)=>{ const d=new Date(t*1000); return d.toLocaleString('th-TH',{timeZone:'Asia/Bangkok',hour12:false}); }
-    },
+    localization:{ timeFormatter:(t)=>{ const d=new Date(t*1000); return d.toLocaleString('th-TH',{timeZone:'Asia/Bangkok',hour12:false}); } },
     layout:{background:{color:'#0a0f1f'},textColor:'#d6e4ff'},
     grid:{vertLines:{color:'#1b2740'},horzLines:{color:'#1b2740'}},
     rightPriceScale:{borderColor:'#2e426d'},
@@ -199,17 +217,23 @@ function draw(lv,sourceText){
   const cs=chart.addCandlestickSeries({upColor:'#42d392',downColor:'#ff5f73',borderVisible:false,wickUpColor:'#42d392',wickDownColor:'#ff5f73'});
   cs.setData(data);
 
-  function line(price,color,title,style=0,width=2){if(!price)return;cs.createPriceLine({price,color,lineWidth:width,lineStyle:style,axisLabelVisible:true,title});}
-  line(entry,'#4da3ff','ENTRY',0,2);
-  line(sl,'#ff5f73','SL',0,2);
-  line(tp1,'#ffd166','TP1',2,2);
-  line(tpMost,'#b388ff','TPMost',0,2);
-
-  // TV-like position zones
+  const tStartSeg = ev.orderTs || (run?.createdAt ? Math.floor(new Date(run.createdAt).getTime()/1000) : data[0].time);
+  const tEndSeg = ev.endTs || data[data.length-1].time;
   const tLast=data[data.length-1].time;
-  const tStart=tLast-60*45;
   const tEnd=tLast+60*60*10;
 
+  function seg(price,color,title){
+    if(!price) return;
+    const ls = chart.addLineSeries({color, lineWidth:2, priceLineVisible:false, lastValueVisible:false});
+    ls.setData([{time:tStartSeg,value:price},{time:tEndSeg,value:price}]);
+    cs.createPriceLine({price,color,lineWidth:1,lineStyle:2,axisLabelVisible:true,title});
+  }
+  seg(entry,'#4da3ff','ENTRY');
+  seg(sl,'#ff5f73','SL');
+  seg(tp1,'#ffd166','TP1');
+  seg(tpMost,'#b388ff','TPMost');
+
+  const zoneEnd = Math.max(tEndSeg, tStartSeg+60*15);
   if(tpMost){
     const profitMost=chart.addBaselineSeries({
       baseValue:{type:'price',price:entry},
@@ -218,7 +242,7 @@ function draw(lv,sourceText){
       lineVisible:false,lastValueVisible:false,priceLineVisible:false
     });
     const v = isLong ? tpMost : entry;
-    profitMost.setData([{time:tStart,value:v},{time:tEnd,value:v}]);
+    profitMost.setData([{time:tStartSeg,value:v},{time:zoneEnd,value:v}]);
   }
 
   if(tp1){
@@ -229,7 +253,7 @@ function draw(lv,sourceText){
       lineVisible:false,lastValueVisible:false,priceLineVisible:false
     });
     const v = isLong ? tp1 : entry;
-    profit1.setData([{time:tStart,value:v},{time:tEnd,value:v}]);
+    profit1.setData([{time:tStartSeg,value:v},{time:zoneEnd,value:v}]);
   }
 
   const riskZone=chart.addBaselineSeries({
@@ -239,12 +263,12 @@ function draw(lv,sourceText){
     lineVisible:false,lastValueVisible:false,priceLineVisible:false
   });
   const rv = isLong ? sl : entry;
-  riskZone.setData([{time:tStart,value:rv},{time:tEnd,value:rv}]);
+  riskZone.setData([{time:tStartSeg,value:rv},{time:zoneEnd,value:rv}]);
 
   const minLv=Math.min(entry,sl,tp1??entry,tpMost??entry);
   const maxLv=Math.max(entry,sl,tp1??entry,tpMost??entry);
   const anchor=chart.addLineSeries({color:'rgba(0,0,0,0)',lineWidth:1,priceLineVisible:false,lastValueVisible:false});
-  anchor.setData([{time:tStart,value:minLv},{time:tEnd,value:maxLv}]);
+  anchor.setData([{time:tStartSeg,value:minLv},{time:tEnd,value:maxLv}]);
 
   chart.timeScale().setVisibleRange({from:data[Math.max(0,data.length-140)].time,to:tEnd});
   window.__chart = chart;
@@ -252,6 +276,8 @@ function draw(lv,sourceText){
 
 async function init(){
   let lv=fallback;
+  let run = null;
+  let runs = [];
   const sel=document.getElementById('sourceSel');
   const key=sel ? sel.value : 'EBass';
   const endpoint=ALERT_ENDPOINTS[key] || ALERT_ENDPOINTS.EBass;
@@ -260,9 +286,9 @@ async function init(){
     const res=await fetch(endpoint,{cache:'no-store'});
     if(!res.ok) throw new Error('HTTP '+res.status);
     latestRows=await res.json();
-    const runs=groupRuns(latestRows);
+    runs=groupRuns(latestRows);
     refreshRunSelector(runs);
-    let run = runs[0];
+    run = runs[0];
     if(selectedRunId && selectedRunId!=='latest'){
       const hit=runs.find(r=>r.runId===selectedRunId);
       if(hit) run=hit;
@@ -276,7 +302,7 @@ async function init(){
   } catch(e) {
     document.getElementById('err').textContent='โหลด Alert live ไม่สำเร็จ: '+e.message;
   }
-  try { draw(lv,source); } catch(e) { document.getElementById('err').textContent='Render error: '+e.message; }
+  try { draw(lv,source,run,runs); } catch(e) { document.getElementById('err').textContent='Render error: '+e.message; }
 }
 
 function setupAuto(){
