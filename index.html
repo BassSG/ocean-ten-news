@@ -26,8 +26,17 @@
     </header>
   </div>
 
+  <div class="breaking-wrap">
+    <div class="container breaking-inner">
+      <span class="breaking-label">BREAKING</span>
+      <div class="breaking-track" id="breakingTrack">กำลังโหลดข่าวด่วน...</div>
+    </div>
+  </div>
+
   <main class="container">
     <section class="hero" id="hero"></section>
+
+    <section class="must-read" id="mustRead"></section>
 
     <nav class="toolbar" id="filters"></nav>
 
@@ -37,8 +46,8 @@
         <section class="grid" id="cards"></section>
       </div>
       <aside class="sidebar">
-        <h3>สรุปเร็ว (Quick Scan)</h3>
-        <ul id="quickList"></ul>
+        <h3>🔥 Trending วันนี้</h3>
+        <ol id="quickList" class="rank-list"></ol>
       </aside>
     </section>
 
