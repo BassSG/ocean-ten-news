@@ -33,6 +33,7 @@ body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transp
   <div class="toolbar">
     <span class="pill">Timeframe: 15m</span>
     <label class="pill" style="display:flex;gap:6px;align-items:center">Source <select id="sourceSel" class="sel"><option value="EBass">EBass</option><option value="EKlaETun">EKlaETun</option></select></label>
+    <label class="pill" style="display:flex;gap:6px;align-items:center">Run <select id="runSel" class="sel"><option value="latest">latest</option></select></label>
     <button class="pill" id="autoBtn" type="button">Auto: ON (60s)</button><button class="pill" id="z1d" type="button">1D</button><button class="pill" id="z3d" type="button">3D</button><button class="pill" id="copyPlan" type="button">Copy Plan</button><span class="pill" id="livePill">Alert source: loading...</span>
   </div>
 </div>
@@ -60,17 +61,30 @@ let autoTimer = null;
 const AUTO_MS = 60000;
 let chartObj = null;
 let latestPlanText = "";
+let latestRows = [];
+let selectedRunId = "latest";
 
 
 function toNum(v){const n=Number(v); return Number.isFinite(n)?n:null;}
 
-function extractLevels(rows){
-  if(!Array.isArray(rows)||rows.length===0) return null;
-  const sorted=[...rows].sort((a,b)=>new Date(b.createdAt||b.ts||0)-new Date(a.createdAt||a.ts||0));
-  const run=sorted[0].runId;
-  const items=run?sorted.filter(r=>r.runId===run):sorted;
+function groupRuns(rows){
+  const m = new Map();
+  for(const r of (rows||[])){
+    const id = r.runId || 'no-run';
+    if(!m.has(id)) m.set(id, []);
+    m.get(id).push(r);
+  }
+  const runs = [...m.entries()].map(([runId, items])=>{
+    items.sort((a,b)=>new Date(a.createdAt||a.ts||0)-new Date(b.createdAt||b.ts||0));
+    const createdAt = items[0]?.createdAt || items[0]?.ts || null;
+    return { runId, items, createdAt };
+  }).sort((a,b)=>new Date(b.createdAt||0)-new Date(a.createdAt||0));
+  return runs;
+}
+
+function extractLevelsFromItems(items){
   const lv={}; let type='';
-  for(const r of items){
+  for(const r of (items||[])){
     const at=String(r.alertType||'').toUpperCase();
     const p=toNum(r.targetPrice);
     if(!type && r.type) type=String(r.type).toUpperCase().replace(' ','_');
@@ -83,6 +97,18 @@ function extractLevels(rows){
   lv.orderType=type||'BUY_LIMIT';
   if(!lv.ENTRY||!lv.SL) return null;
   return lv;
+}
+
+function refreshRunSelector(runs){
+  const sel=document.getElementById('runSel');
+  if(!sel) return;
+  const prev = selectedRunId || 'latest';
+  sel.innerHTML = '<option value="latest">latest</option>' + runs.map(r=>{
+    const t = r.createdAt ? new Date(r.createdAt).toLocaleString('th-TH',{timeZone:'Asia/Bangkok',hour12:false}) : 'unknown';
+    return `<option value="${r.runId}">${t} | ${r.runId}</option>`;
+  }).join('');
+  if([...sel.options].some(o=>o.value===prev)) sel.value=prev;
+  selectedRunId = sel.value;
 }
 
 function draw(lv,sourceText){
@@ -184,9 +210,20 @@ async function init(){
   try {
     const res=await fetch(endpoint,{cache:'no-store'});
     if(!res.ok) throw new Error('HTTP '+res.status);
-    const rows=await res.json();
-    const ex=extractLevels(rows);
-    if(ex){ lv={...lv,...ex}; source='Alert source: '+key+' (live endpoint)'; }
+    latestRows=await res.json();
+    const runs=groupRuns(latestRows);
+    refreshRunSelector(runs);
+    let run = runs[0];
+    if(selectedRunId && selectedRunId!=='latest'){
+      const hit=runs.find(r=>r.runId===selectedRunId);
+      if(hit) run=hit;
+    }
+    const ex=extractLevelsFromItems(run?.items||[]);
+    if(ex){
+      lv={...lv,...ex};
+      const t = run?.createdAt ? new Date(run.createdAt).toLocaleString('th-TH',{timeZone:'Asia/Bangkok',hour12:false}) : '-';
+      source='Alert source: '+key+' | run: '+(run?.runId||'latest')+' | TH: '+t;
+    }
   } catch(e) {
     document.getElementById('err').textContent='โหลด Alert live ไม่สำเร็จ: '+e.message;
   }
@@ -219,5 +256,7 @@ function setupAuto(){
 init();
 setupAuto();
 const sel=document.getElementById('sourceSel');
-if(sel){ sel.addEventListener('change', ()=>{ init(); }); }
+if(sel){ sel.addEventListener('change', ()=>{ selectedRunId='latest'; init(); }); }
+const runSel=document.getElementById('runSel');
+if(runSel){ runSel.addEventListener('change', ()=>{ selectedRunId=runSel.value; init(); }); }
 </script></body></html>
