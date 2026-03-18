@@ -21,12 +21,12 @@
   <rect x="66" y="66" width="380" height="380" rx="90" fill="#0e162d" stroke="#2b3f72" stroke-width="3"/>
   <rect x="92" y="92" width="328" height="328" rx="72" fill="#101c38"/>
 
-  <circle cx="256" cy="256" r="118" fill="none" stroke="url(#gold)" stroke-width="14" opacity="0.95"/>
+  <circle cx="256" cy="236" r="108" fill="none" stroke="url(#gold)" stroke-width="12" opacity="0.95"/>
 
-  <path d="M185 299V211h46.5c19.5 0 33 13 33 32.2 0 19.6-13.5 31.8-33 31.8H205v24h-20zm20-42h24.8c9.6 0 15.6-5.2 15.6-13.8 0-8.8-6-14.2-15.6-14.2H205v28z"
-        fill="url(#gold)"/>
-  <path d="M282 211h20v70h44v18h-64V211z" fill="#dce8ff"/>
+  <text x="256" y="252" text-anchor="middle" font-size="70" font-family="Arial, sans-serif" font-weight="800" fill="url(#gold)">OTN</text>
 
   <rect x="352" y="126" width="72" height="34" rx="17" fill="#ff4c66"/>
   <text x="388" y="148" text-anchor="middle" font-size="18" font-family="Arial, sans-serif" font-weight="700" fill="#fff">LIVE</text>
+
+  <text x="256" y="368" text-anchor="middle" font-size="30" font-family="Arial, sans-serif" font-weight="700" fill="#dce8ff" letter-spacing="1.2">OCEAN TEN NEWS</text>
 </svg>
