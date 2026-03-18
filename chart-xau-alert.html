@@ -226,7 +226,6 @@ Status: ${ev.status}`;
     if(!price) return;
     const ls = chart.addLineSeries({color, lineWidth:2, priceLineVisible:false, lastValueVisible:false});
     ls.setData([{time:tStartSeg,value:price},{time:tEndSeg,value:price}]);
-    cs.createPriceLine({price,color,lineWidth:1,lineStyle:2,axisLabelVisible:true,title});
   }
   seg(entry,'#4da3ff','ENTRY');
   seg(sl,'#ff5f73','SL');
@@ -267,6 +266,8 @@ Status: ${ev.status}`;
 
   const minLv=Math.min(entry,sl,tp1??entry,tpMost??entry);
   const maxLv=Math.max(entry,sl,tp1??entry,tpMost??entry);
+  const endMarker = chart.addLineSeries({color:'rgba(255,255,255,0.35)', lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false});
+  endMarker.setData([{time:tEndSeg,value:minLv},{time:tEndSeg,value:maxLv}]);
   const anchor=chart.addLineSeries({color:'rgba(0,0,0,0)',lineWidth:1,priceLineVisible:false,lastValueVisible:false});
   anchor.setData([{time:tStartSeg,value:minLv},{time:tEnd,value:maxLv}]);
 
