@@ -70,14 +70,16 @@ function setCards(lv){
 function renderChart(lv){
   const isLong=(lv.orderType||'').includes('BUY');
   const entry=lv.ENTRY, sl=lv.SL;
-  const tp=lv.TPMOST || lv.TP3 || lv.TP2 || lv.TP1;
+  const tp1=lv.TP1;
+  const tpMost=lv.TPMOST;
+  const tp=tpMost || tp1 || lv.TP3 || lv.TP2;
   const rr=(entry&&sl&&tp)?(Math.abs(tp-entry)/Math.abs(entry-sl)).toFixed(2):'-';
 
   const pos=document.getElementById('pos');
   pos.className=isLong?'pos-long':'pos-short';
   pos.innerHTML=(isLong
-    ? `🟢 <b>Long Position (Buy Limit)</b> | Entry ${entry} → TP ${tp} | SL ${sl} | R:R ≈ ${rr}`
-    : `🔴 <b>Short Position (Sell Limit)</b> | Entry ${entry} → TP ${tp} | SL ${sl} | R:R ≈ ${rr}`);
+    ? `🟢 <b>Long Position (Buy Limit)</b> | Entry ${entry} → TP1 ${tp1 ?? '-'} | TPMost ${tpMost ?? '-'} | SL ${sl} | R:R ≈ ${rr}`
+    : `🔴 <b>Short Position (Sell Limit)</b> | Entry ${entry} → TP1 ${tp1 ?? '-'} | TPMost ${tpMost ?? '-'} | SL ${sl} | R:R ≈ ${rr}`);
 
   const chart=LightweightCharts.createChart(document.getElementById('chart'),{
     layout:{background:{color:'#0a0f1f'},textColor:'#d6e4ff'},
@@ -89,8 +91,12 @@ function renderChart(lv){
   const cs=chart.addCandlestickSeries({upColor:'#42d392',downColor:'#ff5f73',borderVisible:false,wickUpColor:'#42d392',wickDownColor:'#ff5f73'});
   cs.setData(data);
 
-  function line(price,color,title){if(!price)return;cs.createPriceLine({price,color,lineWidth:2,lineStyle:0,axisLabelVisible:true,title});}
-  line(entry,'#4da3ff','ENTRY'); line(sl,'#ff5f73','SL'); line(tp,'#4ad392','TP');
+  function line(price,color,title,style=0){if(!price)return;cs.createPriceLine({price,color,lineWidth:2,lineStyle:style,axisLabelVisible:true,title});}
+  line(entry,'#4da3ff','ENTRY');
+  line(sl,'#ff5f73','SL');
+  line(tp1,'#ffd166','TP1',2);
+  line(tpMost,'#b388ff','TPMost',0);
+  line(tp,'#4ad392','TP-Target',2);
 
   const tLast=data[data.length-1].time;
   const tStart=tLast-60*30, tEnd=tLast+60*60*8;
@@ -104,7 +110,8 @@ function renderChart(lv){
   const risk=chart.addBaselineSeries({baseValue:{type:'price',price:baseRisk},topFillColor1:'rgba(255,95,115,0.01)',topFillColor2:'rgba(255,95,115,0.01)',bottomFillColor1:'rgba(255,95,115,0.35)',bottomFillColor2:'rgba(255,95,115,0.08)',lineVisible:false,lastValueVisible:false,priceLineVisible:false});
   risk.setData([{time:tStart,value:topRisk},{time:tEnd,value:topRisk}]);
 
-  const minLv=Math.min(entry,sl,tp), maxLv=Math.max(entry,sl,tp);
+  const lvArr=[entry,sl,tp,tp1,tpMost].filter(v=>typeof v==='number' && isFinite(v));
+  const minLv=Math.min(...lvArr), maxLv=Math.max(...lvArr);
   const anchor=chart.addLineSeries({color:'rgba(0,0,0,0)',lineWidth:1,priceLineVisible:false,lastValueVisible:false});
   anchor.setData([{time:tStart,value:minLv},{time:tEnd,value:maxLv}]);
 
