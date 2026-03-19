@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import os
 import requests
@@ -20,11 +20,7 @@ def to_ts(date_str: str):
     return int(datetime.fromisoformat(date_str.replace("Z", "+00:00")).timestamp())
 
 
-def fetch_fmp():
-    url = f"https://financialmodelingprep.com/api/v3/historical-chart/{FMP_INTERVAL}/{FMP_SYMBOL}?apikey={FMP_KEY}"
-    r = requests.get(url, timeout=40)
-    r.raise_for_status()
-    rows = r.json()
+def normalize_rows(rows):
     candles = []
     for row in rows:
         try:
@@ -41,6 +37,28 @@ def fetch_fmp():
             continue
     candles.sort(key=lambda x: x["time"])
     return candles
+
+
+def fetch_fmp_full():
+    url = f"https://financialmodelingprep.com/api/v3/historical-chart/{FMP_INTERVAL}/{FMP_SYMBOL}?apikey={FMP_KEY}"
+    r = requests.get(url, timeout=40)
+    r.raise_for_status()
+    return normalize_rows(r.json())
+
+
+def fetch_fmp_incremental(last_ts: int):
+    # ขอข้อมูลเฉพาะช่วงใหม่ + เผื่อ 1 วันซ้อนทับกันเพื่อแก้ late candle/revision
+    start_dt = datetime.fromtimestamp(last_ts, tz=timezone.utc) - timedelta(days=1)
+    end_dt = datetime.now(timezone.utc) + timedelta(days=1)
+    from_s = start_dt.strftime("%Y-%m-%d")
+    to_s = end_dt.strftime("%Y-%m-%d")
+    url = (
+        f"https://financialmodelingprep.com/api/v3/historical-chart/{FMP_INTERVAL}/{FMP_SYMBOL}"
+        f"?from={from_s}&to={to_s}&apikey={FMP_KEY}"
+    )
+    r = requests.get(url, timeout=40)
+    r.raise_for_status()
+    return normalize_rows(r.json())
 
 
 def load_cache():
@@ -81,10 +99,22 @@ def merge_candles(old, new):
 
 def main():
     old = load_cache()
-    new = fetch_fmp()
+
+    if old:
+        last_ts = old[-1]["time"]
+        new = fetch_fmp_incremental(last_ts)
+        mode = "incremental"
+        # safety net: ถ้าได้ข้อมูลน้อยผิดปกติให้ fallback full
+        if len(new) < 20:
+            new = fetch_fmp_full()
+            mode = "full-fallback"
+    else:
+        new = fetch_fmp_full()
+        mode = "full-bootstrap"
+
     merged = merge_candles(old, new)
     save_cache(merged, len(old))
-    print(f"cache updated: old={len(old)} newFetched={len(new)} merged={len(merged)}")
+    print(f"cache updated ({mode}): old={len(old)} newFetched={len(new)} merged={len(merged)}")
 
 
 if __name__ == "__main__":

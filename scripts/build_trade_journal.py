@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 import json
-import math
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlparse, parse_qs
 import requests
 
 BASE = Path(__file__).resolve().parents[1]
@@ -14,6 +12,8 @@ FMP_API_KEY = "WhZvG1WwRoLOE0vJQGsiS9b5XqTft5rK"
 FMP_SYMBOL = "XAUUSD"
 FMP_INTERVAL = "15min"
 FMP_LIMIT = 1000
+CANDLE_CACHE_FILE = DATA_DIR / "fmp-candles-cache.json"
+ORDER_STATE_FILE = DATA_DIR / "order-state.json"
 
 ALERT_ENDPOINTS = {
     "TESTER": "https://script.googleusercontent.com/macros/echo?user_content_key=AWDtjMU2tCv4s5PpqbuXHtCbN_157DNearfX4ZyVrGxMGAxfBK5IAU5toUBhyKH4KuXQSW7uy_AM2p1qvk2WrdCZ9JcvsW00stCXbN9cxPY-notapivwv6B-fD8zEGCbsD2mgiLF7rlecDRw_fJHrar6lsqBtIqseKe30OHIxWeugjPnu0cacQB5AgTS9bIT_83dhF7HH2ypWF3SZ4iJ4zn1j6EBk1gapwOk-QSHKj8KdAwWF0iQlHIz07y5gXIkMFmMHQ6V6aD46znEstmrcA3RIkDGnPfpUuIv9RtrsW--9rkZS8VBsmSsRNNPJVvdGw&lib=M9P9-wXZJoeI92PYVy9wcPM683hYefgmI",
@@ -32,6 +32,30 @@ def iso_to_ts(value: str):
 
 
 def fetch_fmp_candles():
+    # ใช้ cache ถาวรเป็นหลัก เพื่อลด API cost
+    if CANDLE_CACHE_FILE.exists():
+        try:
+            payload = json.loads(CANDLE_CACHE_FILE.read_text(encoding="utf-8"))
+            arr = payload.get("candles", [])
+            arr.sort(key=lambda x: x.get("time", 0))
+            normalized = []
+            for c in arr:
+                try:
+                    normalized.append({
+                        "time": int(c["time"]),
+                        "open": float(c["open"]),
+                        "high": float(c["high"]),
+                        "low": float(c["low"]),
+                        "close": float(c["close"]),
+                    })
+                except Exception:
+                    continue
+            if normalized:
+                return normalized[-FMP_LIMIT:]
+        except Exception:
+            pass
+
+    # fallback: ดึงสดเฉพาะกรณี cache หาย/พัง
     url = f"https://financialmodelingprep.com/api/v3/historical-chart/{FMP_INTERVAL}/{FMP_SYMBOL}?apikey={FMP_API_KEY}"
     r = requests.get(url, timeout=30)
     r.raise_for_status()
@@ -208,6 +232,49 @@ def evaluate_trade(plan, candles):
     }
 
 
+def load_order_state():
+    if not ORDER_STATE_FILE.exists():
+        return {}
+    try:
+        return json.loads(ORDER_STATE_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def save_order_state(state):
+    ORDER_STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def apply_state_machine(prev_status, result):
+    """State machine: pending -> triggered -> tp1-hit -> tpmost-hit/sl-hit (closed)
+    closed state is terminal, no regression.
+    """
+    terminal = {"sl-hit", "tpmost-hit"}
+    rank = {
+        "pending": 0,
+        "triggered": 1,
+        "tp1-hit": 2,
+        "tpmost-hit": 3,
+        "sl-hit": 3,
+        "no-candles": -1,
+    }
+
+    new_status = result.get("status", "pending")
+    if prev_status in terminal:
+        result["status"] = prev_status
+        if prev_status == "sl-hit":
+            result["closeReason"] = "SL"
+        elif prev_status == "tpmost-hit":
+            result["closeReason"] = "TPMost"
+        return result
+
+    if rank.get(new_status, 0) < rank.get(prev_status or "pending", 0):
+        result["status"] = prev_status
+        return result
+
+    return result
+
+
 def summarize(journal_items):
     total = len(journal_items)
     triggered = sum(1 for x in journal_items if x["result"]["triggered"])
@@ -227,6 +294,7 @@ def summarize(journal_items):
 def main():
     now = datetime.now(timezone.utc).isoformat()
     candles = fetch_fmp_candles()
+    state = load_order_state()
 
     all_items = []
     for source, endpoint in ALERT_ENDPOINTS.items():
@@ -246,10 +314,26 @@ def main():
             plan = extract_plan(run)
             if not plan:
                 continue
-            result = evaluate_trade(plan, candles)
+
+            order_key = f"{source}:{run['runId']}"
+            result_live = evaluate_trade(plan, candles)
+            prev = state.get(order_key, {})
+            prev_status = prev.get("status")
+            result = apply_state_machine(prev_status, result_live)
+
+            # persist current state snapshot per order
+            state[order_key] = {
+                "status": result.get("status"),
+                "closeReason": result.get("closeReason"),
+                "updatedAt": now,
+                "triggeredAt": result.get("triggeredAt"),
+                "closedAt": result.get("closedAt"),
+            }
+
             enriched_runs.append({
                 "source": source,
                 "runId": run["runId"],
+                "orderKey": order_key,
                 "createdAt": plan.get("createdAt"),
                 "orderType": plan.get("orderType"),
                 "entry": plan.get("entry"),
@@ -275,6 +359,8 @@ def main():
 
     latest_file = DATA_DIR / "trade-journal-latest.json"
     latest_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    save_order_state(state)
 
     hist_file = DATA_DIR / "trade-journal-history.jsonl"
     with hist_file.open("a", encoding="utf-8") as f:
