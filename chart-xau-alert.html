@@ -328,15 +328,18 @@ Status: ${ev.status}`;
   seg(tp1,'#3ed598','TP1');
   seg(tpMost,'#b388ff','TPMost');
 
-  // ออเดอร์จบแล้ว: แสดงผลลัพธ์เส้นเดียว ลดความรก
+  // ออเดอร์จบแล้ว: วางป้ายผลลัพธ์ตรงจุดจบออเดอร์ (ไม่วางเส้นยาวให้รก)
   if(isClosed){
-    let closePrice=null, closeColor='#ffffff', closeTitle='CLOSED';
-    if(ev.endReason==='SL'){ closePrice=sl; closeColor='#ff5f73'; closeTitle='SL HIT'; }
-    else if(ev.endReason==='TPMost'){ closePrice=tpMost; closeColor='#b388ff'; closeTitle='TP HIT'; }
-    else if(ev.endReason==='TP1'){ closePrice=tp1; closeColor='#3ed598'; closeTitle='TP HIT'; }
+    let closePrice=null, closeColor='#ffffff', closeText='CLOSED';
+    if(ev.endReason==='SL'){ closePrice=sl; closeColor='#ff5f73'; closeText='SL HIT'; }
+    else if(ev.endReason==='TPMost'){ closePrice=tpMost; closeColor='#b388ff'; closeText='TP HIT'; }
+    else if(ev.endReason==='TP1'){ closePrice=tp1; closeColor='#3ed598'; closeText='TP HIT'; }
     if(closePrice!=null){
-      cs.createPriceLine({price:closePrice,color:closeColor,lineWidth:2,lineStyle:0,axisLabelVisible:true,title:closeTitle});
+      const markerTime = tEndSeg || tStartSeg;
+      cs.setMarkers([{time:markerTime, position:'aboveBar', color:closeColor, shape:'circle', text:closeText}]);
     }
+  } else {
+    cs.setMarkers([]);
   }
 
   // แถบสีแบบ TradingView: จากเวลาเริ่มออเดอร์ -> ปัจจุบัน (หรือจุดจบถ้าปิดออเดอร์แล้ว)
