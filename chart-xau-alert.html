@@ -51,7 +51,7 @@ body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transp
 <div class="section">
   <div id="pos"></div>
 
-  <p class="note">Candles: FMP 15m (ดึงตอนเปิดหน้า + รีเฟรชทุก 10 นาทีเมื่อหน้าเว็บเปิดอยู่) | Levels: live pull from Apps Script endpoint</p>
+  <p class="note">Candles: FMP 15m cache (backend อัปเดตถาวร) + หน้าเว็บรีโหลด cache ทุก 10 นาที | Levels: live pull from Apps Script endpoint</p>
 </div>
 </div>
 
@@ -88,7 +88,7 @@ function getFmpApiKey(){
 function normalizeFmpRows(rows){
   if(!Array.isArray(rows)) return [];
   return rows.map(r=>{
-    const t = r.date ? Math.floor(new Date(r.date).getTime()/1000) : null;
+    const t = r.time ? Number(r.time) : (r.date ? Math.floor(new Date(r.date).getTime()/1000) : null);
     const o=toNum(r.open), h=toNum(r.high), l=toNum(r.low), c=toNum(r.close);
     if(!t || o==null || h==null || l==null || c==null) return null;
     return {time:t,open:o,high:h,low:l,close:c};
@@ -98,26 +98,21 @@ function normalizeFmpRows(rows){
 async function refreshCandles(force=false){
   const now=Date.now();
   if(!force && (now-lastCandleFetchAt)<CANDLE_REFRESH_MS) return;
-  const apiKey=getFmpApiKey();
-  if(!apiKey){
-    candleSource='snapshot (no fmp key)';
-    return;
-  }
-  const url=`https://financialmodelingprep.com/api/v3/historical-chart/${FMP_INTERVAL}/${FMP_SYMBOL}?apikey=${encodeURIComponent(apiKey)}`;
+  // โหมดประหยัด API: อ่านจาก cache ถาวรที่ backend อัปเดตไว้
   try{
-    const res=await fetch(url,{cache:'no-store'});
+    const res=await fetch(`./data/fmp-candles-cache.json?ts=${now}`,{cache:'no-store'});
     if(!res.ok) throw new Error('HTTP '+res.status);
-    const rows=await res.json();
-    const normalized=normalizeFmpRows(rows).slice(-FMP_LIMIT);
+    const payload=await res.json();
+    const normalized=normalizeFmpRows(payload?.candles || []).slice(-FMP_LIMIT);
     if(normalized.length>=50){
       data=normalized;
       lastCandleFetchAt=now;
-      candleSource='fmp-live';
+      candleSource='fmp-cache';
       return;
     }
-    candleSource='snapshot (fmp-empty)';
+    candleSource='snapshot (cache-empty)';
   }catch(e){
-    candleSource='snapshot (fmp-error)';
+    candleSource='snapshot (cache-miss)';
   }
 }
 
