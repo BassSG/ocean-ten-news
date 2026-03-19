@@ -289,9 +289,11 @@ Status: ${ev.status}`;
   const fallbackStart = data[Math.max(0,data.length-120)].time;
 
   // ขยับเวลาเส้นจาก endpoint บนกราฟย้อนหลัง 11 ชั่วโมง (เฉพาะการ plot)
-  const orderTsForPlot = ev.orderTs ? (ev.orderTs - 11*3600) : null;
-  const rawStart = orderTsForPlot || (run?.createdAt ? (Math.floor(new Date(run.createdAt).getTime()/1000) - 11*3600) : fallbackStart);
-  const rawEnd = ev.endTs || tLast;
+  const plotShiftSec = 11*3600;
+  const orderTsForPlot = ev.orderTs ? (ev.orderTs - plotShiftSec) : null;
+  const endTsForPlot = ev.endTs ? (ev.endTs - plotShiftSec) : null;
+  const rawStart = orderTsForPlot || (run?.createdAt ? (Math.floor(new Date(run.createdAt).getTime()/1000) - plotShiftSec) : fallbackStart);
+  const rawEnd = endTsForPlot || tLast;
 
   // guard: บาง source ส่งเวลาออเดอร์ใหม่กว่า candle ล่าสุด ทำให้กราฟ/เส้นพัง
   // => clamp ให้อยู่ในช่วงข้อมูล candle และบังคับ start <= end
@@ -315,7 +317,7 @@ Status: ${ev.status}`;
   seg(tp1,'#ffd166','TP1');
   seg(tpMost,'#b388ff','TPMost');
 
-  const zoneEnd = Math.max(tEndSeg, tStartSeg+60*15);
+  const zoneEnd = ev.endTs ? tEndSeg : Math.max(tEndSeg, tStartSeg+60*15);
   if(tpMost){
     const profitMost=chart.addBaselineSeries({
       baseValue:{type:'price',price:entry},
