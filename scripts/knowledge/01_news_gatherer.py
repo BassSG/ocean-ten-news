@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """
 🌙 Ocean Ten — Knowledge Drop Pipeline
-Step 1: หมึก (Squid) — รวบรวมข่าว 24h
+Step 1: หมึก (Squid) — รวบรวม Trend X / Twitter Topics
 Model: MiniMax 2.7
 Time: 00:00-01:00
 Output: data/knowledge_news_raw.json
+
+Philosophy: เหมือนดู Timeline X/Twitter ของคนทั้งโลก
+— คนกำลังพูดถึงอะไรวันนี้ที่น่าสนใจ + มี impact
 """
 
 import json, sys, os
@@ -13,28 +16,33 @@ from datetime import datetime
 TODAY = datetime.now().strftime("%Y-%m-%d")
 OUTPUT = "/home/administrator/.openclaw/workspace/ocean-ten-news/data/knowledge_news_raw.json"
 
-# หัวข้อหลากหลาย ไม่จำกัดแค่ทอง — ครอบคลุมทุกมิติ
+# 🌐 Trend X / Twitter Style — คนทั้งโลกกำลังพูดถึงอะไรวันนี้
+# แบบไม่จำกัดแค่ทอง เป็น Knowledge Drop ที่น่าสนใจจริง ๆ
 TOPICS = [
-    # 🌍 ตลาดโลก + ทองคำ
-    "global market news today",
-    "gold price xauusd analysis",
-    "federal reserve interest rate impact",
-    # 🗺️ เทคโนโลยี + AI
-    "artificial intelligence news today",
-    "technology trends 2025",
-    "openai google deepmind news",
-    # 🏛️ เศรษฐกิจ + การเงิน
-    "usd dollar index today",
-    "cryptocurrency bitcoin ethereum news",
-    "crude oil commodity market",
-    # 🌐 โลก + สังคม
-    "geopolitical breaking news",
-    "climate change environment news",
-    "world economic forum news",
-    # 📊 Business + Investment
-    "stock market today news",
-    "venture capital startup funding",
-    "central bank policy news",
+    # 🔥 Trending X/Twitter Topics
+    "what is trending on twitter today",
+    "viral tweet news today",
+    "breaking news trending now",
+    # 💻 Tech + AI
+    "openai chatgpt news today",
+    "google gemini artificial intelligence",
+    "apple microsoft tesla news",
+    # 💰 Finance + Markets
+    "stock market rally crash today",
+    "bitcoin ethereum crypto price",
+    "gold silver commodity price",
+    # 🌍 World + Society
+    "usa china geopolitics today",
+    "climate change extreme weather news",
+    "europe middle east war conflict",
+    # 🎬 Culture + Internet
+    "viral video internet culture",
+    "sports championship today",
+    "celebrity entertainment news",
+    # 🔬 Science + Health
+    "medical breakthrough health news",
+    "space exploration nasa news",
+    "ai robot automation impact jobs",
 ]
 
 def run():
