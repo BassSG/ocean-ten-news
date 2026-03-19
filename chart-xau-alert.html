@@ -54,6 +54,7 @@ const FMP_SYMBOL='XAUUSD';
 const FMP_INTERVAL='15min';
 const FMP_LIMIT=400;
 const CANDLE_REFRESH_MS=10*60*1000;
+const DEFAULT_FMP_API_KEY='WhZvG1WwRoLOE0vJQGsiS9b5XqTft5rK';
 let lastCandleFetchAt=0;
 let candleSource='snapshot';
 const ALERT_ENDPOINTS={
@@ -75,7 +76,7 @@ function toNum(v){const n=Number(v); return Number.isFinite(n)?n:null;}
 
 function getFmpApiKey(){
   const q=new URLSearchParams(location.search);
-  return q.get('fmpKey') || localStorage.getItem('FMP_API_KEY') || '';
+  return q.get('fmpKey') || localStorage.getItem('FMP_API_KEY') || DEFAULT_FMP_API_KEY || '';
 }
 
 function normalizeFmpRows(rows){
