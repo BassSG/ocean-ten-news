@@ -241,8 +241,8 @@ R:R(TP1): ${rr}
 Status: ${ev.status}`;
 
   const lastTs = data[data.length-1]?.time;
-  const lastTH = lastTs ? new Date((lastTs+4*3600)*1000).toLocaleString('th-TH',{timeZone:'Asia/Bangkok',hour12:false}) : '-';
-  document.getElementById('livePill').textContent = `${sourceText} | Candle: ${candleSource} | ล่าสุด(TH+4): ${lastTH}`;
+  const lastTH = lastTs ? new Date(lastTs*1000).toLocaleString('th-TH',{timeZone:'Asia/Bangkok',hour12:false}) : '-';
+  document.getElementById('livePill').textContent = `${sourceText} | Candle: ${candleSource} | ล่าสุด(TH): ${lastTH}`;
 
   const pos=document.getElementById('pos');
   pos.className=isLong?'pos-long':'pos-short';
@@ -273,7 +273,7 @@ Status: ${ev.status}`;
 
   if (chartObj) { try { chartObj.remove(); } catch(e){} chartObj=null; }
   const chart=LightweightCharts.createChart(document.getElementById('chart'),{
-    localization:{ timeFormatter:(t)=>{ const d=new Date((t+4*3600)*1000); return d.toLocaleString('th-TH',{timeZone:'Asia/Bangkok',hour12:false}); } },
+    localization:{ timeFormatter:(t)=>{ const d=new Date(t*1000); return d.toLocaleString('th-TH',{timeZone:'Asia/Bangkok',hour12:false}); } },
     layout:{background:{color:'#0a0f1f'},textColor:'#d6e4ff'},
     grid:{vertLines:{color:'#1b2740'},horzLines:{color:'#1b2740'}},
     rightPriceScale:{borderColor:'#2e426d'},
