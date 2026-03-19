@@ -3,6 +3,7 @@ import json
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import os
+import time
 import requests
 
 BASE = Path(__file__).resolve().parents[1]
@@ -18,6 +19,26 @@ FMP_KEY = os.getenv("FMP_API_KEY") or "WhZvG1WwRoLOE0vJQGsiS9b5XqTft5rK"
 
 def to_ts(date_str: str):
     return int(datetime.fromisoformat(date_str.replace("Z", "+00:00")).timestamp())
+
+
+def request_json_with_retry(url: str, timeout: int = 40, max_retries: int = 3):
+    last_err = None
+    for i in range(max_retries):
+        try:
+            r = requests.get(url, timeout=timeout)
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            last_err = e
+            if i < max_retries - 1:
+                time.sleep(2 ** i)  # 1s, 2s, 4s
+    raise last_err
+
+
+def atomic_write_json(path: Path, payload: dict):
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp.replace(path)
 
 
 def normalize_rows(rows):
@@ -41,9 +62,7 @@ def normalize_rows(rows):
 
 def fetch_fmp_full():
     url = f"https://financialmodelingprep.com/api/v3/historical-chart/{FMP_INTERVAL}/{FMP_SYMBOL}?apikey={FMP_KEY}"
-    r = requests.get(url, timeout=40)
-    r.raise_for_status()
-    return normalize_rows(r.json())
+    return normalize_rows(request_json_with_retry(url))
 
 
 def fetch_fmp_incremental(last_ts: int):
@@ -56,9 +75,7 @@ def fetch_fmp_incremental(last_ts: int):
         f"https://financialmodelingprep.com/api/v3/historical-chart/{FMP_INTERVAL}/{FMP_SYMBOL}"
         f"?from={from_s}&to={to_s}&apikey={FMP_KEY}"
     )
-    r = requests.get(url, timeout=40)
-    r.raise_for_status()
-    return normalize_rows(r.json())
+    return normalize_rows(request_json_with_retry(url))
 
 
 def load_cache():
@@ -85,7 +102,7 @@ def save_cache(candles, prev_count):
         "newAdded": max(0, len(candles) - prev_count),
         "candles": candles,
     }
-    CACHE_FILE.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    atomic_write_json(CACHE_FILE, payload)
 
 
 def merge_candles(old, new):

@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 import json
+import os
+import time
+import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 import requests
@@ -8,7 +11,7 @@ BASE = Path(__file__).resolve().parents[1]
 DATA_DIR = BASE / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-FMP_API_KEY = "WhZvG1WwRoLOE0vJQGsiS9b5XqTft5rK"
+FMP_API_KEY = os.getenv("FMP_API_KEY") or "WhZvG1WwRoLOE0vJQGsiS9b5XqTft5rK"
 FMP_SYMBOL = "XAUUSD"
 FMP_INTERVAL = "15min"
 FMP_LIMIT = 1000
@@ -30,6 +33,51 @@ def iso_to_ts(value: str):
         return int(datetime.fromisoformat(value.replace("Z", "+00:00")).timestamp())
     except Exception:
         return None
+
+
+def request_json_with_retry(url: str, timeout: int = 30, max_retries: int = 3):
+    last_err = None
+    for i in range(max_retries):
+        try:
+            r = requests.get(url, timeout=timeout)
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            last_err = e
+            if i < max_retries - 1:
+                time.sleep(2 ** i)
+    raise last_err
+
+
+def atomic_write_json(path: Path, payload: dict):
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp.replace(path)
+
+
+def validate_candles(candles):
+    """Data Quality Gate for candle cache before publish."""
+    issues = []
+    if not candles:
+        return False, ["candles-empty"]
+    prev = None
+    for c in candles:
+        t = c.get("time")
+        o, h, l, cl = c.get("open"), c.get("high"), c.get("low"), c.get("close")
+        if not isinstance(t, int):
+            issues.append("invalid-time")
+            break
+        if None in (o, h, l, cl):
+            issues.append("null-ohlc")
+            break
+        if h < l or not (l <= o <= h) or not (l <= cl <= h):
+            issues.append("ohlc-out-of-range")
+            break
+        if prev is not None and t <= prev:
+            issues.append("non-monotonic-time")
+            break
+        prev = t
+    return len(issues) == 0, issues
 
 
 def fetch_fmp_candles():
@@ -58,9 +106,7 @@ def fetch_fmp_candles():
 
     # fallback: ดึงสดเฉพาะกรณี cache หาย/พัง
     url = f"https://financialmodelingprep.com/api/v3/historical-chart/{FMP_INTERVAL}/{FMP_SYMBOL}?apikey={FMP_API_KEY}"
-    r = requests.get(url, timeout=30)
-    r.raise_for_status()
-    rows = r.json()
+    rows = request_json_with_retry(url)
     candles = []
     for row in rows:
         try:
@@ -79,14 +125,21 @@ def fetch_fmp_candles():
 
 
 def fetch_alert_rows(source, url):
-    r = requests.get(url, timeout=30)
-    r.raise_for_status()
-    rows = r.json()
+    rows = request_json_with_retry(url)
     if not isinstance(rows, list):
         return []
+
+    # de-dup rows (idempotency guard)
+    seen = set()
+    deduped = []
     for row in rows:
+        rid = row.get("id") or f"{row.get('runId')}|{row.get('alertType')}|{row.get('targetPrice')}|{row.get('createdAt') or row.get('ts')}"
+        if rid in seen:
+            continue
+        seen.add(rid)
         row["_source"] = source
-    return rows
+        deduped.append(row)
+    return deduped
 
 
 def group_runs(rows):
@@ -243,7 +296,7 @@ def load_order_state():
 
 
 def save_order_state(state):
-    ORDER_STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+    atomic_write_json(ORDER_STATE_FILE, state)
 
 
 def apply_state_machine(prev_status, result):
@@ -274,6 +327,44 @@ def apply_state_machine(prev_status, result):
         return result
 
     return result
+
+
+def append_history_if_changed(path: Path, payload: dict):
+    # idempotency guard: append only when content fingerprint changed
+    compact = {
+        "symbol": payload.get("symbol"),
+        "interval": payload.get("interval"),
+        "summary": payload.get("summary"),
+        "orders": [
+            {
+                "orderKey": o.get("orderKey"),
+                "status": (o.get("result") or {}).get("status"),
+                "closeReason": (o.get("result") or {}).get("closeReason"),
+                "triggeredAt": (o.get("result") or {}).get("triggeredAt"),
+                "closedAt": (o.get("result") or {}).get("closedAt"),
+            }
+            for o in payload.get("orders", [])
+        ],
+    }
+    fp = hashlib.sha256(json.dumps(compact, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
+
+    last_fp = None
+    if path.exists():
+        try:
+            last_line = path.read_text(encoding="utf-8").splitlines()[-1]
+            last_obj = json.loads(last_line)
+            last_fp = (last_obj.get("meta") or {}).get("fingerprint")
+        except Exception:
+            last_fp = None
+
+    if fp == last_fp:
+        return False
+
+    out = dict(payload)
+    out["meta"] = {"fingerprint": fp}
+    with path.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(out, ensure_ascii=False) + "\n")
+    return True
 
 
 def trim_history_file(path: Path, max_lines: int):
@@ -309,7 +400,19 @@ def summarize(journal_items):
 def main():
     now = datetime.now(timezone.utc).isoformat()
     candles = fetch_fmp_candles()
+    ok, issues = validate_candles(candles)
     state = load_order_state()
+
+    # Data Quality Gate: ถ้า candle ไม่ผ่าน ให้ใช้ snapshot ล่าสุดแทน
+    if not ok:
+        latest_file = DATA_DIR / "trade-journal-latest.json"
+        if latest_file.exists():
+            prev = json.loads(latest_file.read_text(encoding="utf-8"))
+            prev["generatedAt"] = now
+            prev["qualityGate"] = {"ok": False, "issues": issues, "fallback": "previous-latest"}
+            atomic_write_json(latest_file, prev)
+            print(json.dumps({"qualityGate": prev["qualityGate"]}, ensure_ascii=False))
+            return
 
     all_items = []
     for source, endpoint in ALERT_ENDPOINTS.items():
@@ -363,6 +466,7 @@ def main():
         "generatedAt": now,
         "symbol": FMP_SYMBOL,
         "interval": FMP_INTERVAL,
+        "qualityGate": {"ok": True, "issues": []},
         "candles": {
             "count": len(candles),
             "from": candles[0]["time"] if candles else None,
@@ -373,17 +477,16 @@ def main():
     }
 
     latest_file = DATA_DIR / "trade-journal-latest.json"
-    latest_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    atomic_write_json(latest_file, payload)
 
     save_order_state(state)
 
     hist_file = DATA_DIR / "trade-journal-history.jsonl"
-    with hist_file.open("a", encoding="utf-8") as f:
-        f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+    appended = append_history_if_changed(hist_file, payload)
     trim_history_file(hist_file, HISTORY_MAX_LINES)
 
     print(f"Wrote {latest_file}")
-    print(f"Appended {hist_file}")
+    print(f"History append: {'yes' if appended else 'skip (no state change)'}")
     print(json.dumps(payload["summary"], ensure_ascii=False))
 
 
