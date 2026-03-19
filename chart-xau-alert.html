@@ -288,9 +288,8 @@ Status: ${ev.status}`;
   const tFirst=data[0].time;
   const fallbackStart = data[Math.max(0,data.length-120)].time;
 
-  // ชิฟต์ -4 ชั่วโมง "เฉพาะการวาดบนกราฟ" ตามที่คุยไว้
-  const orderTsForPlot = ev.orderTs ? (ev.orderTs - 4*3600) : null;
-  const rawStart = orderTsForPlot || (run?.createdAt ? (Math.floor(new Date(run.createdAt).getTime()/1000) - 4*3600) : fallbackStart);
+  // โหมดปกติ: ไม่บวกลบเวลา
+  const rawStart = ev.orderTs || (run?.createdAt ? Math.floor(new Date(run.createdAt).getTime()/1000) : fallbackStart);
   const rawEnd = ev.endTs || tLast;
 
   // guard: บาง source ส่งเวลาออเดอร์ใหม่กว่า candle ล่าสุด ทำให้กราฟ/เส้นพัง
