@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>XAU/USD Position Chart (15m)</title>
+<meta name="theme-color" content="#0b1120" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="OT XAU" />
+<link rel="manifest" href="manifest-chart.webmanifest" />
+<link rel="icon" type="image/svg+xml" href="assets/icons/icon-xau-192.svg" />
+<link rel="apple-touch-icon" href="assets/icons/icon-xau-192.svg" />
 <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 :root{--bg:#070b16;--panel:#111a2e;--line:#27395f;--text:#eaf2ff;--muted:#9eb3db;--accent:#6aa8ff;--good:#37d39b;--bad:#ff5f73;--gold:#ffd166;--vio:#b388ff}
@@ -34,7 +41,7 @@ body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transp
     <span class="pill">Timeframe: 15m</span>
     <label class="pill" style="display:flex;gap:6px;align-items:center">Source <select id="sourceSel" class="sel"><option value="TESTER">TESTER</option><option value="EBass">EBass</option><option value="EKlaETun">EKlaETun</option></select></label>
     <label class="pill" style="display:flex;gap:6px;align-items:center">Run <select id="runSel" class="sel"><option value="latest">latest</option></select></label>
-    <button class="pill" id="z1d" type="button">1D</button><button class="pill" id="z3d" type="button">3D</button><button class="pill" id="copyPlan" type="button">Copy Plan</button><span class="pill" id="livePill">Alert source: loading...</span>
+    <button class="pill" id="z1d" type="button">1D</button><button class="pill" id="z3d" type="button">3D</button><button class="pill" id="copyPlan" type="button">Copy Plan</button><button class="pill" id="installBtn" type="button" hidden>Install App</button><span class="pill" id="livePill">Alert source: loading...</span>
   </div>
 </div>
 
@@ -409,10 +416,36 @@ function setupAuto(){
   });
 }
 
+function setupInstall(){
+  const btn=document.getElementById('installBtn');
+  if(!btn) return;
+  let deferredPrompt=null;
+  window.addEventListener('beforeinstallprompt',(e)=>{
+    e.preventDefault();
+    deferredPrompt=e;
+    btn.hidden=false;
+  });
+  btn.addEventListener('click', async ()=>{
+    if(!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt=null;
+    btn.hidden=true;
+  });
+}
+
+function setupServiceWorker(){
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  }
+}
+
 (async()=>{
   await refreshCandles(true); // ดึงตอนเปิดหน้า
   await init();
   setupAuto();
+  setupInstall();
+  setupServiceWorker();
   const sel=document.getElementById('sourceSel');
   if(sel){ sel.addEventListener('change', ()=>{ selectedRunId='latest'; init(); }); }
   const runSel=document.getElementById('runSel');

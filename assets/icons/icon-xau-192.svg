@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Ocean Ten XAU icon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#060b16"/>
+      <stop offset="100%" stop-color="#101f3d"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffe6ab"/>
+      <stop offset="100%" stop-color="#ffb648"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#2bd48f"/>
+      <stop offset="100%" stop-color="#8fffd0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect x="28" y="28" width="456" height="456" rx="96" fill="none" stroke="#2a4478" stroke-width="3"/>
+
+  <!-- chart panel -->
+  <rect x="86" y="108" width="340" height="286" rx="26" fill="#0b142a" stroke="#324f86" stroke-width="3"/>
+  <g opacity="0.35" stroke="#27416f" stroke-width="2">
+    <path d="M106 160H406"/><path d="M106 210H406"/><path d="M106 260H406"/><path d="M106 310H406"/><path d="M156 128V374"/><path d="M226 128V374"/><path d="M296 128V374"/><path d="M366 128V374"/>
+  </g>
+
+  <!-- candlesticks -->
+  <g>
+    <rect x="145" y="220" width="20" height="70" rx="6" fill="#ff6b7d"/>
+    <path d="M155 188V320" stroke="#ff6b7d" stroke-width="4"/>
+
+    <rect x="205" y="186" width="20" height="84" rx="6" fill="url(#green)"/>
+    <path d="M215 160V300" stroke="url(#green)" stroke-width="4"/>
+
+    <rect x="265" y="208" width="20" height="60" rx="6" fill="#ff6b7d"/>
+    <path d="M275 176V292" stroke="#ff6b7d" stroke-width="4"/>
+
+    <rect x="325" y="164" width="20" height="98" rx="6" fill="url(#green)"/>
+    <path d="M335 142V292" stroke="url(#green)" stroke-width="4"/>
+  </g>
+
+  <!-- ocean wave + ten -->
+  <path d="M116 372C164 348 188 395 236 372C284 349 308 395 356 372" fill="none" stroke="url(#gold)" stroke-width="10" stroke-linecap="round"/>
+  <text x="256" y="448" text-anchor="middle" font-size="52" font-family="Inter,Arial,sans-serif" font-weight="800" fill="url(#gold)">XAU</text>
+</svg>
