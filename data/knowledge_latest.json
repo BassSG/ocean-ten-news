@@ -1,0 +1,63 @@
+{
+  "date": "2026-03-19",
+  "date_thai": "วันพฤหัสบดี ที่ 19 March 2026",
+  "headline": "สรุปความเคลื่อนไหววันนี้: XAUUSD gold price analysis",
+  "summary_3_points": [
+    "📌 XAUUSD gold price analysis — ข่าวนี้มี impact สูง: มีผลกระทบต่อตลาดทองคำ / XAUUSD",
+    "📌 gold market news today — ข่าวนี้มี impact สูง: เป็นประเด็นที่คนกำลังพูดถึง (trending)",
+    "📌 federal reserve interest rate gold impact — ข่าวนี้มี impact สูง: มีข้อมูล concrete รองรับ"
+  ],
+  "analysis": "วันนี้ วันพฤหัสบดี ที่ 19 March 2026\n\nตลาดโลกและตลาดทองคำมีความเคลื่อนไหวที่น่าจับตาอย่างยิ่ง \nXAUUSD gold price analysis เป็นประเด็นที่นักลงทุนและนักวิเคราะห์ให้ความสนใจ \nเนื่องจาก ข่าวนี้มี impact สูง: มีผลกระทบต่อตลาดทองคำ / XAUUSD\n\nในมุมของการวิเคราะห์ทางเทคนิคและปัจจัยพื้นฐาน เรายังคงติดตามสถานการณ์อย่างใกล้ชิด\nโดยเฉพาะการเคลื่อนไหวของ XAU/USD ในช่วงตลาดเอเชียและตลาดยุโรป",
+  "sources": [
+    "XAUUSD gold price analysis",
+    "gold market news today",
+    "federal reserve interest rate gold impact",
+    "global market sentiment",
+    "technology AI news today"
+  ],
+  "all_articles": [
+    {
+      "rank": 1,
+      "topic": "XAUUSD gold price analysis",
+      "reason": "ข่าวนี้มี impact สูง: มีผลกระทบต่อตลาดทองคำ / XAUUSD",
+      "priority": "high",
+      "source_note": "ผ่านการคัดกรองโดย Shark",
+      "timestamp": "2026-03-19"
+    },
+    {
+      "rank": 2,
+      "topic": "gold market news today",
+      "reason": "ข่าวนี้มี impact สูง: เป็นประเด็นที่คนกำลังพูดถึง (trending)",
+      "priority": "high",
+      "source_note": "ผ่านการคัดกรองโดย Shark",
+      "timestamp": "2026-03-19"
+    },
+    {
+      "rank": 3,
+      "topic": "federal reserve interest rate gold impact",
+      "reason": "ข่าวนี้มี impact สูง: มีข้อมูล concrete รองรับ",
+      "priority": "medium",
+      "source_note": "ผ่านการคัดกรองโดย Shark",
+      "timestamp": "2026-03-19"
+    },
+    {
+      "rank": 4,
+      "topic": "global market sentiment",
+      "reason": "ข่าวนี้มี impact สูง: มีความน่าเชื่อถือ",
+      "priority": "medium",
+      "source_note": "ผ่านการคัดกรองโดย Shark",
+      "timestamp": "2026-03-19"
+    },
+    {
+      "rank": 5,
+      "topic": "technology AI news today",
+      "reason": "ข่าวนี้มี impact สูง: ทำให้เข้าใจสถานการณ์ได้ลึกขึ้น",
+      "priority": "medium",
+      "source_note": "ผ่านการคัดกรองโดย Shark",
+      "timestamp": "2026-03-19"
+    }
+  ],
+  "agent": "whale",
+  "model": "Gemini 3.1 Pro",
+  "status": "ready_for_design"
+}

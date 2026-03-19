@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ocean Ten — Knowledge Drop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-card: #111827;
+      --bg-card-hover: #1a2235;
+      --accent-gold: #f0b90b;
+      --accent-gold-dim: #b8860b;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-green: #10b981;
+      --text-primary: #f9fafb;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      --border: #1f2937;
+      --shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Thai', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated background grid */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        linear-gradient(rgba(240,185,11,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,185,11,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 56px;
+      padding-top: 40px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dim));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 8px 32px rgba(240,185,11,0.3);
+    }
+
+    .brand-name {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--accent-gold), #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .date-badge {
+      display: inline-block;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    .headline {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 0%, #d1d5db 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .headline-gold {
+      background: linear-gradient(135deg, var(--accent-gold), #fff5cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+      margin: 48px 0;
+      opacity: 0.4;
+    }
+
+    /* Summary Card */
+    .summary-section {
+      margin-bottom: 48px;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 20px;
+      padding: 6px 14px;
+      background: rgba(240,185,11,0.08);
+      border-radius: 6px;
+      border: 1px solid rgba(240,185,11,0.2);
+    }
+
+    .summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .summary-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--accent-purple), var(--accent-blue));
+    }
+
+    .summary-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .summary-item:first-child {
+      padding-top: 0;
+    }
+
+    .summary-number {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dim));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: #000;
+    }
+
+    .summary-text {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-primary);
+      padding-top: 6px;
+    }
+
+    /* Analysis Section */
+    .analysis-section {
+      margin-bottom: 48px;
+    }
+
+    .analysis-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+    }
+
+    .analysis-text {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text-secondary);
+      white-space: pre-wrap;
+    }
+
+    /* Source Tags */
+    .sources-section {
+      margin-bottom: 48px;
+    }
+
+    .source-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .source-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+
+    .source-tag:hover {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-brand {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .footer-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Agent badge */
+    .agent-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.3);
+      border-radius: 100px;
+      font-size: 11px;
+      color: var(--accent-green);
+      margin-top: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .container { padding: 24px 16px 60px; }
+      .summary-card, .analysis-card { padding: 24px 20px; }
+      .headline { letter-spacing: -0.5px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="brand-icon">🌊</div>
+        <span class="brand-name">Ocean Ten</span>
+      </div>
+      <div class="date-badge" id="dateBadge">กำลังโหลด...</div>
+      <h1 class="headline" id="headline">กำลังโหลด Knowledge Drop...</h1>
+      <p class="subtitle">สรุปความเคลื่อนไหวสำคัญประจำวัน โดยทีม Ocean Ten — วิเคราะห์โดย AI ให้เข้าใจลึก ตัดสินใจได้เร็ว</p>
+      <div class="agent-badge" id="agentBadge">🐋 วาฬ • Gemini 3.1 Pro</div>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- Summary Section -->
+    <section class="summary-section">
+      <div class="section-label">📌 3 สิ่งที่ต้องรู้วันนี้</div>
+      <div class="summary-card">
+        <div id="summaryList">กำลังโหลด...</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Analysis Section -->
+    <section class="analysis-section">
+      <div class="section-label">🧠 วิเคราะห์</div>
+      <div class="analysis-card">
+        <p class="analysis-text" id="analysisText">กำลังโหลด...</p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Sources -->
+    <section class="sources-section">
+      <div class="section-label">📚 แหล่งที่มา</div>
+      <div class="source-tags" id="sourceTags">กำลังโหลด...</div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer-brand">🌊 Ocean Ten — Premium Daily Intelligence</p>
+      <p class="footer-meta">Generated by AI • Approved by Whale • Deployed by Dolphin</p>
+    </footer>
+  </div>
+
+  <script>
+    async function loadKnowledgeDrop() {
+      try {
+        const res = await fetch('./data/knowledge_latest.json');
+        const data = await res.json();
+
+        document.getElementById('dateBadge').textContent = data.date_thai || data.date;
+        document.getElementById('headline').textContent = data.headline || '';
+        document.getElementById('analysisText').textContent = data.analysis || '';
+
+        const summaryList = document.getElementById('summaryList');
+        if (data.summary_3_points && data.summary_3_points.length) {
+          summaryList.innerHTML = data.summary_3_points.map((point, i) => `
+            <div class="summary-item">
+              <div class="summary-number">${i + 1}</div>
+              <div class="summary-text">${point}</div>
+            </div>
+          `).join('');
+        }
+
+        const sourceTags = document.getElementById('sourceTags');
+        if (data.sources && data.sources.length) {
+          sourceTags.innerHTML = data.sources.map(s => 
+            `<span class="source-tag">📰 ${s}</span>`
+          ).join('');
+        }
+
+        if (data.agent) {
+          document.getElementById('agentBadge').textContent = `🐋 วาฬ • ${data.model || 'AI'}`;
+        }
+      } catch(e) {
+        document.getElementById('headline').textContent = 'Knowledge Drop ยังไม่พร้อม — รอ pipeline รันคืนนี้';
+        document.getElementById('summaryList').innerHTML = '<p style="color:#6b7280;text-align:center;">🌙 Pipeline จะเริ่ม 00:00 น.</p>';
+      }
+    }
+    loadKnowledgeDrop();
+  </script>
+</body>
+</html>

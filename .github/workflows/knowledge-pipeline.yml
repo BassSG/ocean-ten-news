@@ -1,0 +1,74 @@
+name: 🌙 Ocean Ten — Knowledge Pipeline
+
+on:
+  # รันทุกวัน 00:00 น. (ICT = UTC+7 → 17:00 UTC)
+  schedule:
+    - cron: '0 17 * * *'
+  # รันด้วยมือได้ (workflow_dispatch)
+  workflow_dispatch:
+    inputs:
+      test_mode:
+        description: 'Test mode (skip deploy)'
+        required: false
+        default: 'false'
+
+jobs:
+  knowledge-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4 lxml feedparser -q
+
+      # Step 1: หมึก — รวบรวมข่าว
+      - name: 🦑 Step 1: News Gatherer
+        run: |
+          python3 scripts/knowledge/01_news_gatherer.py
+        env:
+          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
+
+      # Step 2: ฉลาม — บรรณาธิการ
+      - name: 🦈 Step 2: Editor
+        run: |
+          python3 scripts/knowledge/02_editor.py
+
+      # Step 3: วาฬ — เขียนบทความ
+      - name: 🐋 Step 3: Writer
+        run: |
+          python3 scripts/knowledge/03_writer.py
+
+      # Copy HTML template to root for GitHub Pages
+      - name: 📄 Copy HTML Template
+        run: |
+          cp knowledge-drop.html index_knowledge.html
+          echo "✅ HTML copied"
+
+      # Commit data files
+      - name: 💾 Commit Data
+        run: |
+          git config user.name "Ocean Ten Bot"
+          git config user.email "ocean-ten@bot.local"
+          git add data/knowledge_*.json
+          git diff --quiet && echo "No data changes" || git commit -m "📦 Knowledge Drop data $(date +%Y-%m-%d)"
+        continue-on-error: true
+
+      # Deploy to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
+        if: github.event.inputs.test_mode != 'true'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          publish_branch: gh-pages
+          force_orphan: false
+          allow_empty_commit: true
