@@ -288,8 +288,9 @@ Status: ${ev.status}`;
   const tFirst=data[0].time;
   const fallbackStart = data[Math.max(0,data.length-120)].time;
 
-  // โหมดปกติ: ไม่บวกลบเวลา
-  const rawStart = ev.orderTs || (run?.createdAt ? Math.floor(new Date(run.createdAt).getTime()/1000) : fallbackStart);
+  // ขยับเวลาเส้นจาก endpoint บนกราฟย้อนหลัง 11 ชั่วโมง (เฉพาะการ plot)
+  const orderTsForPlot = ev.orderTs ? (ev.orderTs - 11*3600) : null;
+  const rawStart = orderTsForPlot || (run?.createdAt ? (Math.floor(new Date(run.createdAt).getTime()/1000) - 11*3600) : fallbackStart);
   const rawEnd = ev.endTs || tLast;
 
   // guard: บาง source ส่งเวลาออเดอร์ใหม่กว่า candle ล่าสุด ทำให้กราฟ/เส้นพัง
