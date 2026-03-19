@@ -355,8 +355,12 @@ Status: ${ev.status}`;
   const anchor=chart.addLineSeries({color:'rgba(0,0,0,0)',lineWidth:1,priceLineVisible:false,lastValueVisible:false});
   anchor.setData([{time:tStartSeg,value:minLv},{time:tEnd,value:maxLv}]);
 
-  const viewFrom = data[Math.max(0,data.length-120)].time;
-  const viewTo = data[data.length-1].time + 60*60*3;
+  // ตั้งมุมมองเริ่มต้นให้ตำแหน่งเริ่มออเดอร์อยู่ราว ๆ 60% ของกราฟ (อ่านง่ายขึ้น)
+  const rightPad = 60*60*3;
+  const spanOrderToLast = Math.max(60*15, tLast - tStartSeg);
+  const leftPad = 1.5 * (spanOrderToLast + rightPad); // ทำให้ start ≈ 60% ของช่วง
+  const viewFrom = Math.max(tFirst, Math.floor(tStartSeg - leftPad));
+  const viewTo = Math.floor(tLast + rightPad);
   chart.timeScale().setVisibleRange({from:viewFrom,to:viewTo});
   window.__chart = chart;
 }
