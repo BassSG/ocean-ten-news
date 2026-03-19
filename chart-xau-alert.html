@@ -192,8 +192,7 @@ function parseOrderTs(v){
 function evaluateStatusPostOrder(lv){
   const entry=lv.ENTRY, sl=lv.SL, tp1=lv.TP1, tpMost=lv.TPMOST || tp1;
   const isLong=(lv.orderType||'').includes('BUY');
-  const _rawOrderTs = parseOrderTs(lv.createdAt);
-  const orderTs = _rawOrderTs ? (_rawOrderTs - 4*3600) : null;
+  const orderTs = parseOrderTs(lv.createdAt); // เวลาออเดอร์จริง (ไม่ชิฟต์) สำหรับคำนวณสถานะ
   const post = orderTs ? data.filter(b => b.time >= orderTs) : data;
   let filled=false, hitSL=false, hitTP1=false, hitTPMost=false;
   for(const b of post){
@@ -289,7 +288,9 @@ Status: ${ev.status}`;
   const tFirst=data[0].time;
   const fallbackStart = data[Math.max(0,data.length-120)].time;
 
-  const rawStart = ev.orderTs || (run?.createdAt ? Math.floor(new Date(run.createdAt).getTime()/1000) : fallbackStart);
+  // ชิฟต์ -4 ชั่วโมง "เฉพาะการวาดบนกราฟ" ตามที่คุยไว้
+  const orderTsForPlot = ev.orderTs ? (ev.orderTs - 4*3600) : null;
+  const rawStart = orderTsForPlot || (run?.createdAt ? (Math.floor(new Date(run.createdAt).getTime()/1000) - 4*3600) : fallbackStart);
   const rawEnd = ev.endTs || tLast;
 
   // guard: บาง source ส่งเวลาออเดอร์ใหม่กว่า candle ล่าสุด ทำให้กราฟ/เส้นพัง
