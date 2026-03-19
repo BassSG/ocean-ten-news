@@ -13,18 +13,28 @@ from datetime import datetime
 TODAY = datetime.now().strftime("%Y-%m-%d")
 OUTPUT = "/home/administrator/.openclaw/workspace/ocean-ten-news/data/knowledge_news_raw.json"
 
-# หัวข้อที่ต้องติดตาม
+# หัวข้อหลากหลาย ไม่จำกัดแค่ทอง — ครอบคลุมทุกมิติ
 TOPICS = [
-    "XAUUSD gold price analysis",
-    "gold market news today",
-    "federal reserve interest rate gold impact",
-    "global market sentiment",
-    "technology AI news today",
-    "cryptocurrency bitcoin news",
-    "geopolitical news impact markets",
-    "economic data releases today",
-    "USD dollar index",
-    "crude oil commodity",
+    # 🌍 ตลาดโลก + ทองคำ
+    "global market news today",
+    "gold price xauusd analysis",
+    "federal reserve interest rate impact",
+    # 🗺️ เทคโนโลยี + AI
+    "artificial intelligence news today",
+    "technology trends 2025",
+    "openai google deepmind news",
+    # 🏛️ เศรษฐกิจ + การเงิน
+    "usd dollar index today",
+    "cryptocurrency bitcoin ethereum news",
+    "crude oil commodity market",
+    # 🌐 โลก + สังคม
+    "geopolitical breaking news",
+    "climate change environment news",
+    "world economic forum news",
+    # 📊 Business + Investment
+    "stock market today news",
+    "venture capital startup funding",
+    "central bank policy news",
 ]
 
 def run():
