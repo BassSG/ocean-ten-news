@@ -55,6 +55,7 @@ const FMP_INTERVAL='15min';
 const FMP_LIMIT=400;
 const CANDLE_REFRESH_MS=10*60*1000;
 const DEFAULT_FMP_API_KEY='WhZvG1WwRoLOE0vJQGsiS9b5XqTft5rK';
+const ORDER_TIME_SHIFT_SEC=11*3600; // ใช้ align เวลา endpoint กับ FMP
 let lastCandleFetchAt=0;
 let candleSource='snapshot';
 const ALERT_ENDPOINTS={
@@ -193,7 +194,8 @@ function parseOrderTs(v){
 function evaluateStatusPostOrder(lv){
   const entry=lv.ENTRY, sl=lv.SL, tp1=lv.TP1, tpMost=lv.TPMOST || tp1;
   const isLong=(lv.orderType||'').includes('BUY');
-  const orderTs = parseOrderTs(lv.createdAt); // เวลาออเดอร์จริง (ไม่ชิฟต์) สำหรับคำนวณสถานะ
+  const rawOrderTs = parseOrderTs(lv.createdAt);
+  const orderTs = rawOrderTs ? (rawOrderTs - ORDER_TIME_SHIFT_SEC) : null; // align ให้ตรงกับกราฟที่ชิฟต์เวลา
   const post = orderTs ? data.filter(b => b.time >= orderTs) : data;
   let filled=false, hitSL=false, hitTP1=false, hitTPMost=false;
   for(const b of post){
@@ -290,9 +292,9 @@ Status: ${ev.status}`;
   const fallbackStart = data[Math.max(0,data.length-120)].time;
 
   // ขยับเวลาเส้นจาก endpoint บนกราฟย้อนหลัง 11 ชั่วโมง (เฉพาะการ plot)
-  const plotShiftSec = 11*3600;
-  const orderTsForPlot = ev.orderTs ? (ev.orderTs - plotShiftSec) : null;
-  const endTsForPlot = ev.endTs ? (ev.endTs - plotShiftSec) : null;
+  const plotShiftSec = ORDER_TIME_SHIFT_SEC;
+  const orderTsForPlot = ev.orderTs ? (ev.orderTs) : null;
+  const endTsForPlot = ev.endTs ? (ev.endTs) : null;
   const rawStart = orderTsForPlot || (run?.createdAt ? (Math.floor(new Date(run.createdAt).getTime()/1000) - plotShiftSec) : fallbackStart);
   const rawEnd = endTsForPlot || tLast;
 
