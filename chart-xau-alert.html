@@ -10,26 +10,82 @@
 <link rel="apple-touch-icon" href="assets/icons/icon-xau-192.svg" />
 <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 <style>
-:root{--bg:#070b16;--panel:#111a2e;--line:#27395f;--text:#eaf2ff;--muted:#9eb3db;--accent:#6aa8ff;--good:#37d39b;--bad:#ff5f73;--gold:#ffd166;--vio:#b388ff}
+:root{
+  --bg-page:#0b1020;
+  --bg-surface:#111831;
+  --bg-elev:#172043;
+  --border:#273a67;
+  --text:#eaf0ff;
+  --text-2:#a9b4d0;
+  --text-3:#7f8bb0;
+  --primary:#5b8cff;
+  --success:#22c55e;
+  --danger:#ef4444;
+  --gold:#f59e0b;
+  --vio:#8b5cf6;
+  --radius:14px;
+  --radius-sm:10px;
+  --shadow:0 8px 24px rgba(4,9,24,.28);
+}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transparent 45%),radial-gradient(900px 500px at 80% -25%,#3a1744,transparent 50%),var(--bg);color:var(--text);font-family:Inter,system-ui}
-.wrap{max-width:1260px;margin:0 auto;padding:18px}
-.head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border:1px solid var(--line);background:rgba(15,24,44,.82);backdrop-filter: blur(8px);border-radius:14px}
-.title{margin:0;font-size:24px;letter-spacing:.2px}
-.subtitle{margin:4px 0 0;color:var(--muted);font-size:12px}
+body{
+  margin:0;
+  background:
+    radial-gradient(1000px 500px at 20% -20%,rgba(52,92,170,.24),transparent 45%),
+    radial-gradient(900px 520px at 85% -25%,rgba(93,62,151,.20),transparent 50%),
+    var(--bg-page);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+.wrap{max-width:1260px;margin:0 auto;padding:20px}
+.head{
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:14px 16px;border:1px solid var(--border);
+  background:rgba(17,24,49,.86);backdrop-filter: blur(10px);
+  border-radius:var(--radius);box-shadow:var(--shadow)
+}
+.title{margin:0;font-size:24px;letter-spacing:.2px;font-weight:800}
+.subtitle{margin:6px 0 0;color:var(--text-2);font-size:12px}
 .toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.pill{font-size:12px;border:1px solid #38558a;background:#132244;color:#cfe0ff;border-radius:999px;padding:7px 11px}
-.sel{background:#0f1a33;color:#dbe7ff;border:1px solid #35507e;border-radius:8px;padding:3px 8px}
-#chart{height:68vh;border:1px solid var(--line);border-radius:14px;background:rgba(10,16,31,.8)}
-#pos{margin:10px 0 14px;padding:14px;border-radius:14px;border:1px solid #2b3f72;background:linear-gradient(180deg,#0f1e1a,#0f1916);line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-.pos-long{border-color:#2f7d60!important;background:linear-gradient(180deg,#0f1f1b,#0f1916)!important}
-.pos-short{border-color:#8a3b4b!important;background:linear-gradient(180deg,#2a1218,#241017)!important}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
-.box{border:1px solid #37507d;background:linear-gradient(180deg,#13234a,#101b36);border-radius:11px;padding:10px;font-size:13px;color:#e5efff}
-.section{margin-top:10px}
+.pill{
+  min-height:36px;display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:600;line-height:1;
+  border:1px solid #334b7d;background:var(--bg-elev);color:#d4def7;
+  border-radius:999px;padding:0 12px;transition:.15s ease
+}
+.pill:hover{filter:brightness(1.08)}
+#livePill{background:#122950;border-color:#2e4f88;color:#cfe0ff}
+.sel{background:#0f1a33;color:#dbe7ff;border:1px solid #35507e;border-radius:8px;padding:4px 8px;font-size:13px}
+.section{margin-top:14px}
+#pos{
+  margin:0 0 12px;padding:14px;border-radius:var(--radius);
+  border:1px solid #2f4476;background:rgba(14,24,47,.88);
+  line-height:1.45;box-shadow:var(--shadow)
+}
+.pos-long{border-color:#2f7d60!important;background:rgba(15,36,31,.88)!important}
+.pos-short{border-color:#8a3b4b!important;background:rgba(40,18,26,.88)!important}
+#chart{height:68vh;border:1px solid var(--border);border-radius:var(--radius);background:rgba(10,16,31,.88);box-shadow:var(--shadow)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.box{
+  border:1px solid #37507d;background:rgba(18,33,66,.82);
+  border-radius:12px;padding:12px;font-size:13px;color:#e6eeff
+}
 .err{margin-top:8px;color:#ff9aa9;font-size:12px}
-.note{color:var(--muted);font-size:12px}
-@media (max-width:900px){#chart{height:54vh} .title{font-size:20px}}\n@media (max-width:700px){\n  .wrap{padding:12px}\n  .head{padding:10px}\n  .subtitle{font-size:11px}\n    #pos{padding:10px;border-radius:10px;font-size:14px}\n  .grid2{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}\n  .box{padding:8px;font-size:12px}\n}\n@media (max-width:420px){\n  #chart{height:48vh}\n    .grid2{grid-template-columns:1fr}\n}
+.note{color:var(--text-2);font-size:12px;margin-top:10px}
+@media (max-width:900px){#chart{height:56vh}.title{font-size:21px}}
+@media (max-width:700px){
+  .wrap{padding:12px}
+  .head{padding:12px}
+  .subtitle{font-size:11px}
+  .pill{min-height:40px}
+  #pos{padding:10px;border-radius:10px}
+  .grid2{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .box{padding:9px;font-size:12px}
+}
+@media (max-width:420px){
+  #chart{height:50vh}
+  .grid2{grid-template-columns:1fr}
+}
 </style>
 </head><body><div class="wrap">
 <div class="head">
@@ -45,12 +101,10 @@ body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transp
   </div>
 </div>
 
-<div id="chart"></div>
-<div id="err" class="err"></div>
-
 <div class="section">
   <div id="pos"></div>
-
+  <div id="chart"></div>
+  <div id="err" class="err"></div>
   <p class="note">Candles: FMP 15m cache (backend อัปเดตถาวร) + หน้าเว็บรีโหลด cache ทุก 10 นาที | Levels: live pull from Apps Script endpoint</p>
 </div>
 </div>
