@@ -97,7 +97,7 @@ body{
     <span class="pill">Timeframe: 15m</span>
     <label class="pill" style="display:flex;gap:6px;align-items:center">Source <select id="sourceSel" class="sel"><option value="TESTER">TESTER</option><option value="EBass">EBass</option><option value="EKlaETun">EKlaETun</option></select></label>
     <label class="pill" style="display:flex;gap:6px;align-items:center">Run <select id="runSel" class="sel"><option value="latest">latest</option></select></label>
-    <button class="pill" id="z1d" type="button">1D</button><button class="pill" id="z3d" type="button">3D</button><button class="pill" id="refreshNow" type="button">Refresh Now</button><button class="pill" id="copyPlan" type="button">Copy Plan</button><button class="pill" id="installBtn" type="button" hidden>Install App</button><span class="pill" id="livePill">Alert source: loading...</span>
+    <button class="pill" id="z1d" type="button">1D</button><button class="pill" id="z3d" type="button">3D</button><button class="pill" id="refreshNow" type="button">Refresh Now</button><button class="pill" id="copyPlan" type="button">Copy Plan</button><button class="pill" id="installBtn" type="button">Install App</button><span class="pill" id="livePill">Alert source: loading...</span>
   </div>
 </div>
 
@@ -528,19 +528,32 @@ function setupAuto(){
 
 function setupInstall(){
   const btn=document.getElementById('installBtn');
+  const err=document.getElementById('err');
   if(!btn) return;
   let deferredPrompt=null;
+
   window.addEventListener('beforeinstallprompt',(e)=>{
     e.preventDefault();
     deferredPrompt=e;
-    btn.hidden=false;
+    btn.textContent='Install App';
   });
+
+  window.addEventListener('appinstalled', ()=>{
+    btn.textContent='Installed ✓';
+  });
+
   btn.addEventListener('click', async ()=>{
-    if(!deferredPrompt) return;
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt=null;
-    btn.hidden=true;
+    if(deferredPrompt){
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt=null;
+      return;
+    }
+    // fallback: บาง browser ไม่ปล่อย beforeinstallprompt
+    if(err){
+      err.textContent='ติดตั้งอัตโนมัติไม่ได้ในเบราว์เซอร์นี้ ให้กดเมนูเบราว์เซอร์ > Install app / Add to Home Screen';
+    }
+    alert('ถ้าปุ่มไม่เด้ง ให้ติดตั้งผ่านเมนูเบราว์เซอร์: Install app / Add to Home Screen');
   });
 }
 
