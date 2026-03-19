@@ -14,6 +14,7 @@ FMP_INTERVAL = "15min"
 FMP_LIMIT = 1000
 CANDLE_CACHE_FILE = DATA_DIR / "fmp-candles-cache.json"
 ORDER_STATE_FILE = DATA_DIR / "order-state.json"
+HISTORY_MAX_LINES = 5000
 
 ALERT_ENDPOINTS = {
     "TESTER": "https://script.googleusercontent.com/macros/echo?user_content_key=AWDtjMU2tCv4s5PpqbuXHtCbN_157DNearfX4ZyVrGxMGAxfBK5IAU5toUBhyKH4KuXQSW7uy_AM2p1qvk2WrdCZ9JcvsW00stCXbN9cxPY-notapivwv6B-fD8zEGCbsD2mgiLF7rlecDRw_fJHrar6lsqBtIqseKe30OHIxWeugjPnu0cacQB5AgTS9bIT_83dhF7HH2ypWF3SZ4iJ4zn1j6EBk1gapwOk-QSHKj8KdAwWF0iQlHIz07y5gXIkMFmMHQ6V6aD46znEstmrcA3RIkDGnPfpUuIv9RtrsW--9rkZS8VBsmSsRNNPJVvdGw&lib=M9P9-wXZJoeI92PYVy9wcPM683hYefgmI",
@@ -275,6 +276,20 @@ def apply_state_machine(prev_status, result):
     return result
 
 
+def trim_history_file(path: Path, max_lines: int):
+    if not path.exists() or max_lines <= 0:
+        return
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+        if len(lines) <= max_lines:
+            return
+        keep = lines[-max_lines:]
+        path.write_text("\n".join(keep) + "\n", encoding="utf-8")
+    except Exception:
+        # best-effort trim only; never break main flow
+        pass
+
+
 def summarize(journal_items):
     total = len(journal_items)
     triggered = sum(1 for x in journal_items if x["result"]["triggered"])
@@ -365,6 +380,7 @@ def main():
     hist_file = DATA_DIR / "trade-journal-history.jsonl"
     with hist_file.open("a", encoding="utf-8") as f:
         f.write(json.dumps(payload, ensure_ascii=False) + "\n")
+    trim_history_file(hist_file, HISTORY_MAX_LINES)
 
     print(f"Wrote {latest_file}")
     print(f"Appended {hist_file}")

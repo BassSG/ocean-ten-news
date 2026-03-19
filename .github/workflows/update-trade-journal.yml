@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: ocean-ten-news-trade-journal
+  cancel-in-progress: false
+
 jobs:
   update-journal:
     runs-on: ubuntu-latest
