@@ -1,4 +1,4 @@
-const date = "2026-03-18";
+const date = "2026-03-19";
 const sourcePath = `data/news-${date}.json`;
 
 const heroImageMap = {

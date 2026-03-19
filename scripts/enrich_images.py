@@ -4,7 +4,8 @@ import re
 import requests
 from pathlib import Path
 
-DATA = Path('/home/administrator/.openclaw/workspace/ocean-ten-news/data/news-2026-03-18.json')
+DATA_DIR = Path('/home/administrator/.openclaw/workspace/ocean-ten-news/data')
+DATA = sorted(DATA_DIR.glob('news-*.json'))[-1]
 TIMEOUT = 12
 
 HEADERS = {
