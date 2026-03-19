@@ -318,37 +318,36 @@ Status: ${ev.status}`;
   seg(tp1,'#ffd166','TP1');
   seg(tpMost,'#b388ff','TPMost');
 
-  const zoneEnd = ev.endTs ? tEndSeg : Math.max(tEndSeg, tStartSeg+60*15);
+  // แถบสีแบบ TradingView: จากเวลาเริ่มออเดอร์ -> ปัจจุบัน (หรือจุดจบถ้าปิดออเดอร์แล้ว)
+  const zoneEnd = tEndSeg;
+
   if(tpMost){
     const profitMost=chart.addBaselineSeries({
       baseValue:{type:'price',price:entry},
-      topFillColor1:'rgba(120,88,255,0.25)', topFillColor2:'rgba(120,88,255,0.06)',
-      bottomFillColor1:'rgba(120,88,255,0.01)', bottomFillColor2:'rgba(120,88,255,0.01)',
+      topFillColor1:'rgba(120,88,255,0.25)', topFillColor2:'rgba(120,88,255,0.08)',
+      bottomFillColor1:'rgba(120,88,255,0.25)', bottomFillColor2:'rgba(120,88,255,0.08)',
       lineVisible:false,lastValueVisible:false,priceLineVisible:false
     });
-    const v = isLong ? tpMost : entry;
-    profitMost.setData([{time:tStartSeg,value:v},{time:zoneEnd,value:v}]);
+    profitMost.setData([{time:tStartSeg,value:tpMost},{time:zoneEnd,value:tpMost}]);
   }
 
   if(tp1){
     const profit1=chart.addBaselineSeries({
       baseValue:{type:'price',price:entry},
-      topFillColor1:'rgba(255,209,102,0.30)', topFillColor2:'rgba(255,209,102,0.07)',
-      bottomFillColor1:'rgba(255,209,102,0.01)', bottomFillColor2:'rgba(255,209,102,0.01)',
+      topFillColor1:'rgba(255,209,102,0.30)', topFillColor2:'rgba(255,209,102,0.10)',
+      bottomFillColor1:'rgba(255,209,102,0.30)', bottomFillColor2:'rgba(255,209,102,0.10)',
       lineVisible:false,lastValueVisible:false,priceLineVisible:false
     });
-    const v = isLong ? tp1 : entry;
-    profit1.setData([{time:tStartSeg,value:v},{time:zoneEnd,value:v}]);
+    profit1.setData([{time:tStartSeg,value:tp1},{time:zoneEnd,value:tp1}]);
   }
 
   const riskZone=chart.addBaselineSeries({
     baseValue:{type:'price',price:entry},
-    topFillColor1:'rgba(255,95,115,0.01)', topFillColor2:'rgba(255,95,115,0.01)',
-    bottomFillColor1:'rgba(255,95,115,0.33)', bottomFillColor2:'rgba(255,95,115,0.08)',
+    topFillColor1:'rgba(255,95,115,0.33)', topFillColor2:'rgba(255,95,115,0.10)',
+    bottomFillColor1:'rgba(255,95,115,0.33)', bottomFillColor2:'rgba(255,95,115,0.10)',
     lineVisible:false,lastValueVisible:false,priceLineVisible:false
   });
-  const rv = isLong ? sl : entry;
-  riskZone.setData([{time:tStartSeg,value:rv},{time:zoneEnd,value:rv}]);
+  riskZone.setData([{time:tStartSeg,value:sl},{time:zoneEnd,value:sl}]);
 
   const minLv=Math.min(entry,sl,tp1??entry,tpMost??entry);
   const maxLv=Math.max(entry,sl,tp1??entry,tpMost??entry);
