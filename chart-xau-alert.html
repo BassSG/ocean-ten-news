@@ -97,7 +97,7 @@ body{
     <span class="pill">Timeframe: 15m</span>
     <label class="pill" style="display:flex;gap:6px;align-items:center">Source <select id="sourceSel" class="sel"><option value="TESTER">TESTER</option><option value="EBass">EBass</option><option value="EKlaETun">EKlaETun</option></select></label>
     <label class="pill" style="display:flex;gap:6px;align-items:center">Run <select id="runSel" class="sel"><option value="latest">latest</option></select></label>
-    <button class="pill" id="z1d" type="button">1D</button><button class="pill" id="z3d" type="button">3D</button><button class="pill" id="copyPlan" type="button">Copy Plan</button><button class="pill" id="installBtn" type="button" hidden>Install App</button><span class="pill" id="livePill">Alert source: loading...</span>
+    <button class="pill" id="z1d" type="button">1D</button><button class="pill" id="z3d" type="button">3D</button><button class="pill" id="refreshNow" type="button">Refresh Now</button><button class="pill" id="copyPlan" type="button">Copy Plan</button><button class="pill" id="installBtn" type="button" hidden>Install App</button><span class="pill" id="livePill">Alert source: loading...</span>
   </div>
 </div>
 
@@ -115,9 +115,11 @@ const FMP_SYMBOL='XAUUSD';
 const FMP_INTERVAL='15min';
 const FMP_LIMIT=400;
 const CANDLE_REFRESH_MS=10*60*1000;
+const LIVE_POLL_MS=60*1000; // realtime-ish while page open
 const DEFAULT_FMP_API_KEY='WhZvG1WwRoLOE0vJQGsiS9b5XqTft5rK';
 const ORDER_TIME_SHIFT_SEC=11*3600; // ใช้ align เวลา endpoint กับ FMP
 let lastCandleFetchAt=0;
+let lastLiveFetchAt=0;
 let candleSource='snapshot';
 const ALERT_ENDPOINTS={
   TESTER:'https://script.googleusercontent.com/macros/echo?user_content_key=AWDtjMU2tCv4s5PpqbuXHtCbN_157DNearfX4ZyVrGxMGAxfBK5IAU5toUBhyKH4KuXQSW7uy_AM2p1qvk2WrdCZ9JcvsW00stCXbN9cxPY-notapivwv6B-fD8zEGCbsD2mgiLF7rlecDRw_fJHrar6lsqBtIqseKe30OHIxWeugjPnu0cacQB5AgTS9bIT_83dhF7HH2ypWF3SZ4iJ4zn1j6EBk1gapwOk-QSHKj8KdAwWF0iQlHIz07y5gXIkMFmMHQ6V6aD46znEstmrcA3RIkDGnPfpUuIv9RtrsW--9rkZS8VBsmSsRNNPJVvdGw&lib=M9P9-wXZJoeI92PYVy9wcPM683hYefgmI',
@@ -168,6 +170,31 @@ async function refreshCandles(force=false){
   }catch(e){
     candleSource='snapshot (cache-miss)';
   }
+}
+
+async function refreshCandlesLive(force=false){
+  const now=Date.now();
+  if(!force && (now-lastLiveFetchAt)<LIVE_POLL_MS) return false;
+  const apiKey=getFmpApiKey();
+  if(!apiKey) return false;
+  const toDate=new Date(now + 24*3600*1000).toISOString().slice(0,10);
+  const fromDate=new Date(now - 2*24*3600*1000).toISOString().slice(0,10);
+  const url=`https://financialmodelingprep.com/api/v3/historical-chart/${FMP_INTERVAL}/${FMP_SYMBOL}?from=${fromDate}&to=${toDate}&apikey=${encodeURIComponent(apiKey)}`;
+  try{
+    const res=await fetch(url,{cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const rows=await res.json();
+    const normalized=normalizeFmpRows(rows).slice(-FMP_LIMIT);
+    if(normalized.length>=50){
+      data=normalized;
+      lastLiveFetchAt=now;
+      candleSource='fmp-live';
+      return true;
+    }
+  }catch(e){
+    // keep existing source/cache silently
+  }
+  return false;
 }
 
 function groupRuns(rows){
@@ -443,6 +470,7 @@ Status: ${ev.status}`;
 
 async function init(){
   await refreshCandles(false);
+  await refreshCandlesLive(false); // ดึงสดเพิ่มถ้าถึงรอบ
   let lv=fallback;
   let run = null;
   let runs = [];
@@ -478,11 +506,24 @@ function setupAuto(){
   const byId=(id,fn)=>{ const el=document.getElementById(id); if(el) el.onclick=fn; };
   byId('z1d',()=>z(96));
   byId('z3d',()=>z(96*3));
+  byId('refreshNow', async ()=>{
+    const b=document.getElementById('refreshNow');
+    if(b) b.textContent='Refreshing...';
+    await refreshCandlesLive(true);
+    await init();
+    if(b){ b.textContent='Refresh Now'; }
+  });
   byId('copyPlan',()=>{
     const txt = latestPlanText || 'XAU/USD Plan';
     navigator.clipboard?.writeText(txt);
     const cp=document.getElementById('copyPlan'); if(cp){ cp.textContent='Copied ✓'; setTimeout(()=>cp.textContent='Copy Plan',1200);}
   });
+
+  // realtime-ish polling while page is open
+  setInterval(async ()=>{
+    const changed = await refreshCandlesLive(false);
+    if(changed) await init();
+  }, LIVE_POLL_MS);
 }
 
 function setupInstall(){
