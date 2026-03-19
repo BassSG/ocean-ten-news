@@ -237,9 +237,21 @@ Status: ${ev.status}`;
   const cs=chart.addCandlestickSeries({upColor:'#42d392',downColor:'#ff5f73',borderVisible:false,wickUpColor:'#42d392',wickDownColor:'#ff5f73'});
   cs.setData(data);
 
-  const tStartSeg = ev.orderTs || (run?.createdAt ? Math.floor(new Date(run.createdAt).getTime()/1000) : data[0].time);
-  const tEndSeg = ev.endTs || data[data.length-1].time;
   const tLast=data[data.length-1].time;
+  const tFirst=data[0].time;
+  const fallbackStart = data[Math.max(0,data.length-120)].time;
+
+  const rawStart = ev.orderTs || (run?.createdAt ? Math.floor(new Date(run.createdAt).getTime()/1000) : fallbackStart);
+  const rawEnd = ev.endTs || tLast;
+
+  // guard: บาง source ส่งเวลาออเดอร์ใหม่กว่า candle ล่าสุด ทำให้กราฟ/เส้นพัง
+  // => clamp ให้อยู่ในช่วงข้อมูล candle และบังคับ start <= end
+  const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
+  const startCand = Number.isFinite(rawStart) ? clamp(rawStart,tFirst,tLast) : fallbackStart;
+  const endCandRaw = Number.isFinite(rawEnd) ? clamp(rawEnd,startCand,tLast) : tLast;
+  const tStartSeg = Math.min(startCand,endCandRaw);
+  const tEndSeg = Math.max(startCand,endCandRaw);
+
   const tEnd=tLast+60*60*10;
 
   function seg(price,color,title){
