@@ -1,13 +1,21 @@
-const CACHE_NAME = 'ocean-ten-news-v1';
+const CACHE_NAME = 'ocean-ten-news-v2';
 const APP_SHELL = [
   '/ocean-ten-news/',
   '/ocean-ten-news/index.html',
+  '/ocean-ten-news/knowledge-drop.html',
+  '/ocean-ten-news/manifest.webmanifest',
+  '/ocean-ten-news/manifest-knowledge.webmanifest',
+  '/ocean-ten-news/manifest-chart.webmanifest',
   '/ocean-ten-news/assets/styles.css',
   '/ocean-ten-news/assets/app.js',
-  '/ocean-ten-news/manifest.webmanifest',
   '/ocean-ten-news/assets/icons/icon-192.svg',
   '/ocean-ten-news/assets/icons/icon-512.svg',
-  '/ocean-ten-news/data/news-2026-03-18.json'
+  '/ocean-ten-news/assets/icons/icon-xau-192.png',
+  '/ocean-ten-news/assets/icons/icon-xau-512.png',
+  '/ocean-ten-news/data/news-2026-03-18.json',
+  '/ocean-ten-news/data/knowledge_latest.json',
+  '/ocean-ten-news/data/knowledge_news_raw.json',
+  '/ocean-ten-news/data/knowledge_news_edited.json',
 ];
 
 self.addEventListener('install', (event) => {

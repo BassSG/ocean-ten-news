@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ocean Ten — Knowledge Drop</title>
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest-knowledge.webmanifest">
+  <meta name="theme-color" content="#0a0e17">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Knowledge Drop">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-xau-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -382,6 +389,15 @@
       }
     }
     loadKnowledgeDrop();
+
+    // Register Service Worker for PWA install
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').then(reg => {
+        console.log('SW registered:', reg.scope);
+      }).catch(err => {
+        console.log('SW registration failed:', err);
+      });
+    }
   </script>
 </body>
 </html>
