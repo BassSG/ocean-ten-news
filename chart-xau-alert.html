@@ -32,7 +32,7 @@ body{margin:0;background:radial-gradient(1100px 500px at 20% -20%,#17305f,transp
   </div>
   <div class="toolbar">
     <span class="pill">Timeframe: 15m</span>
-    <label class="pill" style="display:flex;gap:6px;align-items:center">Source <select id="sourceSel" class="sel"><option value="EBass">EBass</option><option value="EKlaETun">EKlaETun</option></select></label>
+    <label class="pill" style="display:flex;gap:6px;align-items:center">Source <select id="sourceSel" class="sel"><option value="TESTER">TESTER</option><option value="EBass">EBass</option><option value="EKlaETun">EKlaETun</option></select></label>
     <label class="pill" style="display:flex;gap:6px;align-items:center">Run <select id="runSel" class="sel"><option value="latest">latest</option></select></label>
     <button class="pill" id="autoBtn" type="button">Auto: ON (60s)</button><button class="pill" id="z1d" type="button">1D</button><button class="pill" id="z3d" type="button">3D</button><button class="pill" id="copyPlan" type="button">Copy Plan</button><span class="pill" id="livePill">Alert source: loading...</span>
   </div>
@@ -58,6 +58,7 @@ const DEFAULT_FMP_API_KEY='WhZvG1WwRoLOE0vJQGsiS9b5XqTft5rK';
 let lastCandleFetchAt=0;
 let candleSource='snapshot';
 const ALERT_ENDPOINTS={
+  TESTER:'https://script.googleusercontent.com/macros/echo?user_content_key=AWDtjMU2tCv4s5PpqbuXHtCbN_157DNearfX4ZyVrGxMGAxfBK5IAU5toUBhyKH4KuXQSW7uy_AM2p1qvk2WrdCZ9JcvsW00stCXbN9cxPY-notapivwv6B-fD8zEGCbsD2mgiLF7rlecDRw_fJHrar6lsqBtIqseKe30OHIxWeugjPnu0cacQB5AgTS9bIT_83dhF7HH2ypWF3SZ4iJ4zn1j6EBk1gapwOk-QSHKj8KdAwWF0iQlHIz07y5gXIkMFmMHQ6V6aD46znEstmrcA3RIkDGnPfpUuIv9RtrsW--9rkZS8VBsmSsRNNPJVvdGw&lib=M9P9-wXZJoeI92PYVy9wcPM683hYefgmI',
   EBass:'https://script.google.com/macros/s/AKfycbwD0UqNEHdfUz3kzkL6od1h2GTIoNiPTO_gbonWKi9_lLDi6La-7VihSkr7DIcdHjvkIw/exec?mode=pull&token=271063',
   EKlaETun:'https://script.google.com/macros/s/AKfycbyoQMFqut3uEJ_x1u4PkbtTax_IUkPtLP1RnSoKB9Qbj5G_JyJSKl5ZiF4ydRUCYQ/exec?mode=pull&token=271063'
 };
