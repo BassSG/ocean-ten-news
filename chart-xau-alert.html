@@ -312,17 +312,32 @@ Status: ${ev.status}`;
 
   const tEnd=tLast+60*60*10;
 
+  const isClosed = !!ev.endTs;
+
   function seg(price,color,title){
     if(!price) return;
     const ls = chart.addLineSeries({color, lineWidth:2, priceLineVisible:false, lastValueVisible:false});
     ls.setData([{time:tStartSeg,value:price},{time:tEndSeg,value:price}]);
-    // keep label text on right axis for readability
-    cs.createPriceLine({price,color,lineWidth:1,lineStyle:2,axisLabelVisible:true,title});
+    // ออเดอร์ยังไม่จบ: แสดงเส้นประ label ปกติ
+    if(!isClosed){
+      cs.createPriceLine({price,color,lineWidth:1,lineStyle:2,axisLabelVisible:true,title});
+    }
   }
   seg(entry,'#4da3ff','ENTRY');
   seg(sl,'#ff5f73','SL');
-  seg(tp1,'#ffd166','TP1');
+  seg(tp1,'#3ed598','TP1');
   seg(tpMost,'#b388ff','TPMost');
+
+  // ออเดอร์จบแล้ว: แสดงผลลัพธ์เส้นเดียว ลดความรก
+  if(isClosed){
+    let closePrice=null, closeColor='#ffffff', closeTitle='CLOSED';
+    if(ev.endReason==='SL'){ closePrice=sl; closeColor='#ff5f73'; closeTitle='SL HIT'; }
+    else if(ev.endReason==='TPMost'){ closePrice=tpMost; closeColor='#b388ff'; closeTitle='TP HIT'; }
+    else if(ev.endReason==='TP1'){ closePrice=tp1; closeColor='#3ed598'; closeTitle='TP HIT'; }
+    if(closePrice!=null){
+      cs.createPriceLine({price:closePrice,color:closeColor,lineWidth:2,lineStyle:0,axisLabelVisible:true,title:closeTitle});
+    }
+  }
 
   // แถบสีแบบ TradingView: จากเวลาเริ่มออเดอร์ -> ปัจจุบัน (หรือจุดจบถ้าปิดออเดอร์แล้ว)
   const zoneEnd = tEndSeg;
@@ -357,8 +372,10 @@ Status: ${ev.status}`;
 
   const minLv=Math.min(entry,sl,tp1??entry,tpMost??entry);
   const maxLv=Math.max(entry,sl,tp1??entry,tpMost??entry);
-  const endMarker = chart.addLineSeries({color:'rgba(255,255,255,0.35)', lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false});
-  endMarker.setData([{time:tEndSeg,value:minLv},{time:tEndSeg,value:maxLv}]);
+  if(!isClosed){
+    const endMarker = chart.addLineSeries({color:'rgba(255,255,255,0.35)', lineWidth:1, lineStyle:2, priceLineVisible:false, lastValueVisible:false});
+    endMarker.setData([{time:tEndSeg,value:minLv},{time:tEndSeg,value:maxLv}]);
+  }
   const anchor=chart.addLineSeries({color:'rgba(0,0,0,0)',lineWidth:1,priceLineVisible:false,lastValueVisible:false});
   anchor.setData([{time:tStartSeg,value:minLv},{time:tEnd,value:maxLv}]);
 
