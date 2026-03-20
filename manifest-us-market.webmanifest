@@ -1,0 +1,25 @@
+{
+  "name": "Ocean Ten — US Market Premium Report",
+  "short_name": "US Market",
+  "description": "US Market Premium Research Report — S&P500, Nasdaq, Gold, BTC, DXY, Yields Analysis",
+  "start_url": "/us-market-report.html",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#0a0e17",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "news", "productivity"]
+}

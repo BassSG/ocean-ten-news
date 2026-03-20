@@ -340,3 +340,24 @@ body.compact .hero { min-height: 300px; }
   .hero h2 { font-size: 22px; }
   .pill, .btn { font-size: 11px; padding: 7px 10px; }
 }
+
+/* US Market Report pill link */
+.report-pill {
+  text-decoration: none;
+  border: 1px solid #7b4b00;
+  background: linear-gradient(90deg, rgba(240,185,11,0.15), rgba(240,185,11,0.08));
+  color: #f0b90b !important;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.report-pill:hover {
+  background: linear-gradient(90deg, rgba(240,185,11,0.25), rgba(240,185,11,0.15));
+  border-color: #f0b90b;
+  box-shadow: 0 0 12px rgba(240,185,11,0.2);
+}

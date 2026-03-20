@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>US Market Premium Report — Ocean Ten</title>
+  <meta name="theme-color" content="#0a0e17">
+  <meta name="description" content="US Market Premium Research Report — S&P500, Nasdaq, Gold, BTC, DXY, Yields Analysis">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="US Market Report">
+  <link rel="manifest" href="/manifest-us-market.webmanifest">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-card: #111827;
+      --bg-card-hover: #1a2235;
+      --accent-gold: #f0b90b;
+      --accent-gold-dim: #b8860b;
+      --accent-gold-glow: rgba(240,185,11,0.15);
+      --accent-red: #ef4444;
+      --accent-red-bg: rgba(239,68,68,0.12);
+      --accent-green: #10b981;
+      --accent-green-bg: rgba(16,185,129,0.12);
+      --accent-blue: #3b82f6;
+      --text-primary: #f9fafb;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      --border: #1f2937;
+      --border-light: rgba(240,185,11,0.15);
+      --shadow: 0 20px 60px rgba(0,0,0,0.5);
+      --glow-gold: 0 0 40px rgba(240,185,11,0.2);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Thai', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(240,185,11,0.08) 0%, transparent 60%),
+        linear-gradient(rgba(240,185,11,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,185,11,0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 80px 80px, 80px 80px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== HEADER ===== */
+    .report-header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding-top: 32px;
+    }
+
+    .brand-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .brand-icon {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dim));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      box-shadow: var(--glow-gold);
+    }
+
+    .brand-name {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--accent-gold), #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .report-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: var(--accent-gold-glow);
+      border: 1px solid var(--accent-gold);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(240,185,11,0.1);
+    }
+
+    .report-label .premium-star {
+      font-size: 14px;
+    }
+
+    .report-title {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 0%, #d1d5db 50%, #9ca3af 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .report-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .meta-badge.highlight {
+      background: rgba(240,185,11,0.08);
+      border-color: rgba(240,185,11,0.3);
+      color: var(--accent-gold);
+    }
+
+    .report-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ===== GOLD DIVIDER ===== */
+    .gold-divider {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+      margin: 40px 0;
+      opacity: 0.5;
+    }
+
+    /* ===== SUMMARY SECTION ===== */
+    .summary-section {
+      margin-bottom: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .section-icon {
+      font-size: 20px;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+    }
+
+    .summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .summary-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-gold), #f59e0b, var(--accent-red));
+    }
+
+    .summary-item {
+      display: flex;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .summary-item:first-child {
+      padding-top: 0;
+    }
+
+    .summary-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dim));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #000;
+    }
+
+    .summary-text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-primary);
+      padding-top: 4px;
+    }
+
+    /* ===== ASSET CARDS ===== */
+    .assets-grid {
+      display: grid;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .asset-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .asset-card:hover {
+      border-color: rgba(240,185,11,0.3);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .asset-card.bear { border-left: 3px solid var(--accent-red); }
+    .asset-card.neutral { border-left: 3px solid var(--accent-gold); }
+    .asset-card.bullish { border-left: 3px solid var(--accent-green); }
+
+    /* Card Header */
+    .asset-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .asset-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .asset-emoji {
+      font-size: 24px;
+    }
+
+    .asset-name-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .asset-symbol {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .asset-name-en {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .asset-price-wrap {
+      text-align: right;
+    }
+
+    .asset-price {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -1px;
+    }
+
+    .asset-change {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .asset-change.neg { color: var(--accent-red); }
+    .asset-change.pos { color: var(--accent-green); }
+    .asset-change.neutral { color: var(--accent-gold); }
+
+    .asset-change-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* View Badge */
+    .view-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .view-badge.bear {
+      background: var(--accent-red-bg);
+      color: var(--accent-red);
+      border: 1px solid rgba(239,68,68,0.3);
+    }
+
+    .view-badge.neutral {
+      background: var(--accent-gold-glow);
+      color: var(--accent-gold);
+      border: 1px solid rgba(240,185,11,0.3);
+    }
+
+    .view-badge.bullish {
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+      border: 1px solid rgba(16,185,129,0.3);
+    }
+
+    /* Card Body */
+    .asset-body {
+      padding: 20px 24px;
+    }
+
+    .why-section {
+      margin-bottom: 16px;
+    }
+
+    .why-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .why-list {
+      list-style: none;
+    }
+
+    .why-list li {
+      position: relative;
+      padding-left: 20px;
+      padding-bottom: 8px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .why-list li:last-child {
+      padding-bottom: 0;
+    }
+
+    .why-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent-gold);
+      font-size: 11px;
+      top: 3px;
+    }
+
+    /* Entry/Exit Table */
+    .entry-section {
+      margin-bottom: 16px;
+    }
+
+    .entry-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .entry-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .entry-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .entry-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .entry-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+
+    /* Risk Section */
+    .risk-section {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+    }
+
+    .risk-badge {
+      flex-shrink: 0;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .risk-badge.HIGH {
+      background: var(--accent-red-bg);
+      color: var(--accent-red);
+    }
+
+    .risk-badge.MEDIUM {
+      background: var(--accent-gold-glow);
+      color: var(--accent-gold);
+    }
+
+    .risk-badge.MEDIUM-HIGH {
+      background: rgba(249,115,22,0.12);
+      color: #f97316;
+    }
+
+    .risk-text {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* ===== OUTLOOK TABLE ===== */
+    .outlook-section {
+      margin-bottom: 48px;
+    }
+
+    .outlook-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .outlook-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-red), var(--accent-gold), var(--accent-green));
+    }
+
+    .outlook-table {
+      width: 100%;
+    }
+
+    .outlook-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto 1.5fr;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .outlook-row:last-child {
+      border-bottom: none;
+    }
+
+    .outlook-row.header {
+      background: rgba(255,255,255,0.02);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .outlook-asset {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .outlook-view {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .outlook-view.bear { color: var(--accent-red); }
+    .outlook-view.neutral { color: var(--accent-gold); }
+    .outlook-view.bullish { color: var(--accent-green); }
+
+    .outlook-emoji {
+      font-size: 16px;
+    }
+
+    .outlook-reason {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ===== SOURCES ===== */
+    .sources-section {
+      margin-bottom: 48px;
+    }
+
+    .sources-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .source-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 11px;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+
+    .source-tag:hover {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+    }
+
+    /* ===== FOOTER ===== */
+    .report-footer {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-brand {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .footer-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .agent-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: rgba(16,185,129,0.08);
+      border: 1px solid rgba(16,185,129,0.25);
+      border-radius: 100px;
+      font-size: 12px;
+      color: var(--accent-green);
+    }
+
+    .disclaimer {
+      margin-top: 20px;
+      padding: 14px 20px;
+      background: rgba(239,68,68,0.05);
+      border: 1px solid rgba(239,68,68,0.15);
+      border-radius: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .container { padding: 24px 16px 60px; }
+      .report-header { margin-bottom: 32px; }
+      .report-title { letter-spacing: -0.5px; }
+      .summary-card { padding: 20px; }
+      .asset-header { padding: 16px; }
+      .asset-body { padding: 16px; }
+      .asset-price { font-size: 18px; }
+      .entry-grid { grid-template-columns: 1fr; }
+      .outlook-row {
+        grid-template-columns: 1fr auto;
+        gap: 6px;
+      }
+      .outlook-row.header { display: none; }
+      .outlook-reason { display: none; }
+    }
+
+    /* ===== LOADING STATE ===== */
+    .loading-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--text-muted);
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent-gold);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-bottom: 24px;
+      transition: all 0.2s;
+    }
+
+    .back-link:hover {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← กลับหน้าแรก</a>
+
+    <header class="report-header">
+      <div class="brand-row">
+        <div class="brand-icon">📊</div>
+        <span class="brand-name">Ocean Ten</span>
+      </div>
+      <div class="report-label">
+        <span class="premium-star">★★★</span>
+        Premium Research Report
+        <span class="premium-star">★★★</span>
+      </div>
+      <h1 class="report-title" id="reportTitle">US Market<br>Premium Report</h1>
+      <div class="report-meta" id="reportMeta">
+        <span class="meta-badge highlight" id="dateBadge">กำลังโหลด...</span>
+        <span class="meta-badge" id="timeBadge">--:-- UTC</span>
+      </div>
+      <p class="report-subtitle" id="reportSubtitle">วิเคราะห์เชิงลึก S&P500 · Nasdaq · Gold · BTC · DXY · Yields — ระดับที่คนยอมจ่ายเงินดูได้</p>
+    </header>
+
+    <!-- Summary Section -->
+    <section class="summary-section">
+      <div class="section-header">
+        <span class="section-icon">📌</span>
+        <span class="section-title">3 สิ่งที่ต้องรู้วันนี้</span>
+      </div>
+      <div class="summary-card">
+        <div id="summaryList">
+          <div class="loading-state">
+            <div class="loading-spinner"></div>
+            กำลังโหลด...
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="gold-divider"></div>
+
+    <!-- Asset Cards -->
+    <section class="assets-grid" id="assetsGrid">
+      <div class="loading-state">
+        <div class="loading-spinner"></div>
+      </div>
+    </section>
+
+    <!-- Outlook Table -->
+    <section class="outlook-section">
+      <div class="section-header">
+        <span class="section-icon">📊</span>
+        <span class="section-title">แผนมุมมองตลาด (Bull / Bear / Neutral)</span>
+      </div>
+      <div class="outlook-card">
+        <div class="outlook-table">
+          <div class="outlook-row header">
+            <span>Asset</span>
+            <span>View</span>
+            <span></span>
+            <span style="text-align:left">เหตุผล</span>
+          </div>
+          <div id="outlookBody">กำลังโหลด...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="sources-section">
+      <div class="section-header">
+        <span class="section-icon">📚</span>
+        <span class="section-title">แหล่งที่มา</span>
+      </div>
+      <div class="sources-wrap" id="sourcesWrap">
+        <div class="loading-state" style="padding:20px 0">
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="report-footer">
+      <p class="footer-brand">📊 Ocean Ten — Premium US Market Intelligence</p>
+      <p class="footer-meta">Generated by 🐋 Whale · Deployed by 🐬 Dolphin · MiniMax 2.7</p>
+      <div class="agent-badge" id="agentBadge">🐋 Whale • MiniMax 2.7</div>
+      <div class="disclaimer" id="disclaimer">งานวิเคราะห์นี้ไม่ใช่คำแนะนำการลงทุน ใช้เพื่อการศึกษาและ research purposes เท่านั้น</div>
+    </footer>
+  </div>
+
+  <script>
+    async function loadReport() {
+      try {
+        const res = await fetch('./data/us-market-report.json');
+        const d = await res.json();
+
+        // Header
+        document.getElementById('dateBadge').textContent = d.date_short;
+        document.getElementById('timeBadge').textContent = d.time_utc + ' • ' + d.level;
+
+        // Summary
+        const summaryList = document.getElementById('summaryList');
+        summaryList.innerHTML = d.summary_3_points.map((point, i) => `
+          <div class="summary-item">
+            <div class="summary-num">${i + 1}</div>
+            <div class="summary-text">${point}</div>
+          </div>
+        `).join('');
+
+        // Asset Cards
+        const grid = document.getElementById('assetsGrid');
+        grid.innerHTML = d.sections.map(section => {
+          const viewClass = section.view === 'BEAR' ? 'bear' : section.view === 'BULLISH' ? 'bullish' : 'neutral';
+          const changeClass = section.change.includes('-') ? 'neg' : section.change.includes('+') ? 'pos' : 'neutral';
+          const riskClass = section.risk.replace('-', '-'); // MEDIUM-HIGH stays
+
+          return `
+          <div class="asset-card ${viewClass.toLowerCase()}">
+            <div class="asset-header">
+              <div class="asset-info">
+                <span class="asset-emoji">${section.emoji}</span>
+                <div class="asset-name-wrap">
+                  <span class="asset-symbol">${section.symbol}</span>
+                  <span class="asset-name-en">${section.name_en}</span>
+                </div>
+              </div>
+              <div class="asset-price-wrap">
+                <div class="asset-price">${section.price}</div>
+                <div class="asset-change ${changeClass}">${section.change}</div>
+                ${section.change_label ? `<div class="asset-change-label">${section.change_label}</div>` : ''}
+              </div>
+              <div class="view-badge ${viewClass.toLowerCase()}">${section.emoji} ${section.view}</div>
+            </div>
+            <div class="asset-body">
+              <div class="why-section">
+                <div class="why-title">WHY — ทำไมถึงเป็นแบบนี้?</div>
+                <ul class="why-list">
+                  ${section.why.map(w => `<li>${w}</li>`).join('')}
+                </ul>
+              </div>
+              <div class="entry-section">
+                <div class="entry-title">Entry / Exit</div>
+                <div class="entry-grid">
+                  ${section.entry_exit.map(e => `
+                    <div class="entry-item">
+                      <div class="entry-label">${e.label}</div>
+                      <div class="entry-value">${e.value}</div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+              <div class="risk-section">
+                <span class="risk-badge ${section.risk}">⚠ ${section.risk}</span>
+                <div class="risk-text">${section.risk_label}</div>
+              </div>
+            </div>
+          </div>
+          `;
+        }).join('');
+
+        // Outlook
+        const outlookBody = document.getElementById('outlookBody');
+        outlookBody.innerHTML = d.outlook.map(o => `
+          <div class="outlook-row">
+            <span class="outlook-asset">${o.asset}</span>
+            <span class="outlook-view ${o.view.toLowerCase()}">${o.emoji}</span>
+            <span class="outlook-view ${o.view.toLowerCase()}">${o.view}</span>
+            <span class="outlook-reason">${o.reason}</span>
+          </div>
+        `).join('');
+
+        // Sources
+        const sourcesWrap = document.getElementById('sourcesWrap');
+        sourcesWrap.innerHTML = d.sources.map(s => 
+          `<span class="source-tag">📰 ${s}</span>`
+        ).join('');
+
+        // Footer
+        document.getElementById('agentBadge').textContent = `🐋 ${d.agent} • ${d.model}`;
+        document.getElementById('disclaimer').textContent = d.disclaimer;
+
+      } catch(e) {
+        console.error('Failed to load report:', e);
+        document.getElementById('reportTitle').textContent = 'Report ไม่พร้อม — รอ Pipeline รันคืนนี้';
+        document.getElementById('summaryList').innerHTML = '<p style="color:#6b7280;text-align:center;padding:40px;">🌙 Pipeline จะเริ่ม 00:00 น.</p>';
+        document.getElementById('assetsGrid').innerHTML = '';
+      }
+    }
+
+    loadReport();
+
+    // Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').then(reg => {
+        console.log('SW registered:', reg.scope);
+      });
+    }
+  </script>
+</body>
+</html>

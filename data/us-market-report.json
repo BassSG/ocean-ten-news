@@ -1,0 +1,181 @@
+{
+  "date": "ศุกร์ที่ 20 มีนาคม 2569",
+  "date_thai": "ศุกร์ 20 มี.ค. 2569",
+  "date_short": "20 มี.ค. 2569",
+  "time_bkk": "19:00 น.",
+  "time_utc": "12:00 UTC",
+  "headline": "US Market Premium Research Report",
+  "subtitle": "วิเคราะห์เชิงลึก S&P500 · Nasdaq · Gold · BTC · DXY · Yields — ระดับที่คนยอมจ่ายเงินดูได้",
+  "level": "Premium",
+  "model": "MiniMax 2.7",
+  "agent": "whale",
+  "sections": [
+    {
+      "symbol": "SPX",
+      "name_th": "S&P 500",
+      "name_en": "ดัชนีหลักของตลาดหุ้นสหรัฐฯ",
+      "emoji": "🔴",
+      "price": "6,606.49",
+      "change": "-0.3%",
+      "change_label": "ต่ำสุดในรอบ 4 เดือน",
+      "open": "6,583.12",
+      "high": "6,636.74",
+      "low": "6,557.82",
+      "ath": "7,002.58 (ม.ค. 2569)",
+      "ath_distance": "-396 จุดจาก ATH",
+      "why": [
+        "Fed คงอัตราดอกเบี้ยไว้ที่ 3.5–3.75% เป็นการประชุมที่ 2 ติดต่อกัน และยก Inflation Forecast 2026 จาก 2.4% → 2.7% — ส่งสัญญาณ \"Higher for Longer\"",
+        "Break below 200-day MA ครั้งแรกในรอบ 10 เดือน — แนวรับทางเทคนิคสำคัญพังทลาย",
+        "ปัจจัยภูมิรัฐศาสตร์: สงคราม Middle East (US-Israel vs Iran) กดดันราคาน้ำมันและเร่งเงินเฟ้อ"
+      ],
+      "entry_exit": [
+        {"label": "แนวต้าน (Resistance)", "value": "6,630–6,640 (200-day MA)"},
+        {"label": "แนวรับถัดไป", "value": "6,507 (Low พ.ย. 2568), 6,500 จิตวิทยา"},
+        {"label": "Entry (Long)", "value": "รอ reclaim 6,640 + ปริมาณซื้อยืนยัน"},
+        {"label": "Cut Loss", "value": "หลุด 6,500 = trend พัง"}
+      ],
+      "risk": "HIGH",
+      "risk_label": "ตลาดปิดใต้ 200-day MA ครั้งแรกในรอบ 10 เดือน, breadth อ่อน (<50% ของหุ้นเหนือ MA), BTIG ระบุอาจลงต่อ",
+      "view": "BEAR"
+    },
+    {
+      "symbol": "NDX",
+      "name_th": "Nasdaq Composite",
+      "name_en": "ตลาดเทคโนโลยี",
+      "emoji": "🔴",
+      "price": "22,090.69",
+      "change": "-0.3%",
+      "change_label": "ต่ำสุดในรอบ 4 เดือน",
+      "intraday_low": "-1.4%",
+      "why": [
+        "หุ้นเทคโนโลยีและ growth ได้รับผลกระทบหนักจาก yield ที่พุ่งขึ้น — Nasdaq มี duration สูงกว่า S&P มาก",
+        "การคงอัตราดอกเบี้ยของ Fed ทำให้ valuation (DCF) ของหุ้นเติบโตถูกกดดันโดยตรง",
+        "ปัจจัยเดียวกับ S&P 500: เงินเฟ้อ, ภูมิรัฐศาสตร์, แนวโน้มทองคำ-ดอลลาร์แข็ง"
+      ],
+      "entry_exit": [
+        {"label": "แนวต้าน", "value": "22,400–22,500 (MA ระยะกลาง)"},
+        {"label": "แนวรับ", "value": "21,500 (ปริมาณสำคัญ), 21,000"},
+        {"label": "Entry", "value": "ไม่แนะนำ catch a falling knife"},
+        {"label": "Cut Loss", "value": "21,500 หลุด = trend ลงยืนยัน"}
+      ],
+      "risk": "HIGH",
+      "risk_label": "ปิดใต้ 200-day MA เช่นกัน, ระดับ valuation ยังสูง, yield ขึ้นต่อ = tech ถูกกดต่อ",
+      "view": "BEAR"
+    },
+    {
+      "symbol": "XAU",
+      "name_th": "Gold (XAU/USD)",
+      "name_en": "สินทรัพย์ปลอดภัย",
+      "emoji": "🟡",
+      "price": "$4,639–4,693/oz",
+      "change": "-0.3% (-$11.8)",
+      "change_label": "3 สัปดาห์ติดต่อกันขาลง",
+      "why": [
+        "ดอลลาร์แข็ง (DXY ~99.40) — ทองนับเป็นสกุลเงิน เมื่อดอลลาร์แข็ง ทองจะอ่อน",
+        "ดอกเบี้ยสหรัฐฯ สูงขึ้น — 10-year yield พุ่ง 4.30% ทองไม่จ่ายดอกเบี้ย เสียเปรียบ relative value",
+        "ตลาดถูกเทขายหลัง Fed ประชุม — hawkish Fed ชนะ safe haven narrative"
+      ],
+      "entry_exit": [
+        {"label": "แนวรับสำคัญ", "value": "$4,600 (psychological), $4,500"},
+        {"label": "แนวต้าน", "value": "$4,750, $4,800"},
+        {"label": "Entry (Long)", "value": "รอดีดเหนือ $4,700 + DXY อ่อนลง"},
+        {"label": "Stop Loss", "value": "หลุด $4,500 = breakdown"}
+      ],
+      "risk": "MEDIUM",
+      "risk_label": "แม้ downtrend 3 สัปดาห์ แต่ปัจจัยพื้นฐานยังเอื้อ: เงินเฟ้อสูง, หนี้ภาครัฐพุ่ง, Middle East ยังไม่คลี่คลาย",
+      "view": "NEUTRAL"
+    },
+    {
+      "symbol": "BTC",
+      "name_th": "Bitcoin (BTC)",
+      "name_en": "สินทรัพย์เสี่ยงสูงสุด",
+      "emoji": "🔴",
+      "price": "~$70,423",
+      "change": "-4.3% (24h)",
+      "change_label": "ทดสอบแนว $70K",
+      "why": [
+        "Risk-off environment — หุ้นลง, ดอลลาร์ขึ้น, yield พุ่ง = Bitcoin ถูกเทขาย",
+        "Fed hawkish กดดัน — สภาพเงินตึงต่อไม่เอื้อ risk assets",
+        "Iran conflict — แม้เป็น safe haven ในทางทฤษฎี แต่ sell-off ในสินทรัพย์เสี่ยงทั่วโลกกด BTC ตาม",
+        "$70K psychological level — แนวรับจิตวิทยาที่ทดสอบแล้วหลายรอบ"
+      ],
+      "entry_exit": [
+        {"label": "แนวรับ", "value": "$68,000–70,000 (200-day MA อยู่แถวนี้)"},
+        {"label": "แนวต้าน", "value": "$73,000, $75,000"},
+        {"label": "Entry", "value": "รอดีดเหนือ $73K พร้อม volume ยืนยัน"},
+        {"label": "Stop Loss", "value": "หลุด $68,000 = trend เปลี่ยน"}
+      ],
+      "risk": "HIGH",
+      "risk_label": "BTC เป็น risk asset มากกว่า safe haven ในสภาพตลาดนี้, 200-day MA ที่ ~$68K คือเส้นชีวิต",
+      "view": "BEAR"
+    },
+    {
+      "symbol": "DXY",
+      "name_th": "DXY Dollar Index",
+      "name_en": "ดัชนีเงินดอลลาร์สหรัฐฯ",
+      "emoji": "🟡",
+      "price": "~99.39–99.45",
+      "change": "ใต้ 100 แล้ว",
+      "change_label": "Range วัน: 99.15–99.64",
+      "high_recent": "100.40 (high ล่าสุด)",
+      "why": [
+        "Fed คงอัตราดอกเบี้ย + hawkish projection หนุนดอลลาร์ในระยะสั้น",
+        "Netanyahu statements ว่า Iran ไม่สามารถ enrich uranium ได้แล้ว — คลาย geopolitical worry → ดอลลาร์อ่อนลงบางส่วน",
+        "แนวโน้มขาลงจาก high 100.40 — dollar ยังอยู่ในขาลงระยะกลาง"
+      ],
+      "entry_exit": [
+        {"label": "แนวต้าน", "value": "100.00, 100.40 (high ล่าสุด)"},
+        {"label": "แนวรับ", "value": "99.00, 98.50"},
+        {"label": "Bias", "value": "Neutral-Bearish ในระยะกลาง"},
+        {"label": "Alert", "value": "Fed hawkish อาจพา dollar กลับขึ้น 100"}
+      ],
+      "risk": "MEDIUM",
+      "risk_label": "ยังไม่ชัดเจน direction มาก ขึ้นอยู่กับว่า Middle East จะ escalate หรือคลี่คลายต่อ",
+      "view": "NEUTRAL"
+    },
+    {
+      "symbol": "YIELD",
+      "name_th": "US Treasury Yields",
+      "name_en": "ผลตอบแทนพันธบัตรรัฐบาลสหรัฐฯ",
+      "emoji": "🟡",
+      "price_10y": "4.30%",
+      "price_2y": "3.79–3.83%",
+      "change_10y": "+0.05%",
+      "change_2y": "จาก 3.76% วันก่อน",
+      "spread": "~47–51 bps (inverted แต่กำลัง flatten)",
+      "why": [
+        "Fed hawkish projections — ยก inflation forecast + ลดจำนวน cut ที่คาดในปี 2026",
+        "Energy shock — ราคาน้ำมันพุ่งจาก Middle East → เงินเฟ้อพลาดไปทางบนอีก",
+        "Fiscal concerns — หนี้ภาครัฐสหรัฐฯ ยังพุ่ง ผู้จัดการเงินต้องการ risk premium สูงขึ้น"
+      ],
+      "entry_exit": [
+        {"label": "10Y แนวต้าน", "value": "4.40%, 4.50%"},
+        {"label": "10Y แนวรับ", "value": "4.20%, 4.10%"},
+        {"label": "Fed Funds Rate", "value": "3.5–3.75% (คงที่)"},
+        {"label": "มุมมอง", "value": "Yield ขึ้นต่อได้หาก inflation data พลาดขึ้นอีก"}
+      ],
+      "risk": "MEDIUM-HIGH",
+      "risk_label": "Yield ที่ 4.30% ยังไม่ถือว่าสูงมาก แต่ถ้าขึ้นผ่าน 4.50% จะเป็น alert สำคัญ",
+      "view": "BULLISH"
+    }
+  ],
+  "summary_3_points": [
+    "Fed ส่งสัญญาณ Hawkish — \"Higher for Longer\" กลับมาแล้ว: Inflation forecast 2026 ขึ้น 2.4% → 2.7%, คาด cut เพียง 1 ครั้งในปี 2026 ตลาดที่เคยคาดหวัง rate cuts สามารถ cut ได้เร็ว ต้อง reprice ใหม่ทั้งหมด",
+    "S&P 500 & Nasdaq ปิดใต้ 200-day MA — Technical Breakdown Signal: 10 เดือนแรกที่ปิดใต้เส้นนี้ = การเปลี่ยนแปลง trend ที่สำคัญ ตลาดกระทิงต้องยืนยืน 6,640+ ให้ได้เร็ว มิฉะนั้น downside เปิดไปถึง 6,500",
+    "Geopolitical Risk ยังคง Active — แต่มีสัญญาณบางอย่าง: Iran conflict ยังไม่จบ แต่ Netanyahu ส่งสัญญาณคลายความตึงเครียด ทำให้ risk appetite วันศุกร์ดีขึ้น ติดตามต่อว่า ceasefire จริงหรือเป็นแค่ tactical pause"
+  ],
+  "outlook": [
+    {"asset": "S&P 500", "view": "BEAR", "emoji": "🐻", "reason": "ปิดใต้ 200-day MA, ไม่มี catalyst ขาขึ้น, inflation และ yield กด"},
+    {"asset": "Nasdaq", "view": "BEAR", "emoji": "🐻", "reason": "Duration สูง, รับผลกระทบหนักจาก yield ขึ้น, ไม่มี signal กลับตัว"},
+    {"asset": "Gold", "view": "NEUTRAL", "emoji": "🟡", "reason": "Downtrend 3 สัปดาห์ แต่ปัจจัยพื้นฐานยังหนุน ไม่รองขาย ไม่รองซื้อ"},
+    {"asset": "Bitcoin", "view": "BEAR", "emoji": "🐻", "reason": "Risk-off + hawkish Fed = ไม่เอื้อ BTC, แนวรับ $68K เสี่ยง"},
+    {"asset": "DXY", "view": "NEUTRAL", "emoji": "🟡", "reason": "อยู่ใต้ 100 แล้ว แต่ Fed hawkish อาจพากลับขึ้นได้"},
+    {"asset": "Yields (ราคาพันธบัตร)", "view": "BULLISH", "emoji": "🐂", "reason": "ถ้า growth ชะลอจริงๆ yield จะลง แต่ตอนนี้ยังขึ้นได้อีก"}
+  ],
+  "sources": [
+    "fool.com", "fidelity.com", "zacks.com", "investing.com",
+    "seekingalpha.com", "businessinsider.com", "kiplinger.com",
+    "tradingeconomics.com", "tipranks.com", "coinspeaker.com"
+  ],
+  "disclaimer": "งานวิเคราะห์นี้ไม่ใช่คำแนะนำการลงทุน ใช้เพื่อการศึกษาและ research purposes เท่านั้น"
+}
