@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-20T20:46:32.551947+00:00",
+  "generatedAt": "2026-03-20T21:37:23.207049+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1772750700,
-    "to": 1774024200
+    "from": 1772751600,
+    "to": 1774025100
   },
   "summary": {
     "totalOrders": 3,
@@ -52,7 +52,7 @@
       "tp1": 4552.77,
       "tpMost": 4552.77,
       "result": {
-        "status": null,
+        "status": "pending",
         "triggered": false,
         "triggeredAt": null,
         "closeReason": null,
