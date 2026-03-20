@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-20T07:08:10.846290+00:00",
+  "generatedAt": "2026-03-20T08:02:20.068005+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1772698500,
-    "to": 1773975600
+    "from": 1772701200,
+    "to": 1773978300
   },
   "summary": {
     "totalOrders": 3,
@@ -22,14 +22,14 @@
   "orders": [
     {
       "source": "TESTER",
-      "runId": "RUN-1773987197803-395",
-      "orderKey": "TESTER:RUN-1773987197803-395",
-      "createdAt": "2026-03-20T06:13:30.736Z",
+      "runId": "RUN-1773991173724-763",
+      "orderKey": "TESTER:RUN-1773991173724-763",
+      "createdAt": "2026-03-20T07:19:56.662Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4708.62,
-      "sl": 4723.0,
-      "tp1": 4686.19,
-      "tpMost": 4686.19,
+      "entry": 4684.67,
+      "sl": 4699.23,
+      "tp1": 4655.23,
+      "tpMost": 4655.23,
       "result": {
         "status": null,
         "triggered": false,
@@ -43,14 +43,14 @@
     },
     {
       "source": "EBass",
-      "runId": "RUN-1773984137738-676",
-      "orderKey": "EBass:RUN-1773984137738-676",
-      "createdAt": "2026-03-20T05:22:29.928Z",
-      "orderType": "BUY_LIMIT",
-      "entry": 4701.0,
-      "sl": 4682.5,
-      "tp1": 4736.18,
-      "tpMost": 4842.6,
+      "runId": "RUN-1773991340898-598",
+      "orderKey": "EBass:RUN-1773991340898-598",
+      "createdAt": "2026-03-20T07:22:38.929Z",
+      "orderType": "SELL_LIMIT",
+      "entry": 4690.58,
+      "sl": 4704.1,
+      "tp1": 4655.23,
+      "tpMost": 4655.23,
       "result": {
         "status": null,
         "triggered": false,
@@ -64,14 +64,14 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1773989850770-72-ENF",
-      "orderKey": "EKlaETun:RUN-1773989850770-72-ENF",
-      "createdAt": "2026-03-20T06:57:31.813Z",
+      "runId": "RUN-1773993427990-318",
+      "orderKey": "EKlaETun:RUN-1773993427990-318",
+      "createdAt": "2026-03-20T07:57:22.463Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4678.5,
-      "sl": 4695.2,
-      "tp1": 4655.0,
-      "tpMost": 4634.4,
+      "entry": 4718.55,
+      "sl": 4732.5,
+      "tp1": 4691.6,
+      "tpMost": 4655.23,
       "result": {
         "status": null,
         "triggered": false,
