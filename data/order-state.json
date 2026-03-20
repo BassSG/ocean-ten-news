@@ -387,21 +387,21 @@
   "TESTER:RUN-1774025598929-220": {
     "status": null,
     "closeReason": null,
-    "updatedAt": "2026-03-20T19:57:48.353377+00:00",
+    "updatedAt": "2026-03-20T20:46:32.551947+00:00",
     "triggeredAt": null,
     "closedAt": null
   },
   "EBass:RUN-1774024838702-821": {
     "status": null,
     "closeReason": null,
-    "updatedAt": "2026-03-20T19:57:48.353377+00:00",
+    "updatedAt": "2026-03-20T20:46:32.551947+00:00",
     "triggeredAt": null,
     "closedAt": null
   },
   "EKlaETun:RUN-1774023459222-807": {
-    "status": null,
+    "status": "pending",
     "closeReason": null,
-    "updatedAt": "2026-03-20T19:57:48.353377+00:00",
+    "updatedAt": "2026-03-20T20:46:32.551947+00:00",
     "triggeredAt": null,
     "closedAt": null
   }
