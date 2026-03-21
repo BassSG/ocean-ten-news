@@ -304,10 +304,117 @@ body{background:var(--ocean-dark);background-image:radial-gradient(ellipse at 20
 @keyframes starfishRotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 
 /* Mini chart SVG lines */
-.mini-chart svg{width:100%;height:100%}
+/* ROOM 1: WHALE STRATEGY */
+@keyframes whaleFloat{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-12px)}}
+@keyframes thoughtBubble{0%,100%{opacity:0;transform:scale(0.8) translateY(5px)}20%,80%{opacity:1;transform:scale(1) translateY(0)}}
+#whale-room{background:linear-gradient(to bottom,#1a2a3a 0%,#1a2a3a 65%,#2a1a0a 65%,#2a1a0a 100%);border-color:#2a3a4a}
+#whale-room .whale-char{position:absolute;bottom:calc(12% + 25px);left:50%;transform:translateX(-50%);z-index:3;animation:whaleFloat 4s ease-in-out infinite}
+#whale-room .whale-body{width:55px;height:35px;background:linear-gradient(180deg,#1a5a8a,#0d3a5a);border-radius:60% 60% 50% 50%;position:relative;box-shadow:inset -5px -5px 15px rgba(0,0,0,0.3)}
+#whale-room .whale-belly{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:35px;height:15px;background:rgba(150,200,220,0.3);border-radius:50%}
+#whale-room .whale-eye{position:absolute;top:8px;right:8px;width:7px;height:7px;background:#fff;border-radius:50%}
+#whale-room .whale-mouth{position:absolute;top:14px;right:3px;width:10px;height:3px;background:#0d3a5a;border-radius:2px}
+#whale-room .whale-tail{position:absolute;bottom:0;left:-15px;width:20px;height:12px;background:#1a5a8a;border-radius:50% 0 0 50%;transform:rotate(-20deg)}
+#whale-room .whale-fin{position:absolute;top:-5px;left:15px;width:15px;height:12px;background:#1a5a8a;border-radius:50% 50% 0 0;transform:rotate(-20deg)}
+#whale-room .thought-bubble{position:absolute;top:-30px;right:-10px;background:#fff;border-radius:10px;padding:4px 8px;font-size:8px;color:#333;white-space:nowrap;animation:thoughtBubble 8s ease-in-out infinite;z-index:5}
+#whale-room .meeting-table{position:absolute;bottom:15%;left:50%;transform:translateX(-50%);width:70%;height:25px;background:linear-gradient(180deg,#4a3020,#3a2010);border-radius:6px;box-shadow:0 4px 8px rgba(0,0,0,0.5)}
+#whale-room .chair{position:absolute;bottom:calc(15% + 20px);width:14px;height:10px;background:#3a2a1a;border-radius:3px}
+#whale-room .chair.c1{left:12%;transform:rotate(15deg)}#whale-room .chair.c2{right:12%;transform:rotate(-15deg)}
+#whale-room .chair.c3{left:25%;bottom:calc(15% - 5px)}#whale-room .chair.c4{right:25%;bottom:calc(15% - 5px)}
+#whale-room .city-skyline{position:absolute;bottom:35%;left:0;right:0;height:30%;display:flex;align-items:flex-end;padding:0 8px;opacity:0.3}
+#whale-room .city-b{background:#0a1a2a;margin-right:2px;flex-shrink:0}
+#whale-room .window-moon{position:absolute;top:10%;right:15%;width:20px;height:20px;background:radial-gradient(circle,#ffdd88,#ddaa44);border-radius:50%;box-shadow:0 0 10px rgba(255,220,100,0.5)}
+#whale-room .whiteboard{position:absolute;top:12%;right:8%;width:35%;height:22%;background:#fff;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+#whale-room .whiteboard-text{font-size:7px;color:#333;padding:6px 8px;font-family:monospace}
+#whale-room .globe-deco{position:absolute;bottom:calc(15% + 30px);right:10%;width:16px;height:16px;background:radial-gradient(circle at 30% 30%,#6a9,#2a5);border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.3)}
+#whale-room .plant-deco{position:absolute;bottom:calc(15% + 25px);left:8%}
+#whale-room .plant-pot{width:12px;height:10px;background:#8a5a2a;border-radius:0 0 3px 3px}
+#whale-room .plant-leaves{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:20px;height:18px;background:radial-gradient(ellipse at bottom,#3a8a2a,#2a6a1a);border-radius:50% 50% 0 0}
+
+/* ROOM 2: SHARK TRADING */
+@keyframes sharkSwim{0%,100%{transform:translateX(-50%) translateX(-20px) rotate(0deg)}50%{transform:translateX(-50%) translateX(20px) rotate(3deg)}}
+@keyframes coffeeSteam{0%,100%{opacity:0.4;transform:translateY(0)}50%{opacity:0.8;transform:translateY(-4px)}}
+#shark-room{background:linear-gradient(to bottom,#1a2a3a 0%,#1a2a3a 65%,#2a1a2a 65%,#2a1a2a 100%);border-color:#3a2a4a}
+#shark-room .shark-char{position:absolute;bottom:calc(12% + 20px);left:50%;transform:translateX(-50%);z-index:3;animation:sharkSwim 5s ease-in-out infinite}
+#shark-room .shark-body{width:50px;height:28px;background:linear-gradient(180deg,#5a7a8a,#3a5a6a);border-radius:50% 50% 40% 40%;position:relative}
+#shark-room .shark-belly2{position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:30px;height:12px;background:rgba(200,220,230,0.3);border-radius:50%}
+#shark-room .shark-eye2{position:absolute;top:6px;right:6px;width:7px;height:7px;background:#fff;border-radius:50%}
+#shark-room .shark-nose{position:absolute;top:10px;right:-5px;width:10px;height:6px;background:#5a7a8a;border-radius:0 50% 50% 0}
+#shark-room .shark-fin-top{position:absolute;top:-10px;left:15px;width:12px;height:15px;background:#5a7a8a;border-radius:50% 50% 0 0;transform:rotate(-15deg)}
+#shark-room .shark-fin-side{position:absolute;top:8px;left:-6px;width:10px;height:8px;background:#5a7a8a;border-radius:50%}
+#shark-room .shark-tail2{position:absolute;bottom:2px;left:-12px;width:15px;height:10px;background:#5a7a8a;border-radius:50% 0 0 50%}
+#shark-room .led-strip{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#00ff88,#00d4ff,#ff0066,#00ff88);background-size:300% 100%;animation:rgbShift 3s linear infinite}
+#shark-room .floor-carpet{position:absolute;bottom:0;left:0;right:0;height:35%;background:#1a1520}
+#shark-room .monitor-wall{position:absolute;top:8%;left:5%;right:5%;height:45%;display:flex;gap:8px}
+#shark-room .wall-monitor{flex:1;background:#0a0a0a;border:1px solid #2a2a3a;border-radius:3px;padding:4px;position:relative;overflow:hidden}
+#shark-room .ticker{font-size:6px;font-weight:700;margin-bottom:2px}
+#shark-room .ticker.up{color:#00ff88}#shark-room .ticker.down{color:#ff4444}
+#shark-room .trading-desk{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);width:60%;height:35%}
+#shark-room .desk-monitors{display:flex;justify-content:center;gap:6px}
+#shark-room .desk-monitor{width:22px;height:18px;background:#1a2a3a;border:1px solid #3a4a5a;border-radius:2px}
+#shark-room .monitor-stand{width:4px;height:5px;background:#3a3a3a;margin:0 auto}
+#shark-room .monitor-base{width:10px;height:3px;background:#3a3a3a;margin:0 auto;border-radius:1px}
+#shark-room .headphones{position:absolute;bottom:5px;right:15%;width:14px;height:10px;border:2px solid #444;border-radius:50%;border-bottom:none}
+#shark-room .coffee-cup{position:absolute;bottom:8px;right:8%;width:10px;height:8px;background:#fff;border-radius:0 0 3px 3px}
+#shark-room .coffee-steam span{display:block;width:2px;height:6px;background:rgba(255,255,255,0.5);border-radius:2px;margin:0 auto;animation:coffeeSteam 2s ease-in-out infinite}
+#shark-room .coffee-steam span:nth-child(2){animation-delay:0.3s}#shark-room .coffee-steam span:nth-child(3){animation-delay:0.6s}
+
+/* ROOM 3: DOLPHIN DEV LAB */
+@keyframes dolphinJump{0%,100%{transform:translateX(-50%) translateY(0) rotate(0deg)}25%{transform:translateX(-50%) translateY(-25px) rotate(-10deg)}50%{transform:translateX(-50%) translateY(-35px) rotate(0deg)}75%{transform:translateX(-50%) translateY(-25px) rotate(10deg)}}
+@keyframes codeScroll{0%{transform:translateY(0)}100%{transform:translateY(-20px)}}
+#dolphin-room{background:linear-gradient(to bottom,#0a1a2a 0%,#0a1a2a 65%,#1a1a2a 65%,#1a1a2a 100%);border-color:#1a2a3a}
+#dolphin-room .neon-strip-dev{position:absolute;top:0;left:0;right:0;height:4px;background:#00d4ff;box-shadow:0 0 10px #00d4ff,0 0 20px #00d4ff}
+#dolphin-room .dev-bookshelf{position:absolute;top:8%;left:5%;width:20%;height:50%;display:flex;flex-direction:column;justify-content:space-around}
+#dolphin-room .shelf-row{display:flex;gap:2px;align-items:flex-end;height:18%}
+#dolphin-room .book{flex:1;min-width:4px;border-radius:1px}
+#dolphin-room .book.green{background:linear-gradient(180deg,#2ecc71,#27ae60);height:90%}
+#dolphin-room .book.blue{background:linear-gradient(180deg,#3498db,#2980b9);height:80%}
+#dolphin-room .book.red{background:linear-gradient(180deg,#e74c3c,#c0392b);height:95%}
+#dolphin-room .book.orange{background:linear-gradient(180deg,#e67e22,#d35400);height:75%}
+#dolphin-room .book.purple{background:linear-gradient(180deg,#9b59b6,#8e44ad);height:85%}
+#dolphin-room .shelf-plant{width:10px;height:20px;background:#27ae60;border-radius:50% 50% 0 0;margin:0 auto}
+#dolphin-room .dev-desk{position:absolute;bottom:10%;left:25%;width:65%;height:40%}
+#dolphin-room .dev-main-monitor{position:absolute;top:0;left:5%;width:55%;height:75%;background:#0a0a0a;border:2px solid #2a2a3a;border-radius:4px;padding:5px;overflow:hidden}
+#dolphin-room .code-lines{animation:codeScroll 8s linear infinite}
+#dolphin-room .code-line{font-size:4px;font-family:'JetBrains Mono',monospace;white-space:pre;line-height:1.4;color:#aaa}
+#dolphin-room .code-kw{color:#c678dd}#dolphin-room .code-var{color:#e5c07b}
+#dolphin-room .code-fn{color:#61afef}#dolphin-room .code-str{color:#98c379}
+#dolphin-room .code-num{color:#d19a66}#dolphin-room .code-cm{color:#5c6370}
+#dolphin-room .laptop{position:absolute;top:5px;right:10%;width:20%;height:60%;background:#2a2a3a;border-radius:4px 4px 0 0;border:1px solid #3a3a4a}
+#dolphin-room .keyboard{position:absolute;bottom:5px;left:5%;width:50%;height:12%;background:#1a1a2a;border:1px solid #3a3a4a;border-radius:2px}
+#dolphin-room .coffee-mug{position:absolute;bottom:5px;right:5%;width:8px;height:8px;background:#fff;border-radius:0 0 2px 2px}
+#dolphin-room .dolphin-char{position:absolute;bottom:calc(12% + 25px);left:50%;transform:translateX(-50%);z-index:3;animation:dolphinJump 4s ease-in-out infinite}
+#dolphin-room .dolphin-body{width:40px;height:26px;background:linear-gradient(180deg,#00a8cc,#007ea8);border-radius:60% 60% 50% 50%;position:relative}
+#dolphin-room .dolphin-belly{position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:24px;height:10px;background:rgba(200,230,240,0.4);border-radius:50%}
+#dolphin-room .dolphin-eye{position:absolute;top:5px;right:5px;width:6px;height:6px;background:#fff;border-radius:50%}
+#dolphin-room .dolphin-snout{position:absolute;top:9px;right:-8px;width:12px;height:6px;background:#00a8cc;border-radius:0 60% 60% 0}
+#dolphin-room .dolphin-fin-top{position:absolute;top:-8px;left:12px;width:10px;height:12px;background:#007ea8;border-radius:50% 50% 0 0;transform:rotate(-15deg)}
+#dolphin-room .dolphin-fin-side{position:absolute;top:10px;left:-4px;width:8px;height:6px;background:#007ea8;border-radius:50%}
+#dolphin-room .dolphin-tail{position:absolute;bottom:0;left:-10px;width:14px;height:10px;background:#00a8cc;border-radius:50% 0 0 50%;transform:rotate(-10deg)}
 
 
-/* ROOM 4: TURTLE ROUTINE OFFICE - extra */
+
+/* ROOM 4: TURTLE ROUTINE OFFICE */
+@keyframes fanSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes cloudMove{0%{transform:translateX(0)}100%{transform:translateX(20px)}}
+#turtle-room{background:linear-gradient(to bottom,#2a3a2a 0%,#2a3a2a 60%,#4a5a4a 60%,#4a5a4a 100%);border-color:#3a4a3a}
+#turtle-room .office-window{position:absolute;top:5%;left:5%;width:25%;height:40%;background:#87ceeb;border:3px solid #5a4a3a;border-radius:4px;overflow:hidden}
+#turtle-room .window-sun{position:absolute;top:10%;right:15%;width:16px;height:16px;background:radial-gradient(circle,#ffdd44,#ffaa00);border-radius:50%;box-shadow:0 0 8px rgba(255,200,0,0.6)}
+#turtle-room .window-cloud{position:absolute;top:25%;left:10%;width:30px;height:12px;background:#fff;border-radius:10px;opacity:0.8;animation:cloudMove 6s ease-in-out infinite}
+#turtle-room .office-clock{position:absolute;top:8%;right:10%;width:28px;height:28px;background:#fff;border:2px solid #333;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,0.3)}
+#turtle-room .clock-hand{position:absolute;bottom:50%;left:50%;width:1px;background:#333;transform-origin:bottom center;border-radius:1px}
+#turtle-room .clock-hand.hour{height:7px;transform:translateX(-50%) rotate(var(--h,0deg))}
+#turtle-room .clock-hand.minute{height:9px;transform:translateX(-50%) rotate(var(--m,0deg))}
+#turtle-room .calendar{position:absolute;top:8%;right:45%;width:22px;height:22px;background:#fff;border:1px solid #ccc;border-radius:3px;text-align:center}
+#turtle-room .calendar-header{height:6px;background:#e74c3c;border-radius:3px 3px 0 0}
+#turtle-room .calendar-day{font-size:8px;font-weight:700;color:#333;line-height:14px}
+#turtle-room .office-desk{position:absolute;bottom:8%;left:30%;width:55%;height:32%;background:linear-gradient(180deg,#5a4a3a,#4a3a2a);border-radius:4px;box-shadow:0 4px 8px rgba(0,0,0,0.4)}
+#turtle-room .office-monitor{position:absolute;top:-15px;left:10%;width:35%;height:55%;background:#1a1a2a;border:2px solid #3a3a4a;border-radius:3px}
+#turtle-room .monitor-screen{width:100%;height:100%;background:linear-gradient(180deg,#0a2a1a,#0a1a2a)}
+#turtle-room .paper-stack{position:absolute;top:-8px;right:15%;width:18px;height:12px;background:#fff;border:1px solid #ddd;border-radius:2px;box-shadow:2px 2px 0 #eee}
+#turtle-room .office-fan{position:absolute;bottom:8%;right:8%;width:20px;height:20px}
+#turtle-room .fan-blade{width:100%;height:100%;background:conic-gradient(from 0deg,#ccc,#999,#ccc,#999,#ccc);border-radius:50%;animation:fanSpin 0.5s linear infinite}
+#turtle-room .filing-cabinet{position:absolute;bottom:8%;right:25%;width:18px;height:45%;background:#5a5a5a;border-radius:2px;display:flex;flex-direction:column;justify-content:space-around;padding:3px 0}
+#turtle-room .cabinet-drawer{height:28%;background:#4a4a4a;border:1px solid #3a3a3a;border-radius:1px}
 #turtle-room .turtle-char{position:absolute;bottom:calc(12% + 24px);left:50%;transform:translateX(-50%);z-index:3;animation:turtleWalk 10s ease-in-out infinite}
 #turtle-room .turtle-body{width:40px;height:28px;background:linear-gradient(180deg,#5a8a3a 0%,#3a6a2a 100%);border-radius:50% 50% 45% 45%;position:relative;box-shadow:inset -4px -3px 10px rgba(0,0,0,0.3)}
 #turtle-room .turtle-shell{position:absolute;top:3px;left:50%;transform:translateX(-50%);width:28px;height:20px;background:radial-gradient(ellipse,#7aaa5a,#4a7a2a);border-radius:50%;box-shadow:inset -2px -2px 6px rgba(0,0,0,0.3)}
@@ -318,6 +425,118 @@ body{background:var(--ocean-dark);background-image:radial-gradient(ellipse at 20
 
 /* Mini chart SVG */
 .mini-chart svg{width:100%;height:100%;display:block}
+
+/* ROOM 5: CRAB SECURITY */
+@keyframes rackBlink{0%,90%,100%{opacity:1}95%{opacity:0.3}}
+#crab-room{background:linear-gradient(to bottom,#1a0a0a 0%,#1a0a0a 60%,#0a0a0a 60%,#0a0a0a 100%);border-color:#2a0a0a}
+#crab-room .server-racks{display:flex;gap:8px;position:absolute;top:8%;left:5%}
+#crab-room .server-rack{width:18px;height:50px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:2px;display:flex;flex-direction:column;align-items:center;padding:3px 0;gap:3px}
+#crab-room .rack-light{width:4px;height:4px;border-radius:50%;animation:rackBlink 3s ease-infinite}
+#crab-room .rack-light.l1{background:#0f0}#crab-room .rack-light.l2{background:#0f0}#crab-room .rack-light.l3{background:#f00}
+#crab-room .rack-bar{width:12px;height:2px;background:#2a2a2a;margin-top:auto}
+#crab-room .security-monitors{position:absolute;top:8%;right:5%;display:flex;flex-direction:column;gap:4px}
+#crark-room .sec-monitor{width:40px;height:20px;background:#0a0a0a;border:1px solid #2a2a2a;border-radius:2px;padding:2px;font-size:4px;color:#0f0;font-family:monospace}
+#crab-room .terminal-line{color:#0f0;font-family:monospace;font-size:4px}
+#crab-room .blink{animation:blink 1s step-start infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+#crab-room .sec-dashboard{font-size:4px}
+#crab-room .dash-item{margin-bottom:1px}#crab-room .dash-item.ok{color:#0f0}#crab-room .dash-item.warn{color:#ffa500}
+#crab-room .backup-bar{width:100%;height:4px;background:#1a1a1a;border-radius:2px;overflow:hidden}
+#crab-room .backup-fill{height:100%;background:#0f0;border-radius:2px}
+#crab-room .firewall-box{position:absolute;bottom:45%;right:8%;width:20px;height:14px;background:#3a1a0a;border:1px solid #5a2a0a;border-radius:2px;text-align:center;font-size:5px;color:#f00;line-height:14px}
+#crab-room .firewall-box .fw-light{width:4px;height:4px;background:#f00;border-radius:50%;margin:2px auto 0;animation:rackBlink 2s ease-in-out infinite}
+
+/* ROOM 6: SQUID RESEARCH */
+@keyframes tubeBubble{0%,100%{transform:translateY(0);opacity:0.6}50%{transform:translateY(-5px);opacity:1}}
+#squid-room{background:linear-gradient(to bottom,#e8f4f8 0%,#e8f4f8 60%,#d0e0e8 60%,#d0e0e8 100%);border-color:#b0c8d8}
+#squid-room .lab-floor{position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(180deg,#d0e0e8,#c0d0d8)}
+#squid-room .lab-bench{position:absolute;bottom:10%;left:5%;width:60%;height:35%;background:linear-gradient(180deg,#8a9a8a,#6a7a6a);border-radius:3px}
+#squid-room .microscope{position:absolute;top:-15px;left:10%;width:12px;height:25px;background:#4a4a4a;border-radius:3px}
+#squid-room .test-tubes{display:flex;gap:4px;position:absolute;top:-12px;right:15%}
+#squid-room .tube{width:6px;height:14px;background:rgba(200,220,255,0.6);border-radius:0 0 3px 3px;border:1px solid rgba(150,180,200,0.5)}
+#squid-room .tube.t1{height:10px;background:rgba(255,100,100,0.5)}#squid-room .tube.t2{height:12px;background:rgba(100,255,100,0.5)}#squid-room .tube.t3{height:8px;background:rgba(100,100,255,0.5)}
+#squid-room .research-papers{position:absolute;top:-5px;left:35%;display:flex;gap:2px}
+#squid-room .paper{width:12px;height:16px;background:#fff;border:1px solid #ddd;transform:rotate(var(--r,0deg))}
+#squid-room .paper:nth-child(1){--r:-5deg}#squid-room .paper:nth-child(2){--r:3deg}#squid-room .paper:nth-child(3){--r:-2deg}
+#squid-room .magnifying-glass{position:absolute;top:-10px;right:40%;width:10px;height:16px;background:#8a7a4a;border-radius:50%;border:2px solid #6a5a3a}
+#squid-room .lab-bookshelf{position:absolute;top:8%;right:5%;width:18%;height:50%;display:flex;flex-direction:column;justify-content:space-around}
+#squid-room .lab-book{height:15%;border-radius:2px}
+#squid-room .lab-book.b1{background:linear-gradient(180deg,#e74c3c,#c0392b);height:18%}
+#squid-room .lab-book.b2{background:linear-gradient(180deg,#3498db,#2980b9);height:15%}
+#squid-room .lab-book.b3{background:linear-gradient(180deg,#9b59b6,#8e44ad);height:20%}
+#squid-room .cork-board{position:absolute;top:5%;left:5%;width:25%;height:35%;background:#c8a87a;border-radius:3px;border:2px solid #a88858}
+#squid-room .pin{width:4px;height:4px;background:#c0392b;border-radius:50%;position:absolute}
+#squid-room .pin.p1{top:10%;left:20%}#squid-room .pin.p2{top:40%;left:60%}#squid-room .pin.p3{top:70%;left:35%}
+#squid-room .cork-note{position:absolute;width:10px;height:8px;background:#fff;border:1px solid #ddd;border-radius:1px;box-shadow:1px 1px 2px rgba(0,0,0,0.2)}
+#squid-room .cork-note.n1{top:20%;left:35%;background:#ff9}#squid-room .cork-note.n2{top:55%;left:15%;background:#9f9}
+
+/* ROOM 7: PUFFERFISH QA */
+@keyframes stickyPulse{0%,100%{transform:rotate(var(--s,0deg)) scale(1)}50%{transform:rotate(var(--s,0deg)) scale(1.05)}}
+#pufferfish-room{background:linear-gradient(to bottom,#3a3020 0%,#3a3020 60%,#2a2010 60%,#2a2010 100%);border-color:#4a4030}
+#pufferfish-room .qa-floor{background:linear-gradient(180deg,#3a3020,#2a2010)}
+#pufferfish-room .qa-desk{position:absolute;bottom:8%;left:20%;width:60%;height:38%;background:linear-gradient(180deg,#5a4a3a,#4a3a2a);border-radius:3px}
+#pufferfish-room .qa-monitor-left{position:absolute;top:-12px;left:8%;width:40%;height:60%;background:#0a0a0a;border:2px solid #3a3a4a;border-radius:3px;padding:3px;overflow:hidden}
+#pufferfish-room .bug-list{font-size:4px;color:#aaa;font-family:monospace}
+#pufferfish-room .bug-item{margin-bottom:2px;padding:1px;border-left:2px solid #f00}
+#pufferfish-room .bug-item.fixed{border-left-color:#0f0;text-decoration:line-through;color:#666}
+#pufferfish-room .qa-monitor-right{position:absolute;top:-12px;right:8%;width:30%;height:60%;background:#0a0a0a;border:2px solid #3a3a4a;border-radius:3px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:3px;gap:3px}
+#pufferfish-room .phone{width:10px;height:16px;background:#333;border:1px solid #555;border-radius:2px}
+#pufferfish-room .tablet{width:16px;height:12px;background:#333;border:1px solid #555;border-radius:2px}
+#pufferfish-room .sticky-notes{position:absolute;top:5%;right:5%;display:flex;flex-wrap:wrap;width:25%;gap:3px;justify-content:center}
+#pufferfish-room .sticky{width:12px;height:12px;border-radius:1px;box-shadow:1px 1px 2px rgba(0,0,0,0.3)}
+#pufferfish-room .sticky.s1{background:#ff9;transform:rotate(-3deg)}#pufferfish-room .sticky.s2{background:#9f9;transform:rotate(2deg)}
+#pufferfish-room .sticky.s3{background:#9ff;transform:rotate(-1deg)}#pufferfish-room .sticky.s4{background:#f99;transform:rotate(4deg)}
+#pufferfish-room .sticky.s5{background:#ff9;transform:rotate(-2deg)}
+
+/* ROOM 8: OCTOPUS SUPPORT */
+#octopus-room{background:linear-gradient(to bottom,#2a3a4a 0%,#2a3a4a 60%,#1a2a3a 60%,#1a2a3a 100%);border-color:#3a4a5a}
+#octopus-room .support-floor{background:linear-gradient(180deg,#2a3a4a,#1a2a3a)}
+#octopus-room .support-desk{position:absolute;bottom:8%;left:15%;width:65%;height:38%;background:linear-gradient(180deg,#4a3a2a,#3a2a1a);border-radius:3px}
+#octopus-room .support-monitor{position:absolute;top:-15px;left:8%;width:50%;height:65%;background:#0a0a0a;border:2px solid #3a3a4a;border-radius:3px;padding:4px}
+#octopus-room .ticket-queue{font-size:4px;font-family:monospace}
+#octopus-room .ticket{margin-bottom:2px;padding:1px 2px;border-left:2px solid #3498db;background:rgba(52,152,219,0.1)}
+#octopus-room .ticket.t2{border-left-color:#ffa500}#octopus-room .ticket.t3{border-left-color:#0f0}
+#octopus-room .support-headset{position:absolute;top:-8px;right:15%;width:20px;height:16px}
+#octopus-room .hs-ear{position:absolute;bottom:0;width:10px;height:14px;background:#333;border-radius:50%;border:2px solid #555}
+#octopus-room .hs-ear.left{left:0}#octopus-room .hs-ear.right{right:0}
+#octopus-room .hs-mic{position:absolute;top:5px;left:50%;transform:translateX(-50%);width:3px;height:8px;background:#555;border-radius:2px}
+#octopus-room .support-keyboard{position:absolute;bottom:5px;left:8%;width:35%;height:12%;background:#2a2a2a;border:1px solid #4a4a4a;border-radius:2px}
+#octopus-room .info-kiosk{position:absolute;bottom:10%;right:8%;width:14px}
+#octopus-room .kiosk-screen{width:14px;height:20px;background:#0a2a1a;border:1px solid #2a4a3a;border-radius:2px}
+#octopus-room .kiosk-base{width:18px;height:5px;background:#3a3a3a;border-radius:0 0 2px 2px;margin:0 auto}
+
+/* ROOM 9: SEAHORSE COMMUNICATION */
+@keyframes mailBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+#seahorse-room{background:linear-gradient(to bottom,#1a2a3a 0%,#1a2a3a 60%,#0f1f2f 60%,#0f1f2f 100%);border-color:#2a3a4a}
+#seahorse-room .comm-floor{background:linear-gradient(180deg,#1a2a3a,#0f1f2f)}
+#seahorse-room .comm-desk{position:absolute;bottom:8%;left:15%;width:60%;height:38%;background:linear-gradient(180deg,#3a4a3a,#2a3a2a);border-radius:3px}
+#seahorse-room .inbox-tray,#seahorse-room .outbox-tray{position:absolute;top:-12px;width:18px;height:14px;background:#8a7a6a;border:1px solid #6a5a4a;border-radius:2px}
+#seahorse-room .inbox-tray{left:8%}#seahorse-room .outbox-tray{left:28%}
+#seahorse-room .tray-label{font-size:4px;color:#333;text-align:center;font-weight:700;line-height:5px}
+#seahorse-room .mail{width:10px;height:6px;background:#fff;border:1px solid #ddd;border-radius:1px;margin:2px auto 0;animation:mailBounce 2s ease-in-out infinite}
+#seahorse-room .mail.m1{animation-delay:0s}#seahorse-room .mail.m2{animation-delay:0.3s}#seahorse-room .mail.m3{animation-delay:0.6s}
+#seahorse-room .mail.m4{animation-delay:0.2s}#seahorse-room .mail.m5{animation-delay:0.5s}
+#seahorse-room .envelope-stack{position:absolute;top:-8px;left:48%;width:12px;height:8px;background:#f5deb3;border:1px solid #d4c4a0;border-radius:1px}
+#seahorse-room .comm-monitor{position:absolute;top:-15px;right:10%;width:28%;height:65%;background:#0a0a0a;border:2px solid #3a3a4a;border-radius:3px;padding:3px}
+#seahorse-room .email-ui{font-size:4px}
+#seahorse-room .email-item{margin-bottom:2px;padding:1px 2px;background:rgba(52,152,219,0.1);border-left:2px solid #3498db}
+#seahorse-room .tts-indicator{position:absolute;right:8px;top:30%;display:flex;align-items:flex-end;gap:2px;height:20px}
+#seahorse-room .tts-indicator .wave{width:3px;background:#0f0;border-radius:2px}
+#seahorse-room .comm-filing{position:absolute;bottom:8%;right:8%;display:flex;flex-direction:column;gap:3px}
+#seahorse-room .filing-drawer{width:16px;height:12px;background:#5a5a5a;border:1px solid #4a4a4a;border-radius:1px}
+
+/* ROOM 10: STARFISH BROWSER */
+#starfish-room{background:linear-gradient(to bottom,#1a1a2e 0%,#1a1a2e 60%,#0a0a1e 60%,#0a0a1e 100%);border-color:#2a2a4e}
+#starfish-room .standing-desk{position:absolute;bottom:10%;left:20%;width:55%;height:40%}
+#starfish-room .curved-monitor{position:absolute;top:0;left:10%;width:70%;height:65%;background:#0a0a0a;border:2px solid #3a3a5a;border-radius:6px;overflow:hidden}
+#starfish-room .browser-window{width:48%;height:45%;background:#1a1a2a;border:1px solid #2a2a4a;border-radius:3px;margin:2%}
+#starfish-room .browser-tab{height:20%;background:#2a2a3a;border-radius:3px 3px 0 0;display:flex;align-items:center;padding-left:3px;gap:2px}
+#starfish-room .browser-tab::before{content:'';width:4px;height:4px;background:#f00;border-radius:50%}
+#starfish-room .browser-url{height:80%;background:#0a0a1a}
+#starfish-room .standing-base{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:30%;height:8%;background:#2a2a3a;border-radius:0 0 3px 3px}
+#starfish-room .cable-management{position:absolute;bottom:12%;right:8%;display:flex;flex-direction:column;gap:4px}
+#starfish-room .cable{width:15px;height:3px;background:#444;border-radius:2px}
+#starfish-room .cable.c1{transform:rotate(15deg)}#starfish-room .cable.c2{transform:rotate(-10deg)}#starfish-room .cable.c3{transform:rotate(5deg)}
 
 /* ROOM 5: CRAB SECURITY */
 @keyframes crabScuttle{0%,100%{transform:translateX(-50%) translateX(-15px)}50%{transform:translateX(-50%) translateX(15px)}}
