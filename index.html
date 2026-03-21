@@ -1,72 +1,907 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ocean Ten News</title>
-  <meta name="theme-color" content="#0b1120" />
+  <title>Ocean Ten — Knowledge Drop</title>
+  <meta name="theme-color" content="#0a0e17" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="OceanNews" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="icon" type="image/svg+xml" href="assets/icons/icon-192.svg" />
-  <link rel="apple-touch-icon" href="assets/icons/icon-192.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css" />
+  <meta name="apple-mobile-web-app-title" content="Ocean Ten News" />
+  <link rel="manifest" href="/manifest-knowledge.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/icon-192.svg" />
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-card: #111827;
+      --bg-card-hover: #1a2235;
+      --accent-gold: #f0b90b;
+      --accent-gold-dim: #b8860b;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --text-primary: #f9fafb;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      --border: #1f2937;
+      --shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', 'Noto Sans Thai', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        linear-gradient(rgba(240,185,11,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,185,11,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+      position: relative;
+      z-index: 1;
+    }
+    .tweet {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      transition: all 0.2s;
+    }
+    .tweet:hover { border-color: rgba(240,185,11,0.3); }
+    .tweet-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tweet-avatar {
+      font-size: 28px;
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      background: var(--bg-card-hover);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tweet-author {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .tweet-author-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .tweet-author-handle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .tweet-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      flex-shrink: 0;
+    }
+    .tag-markets { background: rgba(240,185,11,0.15); color: var(--accent-gold); }
+    .tag-world { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+    .tag-science { background: rgba(139,92,246,0.15); color: var(--accent-purple); }
+    .tag-culture { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+    .tweet-content { padding: 16px 20px 20px; }
+    .tweet-topic {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .tweet-summary {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .tweet-details { margin-top: 12px; }
+    .tweet-detail-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .tweet-detail-row:last-child { border-bottom: none; }
+    .tweet-detail-icon { font-size: 14px; width: 20px; text-align: center; }
+    .tweet-detail-label { color: var(--text-muted); min-width: 90px; }
+    .tweet-detail-value { color: var(--text-primary); font-weight: 500; }
+    .tweet-impact {
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      border-left: 3px solid;
+    }
+    .tweet-impact.bullish { background: rgba(16,185,129,0.1); border-color: var(--accent-green); color: var(--accent-green); }
+    .tweet-impact.bearish { background: rgba(239,68,68,0.1); border-color: var(--accent-red); color: var(--accent-red); }
+    .tweet-impact.neutral { background: rgba(59,130,246,0.1); border-color: var(--accent-blue); color: var(--accent-blue); }
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 36px 0 24px;
+    }
+    .section-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(240,185,11,0.4), transparent);
+    }
+    .section-divider-text {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-gold);
+      white-space: nowrap;
+    }
+    .ai-deepdive-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .ai-deepdive-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ai-deepdive-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .ai-item {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .ai-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .ai-item-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    .ai-item-body {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      padding-left: 26px;
+    }
+    .gold-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(240,185,11,0.3);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .gold-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-dim));
+    }
+    .gold-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+    .gold-card-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--accent-gold);
+    }
+    .gold-price-display { text-align: right; }
+    .gold-price-main {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--text-primary);
+    }
+    .gold-price-change {
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .gold-price-change.up { color: var(--accent-green); }
+    .gold-price-change.down { color: var(--accent-red); }
+    .gold-bias {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-blue);
+      background: rgba(59,130,246,0.1);
+      padding: 6px 12px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    .gold-levels {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .gold-level-item { text-align: center; }
+    .gold-level-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .gold-level-value {
+      font-size: 16px;
+      font-weight: 800;
+      padding: 6px;
+      border-radius: 8px;
+    }
+    .gold-level-value.res { background: rgba(239,68,68,0.15); color: var(--accent-red); }
+    .gold-level-value.sup { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+    .gold-factors-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .gold-factor-col-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .gold-factor-col-title.bull { color: var(--accent-green); }
+    .gold-factor-col-title.bear { color: var(--accent-red); }
+    .gold-factor-list {
+      list-style: none;
+      padding: 0;
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+    .gold-factor-list li::before { content: '• '; }
+    .warning-box {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+    .warning-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-red);
+      margin-bottom: 10px;
+    }
+    .warning-item {
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(239,68,68,0.1);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .warning-item:last-child { border-bottom: none; }
+    .warning-item::before { content: '⚠️'; font-size: 12px; flex-shrink: 0; margin-top: 1px; }
+    .insights-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .insights-box-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .insight-item {
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .insight-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .insight-number {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dim));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #000;
+    }
+    .insight-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .trend-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .trend-box-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      margin-bottom: 14px;
+    }
+    .trend-item {
+      display: flex;
+      gap: 12px;
+      padding: 8px 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .trend-arrow { color: var(--accent-blue); font-weight: 700; flex-shrink: 0; }
+    .trend-text { line-height: 1.6; }
+    .analyst-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+    }
+    .analyst-name {
+      font-size: 12px;
+      color: var(--text-secondary);
+      min-width: 110px;
+      font-weight: 500;
+    }
+    .analyst-target {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--accent-gold);
+      min-width: 60px;
+      text-align: right;
+    }
+    .analyst-bar {
+      flex: 1;
+      height: 6px;
+      background: rgba(240,185,11,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .analyst-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-gold-dim), var(--accent-gold));
+      border-radius: 3px;
+    }
+    .footer {
+      text-align: center;
+      padding-top: 40px;
+      margin-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-brand {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+    }
+    .footer-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .footer-disclaimer {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 12px;
+      line-height: 1.6;
+      padding: 10px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+    }
+    @media (max-width: 640px) {
+      .gold-levels { grid-template-columns: 1fr 1fr; }
+      .gold-factors-grid { grid-template-columns: 1fr; }
+      .container { padding: 16px 12px 60px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="topbar-wrap">
-    <header class="topbar container">
-      <div class="brand">
-        <span class="logo">📰</span>
-        <div>
-          <h1>Ocean Ten News</h1>
-          <p id="brief-date">กำลังโหลด...</p>
+  <div class="tweet tweet-markets">
+    <div class="tweet-header">
+      <div class="tweet-avatar">💰</div>
+      <div class="tweet-author">
+        <span class="tweet-author-name">🦈 พี่ฉลาม — Gold Analyst</span>
+        <span class="tweet-author-handle">@shark.gold.ocean.ten</span>
+      </div>
+      <span class="tweet-tag tag-markets">💰 Markets</span>
+    </div>
+    <div class="tweet-content">
+      <div class="tweet-topic">🥊 ทองคำดิ่งหนักสุดในรอบ 6 ปี — $4,570/oz</div>
+      <div class="tweet-summary">
+        Gold ดิ่ง <strong>-4.5%</strong> ภายในสัปดาห์จาก Dollar แข็ง + Fed คงดอกเบี้ย + ไม่มี signs ตัดเร็ว — Portfolio ทองทั่วโลกเทขายหนัก Risk-off sentiment สูงมาก
+      </div>
+      <div class="tweet-details">
+        <div class="tweet-detail-row">
+          <span class="tweet-detail-icon">📉</span>
+          <span class="tweet-detail-label">ราคาปัจจุบัน</span>
+          <span class="tweet-detail-value">$4,697.57/oz (อ้างอิงปิดสัปดาห์ก่อน)</span>
+        </div>
+        <div class="tweet-detail-row">
+          <span class="tweet-detail-icon">📊</span>
+          <span class="tweet-detail-label">DXY</span>
+          <span class="tweet-detail-value">99.50 — แข็งสุดในรอบเดือน</span>
+        </div>
+        <div class="tweet-detail-row">
+          <span class="tweet-detail-icon">🏦</span>
+          <span class="tweet-detail-label">Fed</span>
+          <span class="tweet-detail-value">คงดอกเบี้ย 3.50%-3.75% — Hawkish กว่าคาด</span>
         </div>
       </div>
-      <div class="actions">
-        <a href="/us-market-report.html" class="pill report-pill" title="US Market Premium Report">📊 US Market</a>
-        <span class="pill live">● LIVE</span>
-        <input id="searchInput" class="search" type="search" placeholder="ค้นหาข่าว..." />
-        <button class="pill" id="viewToggle">Compact</button>
-        <button class="pill install" id="installBtn" hidden>Install App</button>
-        <button class="pill" id="refreshBtn">Refresh</button>
+      <div class="tweet-impact neutral">
+        📊 Impact: ทองอยู่ในช่วง Consolidating หลังพุ่งสูงมาก — ปัจจัยขัดแย้งระหว่าง Dollar แข็ง vs Geopolitics Safe Haven
       </div>
-    </header>
-  </div>
-
-  <div class="breaking-wrap">
-    <div class="container breaking-inner">
-      <span class="breaking-label">BREAKING</span>
-      <div class="breaking-track" id="breakingTrack">กำลังโหลดข่าวด่วน...</div>
     </div>
   </div>
 
-  <main class="container">
-    <section class="must-know" id="mustKnow"></section>
+  <!-- ═══ SECTION: AI & TECH ═══ -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-text">🤖 AI & Tech Deep Dive</div>
+    <div class="section-divider-line"></div>
+  </div>
 
-    <section class="hero" id="hero"></section>
+  <div class="ai-deepdive-card">
+    <div class="ai-deepdive-header">
+      <span style="font-size:20px">🤖</span>
+      <span class="ai-deepdive-title">AI & Tech — ทุกอัพเดทที่ต้องรู้วันนี้</span>
+    </div>
 
-    <section class="must-read" id="mustRead"></section>
-
-    <nav class="toolbar" id="filters"></nav>
-
-    <section class="content-layout">
-      <div>
-        <h2 class="section-title">ข่าวเด่นประจำวัน</h2>
-        <section class="grid" id="cards"></section>
+    <div class="ai-item">
+      <div class="ai-item-title">
+        <span>🧠</span> GPT-5.4 & GPT-5.4 Pro — OpenAI ปล่อยแล้ว
       </div>
-      <aside class="sidebar">
-        <h3>🔥 Trending วันนี้</h3>
-        <ol id="quickList" class="rank-list"></ol>
-      </aside>
-    </section>
+      <div class="ai-item-body">
+        Context window <strong>1 ล้าน tokens</strong> + Native Computer-Use สำหรับ AI agents + Improved reasoning & coding<br>
+        <strong>WHY it matters:</strong> ขยายขีดความสามารถ AI agents ให้ทำงานซับซ้อนได้มากขึ้นอีก — Agents ไม่ใช่แค่ chatbots อีกต่อไป
+      </div>
+    </div>
 
-    <p class="footer-note" id="brief-note"></p>
-  </main>
+    <div class="ai-item">
+      <div class="ai-item-title">
+        <span>🔗</span> Amazon + OpenAI — $50 พันล้าน Partnership
+      </div>
+      <div class="ai-item-body">
+        AWS กลายเป็น <strong>Exclusive third-party cloud provider</strong> สำหรับ AI workloads ของ OpenAI<br>
+        <strong>WHY it matters:</strong> Reorients AI infrastructure landscape ทั้งอุตสาหกรรม — Microsoft Azure เสียเปรียบโดยตรง
+      </div>
+    </div>
 
-  <script src="assets/app.js"></script>
+    <div class="ai-item">
+      <div class="ai-item-title">
+        <span>🧩</span> Agentic AI — กลายเป็น Mainstream แล้ว
+      </div>
+      <div class="ai-item-body">
+        AI agents ทำได้ตั้งแต่ <strong>Planning → Coding → Review → Release → Support</strong> ได้เองทั้งหมด<br>
+        <strong>WHY it matters:</strong> องค์กรทั่วโลกเริ่ม deploy จริงจัง แต่ยังขาด operational processes รองรับ
+      </div>
+    </div>
+
+    <div class="ai-item">
+      <div class="ai-item-title">
+        <span>📱</span> Apple + Google Gemini 1.2T params — Siri อัพเกรดใหญ่
+      </div>
+      <div class="ai-item-body">
+        iOS 26.4 เปิดตัวมีนาคมนี้ พร้อม AI ทรงพลังกว่าเดิมมาก + <strong>Private Cloud Compute</strong> รักษา privacy<br>
+        <strong>WHY it matters:</strong> AI บนมือถือเข้าขั้น next level — ทุกคนมี AI assistant ส่วนตัวบน iPhone
+      </div>
+    </div>
+
+    <div class="ai-item">
+      <div class="ai-item-title">
+        <span>🏛️</span> Trump — National AI Legislative Framework
+      </div>
+      <div class="ai-item-body">
+        เน้น <strong>นวัตกรรม + คุ้มครองเด็ก + ประสิทธิภาพ data center + ลิขสิทธิ์ AI training ไม่ต้องจ่าย</strong><br>
+        <strong>WHY it matters:</strong> กำหนดทิศทาง AI policy US ยาว 4 ปีข้างหน้า — กระทบทุกบริษัท AI ทั่วโลก
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION: MARKETS ═══ -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-text">💰 Markets — Gold Analysis</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- GOLD CARD -->
+  <div class="gold-card">
+    <div class="gold-card-header">
+      <div class="gold-card-title">
+        🥇 XAU/USD — Premium Gold Research
+      </div>
+      <div class="gold-price-display">
+        <div class="gold-price-main">$4,697.57</div>
+        <div class="gold-price-change up">▲ อ้างอิงปิดสัปดาห์ก่อน</div>
+      </div>
+    </div>
+
+    <div style="font-size:11px; color:var(--text-muted); margin-bottom:8px;">
+      📌 วันที่ 21-22 มีนาคม 2569 เป็นวันหยุดเทรดทองคำ
+    </div>
+
+    <div class="gold-bias">
+      📊 Direction: ไซด์เวย์ ขึ้นเล็กน้อย (Sideways Slightly Up)
+    </div>
+
+    <div class="gold-levels">
+      <div class="gold-level-item">
+        <div class="gold-level-label">Resistance 1</div>
+        <div class="gold-level-value res">$4,881</div>
+      </div>
+      <div class="gold-level-item">
+        <div class="gold-level-label">Resistance 2</div>
+        <div class="gold-level-value res">$5,153</div>
+      </div>
+      <div class="gold-level-item">
+        <div class="gold-level-label">Support 1</div>
+        <div class="gold-level-value sup">$4,576</div>
+      </div>
+      <div class="gold-level-item">
+        <div class="gold-level-label">Support 2</div>
+        <div class="gold-level-value sup">$4,450</div>
+      </div>
+    </div>
+
+    <div class="gold-factors-grid">
+      <div>
+        <div class="gold-factor-col-title bull">🟢 ปัจจัยบวก (Bullish)</div>
+        <ul class="gold-factor-list bull">
+          <li>NFP ก.พ. ติดลบ 92,000 — หนักกว่าคาด</li>
+          <li>GDP Q4/2025 อ่อน (0.7% vs 1.4%)</li>
+          <li>Israel-Iran ยกระดับ — Safe Haven</li>
+          <li>Strait of Hormuz เสี่ยง — น้ำมัน $105+</li>
+          <li>Central Banks ซื้อต่อเนื่อง (77% แผนเพิ่ม)</li>
+          <li>ตลาดคาด Fed ตัดดอกเบี้ยแค่ 1 ครั้ง</li>
+        </ul>
+      </div>
+      <div>
+        <div class="gold-factor-col-title bear">🔴 ปัจจัยลบ (Bearish)</div>
+        <ul class="gold-factor-list bear">
+          <li>DXY กลับเหนือ 100 — Dollar แข็ง</li>
+          <li>10Y Yield พุ่ง 4.39% (สูงสุด ก.ค. 2025)</li>
+          <li>Fed Hawkish Dot Plot (7 เจ้าหน้าที่ไม่ตัด)</li>
+          <li>Powell: Mildly Hawkish + เงินเฟ้อ 2.4%</li>
+          <li>PMI Manufacturing แข็ง (52.4)</li>
+          <li>น้ำมันแพง → เงินเฟ้อ → Fed ไม่ตัด</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- NFP DETAIL -->
+  <div class="tweet tweet-markets">
+    <div class="tweet-header">
+      <div class="tweet-avatar">📊</div>
+      <div class="tweet-author">
+        <span class="tweet-author-name">🦈 พี่ฉลาม — Markets Analyst</span>
+        <span class="tweet-author-handle">@shark.ocean.ten</span>
+      </div>
+      <span class="tweet-tag tag-markets">NFP Report</span>
+    </div>
+    <div class="tweet-content">
+      <div class="tweet-topic">📊 US NFP กุมภาพันธ์ 2026: ตลาดแรงงานดิ่งหนัก!</div>
+      <div class="tweet-summary">
+        NFP ติดลบ <strong>92,000 ตำแหน่ง</strong> (ตลาดคาด +59,000) + Unemployment พุ่ง 4.4%<br>
+        GDP Q4/2025 ถูกปรับลงจาก 1.4% → <strong>0.7%</strong> (ต่ำสุดนับตั้งแต่ Q1 2025) จาก Government Shutdown ต.ค.-พ.ย. 2025
+      </div>
+      <div class="tweet-impact bullish">
+        📌 Impact: ตลาดแรงงานชะลอตัว → Fed อาจตัดดอกเบี้ยเร็วขึ้น → บวกต่อทองระยะยาว
+      </div>
+    </div>
+  </div>
+
+  <!-- S&P 500 -->
+  <div class="tweet tweet-markets">
+    <div class="tweet-header">
+      <div class="tweet-avatar">📉</div>
+      <div class="tweet-author">
+        <span class="tweet-author-name">📉 Market Monitor</span>
+        <span class="tweet-author-handle">@market.ocean.ten</span>
+      </div>
+      <span class="tweet-tag tag-markets">S&P 500</span>
+    </div>
+    <div class="tweet-content">
+      <div class="tweet-topic">🟠 S&P 500 เข้า Correction Territory แล้ว</div>
+      <div class="tweet-summary">
+        ดัชนีตกต่ำกว่า <strong>200-day MA</strong> เป็นครั้งแรกในรอบ 214 วัน<br>
+        JPMorgan ลดเป้าปีนี้ เตือน <strong>undershooting risks</strong> จากสงคราม Middle East
+      </div>
+      <div class="tweet-impact">
+        📌 Impact: ตลาดหุ้น US เผชิญแรงกดดันหนักจากหลายทิศทางพร้อมกัน
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION: WORLD & SCIENCE ═══ -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-text">🌍 World & Science</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <!-- CHINA -->
+  <div class="tweet tweet-world">
+    <div class="tweet-header">
+      <div class="tweet-avatar">🇨🇳</div>
+      <div class="tweet-author">
+        <span class="tweet-author-name">🌏 Global Economy</span>
+        <span class="tweet-author-handle">@world.ocean.ten</span>
+      </div>
+      <span class="tweet-tag tag-world">เศรษฐกิจ</span>
+    </div>
+    <div class="tweet-content">
+      <div class="tweet-topic">🇨🇳 China Q1/2026 แข็งแกร่งเกินคาด</div>
+      <div class="tweet-summary">
+        High-tech manufacturing, AI, Digital Products, Green Energy เติบโตดีมาก 2 เดือนแรกของปี
+      </div>
+      <div class="tweet-impact bullish">
+        📌 Impact: เศรษฐกิจโลกมีแรงหนุนจากจีน ชดเชยความผันผวนจาก Middle East
+      </div>
+    </div>
+  </div>
+
+  <!-- CERN -->
+  <div class="tweet tweet-science">
+    <div class="tweet-header">
+      <div class="tweet-avatar">🔬</div>
+      <div class="tweet-author">
+        <span class="tweet-author-name">🔭 Science Desk</span>
+        <span class="tweet-author-handle">@science.ocean.ten</span>
+      </div>
+      <span class="tweet-tag tag-science">Discovery</span>
+    </div>
+    <div class="tweet-content">
+      <div class="tweet-topic">⚛️ CERN ค้นพบอนุภาคใหม่ 'Ξcc+' — หนักกว่า Proton 4 เท่า</div>
+      <div class="tweet-summary">
+        องค์ประกอบจาก 2 Charm quarks + 1 Down quark — ช่วยเข้าใจ <strong>Strong Force</strong> ระดับมูลฐาน
+      </div>
+      <div class="tweet-impact neutral">
+        📌 Impact: ค้นพบทางฟิสิกส์ใหม่ที่จะเปลี่ยนความเข้าใจเรื่องอนุภาคมูลฐานของจักรวาล
+      </div>
+    </div>
+  </div>
+
+  <!-- QUANTUM BATTERY -->
+  <div class="tweet tweet-science">
+    <div class="tweet-header">
+      <div class="tweet-avatar">🔋</div>
+      <div class="tweet-author">
+        <span class="tweet-author-name">🔭 Science Desk</span>
+        <span class="tweet-author-handle">@science.ocean.ten</span>
+      </div>
+      <span class="tweet-tag tag-science">เทคโนโลยีใหม่</span>
+    </div>
+    <div class="tweet-content">
+      <div class="tweet-topic">🔋 Quantum Battery Proof-of-Concept สำเร็จแล้ว</div>
+      <div class="tweet-summary">
+        Australian scientists พิสูจน์แล้วว่า <strong>Quantum Battery ชาร์จเร็วมาก</strong> — อาจเปลี่ยน EV + Wireless devices ในอนาคต
+      </div>
+      <div class="tweet-impact bullish">
+        📌 Impact: เทคโนโลยีพลังงานบทต่อไปกำลังจะมาถึงเร็วกว่าที่คิด
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION: ANALYST TARGETS ═══ -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-text">🎯 Gold Price Targets 2026</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="gold-card" style="margin-bottom:12px;">
+    <div class="gold-card-title" style="font-size:14px; font-weight:800; color:var(--accent-gold); margin-bottom:14px; display:flex; align-items:center; gap:6px;">
+      🏆 ความเห็นนักวิเคราะห์ชั้นนำ — ทองคำ End of 2026
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <div class="analyst-row">
+        <span class="analyst-name">J.P. Morgan</span>
+        <span class="analyst-target">$6,300</span>
+        <div class="analyst-bar"><div class="analyst-bar-fill" style="width:100%;"></div></div>
+      </div>
+      <div class="analyst-row">
+        <span class="analyst-name">Bank of America</span>
+        <span class="analyst-target">$5,800</span>
+        <div class="analyst-bar"><div class="analyst-bar-fill" style="width:92%;"></div></div>
+      </div>
+      <div class="analyst-row">
+        <span class="analyst-name">BNP Paribas</span>
+        <span class="analyst-target">$5,000+</span>
+        <div class="analyst-bar"><div class="analyst-bar-fill" style="width:79%;"></div></div>
+      </div>
+      <div class="analyst-row">
+        <span class="analyst-name">CoinCodex (avg)</span>
+        <span class="analyst-target">$4,763</span>
+        <div class="analyst-bar"><div class="analyst-bar-fill" style="width:75%;"></div></div>
+      </div>
+      <div class="analyst-row">
+        <span class="analyst-name">Wells Fargo</span>
+        <span class="analyst-target">$4,700</span>
+        <div class="analyst-bar"><div class="analyst-bar-fill" style="width:74%;"></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(245,166,35,0.15);">
+      <div style="font-size:11px; color:var(--text-muted);">
+        📌 J.P. Morgan มองไม่มีการตัดดอกเบี้ยในปี 2026 เลย + อาจขึ้นดอกเบี้ยใน 2027
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ KEY RISKS ═══ -->
+  <div class="warning-box">
+    <div class="warning-title">⚠️ Key Risks สัปดาห์นี้ — ต้องจับตา</div>
+    <div class="warning-item">DXY ทะลุ 102 → Dollar แข็งมาก กดทองหนัก</div>
+    <div class="warning-item">Israel-Iran ปะทุรุนแรงขึ้น → น้ำมันพุ่ง → เงินเฟ้อโลกพุ่ง → Fed ยิ่งไม่ตัดดอกเบี้ย</div>
+    <div class="warning-item">ถ้า Gold หลุด $4,373 (weekly low) → อาจเป็นสัญญาณ Pullback ลึกกว่านี้</div>
+    <div class="warning-item">Gold ETF Storage Cost เพิ่มขึ้น → แรงขายจากผู้ถือครองรายใหญ่</div>
+  </div>
+
+  <!-- ═══ KEY INSIGHTS ═══ -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-text">💡 3 Key Insights</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="insights-box">
+    <div class="insights-box-title">💡 Ocean Ten — 3 ข้อต้องจำจากวันนี้</div>
+
+    <div class="insight-item">
+      <div class="insight-number">1</div>
+      <div class="insight-text">
+        <strong>Geopolitics is the New Macro:</strong> สงคราม Israel-Iran กำลังเป็นตัวแปรหลักของตลาดทุกอย่าง — น้ำมัน เงินเฟ้อ Dollar และทอง ล้วนเชื่อมโยงกับ Middle East
+      </div>
+    </div>
+
+    <div class="insight-item">
+      <div class="insight-number">2</div>
+      <div class="insight-text">
+        <strong>AI Hardware War เริ่มแล้ว:</strong> Terafab + Amazon-OpenAI $50B = AI infrastructure arms race ระดับ trillion ดอลลาร์ บริษัทที่ไม่มี chip strategy จะถูกกำหนดชะตาโดยคนอื่น
+      </div>
+    </div>
+
+    <div class="insight-item">
+      <div class="insight-number">3</div>
+      <div class="insight-text">
+        <strong>Gold Consolidating คือช่วงรอ:</strong> ทองอยู่ระหว่าง Dollar แข็ง vs Geopolitics Safe Haven — ปัจจัยทั้งสองยังขัดกัน ราคายังไม่ clear direction แต่ Bias ยังเป็นบวกระยะยาว
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TREND BOX ═══ -->
+  <div class="trend-box">
+    <div class="trend-box-title">🚀 Trend ที่กำลังจะมา — จับตาสัปดาห์หน้า</div>
+
+    <div class="trend-item">
+      <div class="trend-arrow">→</div>
+      <div class="trend-text">
+        <strong>Fed FOMC Minutes</strong> — รายละเอียดเพิ่มเติมจะเผย Hawkishness ของ Fed ชัดเจนขึ้น
+      </div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-arrow">→</div>
+      <div class="trend-text">
+        <strong>PMI & CPI สัปดาห์หน้า</strong> — ตลาดจะใช้ตัวเลขนี้ตัดสินทิศทางดอกเบี้ยอีกครั้ง
+      </div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-arrow">→</div>
+      <div class="trend-text">
+        <strong>AI Agent Deployment</strong> — หลัง GPT-5.4 องค์กรทั่วโลกจะเร่ง deploy agents มากขึ้น
+      </div>
+    </div>
+    <div class="trend-item">
+      <div class="trend-arrow">→</div>
+      <div class="trend-text">
+        <strong>Central Bank Gold Buying</strong> — ตัวเลขจริง Q1 จะยืนยัน trend ระยะยาว
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CULTURE ═══ -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-text">🎬 Culture & Entertainment</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="tweet tweet-culture">
+    <div class="tweet-header">
+      <div class="tweet-avatar">🎬</div>
+      <div class="tweet-author">
+        <span class="tweet-author-name">🎭 Culture Watch</span>
+        <span class="tweet-author-handle">@culture.ocean.ten</span>
+      </div>
+      <span class="tweet-tag tag-culture">RIP</span>
+    </div>
+    <div class="tweet-content">
+      <div class="tweet-topic">🕯️ Chuck Norris เสียชีวิตวัย 86 ปี</div>
+      <div class="tweet-summary">
+        นักแสดงและไอคอนมาร์เชียลอาร์ตส์โลกจากไปอย่างสงบ ปิดตำนานดาราฮอลลีวูดที่ทำให้คนทั้งโลกชื่นชอบมาหลายทศวรรษ
+      </div>
+    </div>
+  </div>
+
+  <div class="tweet tweet-culture">
+    <div class="tweet-header">
+      <div class="tweet-avatar">📺</div>
+      <div class="tweet-author">
+        <span class="tweet-author-name">🎭 Culture Watch</span>
+        <span class="tweet-author-handle">@culture.ocean.ten</span>
+      </div>
+      <span class="tweet-tag tag-culture">Streaming</span>
+    </div>
+    <div class="tweet-content">
+      <div class="tweet-topic">📺 Netflix March 2026: BTS Documentary + MLB Opening Night Live</div>
+      <div class="tweet-summary">
+        Live special + Documentary เกี่ยวกับ BTS + Yankees vs Giants สดผ่าน Netflix — Streaming wars เข้มข้นขึ้นทุกเดือน คอนเทนต์ exclusive คือกฎเหล็ก
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    <div class="footer-brand">🌊 Ocean Ten Research Team</div>
+    <div class="footer-sub">🦐 น้องกุ้ง CEO · 🦈 พี่ฉลาม Analyst · 🐋 คุณวาฬ Mastermind</div>
+    <div class="footer-sub" style="font-size:10px; color:var(--text-muted);">
+      ข้อมูล ณ วันที่ 21 มีนาคม 2569 · อ้างอิง: Forex.com, Federal Reserve, BLS, World Gold Council, CFR.org, Deloitte, J.P. Morgan Research, CoinCodex
+    </div>
+    <div class="footer-disclaimer">
+      ⚠️ รายงานนี้จัดทำเพื่อวัตถุประสงค์ในการวิเคราะห์ข่าวเท่านั้น ไม่ใช่คำแนะนำทางการเงิน<br>
+      การลงทุนมีความเสี่ยง ผู้ลงทุนควรศึกษาข้อมูลอย่างละเอียดก่อนตัดสินใจ
+    </div>
+  </div>
+
+</div><!-- end container -->
 </body>
 </html>
