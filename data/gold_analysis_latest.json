@@ -1,0 +1,202 @@
+{
+  "report_date": "2026-03-21",
+  "gold_ticker": "XAU/USD",
+  "report_title": "Premium Gold Research Report — XAU/USD วันที่ 21 มีนาคม 2569",
+  "status": "non_trading_day",
+  "note": "วันที่ 21-22 มีนาคม 2569 เป็นวันหยุดเทรดทองคำ ราคาอ้างอิงจากปิดสัปดาห์ก่อนหน้า",
+  "gold_current_price": 4697.57,
+  "gold_prev_close": 4650.77,
+
+  "factors": {
+    "1_us_economic_data": {
+      "heading": "📊 US Economic Data",
+      "items": [
+        {
+          "indicator": "NFP (Non-Farm Payrolls) — กุมภาพันธ์ 2026",
+          "data": "-92,000 ตำแหน่ง (ติดลบ 92,000 ตำแหน่ง)",
+          "forecast": "+59,000 ตำแหน่ง (คาดหวัง)",
+          "unemployment": "4.4% (เพิ่มขึ้นจากเดิม)",
+          "summary": "ตลาดแรงงาน US ดิ่งลงเหวี่ยง! NFP ติดลบ 92,000 ตำแหน่ง หนักกว่าที่ตลาดคาดไว้มาก โดยเฉพาะภาค Healthcare โดนผลกระทบจากการนัดหยุดงาน แถมตัวเลขเดือนก่อนหน้าถูกปรับลงด้วย",
+          "why_it_matters": "NFP ติดลบหนัก = เศรษฐกิจชะลอตัว → แรงกดดันเงินเฟ้อลดลง → ตลาดคาดหวัง Fed ตัดดอกเบี้ยเร็วขึ้น → บวกต่อทอง",
+          "impact_on_gold": "บวก (Bullish)"
+        },
+        {
+          "indicator": "GDP Q4 2025 (สหรัฐฯ)",
+          "data": "0.7% annualized (ปรับลงจาก 1.4%)",
+          "summary": "GDP ไตรมาส 4 ปี 2025 ถูกปรับลงอย่างหนักจาก 1.4% เหลือ 0.7% ต่ำสุดนับตั้งแต่ Q1 2025 สาเหตุหลักมาจาก Government Shutdown ระหว่างต.ค.-พ.ย. 2025 ที่ดึง GDP ลง 2.3%",
+          "why_it_matters": "เศรษฐกิจชะลอตัวแบบไม่คาดฝัน → โอกาส Fed ตัดดอกเบี้ยเพิ่มขึ้น → บวกต่อทอง แต่ในระยะสั้น Yield ขึ้นเพราะเงินเฟ้อสูง",
+          "impact_on_gold": "บวก (Bullish) แต่ผสมผสาน"
+        },
+        {
+          "indicator": "ISM Manufacturing PMI — กุมภาพันธ์ 2026",
+          "data": "52.4",
+          "summary": "PMI ภาคการผลิตขยายตัวต่อเนื่องเดือนที่ 2 สะท้อนว่าภาคอุตสาหกรรมยังแข็งแกร่ง ตลาดแรงงานยังไม่ได้แย่ทุกตัว",
+          "why_it_matters": "PMI แข็ง = เศรษฐกิจไม่ได้ถดถอยทุกส่วน อาจจำกัดการตัดดอกเบี้ยของ Fed → หนุน Dollar แข็ง กดทองบ้าง",
+          "impact_on_gold": "เป็นกลาง / ลบเล็กน้อย (Neutral to Slightly Bearish)"
+        }
+      ]
+    },
+
+    "2_fed_fomc": {
+      "heading": "🏦 Fed Speakers / FOMC",
+      "items": [
+        {
+          "indicator": "FOMC Meeting — 17-18 มีนาคม 2026",
+          "data": "คงอัตราดอกเบี้ยที่ 3.50%-3.75% (11-1 โหวต)",
+          "summary": "Fed ประกาศคงดอกเบี้ยตามคาด แต่สิ่งที่ตลาดตกใจคือ Dot Plot เปลี่ยนน้อยมาก และ 7 ใน 19 เจ้าหน้าที่ไม่ต้องการตัดดอกเบี้ยเลยในปี 2026",
+          "why_it_matters": "Fed Hawkish กว่าที่ตลาดคาด → Dollar แข็ง → กดทอง แต่ Chair Powell พูดเรื่อง 'ความไม่แน่นอนสูง' จากภูมิรัฐศาสตร์ → หนุนทองในฐานะ Safe Haven",
+          "impact_on_gold": "ลบ (Bearish) จากมุม Dollar แข็ง แต่บวกจากความเสี่ยงภูมิรัฐศาสตร์",
+          "additional_notes": "Fed ปรับ GDP 2026 ขึ้นเป็น 2.4% และปรับเงินเฟ้อ PCE ขึ้นเป็น 2.7% — ยืนยัน 'Higher for Longer'"
+        },
+        {
+          "indicator": "Fed Chair Jerome Powell",
+          "data": "สื่อสาร 'Mildly Hawkish'",
+          "summary": "Powell เน้นย้ำว่าเงินเฟ้อยัง 'somewhat elevated' ที่ 2.4% และยังต้องเห็นความคืบหน้าก่อนตัดดอกเบี้ย พร้อมกับชี้ว่า 'ความไม่แน่นอนจากภูมิรัฐศาสตร์' เป็นปัจจัยเสี่ยงหลัก",
+          "why_it_matters": "Powell ไม่ได้ชี้นำให้ตลาดคาดหวังการตัดดอกเบี้ยเร็ว → Dollar ยังแข็ง แต่ความเสี่ยงโลกยังหนุน Safe Haven",
+          "impact_on_gold": "ลบเล็กน้อย (Slightly Bearish)"
+        },
+        {
+          "indicator": "J.P. Morgan — Michael Feroli",
+          "data": "ไม่มีการตัดดอกเบี้ยในปี 2026 เลย + อาจขึ้นดอกเบี้ยใน 2027",
+          "summary": "นักเศรษฐศาสตร์ J.P. Morgan มองว่าตลาดแรงงานยังไม่แย่พอให้ Fed ตัดดอกเบี้ย และเงินเฟ้อยังสูงกว่าเป้า",
+          "why_it_matters": "บรรยากาศ 'No Rate Cut' กด Demand ของทอง เพราะทองไม่ได้ให้ Yield แต่ Opportunity Cost ยังสูง",
+          "impact_on_gold": "ลบ (Bearish) ต่อระยะสั้น"
+        }
+      ]
+    },
+
+    "3_us_dollar_index_dxy": {
+      "heading": "💵 US Dollar Index (DXY)",
+      "items": [
+        {
+          "indicator": "DXY — ปัจจุบัน",
+          "data": "99.50 (20 มีนาคม 2026) | +1.84% ในเดือนนี้",
+          "summary": "DXY กลับมาเหนือ 99.50 และทะลุแนว 100 ได้สำเร็จเมื่อกลางเดือน หลังจากระดับต่ำสุดปี 2026 ที่ 96-97 ตอนนี้กำลังทดสอบแนวต้านสำคัญ 101.9-102",
+          "why_it_matters": "Dollar แข็ง = ทองสำหรับนักลงทุนต่างชาติแพงขึ้น → กดอุปสงค์ → กดทองโดยตรง แต่ยังมีปัจจัยภูมิรัฐศาสตร์ชะลอการลงได้",
+          "impact_on_gold": "ลบ (Bearish)",
+          "additional_notes": "แรงซื้อ Safe Haven เข้า Dollar เพราะความตึงเครียด Israel-Iran หนุน Dollar แข็ง สวนทางทอง"
+        }
+      ]
+    },
+
+    "4_treasury_yields": {
+      "heading": "📈 Treasury Yields (10-Year)",
+      "items": [
+        {
+          "indicator": "US 10-Year Treasury Yield",
+          "data": "4.39% (20 มีนาคม 2026) — สูงสุดตั้งแต่กรกฎาคม 2025",
+          "summary": "Yield พุ่งขึ้น 0.13% ในวันเดียว และ +0.35% ในเดือนนี้ จาก 4.05% ต้นเดือน → 4.39% ปัจจุบัน สาเหตุหลัก: ตลาดกังวลเงินเฟ้อจากราคาน้ำมัน + ความไม่แน่นอนทางภูมิรัฐศาสตร์",
+          "why_it_matters": "Yield สูงขึ้น → Opportunity Cost ของทองสูงขึ้น → กดทอง (ทองไม่ให้ Yield) แต่ถ้า Yield ขึ้นเพราะเงินเฟ้อ ทองก็ได้ประโยชน์เป็น Inflation Hedge เช่นกัน",
+          "impact_on_gold": "ลบเล็กน้อย (Slightly Bearish) แต่ผสมผสาน"
+        }
+      ]
+    },
+
+    "5_geopolitics": {
+      "heading": "🌍 ภูมิรัฐศาสตร์ (Middle East — Israel vs Iran)",
+      "items": [
+        {
+          "indicator": "Israel-Iran Conflict — มีนาคม 2026",
+          "data": "Escalating (ยกระดับความตึงเครีดอย่างต่อเนื่อง)",
+          "summary": "ขัดแย้ง Israel-Iran ทวีความรุนแรงขึ้นเรื่อยๆ หลัง Israel ยิงโจมตี Tehran ตั้งแต่มิถุนายน 2025 ล่าสุด: Israel ยิงโจมตีสถานที่ใน Iran รวมถึงสนามก๊าซ South Pars และโรงงานขี้นกระส่าง — Iran ตอบโต้ด้วยฝูงโดรนและขีปนาวุธถล่มเมือง Israel และฐานทัพ US ในภูมิภาค",
+          "why_it_matters": "นี่คือปัจจัย Safe Haven หลักที่สุดในขณะนี้ ความเสี่ยงต่อ 'Strait of Hormuz' (เส้นทางขนส่งน้ำมัน 1/5 ของโลก) ทำให้นักลงทุนเทขายสินทรัพย์เสี่ยง เข้าทองคำ น้ำมัน Brent พุ่งเป้า $105/บาร์เรล",
+          "impact_on_gold": "บวก (Bullish) — ปัจจัย Safe Haven หลัก"
+        },
+        {
+          "indicator": "Impact on Energy Markets",
+          "data": "Brent crude → $105+/barrel",
+          "summary": "ราคาน้ำมันพุ่งเกิน 50% ตั้งแต่มกราคม 2026 เพราะโครงสร้างพื้นฐานส่งออกน้ำมันของ Iran ถูกทำลาย และความเสี่ยง Strait of Hormuz",
+          "why_it_matters": "น้ำมันแพง → เงินเฟ้อพุ่ง → Fed ยิ่งไม่ตัดดอกเบี้ย → Dollar แข็ง (กดทอง) แต่พร้อมกัน น้ำมันแพง = ต้นทุนสูง = ความไม่แน่นอนทางเศรษฐกิจ = ทองเป็น Safe Haven",
+          "impact_on_gold": "บวก (Bullish) จาก Inflation Hedge + Safe Haven"
+        }
+      ]
+    },
+
+    "6_central_banks": {
+      "heading": "🏛️ Central Banks",
+      "items": [
+        {
+          "indicator": "Central Bank Gold Buying — 2026",
+          "data": "68-77% ของธนาคารกลางทั่วโลก วางแผนเพิ่มทองคำในปี 2026",
+          "summary": "World Gold Council สำรวจพบว่า 68% ของธนาคารกลางต้องการเพิ่มทองคำในพอร์ต (เพิ่มขึ้นจาก 62% ในปี 2025) และล่าสุด 18 มีนาคม 2026 มีตัวเลขสูงถึง 77% ต้องการเพิ่มภายใน 12 เดือน",
+          "why_it_matters": "ธนาคารกลางเป็นผู้ซื้อสุทธิรายใหญ่ที่สุดของโลก คำสั่งซื้อจากภาครัฐยังคงเป็นแรงหนุนราคาทองอย่างยั่งยืน",
+          "impact_on_gold": "บวก (Bullish) — ปัจจัยโครงสร้างระยะยาว"
+        },
+        {
+          "indicator": "ปริมาณการซื้อจริง — ต้นปี 2026",
+          "data": "Turkey +45t (ม.ค.), China PBOC +25t (ก.พ.), India RBI +18t (ก.พ.)",
+          "summary": "ปริมาณการซื้อจริงยังสูง แม้เดือนมกราคม 2026 จะเริ่มช้าลงเหลือ 5 ตัน-nett แต่ J.P. Morgan คาดว่าทั้งปี 2026 จะมี Central Bank Demand ที่ ~900 ตัน",
+          "why_it_matters": "China และ Turkey เป็นผู้เล่นหลัก การซื้อต่อเนื่องแสดงถึง Trend การ De-Dollarization ที่ยังดำเนินต่อไป",
+          "impact_on_gold": "บวก (Bullish)"
+        }
+      ]
+    }
+  },
+
+  "sentiment_summary": {
+    "bullish_factors": [
+      "NFP กุมภาพันธ์ติดลบ 92,000 — หนักกว่าคาด หนุนทิศทางดอกเบี้ยต่ำ",
+      "GDP Q4 2025 อ่อนแอ (0.7%) ถูกปรับลงจาก 1.4%",
+      "Israel-Iran War ยกระดับ — ความเสี่ยง Safe Haven สูงสุด",
+      "Strait of Hormuz เสี่ยงถูกรบกวน — น้ำมัน $105+",
+      "Central Banks ซื้อทองต่อเนื่อง (68-77% แผนเพิ่ม)",
+      "ตลาดคาด Fed ตัดดอกเบี้ย 1 ครั้งในปี 2026 เท่านั้น (แม้แต่ JP Morgan มองไม่ตัดเลย)"
+    ],
+    "bearish_factors": [
+      "DXY กลับเหนือ 100 — Dollar แข็ง กดทองโดยตรง",
+      "10Y Yield พุ่ง 4.39% (สูงสุดตั้งแต่ ก.ค. 2025) — Opportunity Cost สูง",
+      "Fed คงดอกเบี้ย + Hawkish Dot Plot (7 เจ้าหน้าที่ไม่ต้องการตัดเลย)",
+      "Powell ยืนยัน 'Mildly Hawkish' + เงินเฟ้อ 2.4% ยังสูงกว่าเป้า",
+      "PMI Manufacturing แข็ง (52.4) — เศรษฐกิจยังไม่ถดถอยทุกส่วน",
+      "น้ำมันแพง → เงินเฟ้อพุ่ง → Fed ยิ่งไม่ตัดดอกเบี้ย"
+    ]
+  },
+
+  "overall_bias": "ไซด์เวย์ ขึ้นเล็กน้อย (Sideways Slightly Up)",
+  "bias_rationale": "ปัจจัยข่าวขัดแย้งกัน: Dollar แข็ง + Yield สูง กดทอง แต่ NFP อ่อน + ภูมิรัฐศาสตร์บวก ราคาทองอยู่ในช่วง Consolidating หลังจากพุ่งไปสูงมาก ตลาดรอข้อมูลชัดเจนกว่านี้",
+
+  "key_levels": {
+    "current_price_reference": 4697.57,
+    "resistance_1": 4881.57,
+    "resistance_2": 5153.72,
+    "support_1": 4576.74,
+    "support_2": 4450.00,
+    "support_3": 4373.89,
+    "weekly_range_low": 4373.89,
+    "weekly_range_high": 5153.72,
+    "note": "วันที่ 21-22 มีนาคม 2569 เป็นวันหยุดเทรดทองคำ ราคาอ้างอิงจากปิดสัปดาห์ก่อน"
+  },
+
+  "today_direction": "ไซด์เวย์ / ขึ้นเล็กน้อย (Sideways Slightly Up)",
+  "today_direction_reasons": [
+    "📌 วันหยุดเทรดทอง (21-22 มีนาคม) — ไม่มีการเคลื่อนไหวจริงวันนี้",
+    "📌 ปัจจัยขัดแย้ง: Dollar แข็ง + Yield สูง กด แต่ Geopolitics + NFP อ่อน หนุน",
+    "📌 ภูมิรัฐศาสตร์ (Israel-Iran) ยังเป็นปัจจัยหลักที่หนุน Safe Haven อย่างต่อเนื่อง",
+    "📌 ตลาดรอข้อมูลเศรษฐกิจสัปดาห์หน้า (PMI, CPI) ก่อนตัดสินใจเชิงทิศทาง"
+  ],
+
+  "key_risks": [
+    "⚠️ DXY ทะลุ 102 — Dollar แข็งมาก กดทองหนัก (ระดับถัดไปที่ต้องจับตา)",
+    "⚠️ Israel-Iran ปะทุรุนแรงขึ้น → น้ำมันพุ่ง → เงินเฟ้อโลกพุ่ง → Fed ยิ่งไม่ตัดดอกเบี้ย",
+    "⚠️ Gold ETF Storage Cost เพิ่มขึ้น → อาจมีแรงขายจากผู้ถือครองรายใหญ่",
+    "⚠️ ถ้า Gold หลุด 4,373 (weekly low) → อาจเป็นสัญญาณ Pullback ลึกกว่านี้"
+  ],
+
+  "analyst_targets": {
+    "jpmorgan": "6300 (end 2026)",
+    "bank_of_america": "5800 (end 2026)",
+    "bnp_paribas": "5000+",
+    "wells_fargo": "4700",
+    "coincodex_monthly_avg": "4763.80",
+    "coincodex_march_low": "4220.15",
+    "coincodex_march_high": "4610.42"
+  },
+
+  "generated_by": "🦐 น้องกุ้ง — Ocean Ten Research Team",
+  "model": "MiniMax-M2.7",
+  "timestamp": "2026-03-21T09:26:00 GMT+7",
+  "data_sources": [
+    "Forex.com, Trading Economics, Kiplinger, Business Insider, Federal Reserve.gov, BLS.gov, World Gold Council, CFR.org, Deloitte, J.P. Morgan Research, CoinCodex, LiteFinance, Roboforex"
+  ],
+  "disclaimer": "รายงานนี้จัดทำเพื่อวัตถุประสงค์ในการวิเคราะห์ข่าวเท่านั้น ไม่ใช่คำแนะนำทางการเงิน การลงทุนมีความเสี่ยง ผู้ลงทุนควรศึกษาข้อมูลอย่างละเอียดก่อนตัดสินใจ"
+}
