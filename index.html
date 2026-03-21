@@ -192,13 +192,46 @@ body{font-family:'Inter','Noto Sans Thai',sans-serif;background:var(--bg);color:
 </div>
 </div>
 
-<div class="page-wrap">
+<div class="page-wrap" id="page-wrap">
+
+<section id="sec-markets" class="page-section">
 <main class="col-main" id="col-markets">
 <div class="loading">Loading market analysis...</div>
 </main>
 <aside class="col-side" id="col-sidebar">
 <div class="loading">Loading sidebar...</div>
 </aside>
+</section>
+
+<section id="sec-macro" class="page-section" style="display:none">
+<main class="col-main" id="col-macro">
+<div class="card" style="margin-top:0"><div class="card-title">Macro Watch</div><div id="macro-content"></div></div>
+</main>
+</section>
+
+<section id="sec-ai" class="page-section" style="display:none">
+<main class="col-main" id="col-ai">
+<div class="card" style="margin-top:0"><div class="card-title bl">AI &amp; Tech</div><div id="ai-content"></div></div>
+</main>
+</section>
+
+<section id="sec-gold" class="page-section" style="display:none">
+<main class="col-main" id="col-gold">
+<div class="card" style="margin-top:0"><div class="card-title">Gold Analysis</div><div id="gold-content"></div></div>
+</main>
+</section>
+
+<section id="sec-subscribe" class="page-section" style="display:none">
+<main class="col-main" style="max-width:600px;margin:0 auto">
+<div style="text-align:center;padding:60px 20px">
+<div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:800;color:var(--gold);margin-bottom:16px">OceanTen Premium</div>
+<div style="font-size:16px;color:var(--muted);margin-bottom:32px">Daily deep-dive reports, real-time alerts, and actionable portfolio recommendations.</div>
+<div style="font-size:24px;font-weight:700;color:var(--white);margin-bottom:24px">Coming Soon — $9/mo</div>
+<div style="font-size:13px;color:var(--muted)">Subscribe to get early access when we launch.</div>
+</div>
+</main>
+</section>
+
 </div>
 
 <footer class="site-footer">
@@ -239,6 +272,7 @@ async function init(){
   renderTicker(market);
   renderMarkets(market);
   renderSidebar(market,insights);
+  populateSections(insights,market);
 }
 
 // TICKER
@@ -454,15 +488,55 @@ function escHtml(str){
 }
 
 function showSection(name){
+  var secMap={markets:'sec-markets',macro:'sec-macro',ai:'sec-ai',gold:'sec-gold',subscribe:'sec-subscribe'};
+  var target=secMap[name]||'sec-markets';
+  // hide all sections
+  document.querySelectorAll('.page-section').forEach(function(s){s.style.display='none'});
+  // show target
+  var el=document.getElementById(target);
+  if(el)el.style.display='';
+  // update active nav
   document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active')});
-  document.querySelectorAll('.nav-btn').forEach(function(b){
-    if(b.textContent.toLowerCase().includes(name)||
-      (name==='subscribe'&&b.textContent.includes('Subscribe'))||
-      (name==='markets'&&b.textContent.includes('Markets'))||
-      (name==='ai'&&b.textContent.includes('AI'))||
-      (name==='macro'&&b.textContent.includes('Macro'))||
-      (name==='gold'&&b.textContent.includes('Gold')))b.classList.add('active');
-  });
+  var navMap={markets:0,macro:1,ai:2,gold:3,subscribe:4};
+  var btns=document.querySelectorAll('.nav-btn');
+  if(navMap[name]!==undefined&&btns[navMap[name]])btns[navMap[name]].classList.add('active');
+  // scroll to top
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function populateSections(insights,m){
+  // Macro section
+  var macroEl=document.getElementById('macro-content');
+  if(macroEl&&insights){
+    var macroItems=insights.filter(function(i){return i.category==='macro'||i.category==='trend'});
+    if(macroItems.length){
+      macroEl.innerHTML=macroItems.slice(0,3).map(function(i){
+        return '<div class="ins-item"><div class="ins-headline">'+escHtml(i.headline||'')+'</div><div class="ins-body">'+escHtml(i.so_what||i.why_matters||'')+'</div>'+(i.now_what?'<div class="ins-impact">&#9654; '+escHtml(i.now_what)+'</div>':'')+'</div>';
+      }).join('');
+    }
+  }
+  // AI section
+  var aiEl=document.getElementById('ai-content');
+  if(aiEl&&insights){
+    var aiItems=insights.filter(function(i){return i.category==='ai'});
+    if(aiItems.length){
+      aiEl.innerHTML=aiItems.slice(0,5).map(function(i){
+        return '<div class="ins-item"><div class="ins-headline">'+escHtml(i.headline||'')+'</div><div class="ins-body">'+escHtml(i.why_matters||'')+'</div><div class="ins-body" style="margin-top:6px"><strong style="color:var(--white)">So What:</strong> '+escHtml(i.so_what||'')+'</div>'+(i.now_what?'<div class="ins-impact">&#9654; '+escHtml(i.now_what)+'</div>':'')+'</div>';
+      }).join('');
+    }
+  }
+  // Gold section
+  var goldEl=document.getElementById('gold-content');
+  if(goldEl&&m){
+    var g=m.gold||{};
+    var s=m.analysis_summary||{};
+    var kl=g.key_levels||{};
+    var res=(kl.resistance||[]).map(function(l){return '<div style="padding:8px 0;border-bottom:1px solid var(--border2);font-size:13px"><span style="color:var(--red)">Resistance:</span> <strong>'+l+'</strong></div>'}).join('');
+    var sup=(kl.support||[]).map(function(l){return '<div style="padding:8px 0;border-bottom:1px solid var(--border2);font-size:13px"><span style="color:var(--green)">Support:</span> <strong>'+l+'</strong></div>'}).join('');
+    goldEl.innerHTML='<div class="ins-item"><div class="ins-headline">Gold: '+escHtml(s.direction||'Analysis')+'</div><div class="ins-body">'+escHtml(s.reasoning||'')+'</div></div>'+
+      '<div style="margin-top:16px"><div style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px">Price Levels</div>'+res+sup+'</div>'+
+      (s.actionable_advice?'<div class="ins-impact" style="margin-top:16px">&#9654; '+escHtml(s.actionable_advice.replace(/\n/g,'<br/>'))+'</div>':'');
+  }
 }
 
 document.addEventListener('DOMContentLoaded',init);
