@@ -1,5 +1,5 @@
 {
-  "updated": "2026-03-21T14:00:00+07:00",
+  "updated": "2026-03-21T21:25:00+07:00",
   "agents": {
     "whale": {
       "name": "คุณวาฬ",
@@ -28,9 +28,9 @@
     "turtle": {
       "name": "ลุงเต่า",
       "role": "Routine",
-      "status": "resting",
-      "task": "นอนตะกอนทราย... 🏖️",
-      "progress": 0,
+      "status": "working",
+      "task": "กำลังเช็ค PM2.5 ศาลายา... 🐢",
+      "progress": 67,
       "room": "Routine Office"
     },
     "crab": {
@@ -83,6 +83,6 @@
     }
   },
   "activity_log": [
-    {"time": "14:00", "agent": "system", "msg": "ระบบพร้อมทำงาน — ทุกตัวกำลังพักผ่อน"}
+    {"time": "21:25", "agent": "turtle", "msg": "🐢 ลุงเต่า: เริ่มเช็ค PM2.5 ศาลายา... ████████░░ 67%"}
   ]
 }
