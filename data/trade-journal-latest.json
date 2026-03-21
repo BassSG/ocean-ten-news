@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-21T17:31:39.584401+00:00",
+  "generatedAt": "2026-03-21T18:46:50.646490+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -22,14 +22,14 @@
   "orders": [
     {
       "source": "TESTER",
-      "runId": "RUN-1774025598929-220",
-      "orderKey": "TESTER:RUN-1774025598929-220",
-      "createdAt": "2026-03-20T16:53:44.428Z",
+      "runId": "RUN-1774118038613-939",
+      "orderKey": "TESTER:RUN-1774118038613-939",
+      "createdAt": "2026-03-21T18:34:12.428Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4587.07,
-      "sl": 4615.0,
-      "tp1": 4550.15,
-      "tpMost": 4536.49,
+      "entry": 4503.25,
+      "sl": 4510.7,
+      "tp1": 4493.66,
+      "tpMost": 4477.54,
       "result": {
         "status": null,
         "triggered": false,
