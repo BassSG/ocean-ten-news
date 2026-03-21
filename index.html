@@ -178,11 +178,11 @@ body{font-family:'Inter','Noto Sans Thai',sans-serif;background:var(--bg);color:
 
 <nav class="site-nav">
 <div class="nav-inner">
-<button class="nav-btn active" onclick="showSection('markets')">Markets</button>
-<button class="nav-btn" onclick="showSection('macro')">Macro</button>
-<button class="nav-btn" onclick="showSection('ai')">AI &amp; Tech</button>
-<button class="nav-btn" onclick="showSection('gold')">Gold</button>
-<button class="nav-btn" onclick="showSection('subscribe')">Subscribe</button>
+<button class="nav-btn active" data-tab="markets">Markets</button>
+<button class="nav-btn" data-tab="macro">Macro</button>
+<button class="nav-btn" data-tab="ai">AI &amp; Tech</button>
+<button class="nav-btn" data-tab="gold">Gold</button>
+<button class="nav-btn" data-tab="subscribe">Subscribe</button>
 </div>
 </nav>
 
@@ -539,7 +539,16 @@ function populateSections(insights,m){
   }
 }
 
-document.addEventListener('DOMContentLoaded',init);
+document.addEventListener('DOMContentLoaded',function(){
+  init();
+  // attach nav click handlers
+  document.querySelectorAll('.nav-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var name=btn.getAttribute('data-tab');
+      if(name)showSection(name);
+    });
+  });
+});
 })();
 </script>
 </body>
