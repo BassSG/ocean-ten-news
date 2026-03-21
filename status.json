@@ -1,62 +1,88 @@
 {
-  "whale": {
-    "status": "working",
-    "task": "กำลังวิเคราะห์ Gold Futures",
-    "progress": 67,
-    "updated": "2026-03-21T17:48:00+07:00"
+  "updated": "2026-03-21T14:00:00+07:00",
+  "agents": {
+    "whale": {
+      "name": "คุณวาฬ",
+      "role": "Strategy",
+      "status": "resting",
+      "task": "พักผ่อน... 💤",
+      "progress": 0,
+      "room": "ห้องประชุม"
+    },
+    "shark": {
+      "name": "พี่ฉลาม",
+      "role": "Trading",
+      "status": "resting",
+      "task": "ว่ายน้ำพักผ่อน... 🌊",
+      "progress": 0,
+      "room": "Trading Floor"
+    },
+    "dolphin": {
+      "name": "น้องโลมา",
+      "role": "Dev Lab",
+      "status": "resting",
+      "task": "กระโดดเล่นในทะเล... 🐟",
+      "progress": 0,
+      "room": "Dev Lab"
+    },
+    "turtle": {
+      "name": "ลุงเต่า",
+      "role": "Routine",
+      "status": "resting",
+      "task": "นอนตะกอนทราย... 🏖️",
+      "progress": 0,
+      "room": "Routine Office"
+    },
+    "crab": {
+      "name": "พี่ปู",
+      "role": "Security",
+      "status": "resting",
+      "task": "แช่น้ำเย็นๆ... 🦀",
+      "progress": 0,
+      "room": "Security Room"
+    },
+    "squid": {
+      "name": "น้องหมึก",
+      "role": "Research",
+      "status": "resting",
+      "task": "ล่องลอยในมหาสมุทร... 🦑",
+      "progress": 0,
+      "room": "Research Lab"
+    },
+    "pufferfish": {
+      "name": "น้องปักเป้า",
+      "role": "QA",
+      "status": "resting",
+      "task": "พักผ่อน... 🐡",
+      "progress": 0,
+      "room": "QA Corner"
+    },
+    "octopus": {
+      "name": "พี่หมึกสาย",
+      "role": "Support",
+      "status": "resting",
+      "task": "พัก 8 มือ... 🐙",
+      "progress": 0,
+      "room": "Support Desk"
+    },
+    "seahorse": {
+      "name": "น้องม้าน้ำ",
+      "role": "Communication",
+      "status": "resting",
+      "task": "ม้าน้ำพักผ่อน... 🐎",
+      "progress": 0,
+      "room": "Communication Hub"
+    },
+    "starfish": {
+      "name": "คุณปลาดาว",
+      "role": "Browser",
+      "status": "resting",
+      "task": "เกาะหินรอ... 🌟",
+      "progress": 0,
+      "room": "Browser Station"
+    }
   },
-  "shark": {
-    "status": "thinking",
-    "task": "ประเมินตลาด US",
-    "progress": 45,
-    "updated": "2026-03-21T17:47:00+07:00"
-  },
-  "dolphin": {
-    "status": "working",
-    "task": "พัฒนา Trading Bot v3.2",
-    "progress": 82,
-    "updated": "2026-03-21T17:46:00+07:00"
-  },
-  "turtle": {
-    "status": "working",
-    "task": "จัดการเอกสารรายวัน",
-    "progress": 55,
-    "updated": "2026-03-21T17:45:00+07:00"
-  },
-  "crab": {
-    "status": "working",
-    "task": "ตรวจสอบ Firewall Rules",
-    "progress": 61,
-    "updated": "2026-03-21T17:47:30+07:00"
-  },
-  "squid": {
-    "status": "thinking",
-    "task": "วิจัยตลาด Gold รอบใหม่",
-    "progress": 38,
-    "updated": "2026-03-21T17:46:30+07:00"
-  },
-  "pufferfish": {
-    "status": "working",
-    "task": "ทดสอบ Bot v3.2.1",
-    "progress": 71,
-    "updated": "2026-03-21T17:44:00+07:00"
-  },
-  "octopus": {
-    "status": "working",
-    "task": "จัดการ Ticket #1024-1026",
-    "progress": 49,
-    "updated": "2026-03-21T17:43:00+07:00"
-  },
-  "seahorse": {
-    "status": "thinking",
-    "task": "ส่งรายงานประจำวัน",
-    "progress": 52,
-    "updated": "2026-03-21T17:42:00+07:00"
-  },
-  "starfish": {
-    "status": "working",
-    "task": "Auto-surfing ข่าว XAU/USD",
-    "progress": 89,
-    "updated": "2026-03-21T17:48:30+07:00"
-  }
+  "activity_log": [
+    {"time": "14:00", "agent": "system", "msg": "ระบบพร้อมทำงาน — ทุกตัวกำลังพักผ่อน"}
+  ]
 }

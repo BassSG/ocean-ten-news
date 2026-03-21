@@ -41,7 +41,7 @@ body{background:var(--ocean-dark);background-image:radial-gradient(ellipse at 20
 <div class="header">
 <h1>🐙 Ocean Ten Team Simulator</h1>
 <p>ภายในห้องทำงานของทีม Ocean Ten</p>
-<div class="live-indicator"><span class="live-dot"></span>LIVE · อัปเดตทุก 30 วินาที</div>
+<div class="live-indicator"><span class="live-dot"></span>LIVE · อัปเดตทุก 30 วินาที · <span id="last-updated">กำลังโหลด...</span></div>
 </div>
 <div class="grid">
 <div class="room-card" id="card-whale">
@@ -642,31 +642,50 @@ body{background:var(--ocean-dark);background-image:radial-gradient(ellipse at 20
 </style>
 
 <script>
-// Status data fallback
+// Live status data from server (will be fetched from status.json)
+let liveStatus = null;
+let lastFetch = 0;
+const FETCH_INTERVAL = 30000; // 30 seconds
+
+// Status data fallback (all resting)
 const defaultStatus = {
-  whale:      {status:"working",  task:"กำลังวิเคราะห์ Gold Futures",  progress:67, updated:new Date().toISOString()},
-  shark:      {status:"thinking", task:"ประเมินตลาด US",              progress:45, updated:new Date().toISOString()},
-  dolphin:    {status:"working",  task:"พัฒนา Trading Bot v3.2",       progress:82, updated:new Date().toISOString()},
-  turtle:     {status:"working",  task:"จัดการเอกสารรายวัน",          progress:55, updated:new Date().toISOString()},
-  crab:       {status:"working",  task:"ตรวจสอบ Firewall Rules",     progress:61, updated:new Date().toISOString()},
-  squid:      {status:"thinking", task:"วิจัยตลาด Gold รอบใหม่",     progress:38, updated:new Date().toISOString()},
-  pufferfish: {status:"working",  task:"ทดสอบ Bot v3.2.1",            progress:71, updated:new Date().toISOString()},
-  octopus:    {status:"working",  task:"จัดการ Ticket #1024-1026",    progress:49, updated:new Date().toISOString()},
-  seahorse:   {status:"thinking", task:"ส่งรายงานประจำวัน",           progress:52, updated:new Date().toISOString()},
-  starfish:   {status:"working",  task:"Auto-surfing ข่าว XAU/USD",   progress:89, updated:new Date().toISOString()},
+  whale:      {status:"resting",  task:"พักผ่อน... 💤",              progress:0, updated:new Date().toISOString()},
+  shark:      {status:"resting",  task:"ว่ายน้ำพักผ่อน... 🌊",       progress:0, updated:new Date().toISOString()},
+  dolphin:    {status:"resting",  task:"กระโดดเล่นในทะเล... 🐟",       progress:0, updated:new Date().toISOString()},
+  turtle:     {status:"resting",  task:"นอนตะกอนทราย... 🏖️",          progress:0, updated:new Date().toISOString()},
+  crab:       {status:"resting",  task:"แช่น้ำเย็นๆ... 🦀",           progress:0, updated:new Date().toISOString()},
+  squid:      {status:"resting",  task:"ล่องลอยในมหาสมุทร... 🦑",    progress:0, updated:new Date().toISOString()},
+  pufferfish: {status:"resting",  task:"พักผ่อน... 🐡",               progress:0, updated:new Date().toISOString()},
+  octopus:    {status:"resting",  task:"พัก 8 มือ... 🐙",             progress:0, updated:new Date().toISOString()},
+  seahorse:   {status:"resting",  task:"ม้าน้ำพักผ่อน... 🐎",         progress:0, updated:new Date().toISOString()},
+  starfish:   {status:"resting",  task:"เกาะหินรอ... 🌟",             progress:0, updated:new Date().toISOString()},
 };
 
 const agents = ['whale','shark','dolphin','turtle','crab','squid','pufferfish','octopus','seahorse','starfish'];
 
 // Load status from JSON
 async function loadStatus() {
+  const now = Date.now();
+  if (now - lastFetch < FETCH_INTERVAL && liveStatus) return;
+  lastFetch = now;
   try {
-    const resp = await fetch('status.json?_=' + Date.now());
+    const resp = await fetch('status.json?_=' + now);
     if (resp.ok) {
       const data = await resp.json();
-      Object.assign(defaultStatus, data);
+      if (data && data.agents) {
+        liveStatus = data.agents;
+      }
     }
-  } catch(e) { /* use defaults */ }
+  } catch(e) { /* use defaults - all resting */ }
+}
+
+// Get agent status
+function getAgentStatus(id) {
+  if (liveStatus && liveStatus[id]) {
+    return liveStatus[id];
+  }
+  return defaultStatus[id] || defaultStatus[agents.find(a => a === id)];
+}
 }
 
 // Draw mini charts in shark room
@@ -698,10 +717,10 @@ function updateClock() {
   });
 }
 
-// Render agents
+// Render agents from live status
 function render() {
   agents.forEach(id => {
-    const data = defaultStatus[id];
+    const data = getAgentStatus(id);
     if (!data) return;
     const room = document.getElementById(id+'-room');
     const taskEl = document.getElementById('task-'+id);
@@ -775,10 +794,25 @@ async function init() {
   render();
   drawCharts();
   updateClock();
+  
+  // Update clock every second
   setInterval(updateClock, 1000);
-  setInterval(render, 30000);
+  
+  // Re-fetch status every 30 seconds
+  setInterval(async () => {
+    await loadStatus();
+    render();
+  }, 30000);
+  
+  // Character animations
   setTimeout(puffCycle, 2000);
   setTimeout(animateCursor, 1000);
+  
+  // Show last updated time
+  const updated = document.getElementById('last-updated');
+  if (updated) {
+    updated.textContent = 'อัปเดตล่าสุด: ' + new Date().toLocaleTimeString('th-TH');
+  }
 }
 
 init();
