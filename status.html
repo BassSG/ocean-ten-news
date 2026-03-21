@@ -704,7 +704,7 @@ body{background:var(--ocean-dark);background-image:radial-gradient(ellipse at 20
 </style>
 
 <script>
-// Live status data from server (will be fetched from status.json)
+// Live status data from server (will be fetched from status_v2.json)
 let liveStatus = null;
 let lastFetch = 0;
 const FETCH_INTERVAL = 30000; // 30 seconds
@@ -731,7 +731,7 @@ async function loadStatus() {
   if (now - lastFetch < FETCH_INTERVAL && liveStatus) return;
   lastFetch = now;
   try {
-    const resp = await fetch('status.json?_=' + now);
+    const resp = await fetch('status_v2.json?_=' + now);
     if (resp.ok) {
       const data = await resp.json();
       if (data && data.agents) {
