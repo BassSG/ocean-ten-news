@@ -14,6 +14,61 @@ body{background:var(--ocean-dark);background-image:radial-gradient(ellipse at 20
 .header p{color:var(--text-dim);font-size:0.85rem;letter-spacing:1px}
 .live-indicator{display:inline-flex;align-items:center;gap:6px;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);padding:4px 14px;border-radius:20px;margin-top:10px;font-size:0.75rem;color:var(--neon-blue)}
 .live-dot{width:7px;height:7px;background:var(--neon-green);border-radius:50%;animation:pulse 1.5s ease-in-out infinite;box-shadow:0 0 8px var(--neon-green)}
+
+/* NOW WORKING STRIP */
+.now-working-header{
+  background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(255,107,157,0.05));
+  border:1px solid rgba(0,212,255,0.2);
+  border-radius:12px;
+  padding:12px 16px;
+  margin-bottom:20px;
+  max-width:1600px;
+  margin-left:auto;
+  margin-right:auto;
+  animation:slideDown .3s ease-out
+}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.now-working-title{
+  font-size:.75rem;
+  font-weight:700;
+  color:var(--neon-blue);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  margin-bottom:10px;
+}
+.now-working-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.now-working-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  padding:6px 14px;
+  font-size:.78rem;
+  animation:popIn .3s ease-out
+}
+@keyframes popIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.now-working-item.working{border-color:rgba(0,255,136,.3);color:var(--neon-green)}
+.now-working-item.thinking{border-color:rgba(255,215,0,.3);color:var(--gold)}
+.now-working-item .agent-icon{font-size:1rem}
+.now-working-item .agent-task{color:var(--text-dim)}
+
+/* Active room highlight */
+.room-card.active-room{
+  border:2px solid var(--neon-green);
+  box-shadow:0 0 20px rgba(0,255,136,.15),0 0 40px rgba(0,255,136,.05);
+  animation:roomGlow 2s ease-in-out infinite alternate
+}
+.room-card.thinking-room{
+  border:2px solid var(--gold);
+  box-shadow:0 0 20px rgba(255,215,0,.15),0 0 40px rgba(255,215,0,.05);
+}
+@keyframes roomGlow{from{box-shadow:0 0 15px rgba(0,255,136,.1)}to{box-shadow:0 0 25px rgba(0,255,136,.2)}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:20px;max-width:1600px;margin:0 auto;position:relative;z-index:1}
 .room-card{border-radius:12px;overflow:hidden;transition:all 0.3s ease}
@@ -43,6 +98,13 @@ body{background:var(--ocean-dark);background-image:radial-gradient(ellipse at 20
 <p>ภายในห้องทำงานของทีม Ocean Ten</p>
 <div class="live-indicator"><span class="live-dot"></span>LIVE · อัปเดตทุก 30 วินาที · <span id="last-updated">กำลังโหลด...</span></div>
 </div>
+
+<!-- NOW WORKING - Only show active agents -->
+<div class="now-working-header" id="now-working-header" style="display:none">
+  <div class="now-working-title">⚡ กำลังทำงานตอนนี้</div>
+  <div class="now-working-list" id="now-working-list"></div>
+</div>
+
 <div class="grid">
 <div class="room-card" id="card-whale">
 <div class="room working" id="whale-room">
@@ -719,10 +781,14 @@ function updateClock() {
 
 // Render agents from live status
 function render() {
+  // Build NOW WORKING list
+  const workingList = [];
+  
   agents.forEach(id => {
     const data = getAgentStatus(id);
     if (!data) return;
     const room = document.getElementById(id+'-room');
+    const card = document.getElementById('card-'+id);
     const taskEl = document.getElementById('task-'+id);
     const badgeEl = document.getElementById('badge-'+id);
     const progressEl = document.getElementById('progress-'+id);
@@ -731,6 +797,16 @@ function render() {
 
     // Room status class
     room.className = 'room ' + data.status;
+
+    // Active room highlight
+    if (card) {
+      card.classList.remove('active-room', 'thinking-room');
+      if (data.status === 'working') {
+        card.classList.add('active-room');
+      } else if (data.status === 'thinking') {
+        card.classList.add('thinking-room');
+      }
+    }
 
     // Task text
     if (taskEl) taskEl.textContent = data.task;
@@ -757,8 +833,54 @@ function render() {
         timeEl.textContent = d.toLocaleTimeString('th-TH', {hour:'2-digit',minute:'2-digit'});
       } catch(e) { timeEl.textContent = '--:--'; }
     }
+    
+    // Add to working list if active
+    if (data.status === 'working' || data.status === 'thinking') {
+      const emoji = {'working':'🟢','thinking':'🟡'}[data.status] || '🟡';
+      const icon = agentsData[id]?.emoji || '🐋';
+      workingList.push({
+        id,
+        emoji,
+        icon,
+        name: agentsData[id]?.name || id,
+        task: data.task,
+        status: data.status
+      });
+    }
   });
+  
+  // Render NOW WORKING strip
+  const header = document.getElementById('now-working-header');
+  const list = document.getElementById('now-working-list');
+  if (header && list) {
+    if (workingList.length > 0) {
+      header.style.display = 'block';
+      list.innerHTML = workingList.map(w => 
+        `<div class="now-working-item ${w.status}">
+          <span class="agent-icon">${w.icon}</span>
+          <span>${w.name}</span>
+          <span class="agent-task">— ${w.task}</span>
+        </div>`
+      ).join('');
+    } else {
+      header.style.display = 'none';
+    }
+  }
 }
+
+// Agent meta data
+const agentsData = {
+  whale:      {name:'คุณวาฬ', emoji:'🐋'},
+  shark:      {name:'พี่ฉลาม', emoji:'🦈'},
+  dolphin:    {name:'น้องโลมา', emoji:'🐬'},
+  turtle:     {name:'ลุงเต่า', emoji:'🐢'},
+  crab:       {name:'พี่ปู', emoji:'🦀'},
+  squid:      {name:'น้องหมึก', emoji:'🦑'},
+  pufferfish: {name:'น้องปักเป้า', emoji:'🐡'},
+  octopus:    {name:'พี่หมึกสาย', emoji:'🐙'},
+  seahorse:   {name:'น้องม้าน้ำ', emoji:'🐎'},
+  starfish:   {name:'คุณปลาดาว', emoji:'🌟'},
+};
 
 // Pufferfish puff animation
 let puffState = false;
