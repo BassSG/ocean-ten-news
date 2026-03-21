@@ -270,7 +270,7 @@ async function init(){
   });
 
   renderTicker(market);
-  renderMarkets(market);
+  renderMarkets(market,insights);
   renderSidebar(market,insights);
   populateSections(insights,market);
 }
@@ -305,7 +305,7 @@ function renderTicker(m){
 }
 
 // MARKETS
-function renderMarkets(m){
+function renderMarkets(m,insights){
   if(!m){getEl('col-markets').innerHTML='<div class="loading">No market data available</div>';return;}
   var g=m.gold||{};
   var us=m.us_market||{};
@@ -331,18 +331,33 @@ function renderMarkets(m){
   var weeklyLow=g.weekly_low?('$'+g.weekly_low.toLocaleString()):'';
   var weeklyRange=weeklyHigh&&weeklyLow?'Weekly Range: '+weeklyLow+' — '+weeklyHigh:'';
 
+  // Build risks from macro insights when available
   var risksRaw=(s.key_risks||'').split('\n');
   var risks=[];
-  for(var k=0;k<risksRaw.length;k++){
-    var txt=risksRaw[k].replace(/^\d+\.\s*/,'').trim();
-    if(txt)risks.push({label:'Risk',val:txt.substring(0,55)+(txt.length>55?'...':'')});
+  if(insights&&Array.isArray(insights)){
+    var macroInsights=insights.filter(function(i){return i.category==='macro'||i.category==='trend'});
+    for(var mi=0;mi<macroInsights.length;mi++){
+      var miData=macroInsights[mi];
+      risks.push({
+        label:miData.headline||'Macro Risk',
+        val:(miData.what||'')+' '+(miData.so_what||''),
+        level:'high'
+      });
+    }
+  }
+  // fallback: from text
+  if(risks.length===0){
+    for(var k=0;k<risksRaw.length;k++){
+      var txt=risksRaw[k].replace(/^\d+\.\s*/,'').trim();
+      if(txt)risks.push({label:'Risk',val:txt.substring(0,55)+(txt.length>55?'...':'')});
+    }
   }
   if(risks.length===0){
     risks=[
-      {label:'Risk',val:'Stagflation from oil spike'},
-      {label:'Risk',val:'Fed stays hawkish longer'},
-      {label:'Risk',val:'Geopolitical escalation'},
-      {label:'Risk',val:'DXY breaks above 102'}
+      {label:'Stagflation Risk: ราคาน้ำมันพุ่ง $112+ กดเงินเฟ้อ',val:'ต้นทุนพลังงานที่สูงขึ้นสร้างความกังวลว่าเงินเฟ้อจะกลับมาพุ่งสูงอีกครั้ง กดดันให้ Fed ต้องคงดอกเบี้ยสูงต่อไป ซึ่งจะกระทบทั้งตลาดหุ้นและสินทรัพย์เสี่ยงทั่วโลก',level:'high'},
+      {label:'Fed Hawkish ยาวนานกว่าคาด',val:'Fed Dot Plot แสดง 7/19 เจ้าหน้าที่ไม่ต้องการตัดดอกเบี้ยในปี 2026 Powell มีท่าที Hawkish ระมัดระวังเรื่องเงินเฟ้อ หมายความว่า Dollar จะยังแข็งต่อเนื่อง กดทองคำและหุ้นเติบโต',level:'high'},
+      {label:'Israel-Iran: ช่องแคบฮอร์มุซเสี่ยงถูกปิด',val:'การโจมตีโครงสร้างพื้นฐานน้ำมันในอ่าวเปอร์เซียและการขู่ปิดช่องแคบฮอร์มุซ อาจกระทบ Supply น้ำมันโลก 20% ส่งผลให้ราคาน้ำมันพุ่งต่อเนื่องและเพิ่มแรงกดเงินเฟ้อทั่วโลก',level:'high'},
+      {label:'DXY ทะลุ 102: Dollar แข็งกดทอง',val:'Dollar Index กลับขึ้นเหนือ 100 และอาจทะลุ 102 ได้ถ้า Fed ยังคง Hawkish ทำให้ทองคำ (ซึ่งเป็นสกุลเงินที่ไม่มีผลตอบแทน) ดูน่าหลีกเลี่ยงมากขึ้นสำหรับนักลงทุน',level:'medium'}
     ];
   }
 
@@ -384,14 +399,21 @@ function renderMarkets(m){
   }
   html+='</table></div>';
 
-  // Key risks
+  // Key risks — expanded with news context
   if(risks.length){
-    html+='<div class="divider"><div class="divider-line"></div><div class="divider-text">Key Risks</div><div class="divider-line"></div></div>';
-    html+='<div class="impact-grid">';
+    html+='<div class="divider"><div class="divider-line"></div><div class="divider-text">Key Risks &amp; News Context</div><div class="divider-line"></div></div>';
     for(var r=0;r<risks.length;r++){
-      html+='<div class="impact-cell"><div class="impact-cell-lbl">'+risks[r].label+' '+(r+1)+'</div><div class="impact-cell-val r">'+escHtml(risks[r].val)+'</div></div>';
+      var risk=risks[r];
+      var riskColor=risk.level==='high'?'var(--red)':risk.level==='medium'?'#e3b341':'var(--green)';
+      var riskBg=risk.level==='high'?'var(--red-pale)':risk.level==='medium'?'rgba(227,179,65,.08)':'var(--green-pale)';
+      html+='<div class="risk-card" style="background:'+riskBg+';border:1px solid '+riskColor+';border-radius:6px;padding:16px;margin-bottom:12px">';
+      html+='<div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px">';
+      html+='<div style="width:8px;height:8px;border-radius:50%;background:'+riskColor+';flex-shrink:0;margin-top:5px"></div>';
+      html+='<div style="font-size:13px;font-weight:700;color:var(--white);line-height:1.4">'+escHtml(risk.label)+'</div>';
+      html+='</div>';
+      html+='<div style="font-size:13px;color:var(--text);line-height:1.7">'+escHtml(risk.val)+'</div>';
+      html+='</div>';
     }
-    html+='</div>';
   }
 
   // Economic data
