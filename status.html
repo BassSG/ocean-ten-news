@@ -1,795 +1,484 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏢 Ocean Ten — Live Simulator</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Prompt:wght@600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-card: #1c2128;
-            --gold: #f0b90b;
-            --gold-dim: #a8880a;
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --green: #3fb950;
-            --yellow: #d29922;
-            --red: #f85149;
-            --gray: #6e7681;
-            --blue-deep: #1a3a5c;
-            --blue-steel: #3d5a80;
-            --blue-ocean: #0ea5e9;
-            --green-sea: #22c55e;
-            --orange-red: #f97316;
-            --purple: #a855f7;
-            --pink: #ec4899;
-            --cyan: #06b6d4;
-            --teal: #14b8a6;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Animated background grid */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                linear-gradient(rgba(240,185,11,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(240,185,11,0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Header */
-        .sim-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 24px;
-            background: var(--bg-card);
-            border: 1px solid rgba(240,185,11,0.15);
-            border-radius: 16px;
-            margin-bottom: 24px;
-        }
-
-        .sim-header h1 {
-            font-family: 'Prompt', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--gold) 0%, #ffd700 50%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .sim-time {
-            font-family: 'Prompt', sans-serif;
-            font-size: 1rem;
-            color: var(--text-secondary);
-        }
-
-        .sim-time span { color: var(--gold); font-weight: 600; }
-
-        /* Section Labels */
-        .section-label {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--border), transparent);
-        }
-
-        /* ===== ROOM CARDS ===== */
-        .rooms-container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .room {
-            background: var(--bg-card);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px;
-            padding: 16px;
-            position: relative;
-            overflow: hidden;
-            min-height: 240px;
-        }
-
-        .room::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: var(--room-color);
-            opacity: 0.8;
-        }
-
-        .room::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 60px;
-            background: linear-gradient(to top, var(--room-color), transparent);
-            opacity: 0.08;
-            pointer-events: none;
-        }
-
-        .room-header {
-            font-family: 'Prompt', sans-serif;
-            font-weight: 700;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--room-color);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .room-name {
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            margin-top: 2px;
-        }
-
-        /* Room Scene - where character lives */
-        .room-scene {
-            width: 100%;
-            height: 90px;
-            background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.02) 100%);
-            border-radius: 8px;
-            margin: 8px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Character base */
-        .character {
-            position: absolute;
-            font-size: 2.2rem;
-            transition: left 2s ease-in-out;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
-        }
-
-        /* Ground/floor line */
-        .room-scene::after {
-            content: '';
-            position: absolute;
-            bottom: 12px;
-            left: 10%;
-            right: 10%;
-            height: 2px;
-            background: rgba(255,255,255,0.06);
-            border-radius: 1px;
-        }
-
-        /* Task text */
-        .room-task {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-align: center;
-            margin: 8px 0;
-            min-height: 18px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* Progress bar */
-        .room-progress {
-            margin-top: 6px;
-        }
-
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            margin-bottom: 4px;
-        }
-
-        .progress-bar {
-            height: 4px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            border-radius: 2px;
-            transition: width 0.5s ease, background 0.3s ease;
-        }
-
-        /* Status indicator */
-        .room-status {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            margin-top: 8px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .status-dot.working { background: var(--green); box-shadow: 0 0 8px var(--green); }
-        .status-dot.thinking { background: var(--yellow); box-shadow: 0 0 8px var(--yellow); }
-        .status-dot.resting { background: var(--red); box-shadow: 0 0 8px var(--red); }
-
-        .status-label {
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .status-label.working { color: var(--green); }
-        .status-label.thinking { color: var(--yellow); }
-        .status-label.resting { color: var(--red); }
-
-        /* ===== CHARACTER ANIMATIONS ===== */
-
-        /* Whale - floats up/down slowly */
-        .char-whale {
-            animation: whaleFloat 4s ease-in-out infinite;
-        }
-        @keyframes whaleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* Shark - swims left/right */
-        .char-shark {
-            animation: sharkSwim 3s ease-in-out infinite;
-        }
-        @keyframes sharkSwim {
-            0%, 100% { transform: translateX(0) scaleX(1); }
-            25% { transform: translateX(20px) scaleX(1); }
-            50% { transform: translateX(0) scaleX(-1); }
-            75% { transform: translateX(-20px) scaleX(-1); }
-        }
-
-        /* Dolphin - jumps/bounces */
-        .char-dolphin {
-            animation: dolphinJump 2.5s ease-in-out infinite;
-        }
-        @keyframes dolphinJump {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            30% { transform: translateY(-25px) rotate(-10deg); }
-            50% { transform: translateY(-30px) rotate(0deg); }
-            70% { transform: translateY(-25px) rotate(10deg); }
-        }
-
-        /* Turtle - walks slowly */
-        .char-turtle {
-            animation: turtleWalk 6s linear infinite;
-        }
-        @keyframes turtleWalk {
-            0% { transform: translateX(-15px); }
-            50% { transform: translateX(15px); }
-            100% { transform: translateX(-15px); }
-        }
-
-        /* Crab - scuttles sideways */
-        .char-crab {
-            animation: crabScuttle 2s ease-in-out infinite;
-        }
-        @keyframes crabScuttle {
-            0%, 100% { transform: translateX(0) scaleX(1); }
-            50% { transform: translateX(15px) scaleX(-1); }
-        }
-
-        /* Squid - sways/squishes */
-        .char-squid {
-            animation: squidSway 3s ease-in-out infinite;
-        }
-        @keyframes squidSway {
-            0%, 100% { transform: scaleX(1) scaleY(1); }
-            50% { transform: scaleX(1.1) scaleY(0.9); }
-        }
-
-        /* Pufferfish - inflates */
-        .char-pufferfish {
-            animation: pufferInflate 4s ease-in-out infinite;
-        }
-        @keyframes pufferInflate {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        /* Octopus - reaches/taps */
-        .char-octopus {
-            animation: octopusReach 2s ease-in-out infinite;
-        }
-        @keyframes octopusReach {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(5deg); }
-        }
-
-        /* Seahorse - trots */
-        .char-seahorse {
-            animation: seahorseTrot 3s ease-in-out infinite;
-        }
-        @keyframes seahorseTrot {
-            0%, 100% { transform: translateY(0) rotate(-3deg); }
-            50% { transform: translateY(-10px) rotate(3deg); }
-        }
-
-        /* Starfish - pulses/glows */
-        .char-starfish {
-            animation: starfishPulse 2s ease-in-out infinite;
-        }
-        @keyframes starfishPulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(240,185,11,0.3)); }
-            50% { transform: scale(1.1); filter: drop-shadow(0 0 12px rgba(240,185,11,0.6)); }
-        }
-
-        /* Pulse animation */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.2); }
-        }
-
-        /* ===== STANDBY ROOMS (smaller) ===== */
-        .standby-container {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .standby-room {
-            background: var(--bg-secondary);
-            border: 1px solid rgba(255,255,255,0.04);
-            border-radius: 12px;
-            padding: 12px;
-            position: relative;
-            overflow: hidden;
-            min-height: 130px;
-        }
-
-        .standby-room::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: var(--room-color);
-            opacity: 0.5;
-        }
-
-        .standby-header {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--room-color);
-            text-align: center;
-            margin-bottom: 6px;
-        }
-
-        .standby-scene {
-            width: 100%;
-            height: 55px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .standby-character {
-            font-size: 1.6rem;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .standby-status {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            margin-top: 6px;
-        }
-
-        .standby-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--gray);
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        .standby-label {
-            font-size: 0.6rem;
-            color: var(--text-secondary);
-        }
-
-        /* Float animation for standby */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        /* ===== ACTIVITY FEED ===== */
-        .feed-section {
-            background: var(--bg-card);
-            border: 1px solid rgba(240,185,11,0.1);
-            border-radius: 16px;
-            padding: 20px;
-        }
-
-        .feed-header {
-            font-family: 'Prompt', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--gold);
-        }
-
-        .feed-list {
-            max-height: 180px;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: var(--gold) var(--bg-primary);
-        }
-
-        .feed-list::-webkit-scrollbar { width: 4px; }
-        .feed-list::-webkit-scrollbar-track { background: var(--bg-primary); border-radius: 2px; }
-        .feed-list::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
-
-        .feed-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            animation: slideIn 0.3s ease;
-        }
-
-        .feed-item:last-child { border-bottom: none; }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-10px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .feed-time {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            min-width: 45px;
-        }
-
-        .feed-emoji { font-size: 1rem; }
-
-        .feed-text {
-            flex: 1;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-
-        .feed-text strong {
-            color: var(--gold);
-            font-weight: 600;
-        }
-
-        .feed-progress {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            min-width: 40px;
-            text-align: right;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-        }
-
-        .footer span { color: var(--gold); }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .rooms-container { grid-template-columns: repeat(3, 1fr); }
-            .standby-container { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (max-width: 768px) {
-            .rooms-container { grid-template-columns: repeat(2, 1fr); }
-            .standby-container { grid-template-columns: repeat(2, 1fr); }
-            .sim-header { flex-direction: column; gap: 10px; text-align: center; }
-        }
-
-        @media (max-width: 480px) {
-            .rooms-container { grid-template-columns: 1fr; }
-            .standby-container { grid-template-columns: repeat(2, 1fr); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐙 Ocean Ten Team Simulator</title>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap");
+:root{--ocean-dark:#0a1628;--neon-blue:#00d4ff;--neon-green:#00ff88;--neon-pink:#ff6b9d;--gold:#ffd700;--text:#e0e8f0;--text-dim:#7a8a9a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ocean-dark);background-image:radial-gradient(ellipse at 20% 80%,rgba(0,212,255,0.05) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(255,107,157,0.05) 0%,transparent 50%),linear-gradient(180deg,#0a1628 0%,#0d1f3c 50%,#0a1628 100%);font-family:"Noto Sans Thai",sans-serif;color:var(--text);min-height:100vh;padding:20px;overflow-x:hidden}
+.header{text-align:center;margin-bottom:30px;position:relative;z-index:1}
+.header h1{font-size:2rem;font-weight:700;background:linear-gradient(135deg,var(--neon-blue),var(--neon-pink),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;margin-bottom:5px}
+.header p{color:var(--text-dim);font-size:0.85rem;letter-spacing:1px}
+.live-indicator{display:inline-flex;align-items:center;gap:6px;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);padding:4px 14px;border-radius:20px;margin-top:10px;font-size:0.75rem;color:var(--neon-blue)}
+.live-dot{width:7px;height:7px;background:var(--neon-green);border-radius:50%;animation:pulse 1.5s ease-in-out infinite;box-shadow:0 0 8px var(--neon-green)}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:20px;max-width:1600px;margin:0 auto;position:relative;z-index:1}
+.room-card{border-radius:12px;overflow:hidden;transition:all 0.3s ease}
+.room-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+.room{position:relative;height:220px;overflow:hidden;border-radius:12px 12px 0 0}
+.room::after{content:"";position:absolute;inset:0;border-radius:12px 12px 0 0;transition:box-shadow 0.5s ease;pointer-events:none;z-index:20}
+.room.working::after{box-shadow:inset 0 0 30px rgba(0,255,136,0.15),inset 0 0 60px rgba(0,255,136,0.05)}
+.room.thinking::after{box-shadow:inset 0 0 30px rgba(255,215,0,0.15),inset 0 0 60px rgba(255,215,0,0.05)}
+.room.resting::after{box-shadow:inset 0 0 40px rgba(0,0,0,0.6);background:rgba(0,0,0,0.3)}
+.room-info{background:rgba(12,24,48,0.95);border:1px solid rgba(255,255,255,0.08);border-top:none;border-radius:0 0 12px 12px;padding:14px 16px}
+.room-info .agent-name{font-size:1rem;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.room-info .agent-task{font-size:0.78rem;color:var(--text-dim);margin-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.room-info .agent-meta{display:flex;justify-content:space-between;align-items:center}
+.status-badge{display:inline-flex;align-items:center;gap:5px;font-size:0.7rem;padding:3px 10px;border-radius:12px;font-weight:500}
+.status-badge.working{background:rgba(0,255,136,0.15);color:var(--neon-green);border:1px solid rgba(0,255,136,0.3)}
+.status-badge.thinking{background:rgba(255,215,0,0.15);color:var(--gold);border:1px solid rgba(255,215,0,0.3)}
+.status-badge.resting{background:rgba(255,255,255,0.05);color:var(--text-dim);border:1px solid rgba(255,255,255,0.1)}
+.progress-bar-container{width:100%;height:5px;background:rgba(255,255,255,0.08);border-radius:3px;margin-top:10px;overflow:hidden}
+.progress-bar{height:100%;border-radius:3px;transition:width 0.8s ease,background 0.5s ease}
+.p0{background:var(--text-dim)}.p1{background:#ff6b6b}.p2{background:#ffa500}.p3{background:var(--gold)}.p4{background:#7dff7d}.p5{background:var(--neon-green)}
+.updated-time{font-size:0.65rem;color:var(--text-dim);opacity:0.6}
+</style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="sim-header">
-            <h1>🏢 Ocean Ten — Live Simulator</h1>
-            <div class="sim-time">🕒 <span id="clock">--:--</span> · <span id="date">--</span></div>
-        </div>
+<div class="header">
+<h1>🐙 Ocean Ten Team Simulator</h1>
+<p>ภายในห้องทำงานของทีม Ocean Ten</p>
+<div class="live-indicator"><span class="live-dot"></span>LIVE · อัปเดตทุก 30 วินาที</div>
+</div>
+<div class="grid">
+<div class="room-card" id="card-whale">
+<div class="room working" id="whale-room">
+<div class="window-backdrop"><div class="window-moon"></div>
+<div class="city-skyline">
+<div class="city-b" style="height:15px;width:8px"></div><div class="city-b" style="height:25px;width:6px"></div>
+<div class="city-b" style="height:20px;width:10px"></div><div class="city-b" style="height:30px;width:5px"></div>
+<div class="city-b" style="height:18px;width:8px"></div><div class="city-b" style="height:28px;width:7px"></div>
+<div class="city-b" style="height:22px;width:9px"></div><div class="city-b" style="height:16px;width:6px"></div>
+<div class="city-b" style="height:24px;width:8px"></div><div class="city-b" style="height:20px;width:7px"></div>
+<div class="city-b" style="height:14px;width:10px"></div><div class="city-b" style="height:26px;width:5px"></div>
+</div></div>
+<div class="meeting-table"></div>
+<div class="chair c1"></div><div class="chair c2"></div><div class="chair c3"></div><div class="chair c4"></div>
+<div class="whiteboard"><div class="whiteboard-text">XAU/USD $4,500<small>Gold Futures</small></div></div>
+<div class="globe-deco"></div>
+<div class="plant-deco"><div class="plant-leaves"></div><div class="plant-pot"></div></div>
+<div class="whale-char"><div class="thought-bubble">กำลังวิเคราะห์...</div>
+<div class="whale-body"><div class="whale-belly"></div><div class="whale-eye"></div><div class="whale-mouth"></div><div class="whale-tail"></div><div class="whale-fin"></div></div>
+</div>
+</div>
+<div class="room-info"><div class="agent-name">🐋 คุณวาฬ <span style="font-size:0.75rem;color:var(--neon-blue)">Strategy</span></div>
+<div class="agent-task" id="task-whale">กำลังวิเคราะห์ Gold Futures</div>
+<div class="agent-meta"><span class="status-badge working" id="badge-whale">🟢 ทำงาน</span><span class="updated-time" id="time-whale">--:--</span></div>
+<div class="progress-bar-container"><div class="progress-bar p4" id="progress-whale" style="width:67%"></div></div>
+</div></div>
+<div class="room-card" id="card-shark">
+<div class="room thinking" id="shark-room">
+<div class="led-strip"></div>
+<div class="floor-carpet"></div>
+<div class="monitor-wall">
+<div class="wall-monitor"><span class="ticker up">XAU +0.45%</span><div class="mini-chart" id="chart1"></div></div>
+<div class="wall-monitor"><span class="ticker down">BTC -1.2%</span><div class="mini-chart" id="chart2"></div></div>
+<div class="wall-monitor"><span class="ticker up">EUR +0.3%</span><div class="mini-chart" id="chart3"></div></div>
+</div>
+<div class="trading-desk">
+<div class="desk-monitors">
+<div class="desk-monitor"><div class="monitor-stand"></div><div class="monitor-base"></div></div>
+<div class="desk-monitor"><div class="monitor-stand"></div><div class="monitor-base"></div></div>
+<div class="desk-monitor"><div class="monitor-stand"></div><div class="monitor-base"></div></div>
+</div>
+<div class="headphones"></div>
+</div>
+<div class="coffee-cup"><div class="coffee-steam"><span></span><span></span><span></span></div></div>
+<div class="shark-char">
+<div class="shark-body"><div class="shark-belly2"></div><div class="shark-eye2"></div><div class="shark-nose"></div><div class="shark-fin-top"></div><div class="shark-fin-side"></div><div class="shark-tail2"></div></div>
+</div>
+</div>
+<div class="room-info"><div class="agent-name">🦈 พี่ฉลาม <span style="font-size:0.75rem;color:var(--neon-pink)">Trading</span></div>
+<div class="agent-task" id="task-shark">ประเมินตลาด US</div>
+<div class="agent-meta"><span class="status-badge thinking" id="badge-shark">🟡 คิดวิเคราะห์</span><span class="updated-time" id="time-shark">--:--</span></div>
+<div class="progress-bar-container"><div class="progress-bar p3" id="progress-shark" style="width:45%"></div></div>
+</div></div>
+<div class="room-card" id="card-dolphin">
+<div class="room working" id="dolphin-room">
+<div class="neon-strip-dev"></div>
+<div class="dev-bookshelf">
+<div class="shelf-row"><div class="book green"></div><div class="book blue"></div><div class="book red"></div><div class="book orange"></div></div>
+<div class="shelf-row"><div class="book purple"></div><div class="book green"></div><div class="book blue"></div></div>
+<div class="shelf-row"><div class="book orange"></div><div class="book red"></div><div class="book purple"></div><div class="book green"></div></div>
+<div class="shelf-plant"></div>
+</div>
+<div class="dev-desk">
+<div class="dev-main-monitor">
+<div class="code-lines"><div class="code-line"><span class="code-kw">const</span> <span class="code-var">signal</span> = <span class="code-kw">await</span> <span class="code-fn">analyze</span>(<span class="code-str">"XAU/USD"</span>);</div>
+<div class="code-line"><span class="code-kw">if</span> (<span class="code-var">signal</span>.<span class="code-var">confidence</span> &gt; <span class="code-num">0.8</span>) {</div>
+<div class="code-line"><span class="code-fn">execute</span>(<span class="code-var">signal</span>);</div>
+<div class="code-line">}</div>
+<div class="code-line"><span class="code-cm">// Bot v3.2.1</span></div>
+<div class="code-line"><span class="code-kw">import</span> { <span class="code-var">Ocean</span> } <span class="code-kw">from</span> <span class="code-str">'@ocean'</span>;</div>
+</div>
+</div>
+<div class="laptop"></div>
+<div class="keyboard"></div>
+<div class="coffee-mug"></div>
+</div>
+<div class="dolphin-char">
+<div class="dolphin-body"><div class="dolphin-belly"></div><div class="dolphin-eye"></div><div class="dolphin-snout"></div><div class="dolphin-fin-top"></div><div class="dolphin-fin-side"></div><div class="dolphin-tail"></div></div>
+</div>
+</div>
+<div class="room-info"><div class="agent-name">🐬 โลมา <span style="font-size:0.75rem;color:#00d4ff">Dev Lab</span></div>
+<div class="agent-task" id="task-dolphin">พัฒนา Trading Bot v3.2</div>
+<div class="agent-meta"><span class="status-badge working" id="badge-dolphin">🟢 เขียนโค้ด</span><span class="updated-time" id="time-dolphin">--:--</span></div>
+<div class="progress-bar-container"><div class="progress-bar p5" id="progress-dolphin" style="width:82%"></div></div>
+</div></div>
+<div class="room-card" id="card-turtle">
+<div class="room working" id="turtle-room">
+<div class="office-window"><div class="window-sun"></div><div class="window-cloud"></div></div>
+<div class="office-clock"><div class="clock-hand hour"></div><div class="clock-hand minute"></div></div>
+<div class="calendar"><div class="calendar-header"></div><div class="calendar-day" id="cal-day">21</div></div>
+<div class="office-desk">
+<div class="office-monitor"><div class="monitor-screen"></div></div>
+<div class="paper-stack"></div>
+</div>
+<div class="office-fan"><div class="fan-blade"></div></div>
+<div class="filing-cabinet"><div class="cabinet-drawer"></div><div class="cabinet-drawer"></div><div class="cabinet-drawer"></div></div>
+<div class="turtle-char">
+<div class="turtle-body"><div class="turtle-shell"></div><div class="turtle-head"></div><div class="turtle-eye"></div><div class="turtle-legs"></div></div>
+</div>
+</div>
+<div class="room-info"><div class="agent-name">🐢 เต่า <span style="font-size:0.75rem;color:#5a8a3a">Routine</span></div>
+<div class="agent-task" id="task-turtle">จัดการเอกสารรายวัน</div>
+<div class="agent-meta"><span class="status-badge working" id="badge-turtle">🟢 ทำงานประจำ</span><span class="updated-time" id="time-turtle">--:--</span></div>
+<div class="progress-bar-container"><div class="progress-bar p2" id="progress-turtle" style="width:55%"></div></div>
+</div></div>
+<div class="room-card" id="card-crab">
+<div class="room working" id="crab-room">
+<div class="server-floor"></div>
+<div class="server-racks">
+<div class="server-rack"><div class="rack-light l1"></div><div class="rack-light l2"></div><div class="rack-light l3"></div><div class="rack-bar"></div></div>
+<div class="server-rack"><div class="rack-light l2"></div><div class="rack-light l1"></div><div class="rack-light l2"></div><div class="rack-bar"></div></div>
+<div class="server-rack"><div class="rack-light l3"></div><div class="rack-light l2"></div><div class="rack-light l1"></div><div class="rack-bar"></div></div>
+</div>
+<div class="security-monitors">
+<div class="sec-monitor"><div class="terminal-line">root@ocean:~# <span class="blink">_</span></div></div>
+<div class="sec-monitor"><div class="sec-dashboard"><div class="dash-item ok">Firewall ✓</div><div class="dash-item ok">Backup ✓</div><div class="dash-item warn">VPN ⚠</div></div></div>
+<div class="sec-monitor"><div class="backup-bar"><div class="backup-fill" style="width:73%"></div></div></div>
+</div>
+<div class="firewall-box"><div class="fw-light"></div><span>FW</span></div>
+<div class="warning-light"></div>
+<div class="locked-cabinet"></div>
+<div class="crab-char">
+<div class="crab-body"><div class="crab-eye left"></div><div class="crab-eye right"></div><div class="crab-claw left"></div><div class="crab-claw right"></div><div class="crab-legs"></div></div>
+</div>
+</div>
+<div class="room-info"><div class="agent-name">🦀 ปู <span style="font-size:0.75rem;color:#ff6b6b">Security</span></div>
+<div class="agent-task" id="task-crab">ตรวจสอบ Firewall Rules</div>
+<div class="agent-meta"><span class="status-badge working" id="badge-crab">🟢 กำลังเฝ้าระวัง</span><span class="updated-time" id="time-crab">--:--</span></div>
+<div class="progress-bar-container"><div class="progress-bar p4" id="progress-crab" style="width:61%"></div></div>
+</div></div>
+<div class="room-card" id="card-squid">
+<div class="room thinking" id="squid-room">
+<div class="lab-floor"></div>
+<div class="lab-bench">
+<div class="microscope"></div>
+<div class="test-tubes"><div class="tube t1"></div><div class="tube t2"></div><div class="tube t3"></div></div>
+<div class="research-papers"><div class="paper"></div><div class="paper"></div><div class="paper"></div></div>
+<div class="magnifying-glass"></div>
+</div>
+<div class="lab-bookshelf">
+<div class="lab-book b1"></div><div class="lab-book b2"></div><div class="lab-book b3"></div>
+</div>
+<div class="cork-board">
+<div class="pin p1"></div><div class="pin p2"></div><div class="pin p3"></div>
+<div class="cork-note n1"></div><div class="cork-note n2"></div>
+</div>
+<div class="squid-tank">
+<div class="squid-char">
+<div class="squid-body"><div class="squid-eye left"></div><div class="squid-eye right"></div><div class="squid-tentacles"></div></div>
+<div class="ink-puff"></div>
+</div>
+</div>
+</div>
+<div class="room-info"><div class="agent-name">🦑 หมึก <span style="font-size:0.75rem;color:#9b59b6">Research</span></div>
+<div class="agent-task" id="task-squid">วิจัยตลาด Gold รอบใหม่</div>
+<div class="agent-meta"><span class="status-badge thinking" id="badge-squid">🟡 กำลังค้นคว้า</span><span class="updated-time" id="time-squid">--:--</span></div>
+<div class="progress-bar-container"><div class="progress-bar p3" id="progress-squid" style="width:38%"></div></div>
+</div></div>
+<div class="room-card" id="card-pufferfish">
+<div class="room working" id="pufferfish-room">
+<div class="qa-floor"></div>
+<div class="qa-desk">
+<div class="qa-monitor-left"><div class="bug-list"><div class="bug-item">🐛 Bug #442: Login timeout</div><div class="bug-item fixed">✓ Bug #441: Fixed</div><div class="bug-item">🐛 Bug #443: API lag</div></div></div>
+<div class="qa-monitor-right"><div class="device-stack"><div class="phone"></div><div class="tablet"></div></div></div>
+</div>
+<div class="sticky-notes">
+<div class="sticky s1"></div><div class="sticky s2"></div><div class="sticky s3"></div><div class="sticky s4"></div>
+<div class="sticky s5"></div>
+</div>
+<div class="pufferfish-char">
+<div class="pufferfish-body" id="pufferfish-body"><div class="pf-eye left"></div><div class="pf-eye right"></div><div class="pf-mouth"></div><div class="pf-fins"></div></div>
+</div>
+</div>
+<div class="room-info"><div class="agent-name">🐡 ปลาปักเป้า <span style="font-size:0.75rem;color:#f39c12">QA</span></div>
+<div class="agent-task" id="task-pufferfish">ทดสอบ Bot v3.2.1</div>
+<div class="agent-meta"><span class="status-badge working" id="badge-pufferfish">🟢 กำลังทดสอบ</span><span class="updated-time" id="time-pufferfish">--:--</span></div>
+<div class="progress-bar-container"><div class="progress-bar p4" id="progress-pufferfish" style="width:71%"></div></div>
+</div></div>
+<div class="room-card" id="card-octopus">
+<div class="room working" id="octopus-room">
+<div class="support-floor"></div>
+<div class="support-desk">
+<div class="support-monitor"><div class="ticket-queue"><div class="ticket t1">🎫 #1024 สถานะ: Open</div><div class="ticket t2">🎫 #1025 สถานะ: Pending</div><div class="ticket t3">🎫 #1026 สถานะ: Resolved</div></div></div>
+<div class="support-headset"><div class="hs-mic"></div><div class="hs-ear left"></div><div class="hs-ear right"></div></div>
+<div class="support-keyboard"></div>
+</div>
+<div class="info-kiosk"><div class="kiosk-screen"></div><div class="kiosk-base"></div></div>
+<div class="phone-headset-desk"></div>
+<div class="octopus-char">
+<div class="octopus-body"><div class="oct-eye left"></div><div class="oct-eye right"></div>
+<div class="oct-arm a1"></div><div class="oct-arm a2"></div><div class="oct-arm a3"></div><div class="oct-arm a4"></div>
+<div class="oct-arm a5"></div><div class="oct-arm a6"></div>
+</div>
+</div>
+</div>
+<div class="room-info"><div class="agent-name">🐙 หมึกยักษ์ <span style="font-size:0.75rem;color:#3498db">Support</span></div>
+<div class="agent-task" id="task-octopus">จัดการ Ticket #1024-1026</div>
+<div class="agent-meta"><span class="status-badge working" id="badge-octopus">🟢 รับลูกค้า</span><span class="updated-time" id="time-octopus">--:--</span></div>
+<div class="progress-bar-container"><div class="progress-bar p2" id="progress-octopus" style="width:49%"></div></div>
+</div></div>
+<div class="room-card" id="card-seahorse">
+<div class="room thinking" id="seahorse-room">
+<div class="comm-floor"></div>
+<div class="comm-desk">
+<div class="inbox-tray"><div class="tray-label">IN</div><div class="mail m1"></div><div class="mail m2"></div><div class="mail m3"></div></div>
+<div class="outbox-tray"><div class="tray-label">OUT</div><div class="mail m4"></div><div class="mail m5"></div></div>
+<div class="envelope-stack"></div>
+<div class="comm-monitor"><div class="email-ui"><div class="email-item e1">📧 รายงานประจำวัน</div><div class="email-item e2">📧 อัปเดต Portfolio</div></div></div>
+<div class="tts-indicator"><div class="wave w1"></div><div class="wave w2"></div><div class="wave w3"></div></div>
+</div>
+<div class="comm-filing"><div class="filing-drawer"></div><div class="filing-drawer"></div></div>
+<div class="seahorse-char">
+<div class="seahorse-body"><div class="sh-head"></div><div class="sh-eye"></div><div class="sh-snout"></div><div class="sh-fin"></div><div class="sh-tail"></div></div>
+</div>
+</div>
+<div class="room-info"><div class="agent-name">🐎 ม้าทะเล <span style="font-size:0.75rem;color:#1abc9c">Communication</span></div>
+<div class="agent-task" id="task-seahorse">ส่งรายงานประจำวัน</div>
+<div class="agent-meta"><span class="status-badge thinking" id="badge-seahorse">🟡 กำลังเขียน</span><span class="updated-time" id="time-seahorse">--:--</span></div>
+<div class="progress-bar-container"><div class="progress-bar p3" id="progress-seahorse" style="width:52%"></div></div>
+</div></div>
+<div class="room-card" id="card-starfish">
+<div class="room working" id="starfish-room">
+<div class="rgb-strip"></div>
+<div class="browser-floor"></div>
+<div class="standing-desk">
+<div class="curved-monitor"><div class="browser-window b1"><div class="browser-tab"></div><div class="browser-url"></div></div><div class="browser-window b2"><div class="browser-tab"></div><div class="browser-url"></div></div></div>
+<div class="standing-base"></div>
+</div>
+<div class="cable-management"><div class="cable c1"></div><div class="cable c2"></div><div class="cable c3"></div></div>
+<div class="mouse-cursor" id="mouse-cursor"></div>
+<div class="starfish-char">
+<div class="starfish-body" id="starfish-body"><div class="sf-arm a1"></div><div class="sf-arm a2"></div><div class="sf-arm a3"></div><div class="sf-arm a4"></div><div class="sf-arm a5"></div><div class="sf-center"></div></div>
+</div>
+</div>
+<div class="room-info"><div class="agent-name">🌟 ดาวทะเล <span style="font-size:0.75rem;color:#e74c3c">Browser</span></div>
+<div class="agent-task" id="task-starfish">Auto-surfing ข่าว XAU/USD</div>
+<div class="agent-meta"><span class="status-badge working" id="badge-starfish">🟢 กำลังเบราว์</span><span class="updated-time" id="time-starfish">--:--</span></div>
+<div class="progress-bar-container"><div class="progress-bar p5" id="progress-starfish" style="width:89%"></div></div>
+</div></div>
 
-        <!-- Active 5 -->
-        <div class="section-label">🐋 Active 5 — Working</div>
-        <div class="rooms-container" id="active-rooms"></div>
+</div>
 
-        <!-- Standby 5 -->
-        <div class="section-label">🦑 Standby 5 — On Call</div>
-        <div class="standby-container" id="standby-rooms"></div>
+<style>
+/* Turtle character */
+.turtle-body{width:40px;height:28px;background:linear-gradient(180deg,#5a8a3a 0%,#3a6a2a 100%);border-radius:50% 50% 45% 45%;position:relative;box-shadow:inset -4px -3px 10px rgba(0,0,0,0.3)}
+.turtle-shell{position:absolute;top:3px;left:50%;transform:translateX(-50%);width:28px;height:20px;background:radial-gradient(ellipse,#7aaa5a,#4a7a2a);border-radius:50%;box-shadow:inset -2px -2px 6px rgba(0,0,0,0.3)}
+.turtle-head{position:absolute;top:-5px;left:-6px;width:14px;height:12px;background:linear-gradient(180deg,#5a8a3a,#3a6a2a);border-radius:50% 50% 40% 40%}
+.turtle-eye{position:absolute;top:1px;left:2px;width:4px;height:4px;background:#1a0a00;border-radius:50%}
+.turtle-legs{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:36px;height:6px;background:repeating-linear-gradient(90deg,#3a6a2a 0,#3a6a2a 4px,#5a8a3a 4px,#5a8a3a 7px)}
+@keyframes turtleWalk{0%,100%{transform:translateX(-50%) translateX(-10px)}50%{transform:translateX(-50%) translateX(10px)}}
 
-        <!-- Activity Feed -->
-        <div class="feed-section">
-            <div class="feed-header">📋 Activity Feed</div>
-            <div class="feed-list" id="feed-list"></div>
-        </div>
+/* Starfish character */
+.starfish-char{position:absolute;bottom:calc(10% + 20px);left:50%;transform:translateX(-50%);z-index:3;animation:starfishPulse 2s ease-in-out infinite}
+.starfish-body{width:36px;height:36px;position:relative;animation:starfishRotate 8s linear infinite}
+.sf-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:12px;height:12px;background:radial-gradient(circle,#ff7744,#ff4400);border-radius:50%;box-shadow:0 0 8px rgba(255,100,50,0.5)}
+.sf-arm{position:absolute;top:50%;left:50%;width:8px;height:20px;background:linear-gradient(180deg,#ff6633,#ff4400);transform-origin:center 2px;border-radius:50% 50% 40% 40%}
+.a1{transform:translate(-50%,-50%) rotate(0deg)}.a2{transform:translate(-50%,-50%) rotate(72deg)}.a3{transform:translate(-50%,-50%) rotate(144deg)}.a4{transform:translate(-50%,-50%) rotate(216deg)}.a5{transform:translate(-50%,-50%) rotate(288deg)}
+@keyframes starfishPulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.05)}}
+@keyframes starfishRotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 
-        <!-- Footer -->
-        <div class="footer">Ocean Ten Simulator · Auto-refresh every <span>15s</span> · GMT+7</div>
-    </div>
+/* Mini chart SVG lines */
+.mini-chart svg{width:100%;height:100%}
 
-    <script>
-        // ===== AGENT DATA =====
-        const activeAgents = [
-            {
-                id: 'whale', emoji: '🐋', name: 'ห้องวาฬ', role: 'Strategy Room',
-                color: '#1a3a5c', charClass: 'char-whale',
-                activities: ['วิเคราะห์ตลาดทองคำ', 'คิดแผนกลยุทธ์ใหม่', 'ประเมินความเสี่ยง']
-            },
-            {
-                id: 'shark', emoji: '🦈', name: 'ห้องฉลาม', role: 'Trading Floor',
-                color: '#3d5a80', charClass: 'char-shark',
-                activities: ['ดู Gold Charts', 'สแกนข่าวตลาด US', 'วิเคราะห์ DXY']
-            },
-            {
-                id: 'dolphin', emoji: '🐬', name: 'ห้องโลมา', role: 'Dev Lab',
-                color: '#0ea5e9', charClass: 'char-dolphin',
-                activities: ['เขียนโค้ด', 'Deploy ขึ้น GitHub', 'แก้ Bug']
-            },
-            {
-                id: 'turtle', emoji: '🐢', name: 'ห้องเต่า', role: 'Routine Office',
-                color: '#22c55e', charClass: 'char-turtle',
-                activities: ['เช็ค PM2.5', 'ดูสภาพจราจร', 'ตรวจสอบอากาศ']
-            },
-            {
-                id: 'crab', emoji: '🦀', name: 'ห้องปู', role: 'Security Room',
-                color: '#f97316', charClass: 'char-crab',
-                activities: ['ตรวจสอบระบบ', 'Backup ข้อมูล', 'Security Scan']
-            }
-        ];
 
-        const standbyAgents = [
-            { emoji: '🦑', name: 'ห้องหมึก', role: 'Research Lab', color: '#a855f7', charClass: 'char-squid' },
-            { emoji: '🐡', name: 'ห้องปักเป้า', role: 'QA Corner', color: '#ec4899', charClass: 'char-pufferfish' },
-            { emoji: '🐙', name: 'ห้องหมึกสาย', role: 'Support Desk', color: '#06b6d4', charClass: 'char-octopus' },
-            { emoji: '🐎', name: 'ห้องม้าน้ำ', role: 'Communication Hub', color: '#14b8a6', charClass: 'char-seahorse' },
-            { emoji: '🌟', name: 'ห้องปลาดาว', role: 'Browser Station', color: '#f0b90b', charClass: 'char-starfish' }
-        ];
+/* ROOM 4: TURTLE ROUTINE OFFICE - extra */
+#turtle-room .turtle-char{position:absolute;bottom:calc(12% + 24px);left:50%;transform:translateX(-50%);z-index:3;animation:turtleWalk 10s ease-in-out infinite}
+#turtle-room .turtle-body{width:40px;height:28px;background:linear-gradient(180deg,#5a8a3a 0%,#3a6a2a 100%);border-radius:50% 50% 45% 45%;position:relative;box-shadow:inset -4px -3px 10px rgba(0,0,0,0.3)}
+#turtle-room .turtle-shell{position:absolute;top:3px;left:50%;transform:translateX(-50%);width:28px;height:20px;background:radial-gradient(ellipse,#7aaa5a,#4a7a2a);border-radius:50%;box-shadow:inset -2px -2px 6px rgba(0,0,0,0.3)}
+#turtle-room .turtle-head{position:absolute;top:-5px;left:-6px;width:14px;height:12px;background:linear-gradient(180deg,#5a8a3a,#3a6a2a);border-radius:50% 50% 40% 40%}
+#turtle-room .turtle-eye{position:absolute;top:1px;left:2px;width:4px;height:4px;background:#1a0a00;border-radius:50%}
+#turtle-room .turtle-legs{position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:36px;height:6px;background:repeating-linear-gradient(90deg,#3a6a2a 0,#3a6a2a 4px,#5a8a3a 4px,#5a8a3a 7px)}
+@keyframes turtleWalk{0%,100%{transform:translateX(-50%) translateX(-10px)}50%{transform:translateX(-50%) translateX(10px)}}
 
-        // ===== STATE =====
-        const agentState = {};
-        activeAgents.forEach(a => {
-            agentState[a.id] = {
-                activityIndex: Math.floor(Math.random() * a.activities.length),
-                progress: Math.floor(Math.random() * 60) + 20,
-                status: 'working'
-            };
-        });
+/* ROOM 5: CRAB SECURITY - extra styles (CSS was already in rooms2 HTML) */
+/* ROOM 6: SQUID RESEARCH - extra styles */
+/* ROOM 7: PUFFERFISH QA - extra styles */
+/* ROOM 8: OCTOPUS SUPPORT - extra styles */
+/* ROOM 9: SEAHORSE COMMUNICATION - extra styles */
+/* ROOM 10: STARFISH BROWSER - extra styles */
+#starfish-room .starfish-char{position:absolute;bottom:calc(10% + 20px);left:50%;transform:translateX(-50%);z-index:3;animation:starfishPulse 2s ease-in-out infinite}
+#starfish-room .starfish-body{width:36px;height:36px;position:relative;animation:starfishRotate 8s linear infinite}
+#starfish-room .sf-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:12px;height:12px;background:radial-gradient(circle,#ff7744,#ff4400);border-radius:50%;box-shadow:0 0 8px rgba(255,100,50,0.5)}
+#starfish-room .sf-arm{position:absolute;top:50%;left:50%;width:8px;height:20px;background:linear-gradient(180deg,#ff6633,#ff4400);transform-origin:center 2px;border-radius:50% 50% 40% 40%}
+#starfish-room .a1{transform:translate(-50%,-50%) rotate(0deg)}
+#starfish-room .a2{transform:translate(-50%,-50%) rotate(72deg)}
+#starfish-room .a3{transform:translate(-50%,-50%) rotate(144deg)}
+#starfish-room .a4{transform:translate(-50%,-50%) rotate(216deg)}
+#starfish-room .a5{transform:translate(-50%,-50%) rotate(288deg)}
+@keyframes starfishPulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.05)}}
+@keyframes starfishRotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 
-        let feedItems = [];
+/* Mini chart SVG */
+.mini-chart svg{width:100%;height:100%;display:block}
+</style>
 
-        // ===== TIME-BASED BEHAVIOR =====
-        function getTimeStatus(hour) {
-            if (hour >= 6 && hour < 10) return 'working';      // Morning rush
-            if (hour >= 10 && hour < 15) return Math.random() > 0.4 ? 'working' : 'thinking';
-            if (hour >= 15 && hour < 18) return 'working';     // Afternoon
-            if (hour >= 18 && hour < 22) return 'thinking';    // Evening wrap
-            return 'resting';                                   // Night
-        }
+<script>
+// Status data fallback
+const defaultStatus = {
+  whale:      {status:"working",  task:"กำลังวิเคราะห์ Gold Futures",  progress:67, updated:new Date().toISOString()},
+  shark:      {status:"thinking", task:"ประเมินตลาด US",              progress:45, updated:new Date().toISOString()},
+  dolphin:    {status:"working",  task:"พัฒนา Trading Bot v3.2",       progress:82, updated:new Date().toISOString()},
+  turtle:     {status:"working",  task:"จัดการเอกสารรายวัน",          progress:55, updated:new Date().toISOString()},
+  crab:       {status:"working",  task:"ตรวจสอบ Firewall Rules",     progress:61, updated:new Date().toISOString()},
+  squid:      {status:"thinking", task:"วิจัยตลาด Gold รอบใหม่",     progress:38, updated:new Date().toISOString()},
+  pufferfish: {status:"working",  task:"ทดสอบ Bot v3.2.1",            progress:71, updated:new Date().toISOString()},
+  octopus:    {status:"working",  task:"จัดการ Ticket #1024-1026",    progress:49, updated:new Date().toISOString()},
+  seahorse:   {status:"thinking", task:"ส่งรายงานประจำวัน",           progress:52, updated:new Date().toISOString()},
+  starfish:   {status:"working",  task:"Auto-surfing ข่าว XAU/USD",   progress:89, updated:new Date().toISOString()},
+};
 
-        function getProgressSpeed(status) {
-            if (status === 'working') return 8;
-            if (status === 'thinking') return 3;
-            return 0;
-        }
+const agents = ['whale','shark','dolphin','turtle','crab','squid','pufferfish','octopus','seahorse','starfish'];
 
-        function getProgressColor(p) {
-            if (p < 30) return '#d29922'; // Yellow
-            if (p < 70) return '#0ea5e9'; // Blue
-            return '#3fb950';              // Green
-        }
+// Load status from JSON
+async function loadStatus() {
+  try {
+    const resp = await fetch('status.json?_=' + Date.now());
+    if (resp.ok) {
+      const data = await resp.json();
+      Object.assign(defaultStatus, data);
+    }
+  } catch(e) { /* use defaults */ }
+}
 
-        // ===== CLOCK =====
-        function updateClock() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', hour12: false });
-            const dateStr = now.toLocaleDateString('th-TH', { day: 'numeric', month: 'short' });
-            document.getElementById('clock').textContent = timeStr;
-            document.getElementById('date').textContent = dateStr + ' ' + now.getFullYear();
-            return now.getHours();
-        }
+// Draw mini charts in shark room
+function drawCharts() {
+  for (let i = 1; i <= 3; i++) {
+    const el = document.getElementById('chart'+i);
+    if (!el) continue;
+    const pts = [];
+    for (let j = 0; j < 12; j++) pts.push(Math.random() * 60 + 20);
+    const poly = pts.map((p,j) => (j*100/11)+'%,'+(100-p)+'%').join(' ');
+    el.innerHTML = '<svg viewBox="0 0 100 100" preserveAspectRatio="none"><polyline points="'+poly+'" fill="none" stroke="'+(i===2?'#ff4444':'#00ff88')+'" stroke-width="3"/></svg>';
+  }
+}
 
-        // ===== RENDER ACTIVE ROOMS =====
-        function renderActiveRooms(hour) {
-            const container = document.getElementById('active-rooms');
-            container.innerHTML = '';
-            const status = getTimeStatus(hour);
+// Clock update
+function updateClock() {
+  const now = new Date();
+  const h = now.getHours() % 12;
+  const m = now.getMinutes();
+  const s = now.getSeconds();
+  document.querySelectorAll('.clock-hand.hour').forEach(el => {
+    el.style.setProperty('--h', (h*30 + m*0.5 + s*(0.5/60))+'deg');
+  });
+  document.querySelectorAll('.clock-hand.minute').forEach(el => {
+    el.style.setProperty('--m', (m*6 + s*0.1)+'deg');
+  });
+  document.querySelectorAll('.calendar-day').forEach(el => {
+    el.textContent = now.getDate();
+  });
+}
 
-            activeAgents.forEach(agent => {
-                const state = agentState[agent.id];
-                state.status = status;
+// Render agents
+function render() {
+  agents.forEach(id => {
+    const data = defaultStatus[id];
+    if (!data) return;
+    const room = document.getElementById(id+'-room');
+    const taskEl = document.getElementById('task-'+id);
+    const badgeEl = document.getElementById('badge-'+id);
+    const progressEl = document.getElementById('progress-'+id);
+    const timeEl = document.getElementById('time-'+id);
+    if (!room) return;
 
-                // Progress update
-                if (status !== 'resting') {
-                    state.progress = Math.min(100, state.progress + getProgressSpeed(status));
-                    if (state.progress >= 100) {
-                        state.activityIndex = (state.activityIndex + 1) % agent.activities.length;
-                        state.progress = 0;
-                        addFeedItem(agent, state, true);
-                    }
-                } else {
-                    state.progress = 0;
-                }
+    // Room status class
+    room.className = 'room ' + data.status;
 
-                const room = document.createElement('div');
-                room.className = 'room';
-                room.style.setProperty('--room-color', agent.color);
-                room.innerHTML = `
-                    <div class="room-header">${agent.emoji} ${agent.name}</div>
-                    <div class="room-name">${agent.role}</div>
-                    <div class="room-scene">
-                        <div class="character ${agent.charClass}">${agent.emoji}</div>
-                    </div>
-                    <div class="room-task">${agent.activities[state.activityIndex]}</div>
-                    <div class="room-progress">
-                        <div class="progress-info">
-                            <span>Progress</span>
-                            <span>${state.progress}%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width:${state.progress}%;background:${getProgressColor(state.progress)}"></div>
-                        </div>
-                    </div>
-                    <div class="room-status">
-                        <div class="status-dot ${status}"></div>
-                        <span class="status-label ${status}">${status === 'working' ? 'Working' : status === 'thinking' ? 'Thinking' : 'Resting'}</span>
-                    </div>
-                `;
-                container.appendChild(room);
-            });
-        }
+    // Task text
+    if (taskEl) taskEl.textContent = data.task;
 
-        // ===== RENDER STANDBY ROOMS =====
-        function renderStandbyRooms() {
-            const container = document.getElementById('standby-rooms');
-            container.innerHTML = '';
+    // Badge
+    if (badgeEl) {
+      const labels = {working:'🟢 ทำงาน', thinking:'🟡 คิดวิเคราะห์', resting:'🔴 พัก'};
+      const icons  = {working:'🟢', thinking:'🟡', resting:'🔴'};
+      badgeEl.className = 'status-badge ' + data.status;
+      badgeEl.innerHTML = (icons[data.status] || '⚪') + ' ' + (labels[data.status] || data.status);
+    }
 
-            standbyAgents.forEach((agent, i) => {
-                const room = document.createElement('div');
-                room.className = 'standby-room';
-                room.style.setProperty('--room-color', agent.color);
-                room.innerHTML = `
-                    <div class="standby-header">${agent.emoji} ${agent.name}</div>
-                    <div class="standby-scene">
-                        <div class="standby-character ${agent.charClass}" style="animation-delay:${i*0.4}s">${agent.emoji}</div>
-                    </div>
-                    <div class="standby-status">
-                        <div class="standby-dot" style="animation-delay:${i*0.3}s"></div>
-                        <span class="standby-label">${agent.role}</span>
-                    </div>
-                `;
-                container.appendChild(room);
-            });
-        }
+    // Progress bar
+    if (progressEl) {
+      const pct = Math.round(data.progress || 0);
+      progressEl.style.width = pct + '%';
+      progressEl.className = 'progress-bar p' + Math.floor(pct/20);
+    }
 
-        // ===== ACTIVITY FEED =====
-        function addFeedItem(agent, state, completed = false) {
-            const now = new Date();
-            const time = now.toLocaleTimeString('th-TH', { hour: '2-digit', minute: '2-digit', hour12: false });
+    // Updated time
+    if (timeEl && data.updated) {
+      try {
+        const d = new Date(data.updated);
+        timeEl.textContent = d.toLocaleTimeString('th-TH', {hour:'2-digit',minute:'2-digit'});
+      } catch(e) { timeEl.textContent = '--:--'; }
+    }
+  });
+}
 
-            if (completed) {
-                feedItems.unshift({
-                    time,
-                    emoji: '✅',
-                    text: `<strong>${agent.name}</strong> เสร็จแล้ว: ${agent.activities[state.activityIndex]}`
-                });
-            } else {
-                const statuses = ['📊', '🔍', '💻', '🛡️', '📈', '⚡'];
-                feedItems.unshift({
-                    time,
-                    emoji: statuses[Math.floor(Math.random() * statuses.length)],
-                    text: `<strong>${agent.name}</strong> กำลังทำ: ${agent.activities[state.activityIndex]}`
-                });
-            }
+// Pufferfish puff animation
+let puffState = false;
+function puffCycle() {
+  const pf = document.querySelector('.pufferfish-body');
+  if (pf) {
+    puffState = !puffState;
+    pf.classList.toggle('puffed', puffState);
+  }
+  setTimeout(puffCycle, 3000 + Math.random() * 2000);
+}
 
-            if (feedItems.length > 15) feedItems.pop();
-            renderFeed();
-        }
+// Mouse cursor animation for starfish
+function animateCursor() {
+  const c = document.getElementById('mouse-cursor');
+  if (!c) return;
+  const moves = [
+    {top:'40%',left:'55%'},{top:'42%',left:'60%'},{top:'38%',left:'65%'},
+    {top:'45%',left:'62%'},{top:'40%',left:'58%'},{top:'43%',left:'55%'},
+    {top:'38%',left:'50%'},{top:'42%',left:'48%'},{top:'40%',left:'55%'},
+  ];
+  let idx = 0;
+  setInterval(() => {
+    c.style.top = moves[idx].top;
+    c.style.left = moves[idx].left;
+    idx = (idx+1) % moves.length;
+  }, 1500);
+}
 
-        function renderFeed() {
-            const container = document.getElementById('feed-list');
-            container.innerHTML = feedItems.map(item => `
-                <div class="feed-item">
-                    <span class="feed-time">${item.time}</span>
-                    <span class="feed-emoji">${item.emoji}</span>
-                    <span class="feed-text">${item.text}</span>
-                </div>
-            `).join('');
-        }
+// Init
+async function init() {
+  await loadStatus();
+  render();
+  drawCharts();
+  updateClock();
+  setInterval(updateClock, 1000);
+  setInterval(render, 30000);
+  setTimeout(puffCycle, 2000);
+  setTimeout(animateCursor, 1000);
+}
 
-        // ===== INIT =====
-        function init() {
-            const hour = updateClock();
-            renderActiveRooms(hour);
-            renderStandbyRooms();
-
-            // Initial feed items
-            activeAgents.slice(0, 3).forEach(agent => {
-                addFeedItem(agent, agentState[agent.id]);
-            });
-
-            // Update every 15 seconds
-            setInterval(() => {
-                const h = updateClock();
-                renderActiveRooms(h);
-                if (Math.random() > 0.5) {
-                    const randAgent = activeAgents[Math.floor(Math.random() * activeAgents.length)];
-                    addFeedItem(randAgent, agentState[randAgent.id]);
-                }
-            }, 15000);
-        }
-
-        // Start
-        init();
-    </script>
+init();
+</script>
 </body>
 </html>

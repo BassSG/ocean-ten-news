@@ -1,0 +1,62 @@
+{
+  "whale": {
+    "status": "working",
+    "task": "กำลังวิเคราะห์ Gold Futures",
+    "progress": 67,
+    "updated": "2026-03-21T17:48:00+07:00"
+  },
+  "shark": {
+    "status": "thinking",
+    "task": "ประเมินตลาด US",
+    "progress": 45,
+    "updated": "2026-03-21T17:47:00+07:00"
+  },
+  "dolphin": {
+    "status": "working",
+    "task": "พัฒนา Trading Bot v3.2",
+    "progress": 82,
+    "updated": "2026-03-21T17:46:00+07:00"
+  },
+  "turtle": {
+    "status": "working",
+    "task": "จัดการเอกสารรายวัน",
+    "progress": 55,
+    "updated": "2026-03-21T17:45:00+07:00"
+  },
+  "crab": {
+    "status": "working",
+    "task": "ตรวจสอบ Firewall Rules",
+    "progress": 61,
+    "updated": "2026-03-21T17:47:30+07:00"
+  },
+  "squid": {
+    "status": "thinking",
+    "task": "วิจัยตลาด Gold รอบใหม่",
+    "progress": 38,
+    "updated": "2026-03-21T17:46:30+07:00"
+  },
+  "pufferfish": {
+    "status": "working",
+    "task": "ทดสอบ Bot v3.2.1",
+    "progress": 71,
+    "updated": "2026-03-21T17:44:00+07:00"
+  },
+  "octopus": {
+    "status": "working",
+    "task": "จัดการ Ticket #1024-1026",
+    "progress": 49,
+    "updated": "2026-03-21T17:43:00+07:00"
+  },
+  "seahorse": {
+    "status": "thinking",
+    "task": "ส่งรายงานประจำวัน",
+    "progress": 52,
+    "updated": "2026-03-21T17:42:00+07:00"
+  },
+  "starfish": {
+    "status": "working",
+    "task": "Auto-surfing ข่าว XAU/USD",
+    "progress": 89,
+    "updated": "2026-03-21T17:48:30+07:00"
+  }
+}
