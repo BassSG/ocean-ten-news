@@ -3,242 +3,445 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ocean Ten — Knowledge Drop</title>
-  <!-- PWA Manifest -->
+  <title>Knowledge Drop — Ocean Ten</title>
   <link rel="manifest" href="/manifest-knowledge.webmanifest">
-  <meta name="theme-color" content="#0a0e17">
+  <meta name="theme-color" content="#030712">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Knowledge Drop">
-  <link rel="apple-touch-icon" href="/assets/icons/icon-knowledge-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS — Bloomberg meets Thai Luxury
+    ═══════════════════════════════════════════ */
     :root {
-      --bg-primary: #0a0e17;
-      --bg-card: #111827;
-      --bg-card-hover: #1a2235;
-      --accent-gold: #f0b90b;
-      --accent-gold-dim: #b8860b;
-      --accent-blue: #3b82f6;
-      --accent-purple: #8b5cf6;
-      --accent-green: #10b981;
-      --text-primary: #f9fafb;
-      --text-secondary: #9ca3af;
-      --text-muted: #6b7280;
-      --border: #1f2937;
-      --shadow: 0 20px 60px rgba(0,0,0,0.5);
+      --bg-void: #030712;
+      --bg-deep: #060d1f;
+      --bg-panel: #0d1526;
+      --bg-card: #0f1e35;
+      --bg-card-hover: #142342;
+      --border-dim: rgba(240,185,11,0.10);
+      --border-glow: rgba(240,185,11,0.35);
+      --gold: #f0b90b;
+      --gold-bright: #ffd60a;
+      --gold-dim: #b8860b;
+      --gold-glow: rgba(240,185,11,0.18);
+      --blue: #4f8ef7;
+      --purple: #a855f7;
+      --green: #10b981;
+      --red: #f43f5e;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #475569;
+      --font-display: 'Inter', 'Noto Sans Thai', sans-serif;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Inter', 'Noto Sans Thai', sans-serif;
-      background: var(--bg-primary);
+      font-family: var(--font-display);
+      background: var(--bg-void);
       color: var(--text-primary);
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* Animated background grid */
+    /* ── Animated Void Background ── */
     body::before {
       content: '';
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: 
-        linear-gradient(rgba(240,185,11,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(240,185,11,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 900px 600px at 15% -5%, rgba(79,142,247,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 800px 500px at 85% 105%, rgba(240,185,11,0.05) 0%, transparent 55%),
+        radial-gradient(ellipse 600px 400px at 50% 50%, rgba(168,85,247,0.03) 0%, transparent 60%);
       pointer-events: none;
       z-index: 0;
+      animation: ambientShift 18s ease-in-out infinite alternate;
+    }
+    @keyframes ambientShift {
+      0%   { opacity: 1; }
+      50%  { opacity: 0.7; }
+      100% { opacity: 1; }
     }
 
+    /* ── Grid Overlay ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(240,185,11,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,185,11,0.025) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 30%, transparent 80%);
+    }
+
+    /* ═══════════════════════════════════════════
+       LAYOUT
+    ═══════════════════════════════════════════ */
     .container {
-      max-width: 900px;
+      max-width: 860px;
       margin: 0 auto;
-      padding: 40px 24px 80px;
+      padding: 0 24px 80px;
       position: relative;
       z-index: 1;
     }
 
-    /* Header */
-    .header {
-      text-align: center;
-      margin-bottom: 56px;
-      padding-top: 40px;
+    /* ═══════════════════════════════════════════
+       TOP BAR — Terminal-style header
+    ═══════════════════════════════════════════ */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      background: rgba(3,7,18,0.80);
+      border-bottom: 1px solid var(--border-dim);
     }
 
-    .brand {
-      display: inline-flex;
+    .topbar-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .topbar-brand {
+      display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 32px;
     }
 
-    .brand-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dim));
-      border-radius: 14px;
+    .topbar-logo {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dim));
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 8px 32px rgba(240,185,11,0.3);
+      font-size: 18px;
+      box-shadow: 0 0 16px var(--gold-glow);
+      flex-shrink: 0;
     }
 
-    .brand-name {
-      font-size: 22px;
+    .topbar-text h1 {
+      font-size: 16px;
       font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, var(--accent-gold), #fff);
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    .topbar-text p {
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .topbar-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .live-label {
+      font-size: 11px;
+      color: var(--green);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .topbar-time {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: 'tnum';
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO SECTION
+    ═══════════════════════════════════════════ */
+    .hero-section {
+      padding-top: 56px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.7s ease-out both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .date-ticker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
     }
 
     .date-badge {
-      display: inline-block;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
       border-radius: 100px;
-      padding: 8px 20px;
-      font-size: 13px;
+      padding: 6px 16px;
+      font-size: 12px;
       color: var(--text-secondary);
-      margin-bottom: 24px;
-      letter-spacing: 0.5px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
     }
 
-    .headline {
-      font-size: clamp(28px, 5vw, 48px);
+    .date-badge svg { width: 14px; height: 14px; color: var(--gold); }
+
+    .market-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .market-open {
+      background: rgba(16,185,129,0.12);
+      border: 1px solid rgba(16,185,129,0.25);
+      color: var(--green);
+    }
+    .market-closed {
+      background: rgba(100,116,139,0.12);
+      border: 1px solid rgba(100,116,139,0.25);
+      color: var(--text-muted);
+    }
+
+    .hero-headline {
+      font-size: clamp(26px, 4.5vw, 46px);
       font-weight: 900;
-      line-height: 1.15;
+      line-height: 1.12;
       letter-spacing: -1.5px;
       margin-bottom: 20px;
-      background: linear-gradient(135deg, #fff 0%, #d1d5db 100%);
+      background: linear-gradient(135deg, #fff 30%, #cbd5e1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .headline-gold {
-      background: linear-gradient(135deg, var(--accent-gold), #fff5cc);
+    .hero-headline em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 50%, #fff8cc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .subtitle {
-      font-size: 17px;
+    .hero-description {
+      font-size: 16px;
+      line-height: 1.7;
       color: var(--text-secondary);
       max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.6;
+      margin-bottom: 24px;
     }
 
-    /* Divider */
+    /* Agent badge */
+    .agent-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px 6px 10px;
+      background: rgba(16,185,129,0.08);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 100px;
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════════════
+       GOLD DIVIDER
+    ═══════════════════════════════════════════ */
     .divider {
+      position: relative;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+      background: linear-gradient(90deg, transparent 0%, rgba(240,185,11,0.4) 30%, rgba(240,185,11,0.4) 70%, transparent 100%);
       margin: 48px 0;
-      opacity: 0.4;
+    }
+    .divider::after {
+      content: '◆';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--bg-void);
+      padding: 0 12px;
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 4px;
     }
 
-    /* Summary Card */
-    .summary-section {
-      margin-bottom: 48px;
-    }
-
+    /* ═══════════════════════════════════════════
+       SECTION LABEL
+    ═══════════════════════════════════════════ */
     .section-label {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: var(--accent-gold);
+      color: var(--gold);
       margin-bottom: 20px;
-      padding: 6px 14px;
-      background: rgba(240,185,11,0.08);
+      padding: 5px 12px;
+      background: rgba(240,185,11,0.07);
+      border: 1px solid rgba(240,185,11,0.18);
       border-radius: 6px;
-      border: 1px solid rgba(240,185,11,0.2);
     }
+
+    /* ═══════════════════════════════════════════
+       SUMMARY CARD — 3 Key Points
+    ═══════════════════════════════════════════ */
+    .summary-section { margin-bottom: 48px; animation: fadeUp 0.7s 0.15s ease-out both; }
 
     .summary-card {
       background: var(--bg-card);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-dim);
       border-radius: 20px;
-      padding: 32px;
+      padding: 8px 0;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(240,185,11,0.05), 0 24px 64px rgba(0,0,0,0.4);
     }
 
     .summary-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent-gold), var(--accent-purple), var(--accent-blue));
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--purple) 50%, var(--blue) 100%);
+      opacity: 0.6;
     }
 
     .summary-item {
       display: flex;
-      gap: 16px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
+      gap: 20px;
+      padding: 20px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.2s;
     }
-
-    .summary-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .summary-item:first-child {
-      padding-top: 0;
-    }
+    .summary-item:last-child { border-bottom: none; }
+    .summary-item:hover { background: rgba(240,185,11,0.03); }
 
     .summary-number {
       flex-shrink: 0;
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dim));
-      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, rgba(240,185,11,0.15), rgba(240,185,11,0.05));
+      border: 1px solid rgba(240,185,11,0.25);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-      font-weight: 800;
-      color: #000;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--gold);
+      margin-top: 2px;
     }
+
+    .summary-body { flex: 1; }
 
     .summary-text {
       font-size: 15px;
-      line-height: 1.65;
+      line-height: 1.7;
       color: var(--text-primary);
-      padding-top: 6px;
+      margin-bottom: 4px;
     }
 
-    /* Analysis Section */
-    .analysis-section {
-      margin-bottom: 48px;
+    .summary-impact {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: var(--red);
+      font-weight: 600;
+      padding: 2px 8px;
+      background: rgba(244,63,94,0.1);
+      border-radius: 4px;
+      margin-top: 6px;
     }
+
+    /* ═══════════════════════════════════════════
+       ANALYSIS CARD
+    ═══════════════════════════════════════════ */
+    .analysis-section { margin-bottom: 48px; animation: fadeUp 0.7s 0.3s ease-out both; }
 
     .analysis-card {
       background: var(--bg-card);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-dim);
       border-radius: 20px;
       padding: 32px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(168,85,247,0.05), 0 24px 64px rgba(0,0,0,0.4);
+    }
+
+    .analysis-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--blue));
+      opacity: 0.5;
+    }
+
+    /* Corner accent */
+    .analysis-card::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 120px; height: 120px;
+      background: radial-gradient(circle at top right, rgba(168,85,247,0.08), transparent 70%);
+      pointer-events: none;
     }
 
     .analysis-text {
       font-size: 15px;
-      line-height: 1.85;
+      line-height: 1.9;
       color: var(--text-secondary);
       white-space: pre-wrap;
     }
 
-    /* Source Tags */
-    .sources-section {
-      margin-bottom: 48px;
-    }
+    /* ═══════════════════════════════════════════
+       SOURCES SECTION
+    ═══════════════════════════════════════════ */
+    .sources-section { margin-bottom: 48px; animation: fadeUp 0.7s 0.45s ease-out both; }
 
     .source-tags {
       display: flex;
@@ -251,90 +454,287 @@
       align-items: center;
       gap: 6px;
       padding: 6px 14px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
       border-radius: 100px;
       font-size: 12px;
-      color: var(--text-secondary);
-      transition: all 0.2s;
+      color: var(--text-muted);
+      transition: all 0.25s;
+      cursor: default;
     }
-
     .source-tag:hover {
-      border-color: var(--accent-gold);
-      color: var(--accent-gold);
+      border-color: var(--border-glow);
+      color: var(--gold);
+      background: rgba(240,185,11,0.05);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
-    /* Footer */
+    /* ═══════════════════════════════════════════
+       ARTICLE RANKING — Mini Cards
+    ═══════════════════════════════════════════ */
+    .articles-section { margin-bottom: 48px; animation: fadeUp 0.7s 0.55s ease-out both; }
+
+    .article-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .article-card {
+      display: flex;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: 14px;
+      transition: all 0.25s;
+      cursor: default;
+    }
+    .article-card:hover {
+      border-color: rgba(79,142,247,0.3);
+      background: var(--bg-card-hover);
+      transform: translateX(4px);
+    }
+
+    .article-rank {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+    .rank-high {
+      background: rgba(244,63,94,0.15);
+      border: 1px solid rgba(244,63,94,0.3);
+      color: var(--red);
+    }
+    .rank-medium {
+      background: rgba(240,185,11,0.12);
+      border: 1px solid rgba(240,185,11,0.25);
+      color: var(--gold);
+    }
+    .rank-low {
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.2);
+      color: var(--blue);
+    }
+
+    .article-body { flex: 1; }
+
+    .article-topic {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .article-reason {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .meta-chip {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .chip-high { background: rgba(244,63,94,0.12); color: var(--red); border: 1px solid rgba(244,63,94,0.2); }
+    .chip-medium { background: rgba(240,185,11,0.1); color: var(--gold); border: 1px solid rgba(240,185,11,0.2); }
+    .chip-low { background: rgba(79,142,247,0.1); color: var(--blue); border: 1px solid rgba(79,142,247,0.2); }
+    .chip-screened { background: rgba(16,185,129,0.1); color: var(--green); border: 1px solid rgba(16,185,129,0.2); }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
     .footer {
-      text-align: center;
       padding-top: 40px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-dim);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    .footer-brand {
+    .footer-left .footer-brand {
       font-size: 13px;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      font-weight: 600;
+      margin-bottom: 4px;
     }
+    .footer-left .footer-brand span { color: var(--gold); }
 
     .footer-meta {
       font-size: 11px;
       color: var(--text-muted);
+      opacity: 0.6;
     }
 
-    /* Agent badge */
-    .agent-badge {
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ocean-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 12px;
-      background: rgba(16,185,129,0.1);
-      border: 1px solid rgba(16,185,129,0.3);
-      border-radius: 100px;
       font-size: 11px;
-      color: var(--accent-green);
-      margin-top: 16px;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-dim);
+      border-radius: 6px;
     }
 
-    /* Responsive */
+    /* ═══════════════════════════════════════════
+       LOADING STATE
+    ═══════════════════════════════════════════ */
+    .skeleton-line {
+      background: linear-gradient(90deg, var(--bg-panel) 25%, var(--bg-card) 50%, var(--bg-panel) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 6px;
+      color: transparent !important;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
     @media (max-width: 640px) {
-      .container { padding: 24px 16px 60px; }
-      .summary-card, .analysis-card { padding: 24px 20px; }
-      .headline { letter-spacing: -0.5px; }
+      .container { padding: 0 16px 60px; }
+      .topbar-inner { padding: 0 16px; }
+      .hero-section { padding-top: 36px; margin-bottom: 36px; }
+      .summary-item { padding: 16px 20px; flex-direction: column; gap: 12px; }
+      .analysis-card { padding: 24px 20px; }
+      .divider { margin: 36px 0; }
+      .topbar-time { display: none; }
+      .market-status { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
-    <header class="header">
-      <div class="brand">
-        <div class="brand-icon">🌊</div>
-        <span class="brand-name">Ocean Ten</span>
+
+  <!-- ══════════════════════════════════════════
+       TOP BAR
+  ══════════════════════════════════════════ -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-brand">
+        <div class="topbar-logo">🌊</div>
+        <div class="topbar-text">
+          <h1>Ocean Ten</h1>
+          <p>Knowledge Drop</p>
+        </div>
       </div>
-      <div class="date-badge" id="dateBadge">กำลังโหลด...</div>
-      <h1 class="headline" id="headline">กำลังโหลด Knowledge Drop...</h1>
-      <p class="subtitle">สรุปความเคลื่อนไหวสำคัญประจำวัน โดยทีม Ocean Ten — วิเคราะห์โดย AI ให้เข้าใจลึก ตัดสินใจได้เร็ว</p>
-      <div class="agent-badge" id="agentBadge">🐋 วาฬ • Gemini 3.1 Pro</div>
-    </header>
+      <div class="topbar-status">
+        <div class="live-dot"></div>
+        <span class="live-label">Live</span>
+        <span class="topbar-time" id="topbarTime">--:-- ICT</span>
+      </div>
+    </div>
+  </div>
 
-    <div class="divider"></div>
+  <!-- ══════════════════════════════════════════
+       MAIN CONTENT
+  ══════════════════════════════════════════ -->
+  <div class="container">
 
-    <!-- Summary Section -->
-    <section class="summary-section">
-      <div class="section-label">📌 3 สิ่งที่ต้องรู้วันนี้</div>
-      <div class="summary-card">
-        <div id="summaryList">กำลังโหลด...</div>
+    <!-- Hero -->
+    <section class="hero-section">
+      <div class="date-ticker">
+        <div class="date-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span id="dateBadge">กำลังโหลด...</span>
+        </div>
+        <span class="market-status market-closed" id="marketStatus">
+          <span class="live-dot" style="width:6px;height:6px;"></span>
+          <span id="marketLabel">ตลาดปิด</span>
+        </span>
+      </div>
+
+      <h1 class="hero-headline" id="headline">
+        <em>กำลังโหลด</em> Knowledge Drop...
+      </h1>
+      <p class="hero-description">
+        สรุปความเคลื่อนไหวสำคัญประจำวัน โดยทีม Ocean Ten — วิเคราะห์โดย AI ให้เข้าใจลึก ตัดสินใจได้เร็ว
+      </p>
+      <div class="agent-badge" id="agentBadge">
+        🐋 วาฬ • AI
       </div>
     </section>
 
     <div class="divider"></div>
 
-    <!-- Analysis Section -->
+    <!-- 3 Key Points -->
+    <section class="summary-section">
+      <div class="section-label">📌 3 สิ่งที่ต้องรู้วันนี้</div>
+      <div class="summary-card">
+        <div id="summaryList">
+          <div class="summary-item">
+            <div class="summary-number skeleton-line">1</div>
+            <div class="summary-body">
+              <div class="summary-text skeleton-line">กำลังโหลดข้อมูล...</div>
+            </div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-number skeleton-line">2</div>
+            <div class="summary-body">
+              <div class="summary-text skeleton-line">กำลังโหลดข้อมูล...</div>
+            </div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-number skeleton-line">3</div>
+            <div class="summary-body">
+              <div class="summary-text skeleton-line">กำลังโหลดข้อมูล...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Analysis -->
     <section class="analysis-section">
       <div class="section-label">🧠 วิเคราะห์</div>
       <div class="analysis-card">
-        <p class="analysis-text" id="analysisText">กำลังโหลด...</p>
+        <p class="analysis-text" id="analysisText">กำลังโหลดการวิเคราะห์...</p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Articles Ranking -->
+    <section class="articles-section">
+      <div class="section-label">🔥 ข่าวเด่นประจำวัน</div>
+      <div class="article-list" id="articleList">
+        <!-- Populated by JS -->
       </div>
     </section>
 
@@ -348,56 +748,143 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p class="footer-brand">🌊 Ocean Ten — Premium Daily Intelligence</p>
-      <p class="footer-meta">Generated by AI • Approved by Whale • Deployed by Dolphin</p>
+      <div class="footer-left">
+        <p class="footer-brand"><span>🌊</span> Ocean Ten — Premium Daily Intelligence</p>
+        <p class="footer-meta">Generated by AI • Approved by Whale • Deployed by Dolphin</p>
+      </div>
+      <div class="footer-right">
+        <div class="ocean-badge">🐬 by Dolphin</div>
+      </div>
     </footer>
+
   </div>
 
   <script>
+    /* ── Live Clock ── */
+    function updateClock() {
+      const now = new Date();
+      const bkk = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }));
+      const h = String(bkk.getHours()).padStart(2, '0');
+      const m = String(bkk.getMinutes()).padStart(2, '0');
+      const s = String(bkk.getSeconds()).padStart(2, '0');
+      const el = document.getElementById('topbarTime');
+      if (el) el.textContent = `${h}:${m}:${s} ICT`;
+
+      // Market status
+      const hour = bkk.getHours();
+      const isMarketOpen = (hour >= 8 && hour < 16); // approx US market hours in ICT
+      const statusEl = document.getElementById('marketStatus');
+      const labelEl = document.getElementById('marketLabel');
+      if (statusEl && labelEl) {
+        if (isMarketOpen) {
+          statusEl.className = 'market-status market-open';
+          labelEl.textContent = 'ตลาดเปิด';
+        } else {
+          statusEl.className = 'market-status market-closed';
+          labelEl.textContent = 'ตลาดปิด';
+        }
+      }
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    /* ── Priority badge map ── */
+    function priorityClass(p) {
+      if (p === 'high') return 'chip-high';
+      if (p === 'medium') return 'chip-medium';
+      return 'chip-low';
+    }
+    function rankClass(p) {
+      if (p === 'high') return 'rank-high';
+      if (p === 'medium') return 'rank-medium';
+      return 'rank-low';
+    }
+
+    /* ── Load Knowledge Drop ── */
     async function loadKnowledgeDrop() {
       try {
         const res = await fetch('./data/knowledge_latest.json');
         const data = await res.json();
 
-        document.getElementById('dateBadge').textContent = data.date_thai || data.date;
-        document.getElementById('headline').textContent = data.headline || '';
-        document.getElementById('analysisText').textContent = data.analysis || '';
+        // Date
+        document.getElementById('dateBadge').textContent = data.date_thai || data.date || '';
 
+        // Headline
+        const hl = document.getElementById('headline');
+        if (data.headline) {
+          hl.innerHTML = `<em>${data.headline}</em>`;
+        } else {
+          hl.innerHTML = '<em>Knowledge Drop พร้อมแล้ว</em>';
+        }
+
+        // Analysis
+        document.getElementById('analysisText').textContent = data.analysis || 'ไม่มีการวิเคราะห์สำหรับวันนี้';
+
+        // Agent badge
+        if (data.agent) {
+          const emoji = data.agent === 'whale' ? '🐋' : data.agent === 'shark' ? '🦈' : '🤖';
+          document.getElementById('agentBadge').textContent = `${emoji} ${data.agent} • ${data.model || 'AI'}`;
+        }
+
+        // Summary 3 points
         const summaryList = document.getElementById('summaryList');
         if (data.summary_3_points && data.summary_3_points.length) {
-          summaryList.innerHTML = data.summary_3_points.map((point, i) => `
-            <div class="summary-item">
-              <div class="summary-number">${i + 1}</div>
-              <div class="summary-text">${point}</div>
+          summaryList.innerHTML = data.summary_3_points.map((point, i) => {
+            // Extract priority from point text if it contains 📌
+            const isHigh = point.includes('impact สูง') || point.includes('high');
+            const impactHtml = isHigh
+              ? '<span class="summary-impact">🔥 High Impact</span>'
+              : '';
+            return `
+              <div class="summary-item">
+                <div class="summary-number">${i + 1}</div>
+                <div class="summary-body">
+                  <div class="summary-text">${point.replace(/^📌\s*/, '')}</div>
+                  ${impactHtml}
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+
+        // Article Ranking
+        const articleList = document.getElementById('articleList');
+        if (data.all_articles && data.all_articles.length) {
+          articleList.innerHTML = data.all_articles.map((art) => `
+            <div class="article-card">
+              <div class="article-rank ${rankClass(art.priority)}">${art.rank}</div>
+              <div class="article-body">
+                <div class="article-topic">${art.topic}</div>
+                <div class="article-reason">${art.reason}</div>
+                <div class="article-meta">
+                  <span class="meta-chip ${priorityClass(art.priority)}">${art.priority}</span>
+                  <span class="meta-chip chip-screened">${art.source_note || 'ผ่านการคัดกรอง'}</span>
+                </div>
+              </div>
             </div>
           `).join('');
         }
 
+        // Sources
         const sourceTags = document.getElementById('sourceTags');
         if (data.sources && data.sources.length) {
-          sourceTags.innerHTML = data.sources.map(s => 
+          sourceTags.innerHTML = data.sources.map(s =>
             `<span class="source-tag">📰 ${s}</span>`
           ).join('');
         }
 
-        if (data.agent) {
-          document.getElementById('agentBadge').textContent = `🐋 วาฬ • ${data.model || 'AI'}`;
-        }
       } catch(e) {
-        document.getElementById('headline').textContent = 'Knowledge Drop ยังไม่พร้อม — รอ pipeline รันคืนนี้';
-        document.getElementById('summaryList').innerHTML = '<p style="color:#6b7280;text-align:center;">🌙 Pipeline จะเริ่ม 00:00 น.</p>';
+        console.warn('Pipeline not ready:', e.message);
+        document.getElementById('summaryList').innerHTML = \`
+          <div style="text-align:center;padding:40px;color:var(--text-muted);">
+            <div style="font-size:32px;margin-bottom:12px;">🌙</div>
+            <p style="font-size:14px;">Pipeline จะเริ่ม 00:00 น. (ICT)</p>
+          </div>
+        \`;
+        document.getElementById('sourceTags').innerHTML = '<span style="color:var(--text-muted);font-size:13px;">รอข้อมูลจาก pipeline...</span>';
       }
     }
     loadKnowledgeDrop();
-
-    // Register Service Worker for PWA install
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').then(reg => {
-        console.log('SW registered:', reg.scope);
-      }).catch(err => {
-        console.log('SW registration failed:', err);
-      });
-    }
   </script>
 </body>
 </html>
