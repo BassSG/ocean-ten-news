@@ -1,0 +1,10 @@
+{
+  "name": "AI & Tech Report — Ocean Ten",
+  "short_name": "AI Report",
+  "description": "Premium Tech & AI Research Report",
+  "start_url": "/tech-ai-report.html",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#030712",
+  "icons": []
+}

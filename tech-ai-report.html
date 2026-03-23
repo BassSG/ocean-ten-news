@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI & Tech Report — Ocean Ten</title>
+  <meta name="theme-color" content="#030712">
+  <meta name="description" content="Premium Tech & AI Research Report — OpenAI, NVIDIA, Apple, Google, Tesla, Microsoft — Ocean Ten">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AI & Tech Report">
+  <link rel="manifest" href="/manifest-ai-report.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #030712;
+      --bg-deep: #060d1f;
+      --bg-panel: #0d1526;
+      --bg-card: #0f1e35;
+      --bg-card-hover: #142342;
+      --border-dim: rgba(240,185,11,0.10);
+      --border-glow: rgba(240,185,11,0.35);
+      --gold: #f0b90b;
+      --gold-bright: #ffd60a;
+      --gold-dim: #b8860b;
+      --gold-glow: rgba(240,185,11,0.18);
+      --blue: #4f8ef7;
+      --purple: #a855f7;
+      --green: #10b981;
+      --red: #f43f5e;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #475569;
+      --font-display: 'Inter', 'Noto Sans Thai', sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-display);background:var(--bg-void);color:var(--text-primary);min-height:100vh;overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 900px 600px at 15% -5%, rgba(79,142,247,0.08) 0%, transparent 60%),radial-gradient(ellipse 800px 500px at 85% 105%, rgba(240,185,11,0.06) 0%, transparent 55%),radial-gradient(ellipse 600px 400px at 50% 50%, rgba(168,85,247,0.03) 0%, transparent 60%);pointer-events:none;z-index:0;animation:ambientShift 18s ease-in-out infinite alternate}
+    @keyframes ambientShift{0%{opacity:1}50%{opacity:.7}100%{opacity:1}}
+    body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(240,185,11,0.025) 1px, transparent 1px),linear-gradient(90deg, rgba(240,185,11,0.025) 1px, transparent 1px);background-size:72px 72px;pointer-events:none;z-index:0;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%, black 30%, transparent 80%)}
+    .container{max-width:860px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1}
+
+    /* TOPBAR */
+    .topbar{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(3,7,18,.80);border-bottom:1px solid var(--border-dim)}
+    .topbar-inner{max-width:860px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .topbar-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand-logo{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold-dim));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+    .brand-text{font-family:'Inter',sans-serif;font-size:15px;font-weight:800;letter-spacing:-0.5px}
+    .brand-oc{color:var(--gold)}
+    .brand-en{color:var(--text-primary)}
+    .brand-sub{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px}
+    .topbar-right{display:flex;align-items:center;gap:16px}
+    .live-clock{font-size:12px;font-weight:600;color:var(--gold);font-variant-numeric:tabular-nums;letter-spacing:.5px}
+    .back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;font-size:11px;font-weight:600;color:var(--text-secondary);background:var(--bg-card);border:1px solid var(--border-dim);border-radius:6px;text-decoration:none;transition:all .2s}
+    .back-btn:hover{color:var(--gold);border-color:var(--border-glow);background:var(--bg-card-hover)}
+
+    /* HERO */
+    .hero-section{padding:56px 0 40px;text-align:center;animation:fadeUp .7s ease-out both}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .report-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:var(--gold-glow);border:1px solid var(--border-glow);border-radius:100px;font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:20px}
+    .report-badge .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    .hero-date{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+    .hero-title{font-family:'Inter',sans-serif;font-size:clamp(28px,6vw,52px);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px;color:var(--text-primary)}
+    .hero-title span{color:var(--gold)}
+    .hero-title em{font-style:normal;color:var(--blue)}
+    .hero-sub{font-size:clamp(14px,2vw,17px);color:var(--text-secondary);line-height:1.7;max-width:600px;margin:0 auto 24px}
+    .hero-meta{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
+    .meta-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--bg-card);border:1px solid var(--border-dim);border-radius:6px;font-size:11px;color:var(--text-secondary)}
+    .meta-chip svg{width:12px;height:12px;stroke:var(--gold);fill:none;stroke-width:2}
+
+    /* DIVIDER */
+    .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-dim),transparent);margin:36px 0}
+
+    /* SECTION LABEL */
+    .section-label{font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:3px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+    .section-label::before{content:'';width:20px;height:2px;background:var(--gold);flex-shrink:0}
+
+    /* KEY INSIGHTS */
+    .insights-section{margin-bottom:48px;animation:fadeUp .7s .15s ease-out both}
+    .insight-card{background:var(--bg-card);border:1px solid var(--border-dim);border-radius:12px;padding:28px;margin-bottom:16px;position:relative;overflow:hidden;transition:border-color .3s,background .3s}
+    .insight-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--blue));opacity:0;transition:opacity .3s}
+    .insight-card:hover{border-color:var(--border-glow);background:var(--bg-card-hover)}
+    .insight-card:hover::before{opacity:1}
+    .insight-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px}
+    .insight-rank{width:32px;height:32px;background:var(--gold-glow);border:1px solid var(--border-glow);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--gold);flex-shrink:0}
+    .insight-tag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:4px 10px;border-radius:4px;flex-shrink:0}
+    .tag-ai{background:rgba(79,142,247,.15);color:var(--blue);border:1px solid rgba(79,142,247,.3)}
+    .tag-chip{background:rgba(168,85,247,.15);color:var(--purple);border:1px solid rgba(168,85,247,.3)}
+    .insight-headline{font-size:clamp(16px,2.5vw,20px);font-weight:800;line-height:1.3;color:var(--text-primary);letter-spacing:-.3px;margin-bottom:16px}
+    .tier-block{margin-bottom:14px}
+    .tier-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+    .tier-what{color:var(--blue)}
+    .tier-what::before{content:'▸';color:var(--blue)}
+    .tier-why{color:var(--gold)}
+    .tier-why::before{content:'▸';color:var(--gold)}
+    .tier-so{color:var(--green)}
+    .tier-so::before{content:'▸';color:var(--green)}
+    .tier-now{color:var(--purple)}
+    .tier-now::before{content:'▸';color:var(--purple)}
+    .tier-body{font-size:14px;line-height:1.75;color:var(--text-secondary)}
+    .tier-body strong{color:var(--text-primary)}
+
+    /* ACTION CARD */
+    .action-section{margin-bottom:48px;animation:fadeUp .7s .3s ease-out both}
+    .action-card{background:linear-gradient(135deg,var(--bg-card) 0%,rgba(240,185,11,.06) 100%);border:1px solid var(--border-glow);border-radius:12px;padding:28px;position:relative;overflow:hidden}
+    .action-card::after{content:'';position:absolute;top:-50%;right:-10%;width:200px;height:200px;background:radial-gradient(circle,rgba(240,185,11,.08) 0%,transparent 70%);pointer-events:none}
+    .action-title{font-size:12px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+    .action-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+    .action-item{background:rgba(3,7,18,.5);border:1px solid var(--border-dim);border-radius:8px;padding:16px}
+    .action-item-label{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+    .action-item-value{font-size:13px;font-weight:700;color:var(--text-primary);line-height:1.4}
+
+    /* TREND BANNER */
+    .trend-section{margin-bottom:48px;animation:fadeUp .7s .4s ease-out both}
+    .trend-card{background:var(--bg-card);border:1px solid var(--border-dim);border-radius:12px;padding:24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .trend-icon{width:48px;height:48px;background:var(--gold-glow);border:1px solid var(--border-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+    .trend-content{flex:1;min-width:200px}
+    .trend-label{font-size:9px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+    .trend-text{font-size:15px;font-weight:700;color:var(--text-primary)}
+    .trend-tags{display:flex;gap:8px;flex-wrap:wrap}
+    .trend-tag{padding:4px 10px;background:rgba(79,142,247,.1);border:1px solid rgba(79,142,247,.25);border-radius:4px;font-size:10px;color:var(--blue);font-weight:600}
+
+    /* FOOTER */
+    .footer{display:flex;align-items:center;justify-content:space-between;padding:32px 0 0;border-top:1px solid var(--border-dim);margin-top:48px;flex-wrap:wrap;gap:16px}
+    .footer-brand{font-size:12px;color:var(--text-muted)}
+    .footer-brand span{margin-right:6px}
+    .footer-meta{font-size:10px;color:var(--text-muted);margin-top:4px}
+    .ocean-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--bg-card);border:1px solid var(--border-dim);border-radius:6px;font-size:11px;font-weight:600;color:var(--text-secondary)}
+    .ocean-badge span{font-size:14px}
+
+    /* LOADING */
+    .skeleton-line{background:linear-gradient(90deg,var(--bg-card) 25%,var(--bg-card-hover) 50%,var(--bg-card) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:4px}
+    @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .skeleton-line{color:transparent!important;min-height:16px;display:block}
+
+    /* RESPONSIVE */
+    @media(max-width:640px){
+      .container{padding:0 16px 60px}
+      .topbar-inner{padding:0 16px}
+      .hero-section{padding:40px 0 28px}
+      .insight-card{padding:20px}
+      .action-card{padding:20px}
+      .trend-card{padding:16px}
+      .footer{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a href="/" class="topbar-brand">
+        <div class="brand-logo">🐬</div>
+        <div>
+          <div class="brand-text"><span class="brand-oc">Ocean</span> <span class="brand-en">Ten</span></div>
+          <div class="brand-sub">Premium Research</div>
+        </div>
+      </a>
+      <div class="topbar-right">
+        <div class="live-clock" id="liveClock">--:--:-- ICT</div>
+        <a href="/" class="back-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- HERO -->
+    <section class="hero-section" id="heroSection">
+      <div class="report-badge">
+        <span class="dot"></span>
+        AI &amp; Tech Intelligence
+      </div>
+      <div class="hero-date" id="reportDate">กำลังโหลด...</div>
+      <h1 class="hero-title">
+        <em>Tech &amp; AI</em><br/>
+        <span>Premium Report</span>
+      </h1>
+      <p class="hero-sub">
+        รายงานวิเคราะห์เชิงลึก AI และเทคโนโลยีล่าสุด — คัดกรองโดยทีม Ocean Ten ด้วยมาตรฐานระดับพรีเมียม
+      </p>
+      <div class="hero-meta">
+        <div class="meta-chip">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span id="metaTime">--</span>
+        </div>
+        <div class="meta-chip">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+          <span>Tech &amp; AI</span>
+        </div>
+        <div class="meta-chip">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span>Premium</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- KEY INSIGHTS -->
+    <section class="insights-section" id="insightsSection">
+      <div class="section-label">🧠 วิเคราะห์เชิงลึก</div>
+      <div id="insightsList">
+        <!-- Populated by JS -->
+        <div class="insight-card">
+          <div class="insight-header">
+            <div class="insight-rank skeleton-line">1</div>
+          </div>
+          <div class="insight-headline skeleton-line">กำลังโหลดข้อมูล...</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-header">
+            <div class="insight-rank skeleton-line">2</div>
+          </div>
+          <div class="insight-headline skeleton-line">กำลังโหลดข้อมูล...</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-header">
+            <div class="insight-rank skeleton-line">3</div>
+          </div>
+          <div class="insight-headline skeleton-line">กำลังโหลดข้อมูล...</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- INVESTMENT ACTION -->
+    <section class="action-section" id="actionSection">
+      <div class="section-label">💼 แนวทางลงทุน</div>
+      <div class="action-card">
+        <div class="action-title">
+          <span>📋</span> สรุปแนวทางจากบทวิเคราะห์
+        </div>
+        <div class="action-grid" id="actionGrid">
+          <div class="action-item">
+            <div class="action-item-label">โอกาสหลัก</div>
+            <div class="action-item-value" id="action1">-</div>
+          </div>
+          <div class="action-item">
+            <div class="action-item-label">ความเสี่ยง</div>
+            <div class="action-item-value" id="action2">-</div>
+          </div>
+          <div class="action-item">
+            <div class="action-item-label">แนวโน้ม</div>
+            <div class="action-item-value" id="action3">-</div>
+          </div>
+          <div class="action-item">
+            <div class="action-item-label">ระดับเฝ้าระวัง</div>
+            <div class="action-item-value" id="action4">-</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- BIG PICTURE TREND -->
+    <section class="trend-section" id="trendSection">
+      <div class="section-label">🌐 ภาพรวม</div>
+      <div class="trend-card">
+        <div class="trend-icon">🤖</div>
+        <div class="trend-content">
+          <div class="trend-label">Mega Trend ที่กำลังเกิดขึ้น</div>
+          <div class="trend-text" id="megaTrend">กำลังโหลด...</div>
+        </div>
+        <div class="trend-tags" id="trendTags">
+          <span class="trend-tag">Agentic AI</span>
+          <span class="trend-tag">Physical AI</span>
+          <span class="trend-tag">AI Integration</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div>
+        <div class="footer-brand"><span>🌊</span> Ocean Ten — Premium Market Intelligence</div>
+        <div class="footer-meta">Generated by AI • Deployed by Dolphin 🐬</div>
+      </div>
+      <div class="ocean-badge"><span>🐬</span> by Dolphin</div>
+    </footer>
+  </div>
+
+  <script>
+    // Live clock
+    function updateClock(){
+      var now=new Date();
+      var bkk=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
+      var h=String(bkk.getHours()).padStart(2,'0');
+      var m=String(bkk.getMinutes()).padStart(2,'0');
+      var s=String(bkk.getSeconds()).padStart(2,'0');
+      var el=document.getElementById('liveClock');
+      if(el)el.textContent=h+':'+m+':'+s+' ICT';
+      var meta=document.getElementById('metaTime');
+      if(meta)meta.textContent=h+':'+m+' น. (ICT)';
+      var d=String(bkk.getDate()).padStart(2,'0');
+      var mo=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+      var y=bkk.getFullYear()+543;
+      var dateEl=document.getElementById('reportDate');
+      if(dateEl)dateEl.textContent=d+' '+mo[bkk.getMonth()]+' '+y+' • วิเคราะห์โดย Ocean Ten AI';
+    }
+    updateClock();
+    setInterval(updateClock,1000);
+
+    function escHtml(str){
+      if(!str)return'';
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br/>');
+    }
+
+    function priorityTag(category){
+      var map={ai:'AI',hardware:'Hardware',software:'Software',policy:'Policy',consumer:'Consumer'};
+      return map[category]||'Tech';
+    }
+
+    // Load insights
+    fetch('/data/insights_data.json')
+      .then(function(r){return r.json()})
+      .then(function(data){
+        var aiItems=data.filter(function(i){return i.category==='ai'});
+        if(!aiItems.length){
+          document.getElementById('insightsList').innerHTML='<div style="color:var(--text-muted);font-size:14px;padding:20px 0">ยังไม่มีข้อมูล AI Report ในระบบ — รอให้ Squid รวบรวมข่าวและ Whale เขียนรายงาน</div>';
+          return;
+        }
+
+        var html='';
+        for(var i=0;i<aiItems.length;i++){
+          var item=aiItems[i];
+          var rank=i+1;
+          var tag=priorityTag(item.category);
+          html+='<div class="insight-card">';
+          html+='<div class="insight-header">';
+          html+='<div class="insight-rank">'+rank+'</div>';
+          html+='<span class="insight-tag tag-'+(item.category==='ai'?'ai':'chip')+'">'+tag+'</span>';
+          html+='</div>';
+          html+='<div class="insight-headline">'+escHtml(item.headline||'')+'</div>';
+          if(item.what){
+            html+='<div class="tier-block">';
+            html+='<div class="tier-label tier-what">What</div>';
+            html+='<div class="tier-body">'+escHtml(item.what)+'</div>';
+            html+='</div>';
+          }
+          if(item.why_matters){
+            html+='<div class="tier-block">';
+            html+='<div class="tier-label tier-why">Why It Matters</div>';
+            html+='<div class="tier-body">'+escHtml(item.why_matters)+'</div>';
+            html+='</div>';
+          }
+          if(item.so_what){
+            html+='<div class="tier-block">';
+            html+='<div class="tier-label tier-so">So What</div>';
+            html+='<div class="tier-body"><strong>'+escHtml(item.so_what)+'</strong></div>';
+            html+='</div>';
+          }
+          if(item.now_what){
+            html+='<div class="tier-block">';
+            html+='<div class="tier-label tier-now">Now What</div>';
+            html+='<div class="tier-body">'+escHtml(item.now_what)+'</div>';
+            html+='</div>';
+          }
+          html+='</div>';
+        }
+        document.getElementById('insightsList').innerHTML=html;
+
+        // Action grid from first item
+        if(aiItems[0]){
+          var first=aiItems[0];
+          var el1=document.getElementById('action1');
+          var el2=document.getElementById('action2');
+          var el3=document.getElementById('action3');
+          if(el1)el1.textContent=first.now_what?'ดู Supply Chain, Enterprise Software':'AI Infrastructure';
+          if(el2)el2.textContent='ความเสี่ยงจาก AI Regulation, การแข่งขันสูง';
+          if(el3)el3.textContent='ขาขึ้น (Bullish) — Mass Adoption กำลังเกิด';
+          if(el4)el4.textContent='GPT-5.4, Vera Rubin, Gemini Updates';
+        }
+
+        // Mega trend
+        var trendEl=document.getElementById('megaTrend');
+        if(trendEl&&aiItems.length>0){
+          var trends=aiItems.map(function(i){
+            if(i.headline.toLowerCase().includes('nvidia')||i.headline.toLowerCase().includes('chip'))return'AI Hardware Revolution';
+            if(i.headline.toLowerCase().includes('openai')||i.headline.toLowerCase().includes('agent'))return'Agentic AI Mass Adoption';
+            if(i.headline.toLowerCase().includes('apple')||i.headline.toLowerCase().includes('google'))return'Big Tech AI Integration';
+            return null;
+          }).filter(Boolean);
+          trendEl.textContent=trends[0]||'AI เปลี่ยนโลก — ทุกอุตสาหกรรมกำลังถูก Transform';
+        }
+
+        // Trend tags
+        var tagsEl=document.getElementById('trendTags');
+        if(tagsEl){
+          var seen={};
+          var tags=[];
+          for(var t=0;t<aiItems.length;t++){
+            var h=aiItems[t].headline.toLowerCase();
+            if(h.includes('agent')&&!seen['Agentic AI']){seen['Agentic AI']=true;tags.push('Agentic AI')}
+            if(h.includes('nvidia')||h.includes('chip')||h.includes('gpu')&&!seen['AI Hardware']){seen['AI Hardware']=true;tags.push('AI Hardware')}
+            if(h.includes('apple')||h.includes('google')||h.includes('microsoft')&&!seen['Big Tech AI']){seen['Big Tech AI']=true;tags.push('Big Tech AI')}
+            if(h.includes('robot')||h.includes('physical')||h.includes('autonomous')&&!seen['Physical AI']){seen['Physical AI']=true;tags.push('Physical AI')}
+          }
+          if(tags.length)tagsEl.innerHTML=tags.map(function(t){return'<span class="trend-tag">'+t+'</span>'}).join('');
+        }
+      })
+      .catch(function(err){
+        document.getElementById('insightsList').innerHTML='<div style="color:var(--red);font-size:14px;padding:20px 0">ไม่สามารถโหลดข้อมูลได้: '+err.message+'</div>';
+      });
+  </script>
+</body>
+</html>
