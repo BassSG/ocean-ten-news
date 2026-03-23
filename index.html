@@ -555,8 +555,28 @@ function populateSections(insights,m){
     var kl=g.key_levels||{};
     var res=(kl.resistance||[]).map(function(l){return '<div style="padding:8px 0;border-bottom:1px solid var(--border2);font-size:13px"><span style="color:var(--red)">Resistance:</span> <strong>'+l+'</strong></div>'}).join('');
     var sup=(kl.support||[]).map(function(l){return '<div style="padding:8px 0;border-bottom:1px solid var(--border2);font-size:13px"><span style="color:var(--green)">Support:</span> <strong>'+l+'</strong></div>'}).join('');
+    var spdrHtml='';
+    if(g.spdr){
+      var sp=g.spdr;
+      var mo=sp.monthly||{};
+      var moRows=Object.keys(mo).map(function(k){
+        var v=mo[k];
+        var cls=v.startsWith('+')?'up':v.startsWith('-')?'dn':'';
+        return '<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:12px"><span>'+k+'</span><span class="'+cls+'">'+v+' ตัน</span></div>';
+      }).join('');
+      spdrHtml='<div style="margin-top:16px;padding:14px;background:var(--surface2);border-radius:8px;border:1px solid var(--border)">'+
+        '<div style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">SPDR Gold Holdings (GLD)</div>'+
+        '<div style="display:flex;gap:24px;margin-bottom:10px">'+
+          '<div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Holdings</div><div style="font-size:20px;font-weight:700;color:var(--gold)">'+escHtml(sp.holdings||'-')+'</div><div style="font-size:10px;color:var(--muted)">tonnes</div></div>'+
+          '<div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Change</div><div style="font-size:20px;font-weight:700" class="'+(parseFloat(sp.change)<0?'dn':'up')+'">'+escHtml(sp.change||'-')+'</div><div style="font-size:10px;color:var(--muted)">tonnes</div></div>'+
+          '<div><div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Updated</div><div style="font-size:14px;font-weight:600;color:var(--text)">'+escHtml(sp.updatedTime||'-')+'</div><div style="font-size:10px;color:var(--muted)">EST</div></div>'+
+        '</div>'+
+        '<div style="border-top:1px solid var(--border);padding-top:8px;margin-top:4px">'+moRows+'</div>'+
+      '</div>';
+    }
     goldEl.innerHTML='<div class="ins-item"><div class="ins-headline">Gold: '+escHtml(s.direction||'Analysis')+'</div><div class="ins-body">'+escHtml(s.reasoning||'')+'</div></div>'+
       '<div style="margin-top:16px"><div style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px">Price Levels</div>'+res+sup+'</div>'+
+      spdrHtml+
       (s.actionable_advice?'<div class="ins-impact" style="margin-top:16px">&#9654; '+escHtml(s.actionable_advice.replace(/\n/g,'<br/>'))+'</div>':'');
   }
 }

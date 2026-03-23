@@ -2,17 +2,36 @@
   "gold": {
     "current_price": 4563.64,
     "percent_change": -1.8,
-    "weekly_high": 4883.20,
-    "weekly_low": 4551.00,
+    "weekly_high": 4883.2,
+    "weekly_low": 4551.0,
     "key_levels": {
-      "resistance": ["$4,660", "$4,710", "$4,800"],
-      "support": ["$4,504", "$4,495", "$4,395"]
+      "resistance": [
+        "$4,660",
+        "$4,710",
+        "$4,800"
+      ],
+      "support": [
+        "$4,504",
+        "$4,495",
+        "$4,395"
+      ]
     },
-    "dxy": 99.50,
+    "dxy": 99.5,
     "treasury_yield_10y": 4.39,
     "analyst_targets": {
       "jpmorgan": "$6,300 (Base) - $8,500 (Bull) by end of 2026",
       "bofa": "$6,000 by 2026"
+    },
+    "spdr": {
+      "holdings": "1,056.99",
+      "change": "-5.14",
+      "updatedTime": "05:06",
+      "monthly": {
+        "2026-01": "+15.11",
+        "2026-02": "+14.23",
+        "2026-03": "-44.34"
+      },
+      "lastUpdate": "2026-03-23T09:20:03.504446"
     }
   },
   "us_market": {
@@ -22,13 +41,13 @@
     },
     "nasdaq": {
       "latest": 21647.61,
-      "percent_change": -1.80
+      "percent_change": -1.8
     },
     "weekly_trend": "Bearish (Risk-Off) จากความกังวลเรื่องสงครามในตะวันออกกลางที่ส่งผลให้ราคาน้ำมันพุ่งสูง และความกังวลว่า Fed จะคงอัตราดอกเบี้ยในระดับสูงต่อไป"
   },
   "oil_commodities": {
     "brent_crude": {
-      "latest": 112.50,
+      "latest": 112.5,
       "percent_change": 3.54
     },
     "geopolitics": "ความขัดแย้งรุนแรงระหว่าง US-Israel-Iran ทำให้เกิดการคุกคามและการปิดกั้นการจราจรในช่องแคบฮอร์มุซ (Strait of Hormuz) ซึ่งกระทบอุปทานน้ำมันโลกกว่า 20% รวมถึงมีการโจมตีโครงสร้างพื้นฐานน้ำมันในคูเวต"
