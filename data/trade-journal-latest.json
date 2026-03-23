@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-23T14:39:26.568132+00:00",
+  "generatedAt": "2026-03-23T16:04:22.551593+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,27 +8,27 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1773031500,
-    "to": 1774261800
+    "from": 1773036900,
+    "to": 1774267200
   },
   "summary": {
     "totalOrders": 3,
-    "triggeredOrders": 0,
+    "triggeredOrders": 1,
     "slHits": 0,
     "tp1Hits": 0,
-    "tpMostHits": 0,
-    "winRate": 0.0
+    "tpMostHits": 1,
+    "winRate": 100.0
   },
   "orders": [
     {
       "source": "TESTER",
-      "runId": "RUN-1774274769800-518",
-      "orderKey": "TESTER:RUN-1774274769800-518",
-      "createdAt": "2026-03-23T14:06:32.652Z",
+      "runId": "RUN-1774277444306-489",
+      "orderKey": "TESTER:RUN-1774277444306-489",
+      "createdAt": "2026-03-23T14:50:56.724Z",
       "orderType": "BUY_LIMIT",
-      "entry": 4442.38,
-      "sl": 4425.0,
-      "tp1": 4478.45,
+      "entry": 4445.84,
+      "sl": 4400.0,
+      "tp1": 4512.13,
       "tpMost": 4536.49,
       "result": {
         "status": null,
@@ -43,13 +43,13 @@
     },
     {
       "source": "EBass",
-      "runId": "RUN-1774276544414-131",
-      "orderKey": "EBass:RUN-1774276544414-131",
-      "createdAt": "2026-03-23T14:35:51.000Z",
+      "runId": "RUN-1774276918055-580",
+      "orderKey": "EBass:RUN-1774276918055-580",
+      "createdAt": "2026-03-23T14:42:04.306Z",
       "orderType": "BUY_LIMIT",
-      "entry": 4415.21,
-      "sl": 4357.45,
-      "tp1": 4487.57,
+      "entry": 4408.81,
+      "sl": 4350.49,
+      "tp1": 4476.57,
       "tpMost": 4512.13,
       "result": {
         "status": null,
@@ -73,14 +73,14 @@
       "tp1": 4422.38,
       "tpMost": 4402.38,
       "result": {
-        "status": null,
-        "triggered": false,
-        "triggeredAt": null,
-        "closeReason": null,
-        "closedAt": null,
-        "timeInTradeMin": null,
-        "mfe": 0.0,
-        "mae": 0.0
+        "status": "tpmost-hit",
+        "triggered": true,
+        "triggeredAt": 1774264500,
+        "closeReason": "TPMost",
+        "closedAt": 1774266300,
+        "timeInTradeMin": 30,
+        "mfe": 107.205,
+        "mae": -8.83
       }
     }
   ]
