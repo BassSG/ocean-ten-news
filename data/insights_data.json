@@ -1,50 +1,34 @@
 [
   {
     "category": "ai",
-    "headline": "OpenAI Launches GPT-5.4 with Agentic Workflows",
-    "what": "OpenAI เปิดตัว GPT-5.4 รุ่นใหม่ล่าสุดในเดือนมีนาคม 2026 ที่มาพร้อมความสามารถในการให้ AI วางแผนและทำงานหลายขั้นตอนได้เอง (Agentic Workflows) รวมถึงความสามารถในการควบคุมคอมพิวเตอร์พื้นฐาน",
-    "why_matters": "นี่คือจุดเริ่มต้นของการเปลี่ยนผ่านจาก AI ที่เป็นเพียง 'แชทบอท' ไปสู่ 'ผู้ช่วยอัตโนมัติ' ที่สามารถทำงานแทนมนุษย์ได้จริง ซึ่งจะพลิกโฉมการทำงานในระดับองค์กร",
-    "so_what": "เพิ่มขีดความสามารถและลดต้นทุนในภาคธุรกิจอย่างมหาศาล แต่นำมาซึ่งการแข่งขันที่ดุเดือดในตลาด AI Software และความกังวลเรื่องการเข้ามาแทนที่คนทำงาน",
-    "now_what": "นักลงทุนควรเน้นสะสมหุ้นกลุ่มซอฟต์แวร์องค์กรที่มีการนำ Agentic AI ไปประยุกต์ใช้จริง และบริษัทที่ให้บริการโครงสร้างพื้นฐานคลาวด์ที่รองรับ AI แบบอัตโนมัติ"
+    "headline": "OpenAI Launches GPT-5.4 & Desktop Superapp Strategy",
+    "what": "OpenAI เปิดตัว GPT-5.4 (มี.ค. 2026) เป็น flagship model พร้อม context window 1 ล้าน token และ agentic capabilities ที่เหนือกว่า Claude 4 Opus ในหลาย benchmark ตามมาด้วย GPT-5.4 mini และ nano (ปลายมี.ค.) สำหรับงานที่ต้องการความเร็ว นอกจากนี้ OpenAI ยังวางแผนรวม ChatGPT, Codex และ AI-powered browser เป็น 'desktop superapp' ตัวเดียวเพื่อกลุ่ม enterprise และ developer",
+    "why_matters": "การเปิดตัว mini/nano หลัง flagship เพียงไม่กี่วัน แสดงให้เห็นว่า OpenAI ต้องการครอบคลุมทุก segment ตั้งแต่ enterprise ยันผู้ใช้ทั่วไป และ superapp strategy จะเปลี่ยน AI จากแชทบอทให้เป็น 'OS ของ desktop' ที่เชื่อมทุกเครื่องมือเข้าด้วยกัน",
+    "so_what": "การแข่งขันด้าน AI จะยิ่งดุเดือดขึ้น โดยเฉพาะในตลาด developer และ enterprise ขณะที่ AI consumer apps จะถูกรวมศูนย์เข้าสู่ superapp เพียงไม่กี่ตัว สร้างผลกระทบต่อ indie developers และ SaaS เล็กๆ",
+    "now_what": "นักลงทุนควรจับตา OpenAI partnership กับ Microsoft 365/GitHub Copilot ว่าจะเพิ่ม adoption ในองค์กรได้แค่ไหน รวมถึง superapp จะสร้าง moat ได้จริงหรือไม่ และควรเฝ้าระวัง 'soft boycott' จาก indie developers"
   },
   {
     "category": "ai",
-    "headline": "NVIDIA Unveils Vera Rubin Platform, Slashing AI Training Costs",
-    "what": "NVIDIA เปิดตัวชิปสถาปัตยกรรม Vera Rubin (H300 GPUs) ซึ่งสามารถลดต้นทุนการเทรนโมเดล AI ขนาดใหญ่ลงถึง 10 เท่า และเพิ่มประสิทธิภาพการประมวลผลสำหรับ Physical AI (AI ที่เชื่อมต่อกับหุ่นยนต์)",
-    "why_matters": "ต้นทุนการประมวลผลที่ลดลงอย่างมากจะทำให้เกิดการเร่งพัฒนาและนำ AI ไปใช้ในอุตสาหกรรมต่างๆ ได้รวดเร็วยิ่งขึ้น รวมถึงการสร้างหุ่นยนต์อัจฉริยะที่ใช้ในโรงงานและการขับขี่อัตโนมัติ",
-    "so_what": "หุ้นกลุ่มผู้ผลิตชิปยังคงเป็นผู้ได้รับผลประโยชน์หลัก (Beneficiary) และส่งผลบวกต่อผู้ให้บริการ Data Center และเทคโนโลยีระบายความร้อน (Liquid Cooling)",
-    "now_what": "หาโอกาสลงทุนใน Supply Chain ของ NVIDIA เช่น ผู้ผลิตชิปหน่วยความจำ ผู้พัฒนาเทคโนโลยีระบายความร้อนด้วยของเหลว และบริษัทหุ่นยนต์ที่ใช้แพลตฟอร์มของ NVIDIA"
+    "headline": "Google Gemini 3 Flash/Pro Upgrade & Apple Siri Partnership",
+    "what": "Google เปิดตัว Gemini 3 Flash เป็น default model ใหม่ พร้อม Gemini 3.1 Pro ที่ reasoning score สูงขึ้น 2 เท่า และ context 1 ล้าน token รวมถึงแตก Gemini 3.1 Pro เข้า Workspace อย่างลึก — 'Help me create' ใน Docs ดึงข้อมูลจาก Drive/Gmail/Chats อัตโนมัติ และ 'Fill with Gemini' ใน Sheets ที่เร็วกว่ากรอกมือมาก นอกจากนี้ Apple-Google partnership ยืนยัน Gemini จะเป็นฐานให้ Siri รุ่นใหม่ ครอบคลุมอุปกรณ์ Apple หลายร้อยล้านเครื่อง",
+    "why_matters": "การรวม Gemini เข้า Workspace หมายถึง AI จะเข้าถึงข้อมูลธุรกิจโดยตรง ปฏิวัติวิธีทำงานในองค์กร และ Apple-Google partnership จะสร้าง 'AI ecosystem ข้ามแพลตฟอร์ม' ที่ใหญ่ที่สุดในประวัติศาสตร์ ส่งผลกระทบต่อ OpenAI ในสงคราม B2C",
+    "so_what": "Google สามารถปิดจุดอ่อนเรื่อง 'สถาปัตยกรรม' ด้วย workspace integration ได้สำเร็จ และ Apple ก็ได้ AI capability ทันทีโดยไม่ต้องสร้างเอง — win-win ที่อาจทำให้ OpenAI สูญเสีย user base ในกลุ่ม consumer",
+    "now_what": "พิจารณาลงทุนในหุ้นกลุ่ม Consumer Tech Mega-cap (Apple, Google) ที่มี ecosystem lock-in และสามารถ deliver AI ให้ผู้บริโภคได้โดยตรง และจับตา Gemini 3.1 Pro ใน workspace ว่าจะสร้าง revenue ให้ Google ได้มากแค่ไหน"
   },
   {
     "category": "ai",
-    "headline": "Apple and Google Forge Massive AI Partnership for Siri Integration",
-    "what": "Apple จับมือกับ Google เพื่อนำโมเดล Gemini AI เข้ามาผสานการทำงานกับ Siri บนอุปกรณ์ Apple กว่าร้อยล้านเครื่อง โดยเน้นความปลอดภัยผ่านระบบ Private Cloud Compute",
-    "why_matters": "ถือเป็นการร่วมมือครั้งประวัติศาสตร์ของสองยักษ์ใหญ่เทคโนโลยี ซึ่งทำให้ AI เข้าถึงผู้ใช้งานทั่วไป (Mass Adoption) ทันทีบนฐานผู้ใช้มหาศาลของ Apple",
-    "so_what": "Apple สามารถปิดจุดอ่อนด้าน AI ได้สำเร็จ ในขณะที่ Google ได้พื้นที่การตลาดมหาศาลเอาชนะคู่แข่งอย่าง OpenAI ในสมรภูมิผู้ใช้งานทั่วไป (B2C)",
-    "now_what": "นักลงทุนสามารถพิจารณาเพิ่มน้ำหนักลงทุนในหุ้นกลุ่ม Consumer Tech ขนาดใหญ่ (Mega-cap tech) ที่มี Ecosystem ผูกขาดและสามารถ Integrate AI เข้าสู่มือผู้บริโภคได้โดยตรง"
+    "headline": "Tesla Terafab: $25B Chip Fab, Optimus Gen 3 Mass Production & FSD V14.3",
+    "what": "Tesla เปิดตัว Terafab — โรงงานผลิตชิปมูลค่า $25,000 ล้าน ร่วมกับ SpaceX และ xAI ที่ Austin เป้าผลิตกำลังคอมพิวเตอร์ 1 terawatt ต่อปี เพื่อผลิตชิป AI5/AI6/AI7 สำหรับรถยนต์และหุ่นยนต์ พร้อมเริ่มผลิต Optimus Gen 3 จำนวน 50,000-100,000 ต่อปี และ FSD V14.3 กำลังจะปล่อยให้ users หลังจากทดสอบแล้ว ขณะที่ FSD ในยุโรปได้รับ approval จาก RDW ของเนเธอร์แลนด์แล้ว คาด EU-wide rollout ภายในฤดูร้อน 2026",
+    "why_matters": "Terafab คือการเดิมพันของ Musk ที่จะพึ่งพาตัวเองในซัพไลเออร์ชิป AI โดยไม่ต้องพึ่ง TSMC/Samsung ขณะที่ Optimus กำลังเข้าสู่ commercialization จริง (หลายพันตัวใช้งานจริงในโรงงานแล้ว) และ FSD กำลังขยายนอกสหรัฐฯ ครั้งแรก",
+    "so_what": "Tesla กำลังจะเปลี่ยนจาก 'บริษัทรถยนต์' เป็น 'AI + Robotics platform' อย่างเต็มรูปแบบ หุ้น Tesla ยังมี upside จาก AI/Robotics narrative มากกว่า automotive pure-play อย่างชัดเจน แต่ก็มีความเสี่ยงจากการลงทุน capex มหาศาลและความผันผวนจาก Musk เอง",
+    "now_what": "จับตา AI5 chip production ในปี 2026 และ volume production ใน 2027, Optimus deployment ในโรงงาน partner ว่าจะถึงเป้าหรือไม่ และ FSD EU approval ที่จะเป็น catalyst สำคัญสำหรับหุ้น Tesla"
   },
   {
-    "category": "macro",
-    "headline": "Severe Escalation in Israel-Iran Conflict Sends Oil Above $100",
-    "what": "ความขัดแย้งระหว่างอิสราเอลและอิหร่านทวีความรุนแรงขึ้นอย่างมากในเดือนมีนาคม 2026 โดยมีการโจมตีโครงสร้างพื้นฐานด้านพลังงานของอิหร่านและปิดกั้นการขนส่ง ส่งผลให้ราคาน้ำมันดิบเบรนท์พุ่งทะลุ 100 ดอลลาร์สหรัฐต่อบาร์เรล",
-    "why_matters": "การโจมตีโรงกลั่นและแหล่งพลังงานในตะวันออกกลาง รวมถึงความเสี่ยงในช่องแคบฮอร์มุซ ส่งผลกระทบโดยตรงต่อต้นทุนพลังงานและห่วงโซ่อุปทานระดับโลก",
-    "so_what": "ต้นทุนที่สูงขึ้นสร้างความกังวลว่าอัตราเงินเฟ้อ (Inflation) จะกลับมาพุ่งสูงขึ้นอีกครั้ง กดดันให้ธนาคารกลางอาจต้องรักษาระดับดอกเบี้ย ตลาดหุ้นทั่วโลกเกิดความผันผวนรุนแรง",
-    "now_what": "ควรพิจารณาปรับพอร์ตโดยเพิ่มสินทรัพย์ปลอดภัย (Safe Havens) เช่น ทองคำ และหุ้นกลุ่มพลังงานหรือสินค้าโภคภัณฑ์ เพื่อป้องกันความเสี่ยงจากเงินเฟ้อระยะสั้น"
-  },
-  {
-    "category": "macro",
-    "headline": "Emergence of Two Distinct Global Tech Ecosystems Driven by US-China Rivalry",
-    "what": "สงครามเทคโนโลยีสหรัฐฯ-จีน ทวีความรุนแรงจนนำไปสู่การแยกตัวของระบบนิเวศเทคโนโลยีโลกอย่างชัดเจน สหรัฐฯ เพิ่มการแบนชิป AI ขั้นสูง ในขณะที่จีนเร่งแผนพัฒนาเศรษฐกิจฉบับที่ 15 เพื่อพึ่งพาตนเอง",
-    "why_matters": "โลกกำลังถูกแบ่งเป็น 2 ขั้วเทคโนโลยี ทั้งด้านฮาร์ดแวร์ ซอฟต์แวร์ และโครงสร้างพื้นฐาน ซึ่งองค์กรข้ามชาติจะต้องเลือกฝั่งหรือต้องแบกรับต้นทุนในการพัฒนาระบบซ้ำซ้อน",
-    "so_what": "ต้นทุนการวิจัยและพัฒนาด้านเทคโนโลยีทั่วโลกจะสูงขึ้น บริษัทเทคโนโลยีที่พึ่งพายอดขายข้ามพรมแดนอาจเผชิญความยากลำบาก ในทางกลับกัน หุ้นเทคโนโลยีท้องถิ่นที่รัฐบาลหนุนหลังจะได้รับอานิสงส์",
-    "now_what": "กระจายการลงทุน (Diversify) ในบริษัทเทคโนโลยีที่มีอำนาจผูกขาดในตลาดของตนเอง และมองหาโอกาสในกลุ่มผู้ผลิตเซมิคอนดักเตอร์ที่รับจ้างผลิตให้ทั้งสองฝั่งแต่อยู่นอกพื้นที่ความขัดแย้งหลัก"
-  },
-  {
-    "category": "trend",
-    "headline": "Sovereign AI and Cloud Geopatriation",
-    "what": "รัฐบาลทั่วโลก (ยุโรป เอเชีย ตะวันออกกลาง) กำลังลงทุนมหาศาลเพื่อสร้าง Sovereign AI (AI แห่งชาติ) และดึงข้อมูลคลาวด์กลับสู่ประเทศตนเอง (Geopatriation) ลดการพึ่งพา Big Tech ของสหรัฐฯ",
-    "why_matters": "ข้อมูลถือเป็นความมั่นคงของชาติยุคใหม่ แต่ละประเทศต้องการเป็นเจ้าของโมเดล AI ที่เข้าใจภาษาและวัฒนธรรมตนเอง พร้อมปกป้องข้อมูลประชากรระดับชาติไม่ให้รั่วไหล",
-    "so_what": "เม็ดเงินลงทุนมหาศาลจะถูกอัดฉีดเข้าสู่การสร้าง Data Center ระดับท้องถิ่น โครงสร้างพื้นฐานด้านพลังงานทดแทน 5G และระบบ Cybersecurity ที่รองรับตลาดในประเทศ",
-    "now_what": "ค้นหาโอกาสลงทุนในกลุ่มบริษัทรับเหมาสร้าง Data Center และโครงสร้างพื้นฐานในกลุ่มประเทศตลาดเกิดใหม่ (Emerging Markets) บริษัทโทรคมนาคมท้องถิ่น และผู้ให้บริการพลังงานทางเลือก"
+    "category": "ai",
+    "headline": "NVIDIA Vera Rubin Mass Production & AI Infrastructure Spending Surge",
+    "what": "NVIDIA เริ่มผลิตเชิงปริมาณชิป Vera Rubin (H300 GPUs) ในปี 2026 ซึ่งลดต้นทุนการเทรน AI ขนาดใหญ่ลงถึง 10 เท่า และรองรับ Physical AI (หุ่นยนต์, autonomous driving) ได้ดีเยี่ยม โดยมีSupply Chain ที่แข่งขันจาก TSMC, SK Hynix และ Samsung รวมถึงบริษัทระบายความร้อนด้วยของเหลว (liquid cooling) อย่าง Vertiv, Schneider ที่ได้รับอานิสงส์โดยตรง",
+    "why_matters": "ต้นทุน AI inference และ training ที่ลดลง 10 เท่าจะเป็น catalyst ให้ AI adoption ในทุกอุตสาหกรรมเร่งตัวขึ้นอย่างมาก เพราะ ROI จะคุ้มค่าขึ้นชัดเจนสำหรับองค์กรขนาดกลาง-เล็กด้วย",
+    "so_what": "NVIDIA ยังคงเป็น 'picks and shovels' หลักของ AI revolution แต่การแข่งขันจาก AMD, Intel, Google TPUs และ custom silicon ของ Amazon/Microsoft จะเพิ่มขึ้นเรื่อยๆ ทำให้ margin ของ NVIDIA อาจถูกกดทับในระยะยาว",
+    "now_what": "กระจายลงทุนใน AI infrastructure chain — นอกจาก NVIDIA ควรมองหาโอกาสในผู้ผลิตหน่วยความจำ (HBM), ผู้พัฒนาระบบระบายความร้อน และ data center operators ที่เป็นลูกค้าปลายน้ำของ NVIDIA chips"
   }
 ]
