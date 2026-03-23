@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-23T19:30:53.802092+00:00",
+  "generatedAt": "2026-03-23T21:44:40.756900+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1773048600,
-    "to": 1774278900
+    "from": 1773054000,
+    "to": 1774284300
   },
   "summary": {
     "totalOrders": 3,
@@ -57,9 +57,9 @@
         "triggeredAt": 1774278000,
         "closeReason": null,
         "closedAt": null,
-        "timeInTradeMin": 15,
+        "timeInTradeMin": 105,
         "mfe": 41.395,
-        "mae": -14.12
+        "mae": -25.225
       }
     },
     {
