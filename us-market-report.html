@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>US Market Premium Report — Ocean Ten</title>
   <meta name="theme-color" content="#0a0e17">
-  <meta name="description" content="US Market Premium Research Report — S&P500, Nasdaq, Gold, BTC, DXY, Yields Analysis">
+  <meta name="description" content="US Market Premium Research Report — S&P500, Nasdaq, Gold, BTC, DXY, Yields Analysis — March 23, 2026">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="US Market Report">
@@ -16,701 +16,276 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-primary: #0a0e17;
-      --bg-card: #111827;
-      --bg-card-hover: #1a2235;
+      --bg-primary: #060912;
+      --bg-card: #0d1424;
+      --bg-card-hover: #111a30;
       --accent-gold: #f0b90b;
       --accent-gold-dim: #b8860b;
-      --accent-gold-glow: rgba(240,185,11,0.15);
+      --accent-gold-glow: rgba(240,185,11,0.12);
       --accent-red: #ef4444;
-      --accent-red-bg: rgba(239,68,68,0.12);
+      --accent-red-bg: rgba(239,68,68,0.10);
+      --accent-red-strong: #ff6b6b;
       --accent-green: #10b981;
-      --accent-green-bg: rgba(16,185,129,0.12);
-      --accent-blue: #3b82f6;
-      --text-primary: #f9fafb;
-      --text-secondary: #9ca3af;
-      --text-muted: #6b7280;
-      --border: #1f2937;
-      --border-light: rgba(240,185,11,0.15);
-      --shadow: 0 20px 60px rgba(0,0,0,0.5);
-      --glow-gold: 0 0 40px rgba(240,185,11,0.2);
+      --accent-green-bg: rgba(16,185,129,0.10);
+      --accent-orange: #f97316;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #475569;
+      --border: #1e2d4a;
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3);
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Inter', 'Noto Sans Thai', sans-serif;
       background: var(--bg-primary);
       color: var(--text-primary);
       min-height: 100vh;
       overflow-x: hidden;
-      line-height: 1.5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-
-    /* Animated background */
     body::before {
       content: '';
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: 
-        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(240,185,11,0.08) 0%, transparent 60%),
-        linear-gradient(rgba(240,185,11,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(240,185,11,0.02) 1px, transparent 1px);
-      background-size: 100% 100%, 80px 80px, 80px 80px;
+      background:
+        radial-gradient(ellipse 100% 60% at 50% -5%, rgba(240,185,11,0.06) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(239,68,68,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 10% 70%, rgba(16,185,129,0.03) 0%, transparent 50%);
       pointer-events: none;
       z-index: 0;
     }
-
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(240,185,11,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,185,11,0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
     .container {
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 40px 24px 80px;
+      padding: 0 24px 80px;
       position: relative;
       z-index: 1;
     }
-
-    /* ===== HEADER ===== */
-    .report-header {
-      text-align: center;
-      margin-bottom: 48px;
-      padding-top: 32px;
-    }
-
-    .brand-row {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-
-    .brand-icon {
-      width: 52px;
-      height: 52px;
-      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dim));
-      border-radius: 14px;
+    .alert-banner {
+      margin-top: 24px;
+      background: linear-gradient(135deg, rgba(239,68,68,0.12), rgba(249,115,22,0.08));
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 16px;
+      padding: 14px 20px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      box-shadow: var(--glow-gold);
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 28px;
+      animation: pulse-border 3s ease-in-out infinite;
     }
-
-    .brand-name {
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, var(--accent-gold), #fff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    @keyframes pulse-border {
+      0%, 100% { border-color: rgba(239,68,68,0.3); }
+      50% { border-color: rgba(239,68,68,0.6); }
     }
-
-    .report-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 20px;
-      background: var(--accent-gold-glow);
-      border: 1px solid var(--accent-gold);
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 700;
+    .alert-icon { flex-shrink: 0; font-size: 20px; line-height: 1; }
+    .alert-content { flex: 1; }
+    .alert-label {
+      font-size: 10px;
+      font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--accent-gold);
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(240,185,11,0.1);
+      color: var(--accent-red);
+      margin-bottom: 4px;
     }
-
-    .report-label .premium-star {
-      font-size: 14px;
-    }
-
-    .report-title {
-      font-size: clamp(28px, 5vw, 52px);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -2px;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, #fff 0%, #d1d5db 50%, #9ca3af 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .report-meta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .meta-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 14px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 100px;
+    .alert-text {
       font-size: 13px;
-      color: var(--text-secondary);
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.5;
     }
-
+    .alert-meta { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+    .report-header { text-align: center; padding-top: 16px; margin-bottom: 40px; }
+    .brand-row { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+    .brand-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dim));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 0 30px rgba(240,185,11,0.25);
+    }
+    .brand-name {
+      font-size: 22px; font-weight: 900; letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--accent-gold), #fff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .report-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 18px;
+      background: var(--accent-gold-glow);
+      border: 1px solid rgba(240,185,11,0.35);
+      border-radius: 100px;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent-gold);
+      margin-bottom: 18px;
+      box-shadow: 0 0 24px rgba(240,185,11,0.08);
+    }
+    .report-title {
+      font-size: clamp(30px, 6vw, 54px);
+      font-weight: 900; line-height: 1.05; letter-spacing: -2px;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #ffffff 0%, #c8d4e8 50%, #7a8ba8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .report-subtitle {
+      font-size: 15px; color: var(--text-muted);
+      max-width: 560px; margin: 0 auto 16px; line-height: 1.65;
+    }
+    .report-meta { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .meta-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 5px 13px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 100px; font-size: 12px; color: var(--text-secondary);
+    }
+    .meta-badge.alert {
+      background: rgba(239,68,68,0.08);
+      border-color: rgba(239,68,68,0.25);
+      color: var(--accent-red-strong);
+    }
     .meta-badge.highlight {
       background: rgba(240,185,11,0.08);
       border-color: rgba(240,185,11,0.3);
       color: var(--accent-gold);
     }
-
-    .report-subtitle {
-      font-size: 16px;
-      color: var(--text-muted);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    /* ===== GOLD DIVIDER ===== */
-    .gold-divider {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
-      margin: 40px 0;
-      opacity: 0.5;
-    }
-
-    /* ===== SUMMARY SECTION ===== */
-    .summary-section {
-      margin-bottom: 48px;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .section-icon {
-      font-size: 20px;
-    }
-
-    .section-title {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent-gold);
-    }
-
+    .gold-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--accent-gold), transparent); margin: 36px 0; opacity: 0.4; }
+    .summary-section { margin-bottom: 40px; }
+    .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .section-icon { font-size: 18px; }
+    .section-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-gold); }
     .summary-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 28px 32px;
-      position: relative;
-      overflow: hidden;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 24px 28px;
+      position: relative; overflow: hidden; box-shadow: var(--shadow-card);
     }
-
     .summary-card::before {
       content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent-gold), #f59e0b, var(--accent-red));
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent-red), var(--accent-gold), var(--accent-green));
     }
-
     .summary-item {
-      display: flex;
-      gap: 16px;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--border);
+      display: flex; gap: 16px; padding: 16px 0;
+      border-bottom: 1px solid var(--border); align-items: flex-start;
     }
-
-    .summary-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .summary-item:first-child {
-      padding-top: 0;
-    }
-
+    .summary-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .summary-item:first-child { padding-top: 0; }
     .summary-num {
-      flex-shrink: 0;
-      width: 32px;
-      height: 32px;
+      flex-shrink: 0; width: 30px; height: 30px;
       background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-dim));
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 800;
-      color: #000;
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; color: #000;
     }
-
-    .summary-text {
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--text-primary);
-      padding-top: 4px;
-    }
-
-    /* ===== ASSET CARDS ===== */
-    .assets-grid {
-      display: grid;
-      gap: 24px;
-      margin-bottom: 48px;
-    }
-
+    .summary-text { font-size: 13.5px; line-height: 1.7; color: var(--text-primary); padding-top: 4px; }
+    .assets-grid { display: grid; gap: 20px; margin-bottom: 40px; }
     .asset-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: all 0.3s ease;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden;
+      transition: all 0.25s ease; box-shadow: var(--shadow-card);
     }
-
     .asset-card:hover {
-      border-color: rgba(240,185,11,0.3);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      border-color: rgba(240,185,11,0.25);
+      box-shadow: var(--shadow-card), 0 0 40px rgba(240,185,11,0.05);
+      transform: translateY(-1px);
     }
-
     .asset-card.bear { border-left: 3px solid var(--accent-red); }
     .asset-card.neutral { border-left: 3px solid var(--accent-gold); }
     .asset-card.bullish { border-left: 3px solid var(--accent-green); }
-
-    /* Card Header */
     .asset-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 22px; border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.015); gap: 12px;
     }
-
-    .asset-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .asset-emoji {
-      font-size: 24px;
-    }
-
-    .asset-name-wrap {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .asset-symbol {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--text-primary);
-      letter-spacing: -0.5px;
-    }
-
-    .asset-name-en {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .asset-price-wrap {
-      text-align: right;
-    }
-
-    .asset-price {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--text-primary);
-      letter-spacing: -1px;
-    }
-
-    .asset-change {
-      font-size: 13px;
-      font-weight: 600;
-      margin-top: 2px;
-    }
-
+    .asset-info { display: flex; align-items: center; gap: 12px; }
+    .asset-emoji { font-size: 24px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
+    .asset-name-wrap { display: flex; flex-direction: column; }
+    .asset-symbol { font-size: 17px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.3px; }
+    .asset-name-en { font-size: 11px; color: var(--text-muted); }
+    .asset-price-wrap { text-align: right; }
+    .asset-price { font-size: 20px; font-weight: 800; color: var(--text-primary); letter-spacing: -0.8px; }
+    .asset-change { font-size: 13px; font-weight: 700; margin-top: 2px; }
     .asset-change.neg { color: var(--accent-red); }
     .asset-change.pos { color: var(--accent-green); }
     .asset-change.neutral { color: var(--accent-gold); }
-
-    .asset-change-label {
-      font-size: 11px;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    /* View Badge */
+    .asset-change-label { font-size: 10px; color: var(--text-muted); font-weight: 400; line-height: 1.4; }
     .view-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px 10px; border-radius: 8px;
+      font-size: 10px; font-weight: 800; letter-spacing: 1px;
+      text-transform: uppercase; flex-shrink: 0;
     }
-
-    .view-badge.bear {
-      background: var(--accent-red-bg);
-      color: var(--accent-red);
-      border: 1px solid rgba(239,68,68,0.3);
-    }
-
-    .view-badge.neutral {
-      background: var(--accent-gold-glow);
-      color: var(--accent-gold);
-      border: 1px solid rgba(240,185,11,0.3);
-    }
-
-    .view-badge.bullish {
-      background: var(--accent-green-bg);
-      color: var(--accent-green);
-      border: 1px solid rgba(16,185,129,0.3);
-    }
-
-    /* Card Body */
-    .asset-body {
-      padding: 20px 24px;
-    }
-
-    .why-section {
-      margin-bottom: 16px;
-    }
-
-    .why-title {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .why-list {
-      list-style: none;
-    }
-
-    .why-list li {
-      position: relative;
-      padding-left: 20px;
-      padding-bottom: 8px;
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--text-secondary);
-    }
-
-    .why-list li:last-child {
-      padding-bottom: 0;
-    }
-
-    .why-list li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--accent-gold);
-      font-size: 11px;
-      top: 3px;
-    }
-
-    /* Entry/Exit Table */
-    .entry-section {
-      margin-bottom: 16px;
-    }
-
-    .entry-title {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .entry-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    .entry-item {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 12px;
-    }
-
-    .entry-label {
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .entry-value {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-primary);
-      line-height: 1.4;
-    }
-
-    /* Risk Section */
-    .risk-section {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--border);
-    }
-
-    .risk-badge {
-      flex-shrink: 0;
-      padding: 3px 10px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
-
-    .risk-badge.HIGH {
-      background: var(--accent-red-bg);
-      color: var(--accent-red);
-    }
-
-    .risk-badge.MEDIUM {
-      background: var(--accent-gold-glow);
-      color: var(--accent-gold);
-    }
-
-    .risk-badge.MEDIUM-HIGH {
-      background: rgba(249,115,22,0.12);
-      color: #f97316;
-    }
-
-    .risk-text {
-      font-size: 12px;
-      line-height: 1.6;
-      color: var(--text-secondary);
-    }
-
-    /* ===== OUTLOOK TABLE ===== */
-    .outlook-section {
-      margin-bottom: 48px;
-    }
-
-    .outlook-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .outlook-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent-red), var(--accent-gold), var(--accent-green));
-    }
-
-    .outlook-table {
-      width: 100%;
-    }
-
-    .outlook-row {
-      display: grid;
-      grid-template-columns: 1fr auto auto 1.5fr;
-      gap: 12px;
-      align-items: center;
-      padding: 14px 24px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .outlook-row:last-child {
-      border-bottom: none;
-    }
-
-    .outlook-row.header {
-      background: rgba(255,255,255,0.02);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .outlook-asset {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .outlook-view {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
+    .view-badge.bear { background: var(--accent-red-bg); color: var(--accent-red); border: 1px solid rgba(239,68,68,0.25); }
+    .view-badge.neutral { background: var(--accent-gold-glow); color: var(--accent-gold); border: 1px solid rgba(240,185,11,0.25); }
+    .view-badge.bullish { background: var(--accent-green-bg); color: var(--accent-green); border: 1px solid rgba(16,185,129,0.25); }
+    .asset-body { padding: 18px 22px; }
+    .why-section { margin-bottom: 14px; }
+    .why-title { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .why-list { list-style: none; }
+    .why-list li { position: relative; padding-left: 18px; padding-bottom: 7px; font-size: 13px; line-height: 1.6; color: var(--text-secondary); }
+    .why-list li:last-child { padding-bottom: 0; }
+    .why-list li::before { content: '▸'; position: absolute; left: 0; color: var(--accent-gold); font-size: 10px; top: 4px; }
+    .entry-section { margin-bottom: 14px; }
+    .entry-title { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+    .entry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .entry-item { background: rgba(255,255,255,0.025); border: 1px solid var(--border); border-radius: 10px; padding: 9px 12px; }
+    .entry-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 3px; }
+    .entry-value { font-size: 12px; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
+    .risk-section { display: flex; align-items: flex-start; gap: 10px; padding: 11px 13px; border-radius: 10px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); }
+    .risk-badge { flex-shrink: 0; padding: 3px 9px; border-radius: 6px; font-size: 10px; font-weight: 800; letter-spacing: 0.5px; }
+    .risk-badge.HIGH { background: var(--accent-red-bg); color: var(--accent-red); }
+    .risk-badge.MEDIUM { background: var(--accent-gold-glow); color: var(--accent-gold); }
+    .risk-badge.MEDIUM-HIGH { background: rgba(249,115,22,0.10); color: var(--accent-orange); }
+    .risk-text { font-size: 11.5px; line-height: 1.6; color: var(--text-secondary); }
+    .outlook-section { margin-bottom: 40px; }
+    .outlook-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-card); }
+    .outlook-table { width: 100%; }
+    .outlook-row { display: grid; grid-template-columns: 1fr auto auto 1.6fr; gap: 10px; align-items: center; padding: 13px 22px; border-bottom: 1px solid var(--border); }
+    .outlook-row:last-child { border-bottom: none; }
+    .outlook-row.header { background: rgba(255,255,255,0.02); font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+    .outlook-asset { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .outlook-view { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; }
     .outlook-view.bear { color: var(--accent-red); }
     .outlook-view.neutral { color: var(--accent-gold); }
     .outlook-view.bullish { color: var(--accent-green); }
-
-    .outlook-emoji {
-      font-size: 16px;
-    }
-
-    .outlook-reason {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* ===== SOURCES ===== */
-    .sources-section {
-      margin-bottom: 48px;
-    }
-
-    .sources-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .source-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 5px 12px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      font-size: 11px;
-      color: var(--text-muted);
-      transition: all 0.2s;
-    }
-
-    .source-tag:hover {
-      border-color: var(--accent-gold);
-      color: var(--accent-gold);
-    }
-
-    /* ===== FOOTER ===== */
-    .report-footer {
-      text-align: center;
-      padding-top: 40px;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-brand {
-      font-size: 14px;
-      color: var(--text-secondary);
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    .footer-meta {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-
-    .agent-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 14px;
-      background: rgba(16,185,129,0.08);
-      border: 1px solid rgba(16,185,129,0.25);
-      border-radius: 100px;
-      font-size: 12px;
-      color: var(--accent-green);
-    }
-
-    .disclaimer {
-      margin-top: 20px;
-      padding: 14px 20px;
-      background: rgba(239,68,68,0.05);
-      border: 1px solid rgba(239,68,68,0.15);
-      border-radius: 10px;
-      font-size: 11px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    /* ===== RESPONSIVE ===== */
+    .outlook-emoji { font-size: 15px; }
+    .outlook-reason { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+    .sources-section { margin-bottom: 40px; }
+    .sources-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
+    .source-tag { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; font-size: 10px; color: var(--text-muted); transition: all 0.2s; }
+    .source-tag:hover { border-color: rgba(240,185,11,0.3); color: var(--accent-gold); }
+    .report-footer { text-align: center; padding-top: 32px; border-top: 1px solid var(--border); }
+    .footer-brand { font-size: 13px; color: var(--text-secondary); margin-bottom: 5px; font-weight: 600; }
+    .footer-meta { font-size: 10px; color: var(--text-muted); margin-bottom: 10px; }
+    .agent-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; background: rgba(16,185,129,0.07); border: 1px solid rgba(16,185,129,0.2); border-radius: 100px; font-size: 11px; color: var(--accent-green); }
+    .disclaimer { margin-top: 16px; padding: 12px 18px; background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.12); border-radius: 10px; font-size: 10px; color: var(--text-muted); line-height: 1.6; text-align: center; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; padding: 7px 15px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; font-size: 12px; color: var(--text-secondary); text-decoration: none; margin-top: 24px; transition: all 0.2s; }
+    .back-link:hover { border-color: rgba(240,185,11,0.3); color: var(--accent-gold); }
+    .loading-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+    .loading-spinner { width: 36px; height: 36px; border: 2.5px solid var(--border); border-top-color: var(--accent-gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 12px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
     @media (max-width: 640px) {
-      .container { padding: 24px 16px 60px; }
-      .report-header { margin-bottom: 32px; }
-      .report-title { letter-spacing: -0.5px; }
-      .summary-card { padding: 20px; }
-      .asset-header { padding: 16px; }
-      .asset-body { padding: 16px; }
-      .asset-price { font-size: 18px; }
+      .container { padding: 0 16px 60px; }
+      .alert-banner { padding: 12px 16px; }
+      .asset-header { padding: 14px 16px; flex-wrap: wrap; }
+      .asset-body { padding: 14px 16px; }
+      .asset-price { font-size: 17px; }
+      .summary-card { padding: 18px 20px; }
       .entry-grid { grid-template-columns: 1fr; }
-      .outlook-row {
-        grid-template-columns: 1fr auto;
-        gap: 6px;
-      }
+      .outlook-row { grid-template-columns: 1fr auto; gap: 6px; }
       .outlook-row.header { display: none; }
       .outlook-reason { display: none; }
-    }
-
-    /* ===== LOADING STATE ===== */
-    .loading-state {
-      text-align: center;
-      padding: 80px 20px;
-      color: var(--text-muted);
-    }
-
-    .loading-spinner {
-      width: 40px;
-      height: 40px;
-      border: 3px solid var(--border);
-      border-top-color: var(--accent-gold);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto 16px;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Back link */
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 13px;
-      color: var(--text-secondary);
-      text-decoration: none;
-      margin-bottom: 24px;
-      transition: all 0.2s;
-    }
-
-    .back-link:hover {
-      border-color: var(--accent-gold);
-      color: var(--accent-gold);
     }
   </style>
 </head>
@@ -718,50 +293,46 @@
   <div class="container">
     <a href="/" class="back-link">← กลับหน้าแรก</a>
 
+    <div class="alert-banner">
+      <span class="alert-icon">⚠️</span>
+      <div class="alert-content">
+        <div class="alert-label">⚡ Breaking — Iran Escalation</div>
+        <div class="alert-text">Trump ออก ultimatum 48 ชม. ให้ Iran ยุติการ enrich uranium — ตลาดโลกเทขาย risk assets หนัก วันจันทร์ที่ 23 มีนาคม 2026</div>
+        <div class="alert-meta">⏰ ติดตาม: Ultimatum หมดอีก ≈ 1–2 วัน · Oil พุ่ง $100.50+ · WTI +$2+</div>
+      </div>
+    </div>
+
     <header class="report-header">
       <div class="brand-row">
         <div class="brand-icon">📊</div>
         <span class="brand-name">Ocean Ten</span>
       </div>
-      <div class="report-label">
-        <span class="premium-star">★★★</span>
-        Premium Research Report
-        <span class="premium-star">★★★</span>
-      </div>
+      <div class="report-label"><span>★</span> Premium Research Report <span>★</span></div>
       <h1 class="report-title" id="reportTitle">US Market<br>Premium Report</h1>
-      <div class="report-meta" id="reportMeta">
+      <p class="report-subtitle" id="reportSubtitle">วิเคราะห์เชิงลึก S&P500 · Nasdaq · Gold · BTC · DXY · Yields — ระดับที่คนยอมจ่ายเงินดูได้</p>
+      <div class="report-meta">
         <span class="meta-badge highlight" id="dateBadge">กำลังโหลด...</span>
         <span class="meta-badge" id="timeBadge">--:-- UTC</span>
+        <span class="meta-badge alert" id="marketStatus">⏳ กำลังอัปเดต...</span>
       </div>
-      <p class="report-subtitle" id="reportSubtitle">วิเคราะห์เชิงลึก S&P500 · Nasdaq · Gold · BTC · DXY · Yields — ระดับที่คนยอมจ่ายเงินดูได้</p>
     </header>
 
-    <!-- Summary Section -->
     <section class="summary-section">
       <div class="section-header">
         <span class="section-icon">📌</span>
         <span class="section-title">3 สิ่งที่ต้องรู้วันนี้</span>
       </div>
       <div class="summary-card">
-        <div id="summaryList">
-          <div class="loading-state">
-            <div class="loading-spinner"></div>
-            กำลังโหลด...
-          </div>
-        </div>
+        <div id="summaryList"><div class="loading-state"><div class="loading-spinner"></div></div></div>
       </div>
     </section>
 
     <div class="gold-divider"></div>
 
-    <!-- Asset Cards -->
     <section class="assets-grid" id="assetsGrid">
-      <div class="loading-state">
-        <div class="loading-spinner"></div>
-      </div>
+      <div class="loading-state"><div class="loading-spinner"></div></div>
     </section>
 
-    <!-- Outlook Table -->
     <section class="outlook-section">
       <div class="section-header">
         <span class="section-icon">📊</span>
@@ -770,9 +341,7 @@
       <div class="outlook-card">
         <div class="outlook-table">
           <div class="outlook-row header">
-            <span>Asset</span>
-            <span>View</span>
-            <span></span>
+            <span>Asset</span><span>View</span><span></span>
             <span style="text-align:left">เหตุผล</span>
           </div>
           <div id="outlookBody">กำลังโหลด...</div>
@@ -780,20 +349,14 @@
       </div>
     </section>
 
-    <!-- Sources -->
     <section class="sources-section">
       <div class="section-header">
         <span class="section-icon">📚</span>
         <span class="section-title">แหล่งที่มา</span>
       </div>
-      <div class="sources-wrap" id="sourcesWrap">
-        <div class="loading-state" style="padding:20px 0">
-          <div class="loading-spinner"></div>
-        </div>
-      </div>
+      <div class="sources-wrap" id="sourcesWrap"><div class="loading-state" style="padding:20px 0"><div class="loading-spinner"></div></div></div>
     </section>
 
-    <!-- Footer -->
     <footer class="report-footer">
       <p class="footer-brand">📊 Ocean Ten — Premium US Market Intelligence</p>
       <p class="footer-meta">Generated by 🐋 Whale · Deployed by 🐬 Dolphin · MiniMax 2.7</p>
@@ -808,28 +371,33 @@
         const res = await fetch('./data/us-market-report.json');
         const d = await res.json();
 
-        // Header
         document.getElementById('dateBadge').textContent = d.date_short;
         document.getElementById('timeBadge').textContent = d.time_utc + ' • ' + d.level;
 
-        // Summary
-        const summaryList = document.getElementById('summaryList');
-        summaryList.innerHTML = d.summary_3_points.map((point, i) => `
-          <div class="summary-item">
-            <div class="summary-num">${i + 1}</div>
-            <div class="summary-text">${point}</div>
-          </div>
-        `).join('');
+        const bearCount = d.outlook.filter(o => o.view === 'BEAR').length;
+        const bullCount = d.outlook.filter(o => o.view === 'BULLISH').length;
+        const statusEl = document.getElementById('marketStatus');
+        if (bearCount >= 4) {
+          statusEl.textContent = '🐻 BEAR MARKET — ' + bearCount + '/6 ตลาดปรับตัวลง';
+          statusEl.style.color = 'var(--accent-red)';
+        } else if (bullCount >= 3) {
+          statusEl.textContent = '🐂 BULL MARKET — ' + bullCount + '/6 ตลาดขาขึ้น';
+          statusEl.style.color = 'var(--accent-green)';
+        } else {
+          statusEl.textContent = '🟡 MIXED — ตลาดผสม';
+        }
 
-        // Asset Cards
+        const summaryList = document.getElementById('summaryList');
+        summaryList.innerHTML = d.summary_3_points.map((point, i) =>
+          `<div class="summary-item"><div class="summary-num">${i + 1}</div><div class="summary-text">${point}</div></div>`
+        ).join('');
+
         const grid = document.getElementById('assetsGrid');
         grid.innerHTML = d.sections.map(section => {
           const viewClass = section.view === 'BEAR' ? 'bear' : section.view === 'BULLISH' ? 'bullish' : 'neutral';
           const changeClass = section.change.includes('-') ? 'neg' : section.change.includes('+') ? 'pos' : 'neutral';
-          const riskClass = section.risk.replace('-', '-'); // MEDIUM-HIGH stays
-
           return `
-          <div class="asset-card ${viewClass.toLowerCase()}">
+          <div class="asset-card ${viewClass}">
             <div class="asset-header">
               <div class="asset-info">
                 <span class="asset-emoji">${section.emoji}</span>
@@ -843,24 +411,19 @@
                 <div class="asset-change ${changeClass}">${section.change}</div>
                 ${section.change_label ? `<div class="asset-change-label">${section.change_label}</div>` : ''}
               </div>
-              <div class="view-badge ${viewClass.toLowerCase()}">${section.emoji} ${section.view}</div>
+              <div class="view-badge ${viewClass}">${section.emoji} ${section.view}</div>
             </div>
             <div class="asset-body">
               <div class="why-section">
                 <div class="why-title">WHY — ทำไมถึงเป็นแบบนี้?</div>
-                <ul class="why-list">
-                  ${section.why.map(w => `<li>${w}</li>`).join('')}
-                </ul>
+                <ul class="why-list">${section.why.map(w => `<li>${w}</li>`).join('')}</ul>
               </div>
               <div class="entry-section">
                 <div class="entry-title">Entry / Exit</div>
                 <div class="entry-grid">
-                  ${section.entry_exit.map(e => `
-                    <div class="entry-item">
-                      <div class="entry-label">${e.label}</div>
-                      <div class="entry-value">${e.value}</div>
-                    </div>
-                  `).join('')}
+                  ${section.entry_exit.map(e =>
+                    `<div class="entry-item"><div class="entry-label">${e.label}</div><div class="entry-value">${e.value}</div></div>`
+                  ).join('')}
                 </div>
               </div>
               <div class="risk-section">
@@ -868,46 +431,37 @@
                 <div class="risk-text">${section.risk_label}</div>
               </div>
             </div>
-          </div>
-          `;
+          </div>`;
         }).join('');
 
-        // Outlook
-        const outlookBody = document.getElementById('outlookBody');
-        outlookBody.innerHTML = d.outlook.map(o => `
-          <div class="outlook-row">
+        document.getElementById('outlookBody').innerHTML = d.outlook.map(o =>
+          `<div class="outlook-row">
             <span class="outlook-asset">${o.asset}</span>
             <span class="outlook-view ${o.view.toLowerCase()}">${o.emoji}</span>
             <span class="outlook-view ${o.view.toLowerCase()}">${o.view}</span>
             <span class="outlook-reason">${o.reason}</span>
-          </div>
-        `).join('');
+          </div>`
+        ).join('');
 
-        // Sources
-        const sourcesWrap = document.getElementById('sourcesWrap');
-        sourcesWrap.innerHTML = d.sources.map(s => 
+        document.getElementById('sourcesWrap').innerHTML = d.sources.map(s =>
           `<span class="source-tag">📰 ${s}</span>`
         ).join('');
 
-        // Footer
         document.getElementById('agentBadge').textContent = `🐋 ${d.agent} • ${d.model}`;
         document.getElementById('disclaimer').textContent = d.disclaimer;
 
       } catch(e) {
         console.error('Failed to load report:', e);
-        document.getElementById('reportTitle').textContent = 'Report ไม่พร้อม — รอ Pipeline รันคืนนี้';
-        document.getElementById('summaryList').innerHTML = '<p style="color:#6b7280;text-align:center;padding:40px;">🌙 Pipeline จะเริ่ม 00:00 น.</p>';
+        document.getElementById('reportTitle').textContent = 'Report ไม่พร้อม — รอ Pipeline';
+        document.getElementById('summaryList').innerHTML = '<p style="color:#475569;text-align:center;padding:40px;font-size:13px;">🌙 Pipeline กำลังรัน — รอไม่เกิน 5 นาที</p>';
         document.getElementById('assetsGrid').innerHTML = '';
       }
     }
 
     loadReport();
 
-    // Service Worker
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').then(reg => {
-        console.log('SW registered:', reg.scope);
-      });
+      navigator.serviceWorker.register('/sw.js').then(reg => console.log('SW registered:', reg.scope));
     }
   </script>
 </body>
