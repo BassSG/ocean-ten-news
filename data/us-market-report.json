@@ -1,7 +1,7 @@
 {
-  "date": "จันทร์ที่ 23 มีนาคม 2569",
-  "date_thai": "จันทร์ 23 มี.ค. 2569",
-  "date_short": "23 มี.ค. 2569",
+  "date": "อังคารที่ 24 มีนาคม 2569",
+  "date_thai": "อังคาร 24 มี.ค. 2569",
+  "date_short": "24 มี.ค. 2569",
   "time_bkk": "19:00 น.",
   "time_utc": "12:00 UTC",
   "headline": "US Market Premium Research Report",
@@ -14,171 +14,168 @@
       "symbol": "SPX",
       "name_th": "S&P 500",
       "name_en": "ดัชนีหลักของตลาดหุ้นสหรัฐฯ",
-      "emoji": "🔴",
-      "price": "~6,480 (est.)",
-      "change": "-1.9%",
-      "change_label": "ต่ำสุด — ทะลุใต้ 200-day MA ครั้งแรกในรอบ ~1 ปี",
-      "open": "6,606.49 (ref)",
+      "emoji": "🟢",
+      "price": "6,581.00",
+      "change": "+1.2%",
+      "change_label": "ฟื้นตัวจากแรงเทขายวันจันทร์",
+      "open": "6,506.48",
       "high": "-",
       "low": "-",
       "ath": "7,002.58 (ม.ค. 2569)",
-      "ath_distance": "-520+ จุดจาก ATH",
+      "ath_distance": "-421 จุดจาก ATH",
       "why": [
-        "Iran Escalation — Trump ออก ultimatum 48 ชม.ให้ Iran หยุด enrichment: ตลาดเทขาย risk assets ทั่วโลก",
-        "S&P 500 ทะลุใต้ 200-day MA ครั้งแรกในรอบเกือบ 1 ปี — technical breakdown signal รุนแรง",
-        "Oil shock — WTI พุ่งแตะ $100.50+ จากความตึงเครียด Middle East → เงินเฟ้อพลาดขึ้นต่อ",
-        "Yield พุ่ง 4.42% — Fed ยิ่งถูกกดให้คงดอกเบี้ย "Higher for Longer" ขึ้นอีก"
+        "Sentiment เชิงบวกต่อเศรษฐกิจสหรัฐฯ ที่ยังแข็งแกร่ง — แม้มีความกังวลเรื่อง tariffs ก็ยังไม่ส่งผลกระทบตรงต่อตัวเลขหลัก",
+        "การฟื้นตัวจาก oversold ในวันจันทร์ — S&P ลง -1.9% วันจันทร์ และซื้อกลับในวันอังคาร",
+        "ตลาดยังคงจับตา CPI และ NFP ที่จะออกในสัปดาห์นี้"
       ],
       "entry_exit": [
-        {"label": "แนวต้าน (Resistance)", "value": "6,580–6,600 (200-day MA)"},
-        {"label": "แนวรับถัดไป", "value": "6,400 จิตวิทยา, 6,300"},
-        {"label": "Entry (Long)", "value": "รอ reclaim 6,600 + ปริมาณซื้อยืนยัน"},
-        {"label": "Cut Loss", "value": "หลุด 6,300 = trend พังทลาย"}
+        {"label": "แนวต้านถัดไป", "value": "6,650–6,700 (200-day MA)"},
+        {"label": "แนวรับ", "value": "6,500 จิตวิทยา, 6,450"},
+        {"label": "Entry (Long)", "value": "รอย่อลงใกล้ 6,500 พร้อม volume ยืนยัน"},
+        {"label": "Cut Loss", "value": "หลุด 6,450 = กลับสู่ขาลง"}
       ],
-      "risk": "HIGH",
-      "risk_label": "การทะลุใต้ 200-day MA เป็นสัญญาณ bearish ที่แข็งแกร่ง Iran escalation ยังไม่จบ — ความเสี่ยงต่อ downside เปิดกว้าง",
-      "view": "BEAR"
+      "risk": "MEDIUM",
+      "risk_label": "ยังอยู่ในขาลง (ต่ำกว่า 200-DMA) — CPI ร้อนแรงกว่าคาดหรือ Fed hawkish จะกระทบตลาดหนัก",
+      "view": "NEUTRAL"
     },
     {
       "symbol": "NDX",
       "name_th": "Nasdaq Composite",
       "name_en": "ตลาดเทคโนโลยี",
-      "emoji": "🔴",
-      "price": "21,647.61",
-      "change": "-2.01%",
-      "change_label": "ปิดต่ำสุดใหม่ — YTD -6.86%",
-      "intraday_low": "-2.5%",
+      "emoji": "🟢",
+      "price": "21,946.76",
+      "change": "+1.4%",
+      "change_label": "พุ่งตาม S&P — AI stocks ฟื้นตัว",
+      "intraday_low": "-",
       "why": [
-        "Iran ultimatum กระทบ growth stocks หนักที่สุด — Nasdaq มี duration สูง ได้รับผลกระทบจาก yield พุ่งเต็มๆ",
-        "Tech sell-off แรง — ไม่มีsafe haven bid ในหุ้นเทคช่วง risk-off เช่นนี้",
-        "Oil shock ยิ่งกด sentiment ในกลุ่ม consumer discretionary และ tech ที่ sensitive ต่อ energy cost"
+        "Tech stocks พุ่งตามรอย S&P โดยเฉพาะ AI-related stocks ที่ได้แรงหนุนจากผลประกอบการที่เกินความคาดหมาย",
+        "ตลาด broaden out สู่ growth หลังจาก mega-cap พักตัว",
+        "แรงซื้อจาก short covering หลังจากวันจันทร์ที่ลงแรง"
       ],
       "entry_exit": [
-        {"label": "แนวต้าน", "value": "22,000 (psychological), 22,200 (MA ระยะกลาง)"},
-        {"label": "แนวรับ", "value": "21,500, 21,000"},
-        {"label": "Entry", "value": "ไม่แนะนำ catch a falling knife — รอจบ Iran ก่อน"},
-        {"label": "Cut Loss", "value": "21,000 หลุด = capitulation zone"}
+        {"label": "แนวต้าน", "value": "22,300 (200-day MA), 22,500"},
+        {"label": "แนวรับ", "value": "21,600, 21,400"},
+        {"label": "Entry", "value": "รอ retracement ลงใกล้ 21,600"},
+        {"label": "Cut Loss", "value": "21,400 หลุด = กลับสู่ขาลง"}
       ],
-      "risk": "HIGH",
-      "risk_label": "Nasdaq ลงต่อเนื่อง YTD -6.86% ยังไม่เห็น đáy ชัด, risk-off + hawkish Fed + oil shock = headwind สะสม",
-      "view": "BEAR"
+      "risk": "MEDIUM",
+      "risk_label": "Nasdaq ยังต่ำกว่า 200-DMA — ถ้า Big Tech ผิดหวังกับ forward guidance ใน Q1 จะกระทบหนัก",
+      "view": "NEUTRAL"
     },
     {
       "symbol": "XAU",
       "name_th": "Gold (XAU/USD)",
       "name_en": "สินทรัพย์ปลอดภัย",
-      "emoji": "🔴",
-      "price": "$4,372/oz",
-      "change": "-5.7% (จาก $4,639)",
-      "change_label": "4 เดือนต่ำสุด — ร่วง $400+ ใน 1 วัน",
-      "low_day": "จาก $4,639 เช้า → ต่ำสุดใต้ $4,100 → $4,372 ปิด",
+      "emoji": "🟡",
+      "price": "~$4,415/oz",
+      "change": "ปรับตัวขึ้น",
+      "change_label": "Safe-haven demand จากความตึงเครียด Middle East",
+      "low_day": "-",
       "why": [
-        "Iran ultimatum ดูเหมือน safe haven แต่ผลลัพธ์ตรงข้าม — ตลาดเทขาย gold ทั้งที่ geopolitical risk สูง เพราะ dollar พุ่งแรงจาก risk-off",
-        "Oil shock นำไปสู่ inflation concern — แต่ Fed ยิ่งไม่สามารถ cut ได้ = gold สูญเสีย momentum",
-        "Dollar strength ชนะ safe haven narrative — DXY พุ่งขึ้น 0.4% ในวันเดียวกด gold อย่างหนัก",
-        "Margin calls ใน gold อาจเร่ง sell-off ให้รุนแรงขึ้น — การร่วงใต้ $4,100 เป็น technical breakdown"
+        "Safe-haven demand เพิ่มจากความตึงเครียดในตะวันออกกลาง (Iran war uncertainty)",
+        "Central banks ทั่วโลกยังคงทยอยซื้อทองคำเพื่อ diversify จาก USD",
+        "DXY ต่ำสุดในรอบ 3 เดือน ที่ ~99.27 หนุนทองคำ"
       ],
       "entry_exit": [
-        {"label": "แนวรับสำคัญ", "value": "$4,300, $4,200 (psychological)"},
-        {"label": "แนวต้าน", "value": "$4,500, $4,600 (ราคาเช้า)"},
-        {"label": "Entry (Long)", "value": "รอดีดเหนือ $4,500 + DXY อ่อนลง + Iran คลี่คลาย"},
-        {"label": "Stop Loss", "value": "หลุด $4,100 = capitulation, อาจลงต่อถึง $3,900"}
+        {"label": "แนวรับ", "value": "$4,300–4,340, $4,200"},
+        {"label": "แนวต้าน", "value": "$4,500, $4,600"},
+        {"label": "Entry (Long)", "value": "รอ pullback ลงใกล้ $4,300–4,340"},
+        {"label": "Exit", "value": "ถ้าขึ้นไป $4,500+ พิจารณาทำกำไรบางส่วน"}
       ],
-      "risk": "HIGH",
-      "risk_label": "Gold breakdown อย่างรุนแรง — แม้ปัจจัยพื้นฐาน (หนี้, เงินเฟ้อ, Iran) ยังหนุน แต่ dollar strength + margin calls กดหนักในระยะสั้น ควรรอเสถียรก่อนเข้า",
-      "view": "BEAR"
+      "risk": "MEDIUM",
+      "risk_label": "Shakeout รุนแรงหาก tensions ใน Middle East คลี่คลายเร็ว หรือ DXY ดีดกลับแรง",
+      "view": "BULLISH"
     },
     {
       "symbol": "BTC",
       "name_th": "Bitcoin (BTC)",
-      "name_en": "สินทรัพย์เสี่ยงสูงสุด",
-      "emoji": "🟡",
-      "price": "~$70,303",
-      "change": "+2.42% (24h)",
-      "change_label": "แข็งตัวกว่าหุ้น — ทะลุ $70K อีกครั้ง",
+      "name_en": "สินทรัพย์เสี่ยงสูง",
+      "emoji": "🟢",
+      "price": "~$70,933",
+      "change": "+1.8%",
+      "change_label": "กลับเหนือ $70K หลัง volatile shakeout",
       "why": [
-        "BTC ปรับตัวขึ้น +2.4% ในขณะที่ S&P -1.9% — บางส่วนถูกมองว่าเป็น 'digital gold' hedge ระหว่าง Iran crisis",
-        "อย่างไรก็ตาม ยังคงเป็น risk asset — ถ้า risk-off ลึกลงต่อ BTC จะถูกเทขายตาม",
-        "DXY พุ่ง 0.4% กด BTC ในระยะสั้น แต่ Bitcoin ยังยืน $70K ได้"
+        "Institutional inflows ยังไหลเข้า Bitcoin ETFs อย่างต่อเนื่อง",
+        "แม้จะมี profit-taking ในระยะสั้น แต่ demand จาก institutions ยังแข็ง",
+        "BTC เป็น digital inflation hedge ในสถานการณ์ที่ dollar อ่อน"
       ],
       "entry_exit": [
-        {"label": "แนวรับ", "value": "$68,000–69,000 (200-day MA บริเวณนี้)"},
-        {"label": "แนวต้าน", "value": "$73,000, $75,000"},
-        {"label": "Entry", "value": "รอจบความไม่แน่นอน Iran + ดีดเหนือ $73K"},
-        {"label": "Stop Loss", "value": "หลุด $68,000 = risk-off ลึกเข้ามา"}
+        {"label": "แนวรับ", "value": "$68,000–69,000"},
+        {"label": "แนวต้าน", "value": "$73,000, $75,000, $78,000–80,000"},
+        {"label": "Entry", "value": "ที่ support $68,000–69,000"},
+        {"label": "Stop Loss", "value": "หลุด $68,000 = risk-off ลึก"}
       ],
-      "risk": "MEDIUM-HIGH",
-      "risk_label": "BTC ทำได้ดีกว่าหุ้นในวันนี้ แต่ยังอยู่ในกรอบ $68–75K — ยังไม่มี breakout direction ชัดเจน รอดีกว่ารอ",
-      "view": "NEUTRAL"
+      "risk": "MEDIUM",
+      "risk_label": "ขาลงเฉียบพลันหาก risk-off ทั่วตลาดเกิดขึ้น หรือ regulatory crackdown จาก SEC",
+      "view": "BULLISH"
     },
     {
       "symbol": "DXY",
       "name_th": "DXY Dollar Index",
       "name_en": "ดัชนีเงินดอลลาร์สหรัฐฯ",
-      "emoji": "🟡",
-      "price": "~99.81",
-      "change": "+0.2–0.4%",
-      "change_label": "พุ่งขึ้นจาก 99.39 — Dollar กลับมาแข็ง",
-      "high_recent": "100.40 (high สัปดาห์ก่อน)",
+      "emoji": "🔴",
+      "price": "~99.27",
+      "change": "-0.3%",
+      "change_label": "อ่อนลงต่อเนื่อง — ต่ำสุดในรอบ 3 เดือน",
+      "high_recent": "100.40",
       "why": [
-        "Iran ultimatum สร้าง risk-off ทั่วโลก — Dollar เป็น safe haven ที่ได้รับแรงหนุนจาก fund flows เข้า USD",
-        "Trump ออก ultimatum 48 ชม. → ความไม่แน่นอนสูง → นักลงทุนถือ USD แทน assets เสี่ยง",
-        "Fed hawkish outlook ยังคงหนุน dollar — ตลาดยังไม่เห็นทางที่ Fed จะ cut เร็ว"
+        "Dollar อ่อนลงตาม expectations ที่ว่า Fed จะเริ่ม cut rates ในช่วงครึ่งหลังปี 2026",
+        "Capital rotation ออกจาก USD ไปสู่ risk assets",
+        "ตลาดเริ่ม pricing in Fed rate cut มากขึ้น"
       ],
       "entry_exit": [
-        {"label": "แนวต้าน", "value": "100.00, 100.40 (high สัปดาห์ก่อน)"},
-        {"label": "แนวรับ", "value": "99.50, 99.00"},
-        {"label": "Bias", "value": "Bullish ระยะสั้น — Iran ยังไม่จบ dollar ยังขึ้นได้"},
-        {"label": "Alert", "value": "หลุด 100.40 = dollar จะพุ่งต่อ กระทบ gold และ EM หนัก"}
+        {"label": "แนวต้าน", "value": "100.00, 100.40"},
+        {"label": "แนวรับ", "value": "99.00, 98.00"},
+        {"label": "Bias", "value": "Bearish ระยะกลาง — dollar อ่อนต่อจาก Fed expectations"},
+        {"label": "Alert", "value": "ถ้า DXY ลงต่ำกว่า 98 = dollar อ่อนมาก หนุน gold และ EM"}
       ],
       "risk": "MEDIUM",
-      "risk_label": "Dollar แข็งจาก risk-off แต่ถ้า Iran คลี่คลาย (ceasefire) dollar จะอ่อนเร็ว — ติดตาม ultimatum 48 ชม. ที่จะหมดอีก 1–2 วัน",
-      "view": "BULLISH"
+      "risk_label": "หาก CPI สหรัฐฯ ออกมาสูงกว่าคาด DXY จะดีดกลับแรง — ติดตาม CPI สัปดาห์นี้",
+      "view": "BEAR"
     },
     {
       "symbol": "YIELD",
       "name_th": "US Treasury Yields",
       "name_en": "ผลตอบแทนพันธบัตรรัฐบาลสหรัฐฯ",
-      "emoji": "🔴",
-      "price_10y": "4.42%",
-      "price_2y": "~3.90%",
-      "change_10y": "+0.12% (จาก 4.30%)",
-      "change_2y": "ขึ้นจาก 3.79%",
-      "spread": "~52 bps",
+      "emoji": "🟡",
+      "price_10y": "4.35%",
+      "price_2y": "~3.85%",
+      "change_10y": "-0.07% (จาก 4.42%)",
+      "change_2y": "ลงจาก 3.90%",
+      "spread": "~50 bps",
       "why": [
-        "Oil shock นำไปสู่ inflation fear ใหม่ — WTI แตะ $100.50 จาก Iran escalation",
-        "Fed ถูก corner — ไม่สามารถ cut ได้ในขณะที่ oil shock ผลัก inflation ขึ้น",
-        "Risk-off กด bond prices ลง → yield พุ่ง 4.42% เข้าใกล้แนว alert ที่ 4.50%",
-        "Fiscal concerns ยังคงอยู่ — หนี้ภาครัฐสหรัฐฯ พุ่งผู้จัดการเงินต้องการ risk premium สูงขึ้น"
+        "Risk-on sentiment หลังตลาดฟื้นตัวทำให้ bond prices ดีดกลับ → yield ลง",
+        "ตลาดเริ่มคาด Fed จะ cut ช่วงครึ่งหลังปี 2026 มากขึ้น",
+        "ยังต้องจับตา CPI และ NFP สัปดาห์นี้"
       ],
       "entry_exit": [
         {"label": "10Y แนวต้าน", "value": "4.50% (CRITICAL), 4.60%"},
         {"label": "10Y แนวรับ", "value": "4.30%, 4.20%"},
         {"label": "Fed Funds Rate", "value": "3.5–3.75% (คงที่)"},
-        {"label": "มุมมอง", "value": "Yield ขึ้นต่อได้หาก Iran ยกระดับ — ถ้าผ่าน 4.50% = alert สำคัญ"}
+        {"label": "มุมมอง", "value": "Neutral — ขึ้นหรือลงขึ้นกับข้อมูลเศรษฐกิจสัปดาห์นี้"}
       ],
-      "risk": "HIGH",
-      "risk_label": "Yield 4.42% เข้าใกล้ระดับ alert 4.50% — ถ้าทะลุ 4.50% จะเป็น Black Swan สำหรับตลาดหุ้น เพราะจะทำให้ valuation ทุกอย่างถูก reprice ลง",
-      "view": "BEAR"
+      "risk": "MEDIUM",
+      "risk_label": "Yield ยังอยู่ในระดับสูง — ถ้า CPI ออกมาร้อนแรง yield จะพุ่งกลับไป 4.50%+ กระทบ risk assets ทั้งหมด",
+      "view": "NEUTRAL"
     }
   ],
   "summary_3_points": [
-    "Iran Ultimatum สร้าง Black Monday ของตลาด — Trump ออก ultimatum 48 ชม.ให้ Iran ยุติ enrichment: S&P 500 ร่วง -1.9% ทะลุใต้ 200-day MA ครั้งแรกในรอบ ~1 ปี, Nasdaq -2.01% ปิด YTD -6.86%, oil พุ่ง $100.50 จากความกังวล supply disruption",
-    "Gold ร่วง $400+ ในวันเดียว — จาก $4,639 เช้าวันจันทร์ ร่วงใต้ $4,100 ชั่วคราว ปิดที่ $4,372: Dollar strength ชนะ safe haven narrative แม้ Iran escalation เป็นปัจจัยพื้นฐานที่ควรหนุนทอง แต่ margin calls + DXY พุ่ง 0.4% กดหนัก",
-    "Oil Shock ทำให้ Fed ยิ่งถูก Corner — WTI แตะ $100.50 จาก Iran conflict → inflation fear พลาดขึ้นอีก → Fed ต้องคง "Higher for Longer" ยาวขึ้น → 10Y yield พุ่ง 4.42% เข้าใกล้ alert ที่ 4.50% — ถ้าทะลุจะเป็น catastrophe สำหรับ risk assets ทั้งหมด"
+    "ตลาดฟื้นตัวจาก oversold — S&P +1.2% และ Nasdaq +1.4% หลังวันจันทร์ที่เทขายหนักจาก Iran ultimatum แต่ยังอยู่ต่ำกว่า 200-DMA — ยังไม่ปลอดภัย",
+    "Gold กลับมา $4,415/oz — Safe-haven demand จากความตึงเครียด Middle East ยังหนุนทอง แม้ DXY อ่อนลงต่ำสุดในรอบ 3 เดือนที่ 99.27 ก็ยังหนุนทอง",
+    "BTC กลับเหนือ $70K — Institutional inflows ไหลเข้า Bitcoin ETFs ต่อเนื่อง แม้ยังมีความเสี่ยงจาก risk-off และ SEC regulation"
   ],
   "outlook": [
-    {"asset": "S&P 500", "view": "BEAR", "emoji": "🐻", "reason": "ทะลุ 200-day MA + Iran escalation + oil shock + yield พุ่ง: ไม่มี catalyst กลับตัวในระยะสั้น"},
-    {"asset": "Nasdaq", "view": "BEAR", "emoji": "🐻", "reason": "Tech มี duration สูง ได้รับผลกระทบหนักจาก yield + risk-off ลึก YTD -6.86%"},
-    {"asset": "Gold", "view": "BEAR", "emoji": "🐻", "reason": "Breakdown รุนแรง $400+ ในวันเดียว แม้ปัจจัยพื้นฐานหนุน แต่ dollar strength + margin calls กดระยะสั้น"},
-    {"asset": "Bitcoin", "view": "NEUTRAL", "emoji": "🟡", "reason": "ทำได้ดีกว่าหุ้น +2.4% แต่ยังอยู่ในกรอบ $68–75K รอดีกว่าเข้าเพราะยังไม่ชัด"},
-    {"asset": "DXY", "view": "BULLISH", "emoji": "🐂", "reason": "Risk-off + Fed hawkish = dollar ขึ้นต่อในระยะสั้น ติดตาม ultimatum หมดอีก 1–2 วัน"},
-    {"asset": "Yields (ราคาพันธบัตร)", "view": "BEAR", "emoji": "🐻", "reason": "Yield พุ่ง 4.42% เข้าใกล้ 4.50% alert — ถ้าทะลุ = reprice ทุก asset ลงหนัก"}
+    {"asset": "S&P 500", "view": "NEUTRAL", "emoji": "🟡", "reason": "ฟื้นตัวจาก oversold แต่ยังอยู่ใต้ 200-DMA — รอ CPI/NFP สัปดาห์นี้เป็น catalyst"},
+    {"asset": "Nasdaq", "view": "NEUTRAL", "emoji": "🟡", "reason": "พุ่งตาม S&P + AI stocks ฟื้น แต่ยังเปราะบางหาก Big Tech ผิดหวัง Q1 guidance"},
+    {"asset": "Gold", "view": "BULLISH", "emoji": "🐂", "reason": "DXY อ่อน + Middle East tensions + central bank buying = หนุนทองระยะกลาง"},
+    {"asset": "Bitcoin", "view": "BULLISH", "emoji": "🐂", "reason": "กลับเหนือ $70K + institutional inflows แข็ง = มอง bullish ระยะกลาง"},
+    {"asset": "DXY", "view": "BEAR", "emoji": "🐻", "reason": "ต่ำสุด 3 เดือน — Fed cut expectations หนุน dollar อ่อนต่อ"},
+    {"asset": "Yields (ราคาพันธบัตร)", "view": "NEUTRAL", "emoji": "🟡", "reason": "ลงจาก 4.42% แต่ยังสูง — CPI/NFP สัปดาห์นี้จะเป็นตัวชี้ขาด"}
   ],
   "sources": [
-    "seekingalpha.com", "morningstar.com", "inc.com", "fool.com",
-    "investing.com", "ig.com", "tradingeconomics.com",
-    "businesstoday.in", "nhandan.vn", "aa.com.tr"
+    "seekingalpha.com", "morningstar.com", "fmp.com", 
+    "tradingeconomics.com", "investing.com", "ig.com",
+    "bloomberg.com", "reuters.com", "wsj.com", "ft.com"
   ],
   "disclaimer": "งานวิเคราะห์นี้ไม่ใช่คำแนะนำการลงทุน ใช้เพื่อการศึกษาและ research purposes เท่านั้น"
 }
