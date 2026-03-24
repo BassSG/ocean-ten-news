@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-24T05:00:05.808505+00:00",
+  "generatedAt": "2026-03-24T06:09:55.340289+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,16 +8,16 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1773079200,
-    "to": 1774313100
+    "from": 1773083700,
+    "to": 1774317600
   },
   "summary": {
     "totalOrders": 3,
-    "triggeredOrders": 1,
+    "triggeredOrders": 0,
     "slHits": 0,
     "tp1Hits": 0,
-    "tpMostHits": 1,
-    "winRate": 100.0
+    "tpMostHits": 0,
+    "winRate": 0.0
   },
   "orders": [
     {
@@ -43,14 +43,14 @@
     },
     {
       "source": "EBass",
-      "runId": "RUN-1774314735857-510",
-      "orderKey": "EBass:RUN-1774314735857-510",
-      "createdAt": "2026-03-24T01:12:22.461Z",
+      "runId": "RUN-1774329440421-14",
+      "orderKey": "EBass:RUN-1774329440421-14",
+      "createdAt": "2026-03-24T05:17:57.514Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4365.6,
-      "sl": 4388.34,
-      "tp1": 4346.56,
-      "tpMost": 4332.32,
+      "entry": 4355.46,
+      "sl": 4373.63,
+      "tp1": 4322.5,
+      "tpMost": 4322.5,
       "result": {
         "status": null,
         "triggered": false,
@@ -64,23 +64,23 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1774264263243-598",
-      "orderKey": "EKlaETun:RUN-1774264263243-598",
-      "createdAt": "2026-03-23T11:11:16.587Z",
+      "runId": "RUN-1774329064767-654",
+      "orderKey": "EKlaETun:RUN-1774329064767-654",
+      "createdAt": "2026-03-24T05:11:19.854Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4459.16,
-      "sl": 4470.15,
-      "tp1": 4422.38,
-      "tpMost": 4402.38,
+      "entry": 4359.39,
+      "sl": 4388.56,
+      "tp1": 4330.22,
+      "tpMost": 4301.05,
       "result": {
-        "status": "tpmost-hit",
-        "triggered": true,
-        "triggeredAt": 1774264500,
-        "closeReason": "TPMost",
-        "closedAt": 1774266300,
-        "timeInTradeMin": 30,
-        "mfe": 108.53,
-        "mae": -9.465
+        "status": null,
+        "triggered": false,
+        "triggeredAt": null,
+        "closeReason": null,
+        "closedAt": null,
+        "timeInTradeMin": null,
+        "mfe": 0.0,
+        "mae": 0.0
       }
     }
   ]
