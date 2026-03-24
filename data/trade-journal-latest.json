@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-23T23:39:54.757743+00:00",
+  "generatedAt": "2026-03-24T02:42:48.499952+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,28 +8,28 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1773060300,
-    "to": 1774294200
+    "from": 1773071100,
+    "to": 1774305000
   },
   "summary": {
     "totalOrders": 3,
-    "triggeredOrders": 2,
+    "triggeredOrders": 1,
     "slHits": 0,
     "tp1Hits": 0,
     "tpMostHits": 1,
-    "winRate": 50.0
+    "winRate": 100.0
   },
   "orders": [
     {
       "source": "TESTER",
-      "runId": "RUN-1774306263980-235-ENF",
-      "orderKey": "TESTER:RUN-1774306263980-235-ENF",
-      "createdAt": "2026-03-23T22:51:04.790Z",
+      "runId": "RUN-1774313442579-214",
+      "orderKey": "TESTER:RUN-1774313442579-214",
+      "createdAt": "2026-03-24T00:50:57.189Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4428.5,
-      "sl": 4448.0,
-      "tp1": 4400.0,
-      "tpMost": 4375.0,
+      "entry": 4377.32,
+      "sl": 4385.5,
+      "tp1": 4353.5,
+      "tpMost": 4332.32,
       "result": {
         "status": null,
         "triggered": false,
@@ -43,23 +43,23 @@
     },
     {
       "source": "EBass",
-      "runId": "RUN-1774276918055-580",
-      "orderKey": "EBass:RUN-1774276918055-580",
-      "createdAt": "2026-03-23T14:42:04.306Z",
-      "orderType": "BUY_LIMIT",
-      "entry": 4408.81,
-      "sl": 4350.49,
-      "tp1": 4476.57,
-      "tpMost": 4512.13,
+      "runId": "RUN-1774314735857-510",
+      "orderKey": "EBass:RUN-1774314735857-510",
+      "createdAt": "2026-03-24T01:12:22.461Z",
+      "orderType": "SELL_LIMIT",
+      "entry": 4365.6,
+      "sl": 4388.34,
+      "tp1": 4346.56,
+      "tpMost": 4332.32,
       "result": {
-        "status": "triggered",
-        "triggered": true,
-        "triggeredAt": 1774278000,
+        "status": null,
+        "triggered": false,
+        "triggeredAt": null,
         "closeReason": null,
         "closedAt": null,
-        "timeInTradeMin": 270,
-        "mfe": 41.805,
-        "mae": -49.07
+        "timeInTradeMin": null,
+        "mfe": 0.0,
+        "mae": 0.0
       }
     },
     {
