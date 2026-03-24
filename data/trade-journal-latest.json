@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-24T06:09:55.340289+00:00",
+  "generatedAt": "2026-03-24T07:36:47.460340+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1773083700,
-    "to": 1774317600
+    "from": 1773089100,
+    "to": 1774323000
   },
   "summary": {
     "totalOrders": 3,
@@ -22,14 +22,14 @@
   "orders": [
     {
       "source": "TESTER",
-      "runId": "RUN-1774323917536-425",
-      "orderKey": "TESTER:RUN-1774323917536-425",
-      "createdAt": "2026-03-24T03:45:38.629Z",
+      "runId": "RUN-1774335042024-248",
+      "orderKey": "TESTER:RUN-1774335042024-248",
+      "createdAt": "2026-03-24T06:50:53.577Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4369.62,
-      "sl": 4392.75,
-      "tp1": 4307.91,
-      "tpMost": 4307.91,
+      "entry": 4385.83,
+      "sl": 4405.45,
+      "tp1": 4360.97,
+      "tpMost": 4348.23,
       "result": {
         "status": null,
         "triggered": false,
@@ -43,14 +43,14 @@
     },
     {
       "source": "EBass",
-      "runId": "RUN-1774329440421-14",
-      "orderKey": "EBass:RUN-1774329440421-14",
-      "createdAt": "2026-03-24T05:17:57.514Z",
+      "runId": "RUN-1774336938159-984",
+      "orderKey": "EBass:RUN-1774336938159-984",
+      "createdAt": "2026-03-24T07:24:04.249Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4355.46,
-      "sl": 4373.63,
-      "tp1": 4322.5,
-      "tpMost": 4322.5,
+      "entry": 4426.89,
+      "sl": 4444.91,
+      "tp1": 4387.45,
+      "tpMost": 4374.37,
       "result": {
         "status": null,
         "triggered": false,
@@ -64,14 +64,14 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1774329064767-654",
-      "orderKey": "EKlaETun:RUN-1774329064767-654",
-      "createdAt": "2026-03-24T05:11:19.854Z",
+      "runId": "RUN-1774336264530-102",
+      "orderKey": "EKlaETun:RUN-1774336264530-102",
+      "createdAt": "2026-03-24T07:11:18.632Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4359.39,
-      "sl": 4388.56,
-      "tp1": 4330.22,
-      "tpMost": 4301.05,
+      "entry": 4431.5,
+      "sl": 4455.0,
+      "tp1": 4408.0,
+      "tpMost": 4381.44,
       "result": {
         "status": null,
         "triggered": false,
