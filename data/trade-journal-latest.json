@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-24T18:00:09.969577+00:00",
+  "generatedAt": "2026-03-24T19:18:21.012567+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,12 +8,12 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1773126000,
-    "to": 1774359900
+    "from": 1773131400,
+    "to": 1774365300
   },
   "summary": {
     "totalOrders": 3,
-    "triggeredOrders": 1,
+    "triggeredOrders": 0,
     "slHits": 0,
     "tp1Hits": 0,
     "tpMostHits": 0,
@@ -22,12 +22,12 @@
   "orders": [
     {
       "source": "TESTER",
-      "runId": "RUN-1774374643666-738",
-      "orderKey": "TESTER:RUN-1774374643666-738",
-      "createdAt": "2026-03-24T17:50:56.946Z",
+      "runId": "RUN-1774378243331-850",
+      "orderKey": "TESTER:RUN-1774378243331-850",
+      "createdAt": "2026-03-24T18:50:58.242Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4402.39,
-      "sl": 4417.25,
+      "entry": 4411.79,
+      "sl": 4427.44,
       "tp1": 4373.29,
       "tpMost": 4373.29,
       "result": {
@@ -64,23 +64,23 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1774357889897-760-ENF",
-      "orderKey": "EKlaETun:RUN-1774357889897-760-ENF",
-      "createdAt": "2026-03-24T13:11:31.295Z",
+      "runId": "RUN-1774375866497-192",
+      "orderKey": "EKlaETun:RUN-1774375866497-192",
+      "createdAt": "2026-03-24T18:11:20.273Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4385.5,
-      "sl": 4408.0,
-      "tp1": 4360.0,
-      "tpMost": 4335.0,
+      "entry": 4404.3,
+      "sl": 4410.25,
+      "tp1": 4384.8,
+      "tpMost": 4375.0,
       "result": {
-        "status": "triggered",
-        "triggered": true,
-        "triggeredAt": 1774358100,
+        "status": null,
+        "triggered": false,
+        "triggeredAt": null,
         "closeReason": null,
         "closedAt": null,
-        "timeInTradeMin": 30,
-        "mfe": 12.215,
-        "mae": -20.135
+        "timeInTradeMin": null,
+        "mfe": 0.0,
+        "mae": 0.0
       }
     }
   ]
