@@ -1,31 +1,62 @@
 {
+  "gold": {
+    "current_price": 4371.38,
+    "percent_change": -0.83,
+    "weekly_high": 4508.85,
+    "weekly_low": 4356,
+    "key_levels": {
+      "resistance": ["$4509", "$4577"],
+      "support": ["$4374", "$4255"]
+    },
+    "dxy": 99.28,
+    "treasury_yield_10y": null,
+    "analyst_targets": {
+      "jpmorgan": "$6,300 (Base)",
+      "bofa": "$6,000 by 2026"
+    },
+    "spdr": {
+      "holdings": "1,046.82",
+      "change": "-9.82",
+      "updatedTime": "06:00",
+      "monthly": {
+        "2026-01": "+15.11",
+        "2026-02": "+14.23",
+        "2026-03": "-15.36"
+      },
+      "lastUpdate": "2026-03-24T06:00:00.000000"
+    }
+  },
+  "us_market": {
+    "sp500": {
+      "latest": 6234.12,
+      "percent_change": -1.9
+    },
+    "nasdaq": {
+      "latest": 20891.33,
+      "percent_change": -2.1
+    },
+    "vix": 27.00,
+    "weekly_trend": "Bearish (Risk-Off) — S&P 500 ทะลุ 200-day MA สะท้อนความกังวลตลาดสูง VIX พุ่ง 27 จากแรงเทขายหุ้นเชิงรุก"
+  },
+  "oil_commodities": {
+    "brent_crude": {
+      "latest": 113,
+      "percent_change": 1.2
+    },
+    "geopolitics": "ความขัดแย้ง US-Israel-Iran ยังดำเนินต่อเนื่อง กระทบช่องแคบฮอร์มุซ ซึ่งเป็นเส้นทางน้ำมัน 20% ของโลก"
+  },
+  "key_economic_data": {
+    "fed_rate": "3.50-3.75% (คงดอกเบี้ย)",
+    "fed_outlook": "Hawkish stance — พร้อมตัดดอกเบี้ย 1 ครั้งในปี 2026 หากเงินเฟ้อลดลง",
+    "nfp_latest": "-92,000 jobs (ก.พ. 2026) — NFP ถัดไป: 3 เม.ย. 2569",
+    "cpi_latest": "คาด 3.2-3.4% — CPI ถัดไป: 10 เม.ย. 2569",
+    "gdp_q4": "0.7% (US Q4 2025) — ชะลอตัวชัด"
+  },
+  "analysis_summary": {
+    "direction": "Bearish — ทองคำร่วงสู่ $4,371 (ต่ำสุดปี 2026)",
+    "key_themes": "DXY แข็ง + Risk-Off + Fed Hawkish ฉุดทอง",
+    "key_risks": "VIX สูง 27 | น้ำมัน $113+ | สงครามอิหร่านยังไม่คลี่คลาย"
+  },
   "date": "2026-03-24",
-  "gold_price": {
-    "current": "4371.38",
-    "change": "-126.14",
-    "change_pct": "-0.83",
-    "monthly_change_pct": "-15.36",
-    "day_range": "4356 - 4508.85",
-    "note": "New 2026 low, ATH was $5608.35 in Jan 2026"
-  },
-  "usd_index": {
-    "value": "99.28",
-    "change": "+0.14"
-  },
-  "market_status": {
-    "sp500": "Fell -1.9%, breached 200-day MA",
-    "vix": "27.00"
-  },
-  "key_levels": {
-    "resistance": ["$4509", "$4577"],
-    "support": ["$4374", "$4255"]
-  },
-  "economic_factors": {
-    "fed_rate": "3.50-3.75% (held steady)",
-    "cpi_next": "Apr 10, 2026 (forecast 3.2-3.4%)",
-    "nfp_next": "Apr 3, 2026 (Feb was -92K)",
-    "oil_brent": "$113+/barrel",
-    "geopolitics": "US-Israel-Iran conflict, Strait of Hormuz at risk"
-  },
-  "brief": "ทองคำร่วงลงสู่ $4,371 (ต่ำสุดปี 2026) หลังลงแรง -15.36% จากเดือนก่อน แรงเทขายมาจาก DXY ฟื้นตัว +0.14%, VIX พุ่งสูงที่ 27 สะท้อนความกังวลตลาด ขณะที่ Fed คงดอกเบี้ย 3.50-3.75% และรบกวนตะวันออกกลางยังหนุนราคาน้ำมัน $113+ ฉุด demand ของทองคำ"
+  "updated": "2026-03-24T08:00:00+07:00"
 }

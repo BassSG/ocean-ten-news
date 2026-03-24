@@ -1,59 +1,67 @@
-{
-  "date": "2026-03-24",
-  "category": "AI & Tech",
-  "insights": [
-    {
-      "title": "OpenAI เปิดตัว GPT-5.4 พร้อม Context 1 ล้าน Token",
-      "summary": "OpenAI ปล่อย GPT-5.4 เมื่อ 5 มีนา 2026 ว่าคือโมเดลที่เก่งที่สุดสำหรับงานมืออาชีพ รองรับ Context Window 1 ล้าน Token, การวางแผนขั้นตอนระหว่างตอบ, และ Agentic Workflow ที่ขับเคลื่อน Long-running Tasks ได้ดีขึ้น พร้อมเปิดตัว ChatGPT for Excel Add-in",
-      "impact": "high"
-    },
-    {
-      "title": "Google Gemini 3.1 Flash-Lite ราคาถูกลง 2 เท่า ตอบโจทย์ Enterprise",
-      "summary": "Google เปิดตัว Gemini 3.1 Flash-Lite เมื่อ 3 มีนา 2026 มุ่งเป้างาน Massive Workloads ด้วยความเร็วสองเท่าของรุ่นก่อน แต่ต้นทุนต่ำกว่ามาก — เป็นการตอบโต้ด้านราคากับ OpenAI โดยตรง",
-      "impact": "medium"
-    },
-    {
-      "title": "NVIDIA Rubin Platform ลดต้นทุน AI Training 10 เท่า",
-      "summary": "NVIDIA เปิดตัว Rubin Supercomputer Platform สำหรับ AI Workloads ขนาดยักษ์ มุ่งลดต้นทุน Training ลง 10 เท่า และเพิ่มประสิทธิภาพสำหรับ Trillion-parameter Models บริษัทยังคงเป็นผู้นำด้าน Hardware AI",
-      "impact": "high"
-    },
-    {
-      "title": "Apple จับมือ Google ปฏิวัติ Siri ด้วย Gemini AI",
-      "summary": "Apple ประกาศ Overhaul Siri ครั้งใหญ่ โดยรวม Google Gemini Models เข้ามาทำให้ Siri มี On-screen Awareness, ทำงานข้ามแอป Real-time และยังคงรักษา Privacy ผ่าน Apple Private Cloud Compute",
-      "impact": "medium"
-    },
-    {
-      "title": "จีนครอง Open-Source AI — สภาคองเกรสสหรัฐเตือน",
-      "summary": "คณะที่ปรึกษาสภาคองเกรสสหรัฐฯ เตือนว่าจีนกำลังสร้าง 'Self-reinforcing Competitive Advantage' ใน Open-source AI โดย LLM ของจีนครองอันดับบนบน HuggingFace และ OpenRouter แม้ถูกจำกัดชิปขั้นสูง",
-      "impact": "medium"
-    }
-  ],
-  "macro": [
-    {
-      "title": "ทองคำร่วงหนัก 15% ในเดือนเดียว อยู่ที่ $4,371/oz",
-      "summary": "ราคาทองคำ Spot วันนี้อยู่ที่ $4,371.38/oz ลง 0.83% จากวันก่อน และลงถึง 15.36% ในเดือนนี้ หลังจากพุ่งสูงสุดเป็นประวัติการณ์ $5,608.35/oz ในเดือนมกราคม สาเหตุหลัก: Dollar แข็ง, ดอกเบี้ยสูง, ประชาชนชะลอการซื้อทองเพื่อ Safe Haven",
-      "impact": "high"
-    },
-    {
-      "title": "Gold ลงแรงผิดคาดเพราะ War Premium กลายเป็น Inflation Fear",
-      "summary": "แม้สงคราม US-Iran ปะทุรอบปลายกุมภาพันธ์ ทองคำกลับร่วงหนัก — เพราะความตึงเครียดนี้ทำให้ราคาน้ำมันพุ่ง หนุนเงินเฟ้อ ทำให้ Fed ต้องรักษาดอกเบี้ยสูง สวนทางทองคำที่ไม่มี Yield ยิ่งขึ้นกว่านี้คือ Trump สั่งเลื่อนการโจมตีโครงสร้างพลังงานอิหร่าน 5 วัน ทำให้ War Premium ลดลงชั่วคราว",
-      "impact": "high"
-    },
-    {
-      "title": "Fed คงดอกเบี้ย 3.50-3.75% พร้อมเปิดทาง Cut 1 ครั้งในปี 2026",
-      "summary": "FOMC คง Funds Rate ที่ 3.50-3.75% ตามคาด โดย Powell ยังกังวลเงินเฟ้อสูง ขณะที่ Governor Miran ยืนยันคาดการณ์ 4 ครั้ง ส่วน Goolsbee เปิดทางทั้ง Hike หรือ Cut ขึ้นอยู่กับผลกระทบสงคราม ตลาดยังคาดว่า 1 Cut ในปีนี้",
-      "impact": "high"
-    },
-    {
-      "title": "US Q4 2025 GDP ปรับลงเหลือ 0.7% — การจ้างงานกุมภาพันธ์ติดลบ 92,000 ตำแหน่ง",
-      "summary": "GDP Q4 2025 ถูกปรับลงจาก 1.4% เหลือ 0.7% ต่อปี เนื่องจากรายจ่ายภาครัฐและส่งออกชะลอตัว ขณะที่จำนวนงานเดือนกุมภาพันธ์ 2026 ติดลบ 92,000 ตำแหน่ง (คาด +59,000) อัตราว่างงานขึ้นเป็น 4.4% สัญญาณเศรษฐกิจชะลอตัวชัดเจน แม้นักวิเคราะห์จะคาดการณ์ 2026 GDP ที่ 2.5% จาก Fiscal Stimulus",
-      "impact": "high"
-    },
-    {
-      "title": "S&P Global Flash PMI วันนี้ — บารอมิเตอร์เศรษฐกิจหลังสงครามอิหร่าน",
-      "summary": "S&P Global จะเปิดเผย Flash PMI รอบเดือนมีนาคมวันนี้ เป็นข้อมูลเศรษฐกิจฉบับแรกที่จะวัดผลกระทบจริงจากสงครามอิหร่าน หาก PMI ต่ำกว่าคาด อาจเพิ่มแรงกดดันให้ Fed พิจารณา Cut มากขึ้น ซึ่งจะเป็นบวกต่อราคาทอง",
-      "impact": "medium"
-    }
-  ],
-  "brief": "วันที่ 24 มีนาคม 2569 ตลาดทองคำยังคงเผชิญแรงขายหนักจาก Dollar แข็งและดอกเบี้ยสูง ทองร่วง 15% จากจุดสูงสุดเดือนมกราคม ขณะที่ US-Iran War กลายเป็น Inflation Fear มากกว่า Safe-Haven Demand ในส่วน AI — การแข่งขันระหว่าง OpenAI vs Google vs จีนเดือดขึ้นเรื่อยๆ โดยเฉพาะ Open-source AI ของจีนที่สร้างความกังวลให้สภาคองเกรสสหรัฐฯ สำหรับนักเทรดทอง: PMI วันนี้และสัญญาณ De-escalation ของสงครามอิหร่านคือตัวแปรสำคัญที่ต้องจับตา"
-}
+[
+  {
+    "id": "openai-gpt54",
+    "summary": "OpenAI ปล่อย GPT-5.4 เมื่อ 5 มีนา 2026 ว่าคือโมเดลที่เก่งที่สุดสำหรับงานมืออาชีพ รองรับ Context Window 1 ล้าน Token, การวางแผนขั้นตอนระหว่างตอบ, และ Agentic Workflow ที่ขับเคลื่อน Long-running Tasks ได้ดีขึ้น พร้อมเปิดตัว ChatGPT for Excel Add-in",
+    "impact": "high",
+    "company": "openai",
+    "what": "OpenAI เปิดตัว GPT-5.4 รองรับ Context Window 1 ล้าน Token พร้อมฟีเจอร์ Step-by-step Planning และ Agentic Workflow สำหรับงานมืออาชีพ พร้อมเปิดตัว ChatGPT for Excel Add-in",
+    "why_matters": "Context 1 ล้าน Token หมายถึงโมเดลสามารถอ่านเอกสารได้ทั้งเล่ม หรือ codebase ขนาดใหญ่ในครั้งเดียว ทำให้การวิเคราะห์เชิงลึกแม่นยำขึ้นมาก Agentic Workflow ช่วยให้ AI ทำงานต่อเนื่องได้หลายขั้นตอนโดยไม่ต้องคอยสั่ง",
+    "so_what": "งานมืออาชีพ เช่น การเงิน กฎหมาย วิศวกรรม จะเข้าถึง AI ที่ทำงานได้ดีขึ้นอย่างก้าวกระโดด ChatGPT for Excel จะทำให้ผู้ใช้ทั่วไปทำงาน spreadsheet ซับซ้อนได้ในคลิกเดียว",
+    "now_what": "องค์กรควรทดลอง GPT-5.4 กับงาน document analysis และ long-running workflows ติดตาม ChatGPT for Excel Add-in เพื่อเพิ่ม productivity ของทีม Business",
+    "source": "OpenAI Blog (openai.com), 5 มีนา 2026",
+    "headline": "OpenAI เปิดตัว GPT-5.4 พร้อม Context 1 ล้าน Token",
+    "category": "ai"
+  },
+  {
+    "id": "google-gemini-flash-lite",
+    "summary": "Google เปิดตัว Gemini 3.1 Flash-Lite เมื่อ 3 มีนา 2026 มุ่งเป้างาน Massive Workloads ด้วยความเร็วสองเท่าของรุ่นก่อน แต่ต้นทุนต่ำกว่ามาก — เป็นการตอบโต้ด้านราคากับ OpenAI โดยตรง",
+    "impact": "medium",
+    "company": "google",
+    "what": "Google เปิดตัว Gemini 3.1 Flash-Lite เน้นความเร็วสองเท่า และต้นทุนต่ำกว่ารุ่นก่อนมาก ออกแบบมาสำหรับ Massive Workloads ที่ต้องประมวลผลปริมาณมาก",
+    "why_matters": "ราคาเป็นปัจจัยสำคัญสำหรับ Enterprise ที่ต้องเรียก API หลายล้านครั้งต่อวัน Flash-Lite ทำให้ AI ประมวลผลเร็วขึ้นและถูกลง เป็นการตอบโต้ราคากับ OpenAI โดยตรง",
+    "so_what": " Startups และ Enterprise ที่ต้องการ AI ราคาประหยัดจะได้ประโยชน์มาก การแข่งขันด้านราคาระหว่าง Google กับ OpenAI จะเร่งตัวขึ้น ทำให้ AI เข้าถึงได้ง่ายขึ้น",
+    "now_what": "ทีมงานควรเปรียบเทียบ Gemini Flash-Lite กับ GPT-4o-mini สำหรับ high-volume, low-latency use cases พิจารณาเปลี่ยนมาใช้ Gemini เพื่อลดต้นทุน",
+    "source": "Google AI Blog, 3 มีนา 2026",
+    "headline": "Google Gemini 3.1 Flash-Lite ราคาถูกลง 2 เท่า ตอบโจทย์ Enterprise",
+    "category": "ai"
+  },
+  {
+    "id": "nvidia-rubin",
+    "summary": "NVIDIA เปิดตัว Rubin Supercomputer Platform สำหรับ AI Workloads ขนาดยักษ์ มุ่งลดต้นทุน Training ลง 10 เท่า และเพิ่มประสิทธิภาพสำหรับ Trillion-parameter Models บริษัทยังคงเป็นผู้นำด้าน Hardware AI",
+    "impact": "high",
+    "company": "nvidia",
+    "what": "NVIDIA เปิดตัว Rubin Supercomputer Platform สำหรับ AI Training ขนาดยักษ์ ลดต้นทุนลง 10 เท่า และปรับปรุงประสิทธิภาพสำหรับ Trillion-parameter Models",
+    "why_matters": "ต้นทุน Training เป็นอุปสรรคหลักในการพัฒนา AI ขนาดใหญ่ Rubin ลดต้นทุนลง 10 เท่า หมายความว่าบริษัทเล็กๆ ก็สามารถ Train โมเดลยักษ์ได้ ทำให้ AI กระจายตัวมากขึ้น",
+    "so_what": "NVIDIA � 现固 ตำแหน่งผู้นำ Hardware AI ต่อไปอีก 2-3 ปี แต่ AMD และ Intel ก็กำลังไล่ตาม นักวิจัยและ Startup จะเข้าถึง compute ราคาถูกลงอย่างมาก",
+    "now_what": "ติดตาม Rubin availability timeline สำหรับ research institutions และ enterprise AI labs พิจารณาใช้ Rubin-ready cloud instances เมื่อเปิดให้บริการ",
+    "source": "NVIDIA GTC Conference, 2026",
+    "headline": "NVIDIA Rubin Platform ลดต้นทุน AI Training 10 เท่า",
+    "category": "ai"
+  },
+  {
+    "id": "apple-google-siri",
+    "summary": "Apple ประกาศ Overhaul Siri ครั้งใหญ่ โดยรวม Google Gemini Models เข้ามาทำให้ Siri มี On-screen Awareness, ทำงานข้ามแอป Real-time และยังคงรักษา Privacy ผ่าน Apple Private Cloud Compute",
+    "impact": "medium",
+    "company": "apple",
+    "what": "Apple Overhaul Siri ครั้งใหญ่ โดยรวม Google Gemini Models เข้ามาทำให้ Siri มี On-screen Awareness, ทำงานข้ามแอป Real-time และรักษา Privacy ผ่าน Apple Private Cloud Compute",
+    "why_matters": "Siri ตามหลัง ChatGPT และ Google Assistant มานาน Gemini ช่วยให้ Siri ทำงานซับซ้อนได้มากขึ้น แต่ยังคงรักษา Apple Privacy standard ซึ่งเป็นจุดขายหลัก",
+    "so_what": "Apple-Google partnership นี้เปลี่ยน competitive landscape ของ AI assistants ทั้ง ecosystem จะเปลี่ยน — Siri จะกลายเป็น AI hub ที่เชื่อมต่อทุกแอปบน iPhone/Mac",
+    "now_what": "นักพัฒนา iOS ควรเตรียม app สำหรับ Siri AI integrations ติดตาม Apple WWDC 2026 สำหรับ API ที่เปิดให้ third-party developers ใช้ Siri ข้ามแอป",
+    "source": "Apple Special Event, WWDC Preview 2026",
+    "headline": "Apple จับมือ Google ปฏิวัติ Siri ด้วย Gemini AI",
+    "category": "ai"
+  },
+  {
+    "id": "china-opensource-ai",
+    "summary": "คณะที่ปรึกษาสภาคองเกรสสหรัฐฯ เตือนว่าจีนกำลังสร้าง 'Self-reinforcing Competitive Advantage' ใน Open-source AI โดย LLM ของจีนครองอันดับบนบน HuggingFace และ OpenRouter แม้ถูกจำกัดชิปขั้นสูง",
+    "impact": "medium",
+    "company": "china",
+    "what": "คณะที่ปรึกษาสภาคองเกรสสหรัฐฯ เตือนว่าจีนกำลังสร้าง Self-reinforcing Competitive Advantage ใน Open-source AI โดย LLM ของจีนครองอันดับบนบน HuggingFace และ OpenRouter",
+    "why_matters": "แม้ถูกจำกัดชิปขั้นสูง จีนก็ยังสร้าง open-source AI ที่เก่งมากได้ หมายความว่าการควบคุมชิปไม่สามารถหยุดยั้งจีนได้ Open-source AI ของจีนกำลังแพร่กระจายทั่วโลกเร็วกว่าที่คาด",
+    "so_what": "สหรัฐฯ อาจต้องทบทวนนโยบาย AI strategy ใหม่ US companies อาจเสียเปรียบในการแข่งขัน open-source AI โลกกำลังกลายเป็น multi-polar AI ecosystem",
+    "now_what": "ติดตาม policy developments เกี่ยวกับ US AI export controls ทีม AI ควรประเมิน Chinese open-source models (Qwen, DeepSeek) ว่ามีคุณภาพเพียงพอสำหรับ use cases หรือไม่",
+    "source": "US Congressional Advisory Board Report, มีนา 2026",
+    "headline": "จีนครอง Open-Source AI — สภาคองเกรสสหรัฐเตือน",
+    "category": "ai"
+  }
+]
