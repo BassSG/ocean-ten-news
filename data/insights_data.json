@@ -9,8 +9,8 @@
     "so_what": "งานมืออาชีพ เช่น การเงิน กฎหมาย วิศวกรรม จะเข้าถึง AI ที่ทำงานได้ดีขึ้นอย่างก้าวกระโดด ChatGPT for Excel จะทำให้ผู้ใช้ทั่วไปทำงาน spreadsheet ซับซ้อนได้ในคลิกเดียว",
     "now_what": "องค์กรควรทดลอง GPT-5.4 กับงาน document analysis และ long-running workflows ติดตาม ChatGPT for Excel Add-in เพื่อเพิ่ม productivity ของทีม Business",
     "source": "OpenAI Blog (openai.com), 5 มีนา 2026",
-    "headline": "OpenAI เปิดตัว GPT-5.4 พร้อม Context 1 ล้าน Token",
-    "category": "ai"
+    "category": "ai",
+    "title": "OpenAI เปิดตัว GPT-5.4 พร้อม Context 1 ล้าน Token"
   },
   {
     "id": "google-gemini-flash-lite",
@@ -22,8 +22,8 @@
     "so_what": " Startups และ Enterprise ที่ต้องการ AI ราคาประหยัดจะได้ประโยชน์มาก การแข่งขันด้านราคาระหว่าง Google กับ OpenAI จะเร่งตัวขึ้น ทำให้ AI เข้าถึงได้ง่ายขึ้น",
     "now_what": "ทีมงานควรเปรียบเทียบ Gemini Flash-Lite กับ GPT-4o-mini สำหรับ high-volume, low-latency use cases พิจารณาเปลี่ยนมาใช้ Gemini เพื่อลดต้นทุน",
     "source": "Google AI Blog, 3 มีนา 2026",
-    "headline": "Google Gemini 3.1 Flash-Lite ราคาถูกลง 2 เท่า ตอบโจทย์ Enterprise",
-    "category": "ai"
+    "category": "ai",
+    "title": "Google Gemini 3.1 Flash-Lite ราคาถูกลง 2 เท่า ตอบโจทย์ Enterprise"
   },
   {
     "id": "nvidia-rubin",
@@ -35,8 +35,8 @@
     "so_what": "NVIDIA � 现固 ตำแหน่งผู้นำ Hardware AI ต่อไปอีก 2-3 ปี แต่ AMD และ Intel ก็กำลังไล่ตาม นักวิจัยและ Startup จะเข้าถึง compute ราคาถูกลงอย่างมาก",
     "now_what": "ติดตาม Rubin availability timeline สำหรับ research institutions และ enterprise AI labs พิจารณาใช้ Rubin-ready cloud instances เมื่อเปิดให้บริการ",
     "source": "NVIDIA GTC Conference, 2026",
-    "headline": "NVIDIA Rubin Platform ลดต้นทุน AI Training 10 เท่า",
-    "category": "ai"
+    "category": "ai",
+    "title": "NVIDIA Rubin Platform ลดต้นทุน AI Training 10 เท่า"
   },
   {
     "id": "apple-google-siri",
@@ -48,8 +48,8 @@
     "so_what": "Apple-Google partnership นี้เปลี่ยน competitive landscape ของ AI assistants ทั้ง ecosystem จะเปลี่ยน — Siri จะกลายเป็น AI hub ที่เชื่อมต่อทุกแอปบน iPhone/Mac",
     "now_what": "นักพัฒนา iOS ควรเตรียม app สำหรับ Siri AI integrations ติดตาม Apple WWDC 2026 สำหรับ API ที่เปิดให้ third-party developers ใช้ Siri ข้ามแอป",
     "source": "Apple Special Event, WWDC Preview 2026",
-    "headline": "Apple จับมือ Google ปฏิวัติ Siri ด้วย Gemini AI",
-    "category": "ai"
+    "category": "ai",
+    "title": "Apple จับมือ Google ปฏิวัติ Siri ด้วย Gemini AI"
   },
   {
     "id": "china-opensource-ai",
@@ -61,7 +61,31 @@
     "so_what": "สหรัฐฯ อาจต้องทบทวนนโยบาย AI strategy ใหม่ US companies อาจเสียเปรียบในการแข่งขัน open-source AI โลกกำลังกลายเป็น multi-polar AI ecosystem",
     "now_what": "ติดตาม policy developments เกี่ยวกับ US AI export controls ทีม AI ควรประเมิน Chinese open-source models (Qwen, DeepSeek) ว่ามีคุณภาพเพียงพอสำหรับ use cases หรือไม่",
     "source": "US Congressional Advisory Board Report, มีนา 2026",
-    "headline": "จีนครอง Open-Source AI — สภาคองเกรสสหรัฐเตือน",
-    "category": "ai"
+    "category": "ai",
+    "title": "จีนครอง Open-Source AI — สภาคองเกรสสหรัฐเตือน"
+  },
+  {
+    "category": "macro",
+    "headline": "Fed คงดอกเบี้ย 3.50-3.75% — Hawkish Stance ต่อเนื่อง",
+    "what": "Federal Reserve มีมติคงอัตราดอกเบี้ยที่ 3.50-3.75% ในการประชุมเดือน มี.ค. 2026 โดยประธาน Jerome Powell ยืนยันท่าที Hawkish ระมัดระวังเงินเฟ้อ พร้อมเปิดทาง Fed Rate Cut เพียง 1 ครั้งในปี 2026 หากเงินเฟ้อลดลงตามคาด",
+    "why_matters": "ดอกเบี้ยสูง longer-for-longer กดดันทองคำโดยตรง เพราะ opportunity cost ของการถือทองสูงขึ้น ขณะที่ Dollar Index (DXY) ฟื้นตัว +0.14 เป็นปัจจัยหนุน USD แข็ง",
+    "so_what": "ตลาดทองคำยังอยู่ในโหมด Risk-Off ระยะสั้น Bounce อาจถูกจำกัดโดย Fed Hawkish สถานการณ์นี้เปิดโอกาส Short ในช่วง Bounce กลับขึ้นแนวต้าน",
+    "now_what": "เฝ้าระวัง CPI data (10 เม.ย.) และ NFP (3 เม.ย.) — ถ้าเงินเฟ้อหรืองานออกมาแย่กว่าคาด อาจเห็น Fed Pivot ซึ่งจะหนุนทองคำกลับมา"
+  },
+  {
+    "category": "macro",
+    "headline": "US Q4 GDP ชะลอตัวเหลือ 0.7% — เศรษฐกิจถดถอยเริ่มชัด",
+    "what": "GDP สหรัฐฯ ไตรมาส 4 ปี 2025 ปรับลงเหลือ 0.7% (annualized) จากความกังวลสงครามอิหร่านกระทบห่วงโซ่อุปทาน และการชะลอการลงทุนธุรกิจ",
+    "why_matters": "GDP ต่ำกว่า 1% เป็นสัญญาณเศรษฐกิจถดถอยชัดเจนในระดับเทคนิค แม้ตลาดแรงงานยังแข็งแกร่ง (ขัดแย้งกับ NFP ที่ติดลบ -92K) อาจมี structural weakness ที่สถิติไม่ตามทัน",
+    "so_what": "ถ้าเศรษฐกิจถดถอยจริง Fed อาจถูกบังคับให้ pivot เร็วกว่าคาด ซึ่งจะเป็นบวกต่อทองคำในระยะยาว แต่ระยะสั้น Risk-Off ยังครอบงำตลาด",
+    "now_what": "จับตา Leading Indicators และ PMI ในเดือน เม.ย. ถ้าข้อมูลยืนยันเศรษฐกิจถดถอย เตรียมปรับพอร์ตจาก Defensive เป็น Long Gold"
+  },
+  {
+    "category": "macro",
+    "headline": "NFP ก.พ. ติดลบ -92K — ตลาดแรงงานเริ่มส่งสัญญาณถดถอย",
+    "what": "Non-Farm Payrolls เดือน ก.พ. 2026 ออกมาแย่กว่าคาด ติดลบ -92,000 ตำแหน่ง แสดงว่าตลาดแรงงานสหรัฐฯ เริ่มได้รับผลกระทบจากความกังวลเศรษฐกิจถดถอย",
+    "why_matters": "NFP ติดลบหนัก 92K เป็นสัญญาณเตือนที่ชัดเจนว่านโยบายดอกเบี้ยสูงเริ่มกระทบตลาดแรงงานจริง ไม่ใช่แค่ความกังวลในตลาดการเงิน",
+    "so_what": "ตลาดการเงินอาจตอบสนองผิดปกติ — NFP แย่ = หุ้นลง + ทองลง (Risk-Off) แต่ถ้า Dollar ลงเยอะ ทองอาจกลับมาบวกได้เร็ว ติดตาม USD reaction",
+    "now_what": "NFP ถัดไป 3 เม.ย. — ถ้าฟื้นตัวเป็นบวก แรงซื้อทองอาจกลับเร็ว ถ้ายังติดลบต่อ เศรษฐกิจถดถอยจะยืนยัน เตรียมกลยุทธ์ Long Gold ระยะยาว"
   }
 ]

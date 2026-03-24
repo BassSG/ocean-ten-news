@@ -1,413 +1,382 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI & Tech Report — Ocean Ten</title>
-  <meta name="theme-color" content="#030712">
-  <meta name="description" content="Premium Tech & AI Research Report — OpenAI, NVIDIA, Apple, Google, Tesla, Microsoft — Ocean Ten">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="AI & Tech Report">
-  <link rel="manifest" href="/manifest-ai-report.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-void: #030712;
-      --bg-deep: #060d1f;
-      --bg-panel: #0d1526;
-      --bg-card: #0f1e35;
-      --bg-card-hover: #142342;
-      --border-dim: rgba(240,185,11,0.10);
-      --border-glow: rgba(240,185,11,0.35);
-      --gold: #f0b90b;
-      --gold-bright: #ffd60a;
-      --gold-dim: #b8860b;
-      --gold-glow: rgba(240,185,11,0.18);
-      --blue: #4f8ef7;
-      --purple: #a855f7;
-      --green: #10b981;
-      --red: #f43f5e;
-      --text-primary: #f1f5f9;
-      --text-secondary: #94a3b8;
-      --text-muted: #475569;
-      --font-display: 'Inter', 'Noto Sans Thai', sans-serif;
-    }
-    *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{font-family:var(--font-display);background:var(--bg-void);color:var(--text-primary);min-height:100vh;overflow-x:hidden}
-    body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 900px 600px at 15% -5%, rgba(79,142,247,0.08) 0%, transparent 60%),radial-gradient(ellipse 800px 500px at 85% 105%, rgba(240,185,11,0.06) 0%, transparent 55%),radial-gradient(ellipse 600px 400px at 50% 50%, rgba(168,85,247,0.03) 0%, transparent 60%);pointer-events:none;z-index:0;animation:ambientShift 18s ease-in-out infinite alternate}
-    @keyframes ambientShift{0%{opacity:1}50%{opacity:.7}100%{opacity:1}}
-    body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(240,185,11,0.025) 1px, transparent 1px),linear-gradient(90deg, rgba(240,185,11,0.025) 1px, transparent 1px);background-size:72px 72px;pointer-events:none;z-index:0;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%, black 30%, transparent 80%)}
-    .container{max-width:860px;margin:0 auto;padding:0 24px 80px;position:relative;z-index:1}
-
-    /* TOPBAR */
-    .topbar{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(3,7,18,.80);border-bottom:1px solid var(--border-dim)}
-    .topbar-inner{max-width:860px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .topbar-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-    .brand-logo{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold-dim));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
-    .brand-text{font-family:'Inter',sans-serif;font-size:15px;font-weight:800;letter-spacing:-0.5px}
-    .brand-oc{color:var(--gold)}
-    .brand-en{color:var(--text-primary)}
-    .brand-sub{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px}
-    .topbar-right{display:flex;align-items:center;gap:16px}
-    .live-clock{font-size:12px;font-weight:600;color:var(--gold);font-variant-numeric:tabular-nums;letter-spacing:.5px}
-    .back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;font-size:11px;font-weight:600;color:var(--text-secondary);background:var(--bg-card);border:1px solid var(--border-dim);border-radius:6px;text-decoration:none;transition:all .2s}
-    .back-btn:hover{color:var(--gold);border-color:var(--border-glow);background:var(--bg-card-hover)}
-
-    /* HERO */
-    .hero-section{padding:56px 0 40px;text-align:center;animation:fadeUp .7s ease-out both}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    .report-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:var(--gold-glow);border:1px solid var(--border-glow);border-radius:100px;font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:20px}
-    .report-badge .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-    .hero-date{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
-    .hero-title{font-family:'Inter',sans-serif;font-size:clamp(28px,6vw,52px);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px;color:var(--text-primary)}
-    .hero-title span{color:var(--gold)}
-    .hero-title em{font-style:normal;color:var(--blue)}
-    .hero-sub{font-size:clamp(14px,2vw,17px);color:var(--text-secondary);line-height:1.7;max-width:600px;margin:0 auto 24px}
-    .hero-meta{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
-    .meta-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--bg-card);border:1px solid var(--border-dim);border-radius:6px;font-size:11px;color:var(--text-secondary)}
-    .meta-chip svg{width:12px;height:12px;stroke:var(--gold);fill:none;stroke-width:2}
-
-    /* DIVIDER */
-    .divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-dim),transparent);margin:36px 0}
-
-    /* SECTION LABEL */
-    .section-label{font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:3px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-    .section-label::before{content:'';width:20px;height:2px;background:var(--gold);flex-shrink:0}
-
-    /* KEY INSIGHTS */
-    .insights-section{margin-bottom:48px;animation:fadeUp .7s .15s ease-out both}
-    .insight-card{background:var(--bg-card);border:1px solid var(--border-dim);border-radius:12px;padding:28px;margin-bottom:16px;position:relative;overflow:hidden;transition:border-color .3s,background .3s}
-    .insight-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--blue));opacity:0;transition:opacity .3s}
-    .insight-card:hover{border-color:var(--border-glow);background:var(--bg-card-hover)}
-    .insight-card:hover::before{opacity:1}
-    .insight-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px}
-    .insight-rank{width:32px;height:32px;background:var(--gold-glow);border:1px solid var(--border-glow);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--gold);flex-shrink:0}
-    .insight-tag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:4px 10px;border-radius:4px;flex-shrink:0}
-    .tag-ai{background:rgba(79,142,247,.15);color:var(--blue);border:1px solid rgba(79,142,247,.3)}
-    .tag-chip{background:rgba(168,85,247,.15);color:var(--purple);border:1px solid rgba(168,85,247,.3)}
-    .insight-headline{font-size:clamp(16px,2.5vw,20px);font-weight:800;line-height:1.3;color:var(--text-primary);letter-spacing:-.3px;margin-bottom:16px}
-    .tier-block{margin-bottom:14px}
-    .tier-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;display:flex;align-items:center;gap:8px}
-    .tier-what{color:var(--blue)}
-    .tier-what::before{content:'▸';color:var(--blue)}
-    .tier-why{color:var(--gold)}
-    .tier-why::before{content:'▸';color:var(--gold)}
-    .tier-so{color:var(--green)}
-    .tier-so::before{content:'▸';color:var(--green)}
-    .tier-now{color:var(--purple)}
-    .tier-now::before{content:'▸';color:var(--purple)}
-    .tier-body{font-size:14px;line-height:1.75;color:var(--text-secondary)}
-    .tier-body strong{color:var(--text-primary)}
-
-    /* ACTION CARD */
-    .action-section{margin-bottom:48px;animation:fadeUp .7s .3s ease-out both}
-    .action-card{background:linear-gradient(135deg,var(--bg-card) 0%,rgba(240,185,11,.06) 100%);border:1px solid var(--border-glow);border-radius:12px;padding:28px;position:relative;overflow:hidden}
-    .action-card::after{content:'';position:absolute;top:-50%;right:-10%;width:200px;height:200px;background:radial-gradient(circle,rgba(240,185,11,.08) 0%,transparent 70%);pointer-events:none}
-    .action-title{font-size:12px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
-    .action-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-    .action-item{background:rgba(3,7,18,.5);border:1px solid var(--border-dim);border-radius:8px;padding:16px}
-    .action-item-label{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
-    .action-item-value{font-size:13px;font-weight:700;color:var(--text-primary);line-height:1.4}
-
-    /* TREND BANNER */
-    .trend-section{margin-bottom:48px;animation:fadeUp .7s .4s ease-out both}
-    .trend-card{background:var(--bg-card);border:1px solid var(--border-dim);border-radius:12px;padding:24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-    .trend-icon{width:48px;height:48px;background:var(--gold-glow);border:1px solid var(--border-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-    .trend-content{flex:1;min-width:200px}
-    .trend-label{font-size:9px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
-    .trend-text{font-size:15px;font-weight:700;color:var(--text-primary)}
-    .trend-tags{display:flex;gap:8px;flex-wrap:wrap}
-    .trend-tag{padding:4px 10px;background:rgba(79,142,247,.1);border:1px solid rgba(79,142,247,.25);border-radius:4px;font-size:10px;color:var(--blue);font-weight:600}
-
-    /* FOOTER */
-    .footer{display:flex;align-items:center;justify-content:space-between;padding:32px 0 0;border-top:1px solid var(--border-dim);margin-top:48px;flex-wrap:wrap;gap:16px}
-    .footer-brand{font-size:12px;color:var(--text-muted)}
-    .footer-brand span{margin-right:6px}
-    .footer-meta{font-size:10px;color:var(--text-muted);margin-top:4px}
-    .ocean-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--bg-card);border:1px solid var(--border-dim);border-radius:6px;font-size:11px;font-weight:600;color:var(--text-secondary)}
-    .ocean-badge span{font-size:14px}
-
-    /* LOADING */
-    .skeleton-line{background:linear-gradient(90deg,var(--bg-card) 25%,var(--bg-card-hover) 50%,var(--bg-card) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:4px}
-    @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-    .skeleton-line{color:transparent!important;min-height:16px;display:block}
-
-    /* RESPONSIVE */
-    @media(max-width:640px){
-      .container{padding:0 16px 60px}
-      .topbar-inner{padding:0 16px}
-      .hero-section{padding:40px 0 28px}
-      .insight-card{padding:20px}
-      .action-card{padding:20px}
-      .trend-card{padding:16px}
-      .footer{flex-direction:column;align-items:flex-start}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI & Tech Report — Ocean Ten</title>
+<meta name="theme-color" content="#030712">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+:root{--bg-void:#030712;--bg-deep:#060d1f;--bg-panel:#0d1526;--bg-card:#0f1e35;--bg-card-hover:#142342;--border-dim:rgba(6,182,212,0.12);--border-glow:rgba(6,182,212,0.40);--cyan:#06b6d4;--cyan-bright:#22d3ee;--cyan-dim:#0891b2;--cyan-glow:rgba(6,182,212,0.15);--gold:#f0b90b;--gold-dim:#b8860b;--gold-glow:rgba(240,185,11,0.12);--purple:#a855f7;--green:#10b981;--red:#f43f5e;--orange:#f97316;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-muted:#475569;--font-display:'Inter','Noto Sans Thai',sans-serif}
+body{font-family:var(--font-display);background:var(--bg-void);color:var(--text-primary);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 900px 600px at 15% -5%,rgba(6,182,212,0.07) 0%,transparent 60%),radial-gradient(ellipse 800px 500px at 85% 105%,rgba(240,185,11,0.05) 0%,transparent 55%),radial-gradient(ellipse 600px 400px at 50% 50%,rgba(168,85,247,0.03) 0%,transparent 60%);pointer-events:none;z-index:0;animation:ambientShift 18s ease-in-out infinite alternate}
+@keyframes ambientShift{0%{opacity:1}50%{opacity:.7}100%{opacity:1}}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(6,182,212,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(6,182,212,0.02) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;z-index:0;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black 30%,transparent 80%)}
+.reading-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--gold));z-index:9999;transition:width .1s linear;box-shadow:0 0 10px rgba(6,182,212,0.5)}
+.must-know-banner{position:relative;z-index:50;background:linear-gradient(135deg,rgba(6,182,212,0.12) 0%,rgba(240,185,11,0.08) 100%);border-bottom:1px solid rgba(6,182,212,0.25);padding:12px 24px;display:flex;align-items:center;justify-content:center;gap:12px;animation:slideDown .5s ease-out}
+@keyframes slideDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+.must-know-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:linear-gradient(135deg,var(--red),#dc2626);border-radius:100px;font-size:10px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1.5px;animation:pulseGlow 2s infinite;flex-shrink:0}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 8px rgba(244,63,94,0.5)}50%{box-shadow:0 0 20px rgba(244,63,94,0.9)}}
+.must-know-text{font-size:12px;color:var(--text-secondary);font-weight:500}.must-know-text strong{color:var(--cyan-bright)}
+.must-know-close{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:16px;padding:0 4px;transition:color .2s;flex-shrink:0}.must-know-close:hover{color:var(--red)}
+.topbar{position:sticky;top:0;z-index:100;backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);background:rgba(3,7,18,.85);border-bottom:1px solid var(--border-dim)}
+.topbar-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.topbar-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-logo{width:36px;height:36px;background:linear-gradient(135deg,var(--cyan),var(--cyan-dim));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.brand-text{font-family:'Inter',sans-serif;font-size:15px;font-weight:800;letter-spacing:-0.5px}
+.brand-oc{color:var(--cyan-bright)}.brand-en{color:var(--text-primary)}
+.brand-sub{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px}
+.live-indicator{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;flex-shrink:0}
+.live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:livePulse 1.5s infinite}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.topbar-right{display:flex;align-items:center;gap:16px}
+.live-clock{font-size:12px;font-weight:600;color:var(--cyan);font-variant-numeric:tabular-nums;letter-spacing:.5px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;font-size:11px;font-weight:600;color:var(--text-secondary);background:var(--bg-card);border:1px solid var(--border-dim);border-radius:6px;text-decoration:none;transition:all .2s}
+.back-btn:hover{color:var(--cyan);border-color:var(--border-glow);background:var(--bg-card-hover)}
+.main-layout{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 260px;gap:36px;position:relative;z-index:1}
+@media(max-width:900px){.main-layout{grid-template-columns:1fr;display:block}.toc-sidebar{display:none}}
+.toc-sidebar{position:sticky;top:88px;height:fit-content;max-height:calc(100vh - 120px);overflow-y:auto;padding:28px 0}
+.toc-sidebar::-webkit-scrollbar{width:3px}.toc-sidebar::-webkit-scrollbar-track{background:transparent}.toc-sidebar::-webkit-scrollbar-thumb{background:var(--border-glow);border-radius:2px}
+.toc-title{font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:12px;padding-left:4px}
+.toc-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-card);border:1px solid var(--border-dim);border-radius:8px;margin-bottom:6px;cursor:pointer;transition:all .25s;text-decoration:none;color:inherit;border-left:3px solid transparent}
+.toc-item:hover{background:var(--bg-card-hover);border-color:var(--border-glow);border-left-color:var(--cyan);transform:translateX(4px)}
+.toc-item.active{background:rgba(6,182,212,0.08);border-color:var(--cyan);border-left-color:var(--cyan)}
+.toc-rank{width:22px;height:22px;background:var(--bg-panel);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--text-muted);flex-shrink:0;transition:all .25s}
+.toc-item:hover .toc-rank,.toc-item.active .toc-rank{background:var(--cyan-glow);color:var(--cyan)}
+.toc-company{font-size:16px;flex-shrink:0;line-height:1}
+.toc-text{flex:1;min-width:0}
+.toc-label{font-size:11px;font-weight:600;color:var(--text-secondary);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .25s}
+.toc-item:hover .toc-label{color:var(--text-primary)}
+.toc-impact{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:2px 7px;border-radius:100px;flex-shrink:0}
+.toc-impact.high{background:rgba(244,63,94,.15);color:var(--red)}.toc-impact.medium{background:rgba(249,115,22,.12);color:var(--orange)}.toc-impact.low{background:rgba(16,185,129,.12);color:var(--green)}
+.content-area{padding:40px 0 80px}
+.hero-section{padding:48px 0 36px;text-align:center;animation:fadeUp .7s ease-out both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.report-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:linear-gradient(135deg,rgba(6,182,212,0.1),rgba(6,182,212,0.05));border:1px solid var(--border-glow);border-radius:100px;font-size:10px;font-weight:700;color:var(--cyan-bright);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:20px}
+.report-badge .dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulseDot 2s infinite}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-date{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+.hero-title{font-family:'Inter',sans-serif;font-size:clamp(28px,6vw,52px);font-weight:900;line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px;color:var(--text-primary)}
+.hero-title span{color:var(--cyan-bright)}.hero-title em{font-style:normal;color:var(--gold)}
+.hero-sub{font-size:clamp(14px,2vw,17px);color:var(--text-secondary);line-height:1.7;max-width:600px;margin:0 auto 24px}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
+.meta-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--bg-card);border:1px solid var(--border-dim);border-radius:6px;font-size:11px;color:var(--text-secondary)}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-dim),transparent);margin:36px 0}
+.section-label{font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:3px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.section-label::before{content:'';width:20px;height:2px;background:var(--cyan);flex-shrink:0}
+.insights-section{margin-bottom:48px;animation:fadeUp .7s .15s ease-out both}
+.insight-card{background:var(--bg-card);border:1px solid var(--border-dim);border-radius:16px;padding:28px;margin-bottom:20px;position:relative;overflow:hidden;transition:border-color .35s,background .35s,transform .35s;box-shadow:0 4px 24px rgba(0,0,0,0.2)}
+.insight-card::before{content:'';position:absolute;inset:-1px;border-radius:17px;padding:1px;background:linear-gradient(135deg,transparent 30%,rgba(6,182,212,0.4) 50%,transparent 70%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;pointer-events:none}
+.insight-card::after{content:'';position:absolute;top:-60%;left:-60%;width:220px;height:220px;background:radial-gradient(circle,rgba(6,182,212,0.05) 0%,transparent 70%);pointer-events:none;transition:opacity .4s;opacity:0}
+.insight-card:hover{border-color:var(--border-glow);background:var(--bg-card-hover);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+.insight-card:hover::before{opacity:1}.insight-card:hover::after{opacity:1}
+.insight-card.high-impact::before{background:linear-gradient(135deg,rgba(244,63,94,0.5),rgba(244,63,94,0.2),rgba(240,185,11,0.3),rgba(244,63,94,0.5));background-size:300% 300%;animation:borderGlow 4s ease infinite}
+@keyframes borderGlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.insight-card.high-impact::after{background:radial-gradient(circle,rgba(244,63,94,0.08) 0%,transparent 70%);opacity:1!important}
+.insight-card.medium-impact::before{background:linear-gradient(135deg,transparent 30%,rgba(249,115,22,0.5) 50%,transparent 70%)}
+.insight-card.low-impact::before{background:linear-gradient(135deg,transparent 30%,rgba(16,185,129,0.5) 50%,transparent 70%)}
+.particle-container{position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:16px}
+.particle{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;opacity:0;animation:particleFloat 4s ease-in-out infinite}
+@keyframes particleFloat{0%{opacity:0;transform:translateY(0) scale(0)}15%{opacity:.9}85%{opacity:.2}100%{opacity:0;transform:translateY(-320px) scale(1)}}
+.insight-card.high-impact .particle:nth-child(1){left:15%;animation-delay:0s;background:var(--red);box-shadow:0 0 6px rgba(244,63,94,0.8)}
+.insight-card.high-impact .particle:nth-child(2){left:30%;animation-delay:.8s;background:var(--gold);box-shadow:0 0 6px rgba(240,185,11,0.6)}
+.insight-card.high-impact .particle:nth-child(3){left:75%;animation-delay:1.6s;background:var(--red);box-shadow:0 0 6px rgba(244,63,94,0.8)}
+.insight-card.high-impact .particle:nth-child(4){left:50%;animation-delay:2.4s;background:var(--cyan);box-shadow:0 0 6px rgba(6,182,212,0.6)}
+.insight-card.high-impact .particle:nth-child(5){left:85%;animation-delay:3.2s;background:var(--purple);box-shadow:0 0 6px rgba(168,85,247,0.6)}
+.insight-card.high-impact .particle:nth-child(6){left:60%;animation-delay:1.2s;background:var(--gold);box-shadow:0 0 6px rgba(240,185,11,0.6)}
+.insight-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px;position:relative;z-index:2;flex-wrap:wrap}
+.insight-header-left{display:flex;align-items:center;gap:12px}
+.insight-rank{width:32px;height:32px;background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--cyan);flex-shrink:0}
+.company-badge{font-size:22px;flex-shrink:0;filter:drop-shadow(0 0 4px rgba(255,255,255,0.1));line-height:1}
+.insight-tag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:4px 10px;border-radius:4px;flex-shrink:0}
+.tag-ai{background:rgba(6,182,212,.12);color:var(--cyan);border:1px solid rgba(6,182,212,.3)}.tag-chip{background:rgba(168,85,247,.12);color:var(--purple);border:1px solid rgba(168,85,247,.3)}
+.impact-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:100px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;flex-shrink:0;transition:all .3s}
+.impact-badge.high{background:rgba(244,63,94,.15);color:var(--red);border:1px solid rgba(244,63,94,.4);box-shadow:0 0 14px rgba(244,63,94,0.3)}
+.impact-badge.medium{background:rgba(249,115,22,.12);color:var(--orange);border:1px solid rgba(249,115,22,.3)}
+.impact-badge.low{background:rgba(16,185,129,.12);color:var(--green);border:1px solid rgba(16,185,129,.3)}
+.impact-badge .impact-dot{width:5px;height:5px;border-radius:50%}
+.impact-badge.high .impact-dot{background:var(--red);box-shadow:0 0 4px var(--red);animation:pulseDot 1.5s infinite}
+.impact-badge.medium .impact-dot{background:var(--orange)}.impact-badge.low .impact-dot{background:var(--green)}
+.why-preview{position:absolute;bottom:0;left:0;right:0;padding:20px 28px;background:linear-gradient(to top,rgba(3,7,18,.97) 0%,rgba(3,7,18,.88) 55%,transparent 100%);transform:translateY(102%);transition:transform .4s cubic-bezier(.4,0,.2,1);z-index:3;border-radius:0 0 16px 16px;pointer-events:none}
+.insight-card:hover .why-preview{transform:translateY(0)}
+.why-preview-label{font-size:9px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.why-preview-text{font-size:13px;color:var(--text-secondary);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}
+.insight-card:hover .why-preview-text{color:var(--text-primary)}
+.insight-headline{font-size:clamp(16px,2.5vw,20px);font-weight:800;line-height:1.3;color:var(--text-primary);letter-spacing:-.3px;margin-bottom:10px;position:relative;z-index:2}
+.insight-source{font-size:10px;color:var(--text-muted);margin-bottom:14px;display:flex;align-items:center;gap:4px;position:relative;z-index:2}
+.tier-block{margin-bottom:14px;position:relative;z-index:2}
+.tier-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.tier-what{color:var(--cyan)}.tier-what::before{content:'▸';color:var(--cyan)}
+.tier-why{color:var(--gold)}.tier-why::before{content:'▸';color:var(--gold)}
+.tier-so{color:var(--green)}.tier-so::before{content:'▸';color:var(--green)}}
+.tier-now{color:var(--purple)}.tier-now::before{content:'▸';color:var(--purple)}}
+.tier-body{font-size:14px;line-height:1.75;color:var(--text-secondary)}.tier-body strong{color:var(--text-primary)}}
+.action-section{margin-bottom:48px;animation:fadeUp .7s .3s ease-out both}
+.action-card{background:linear-gradient(135deg,var(--bg-card) 0%,rgba(6,182,212,.05) 100%);border:1px solid var(--border-glow);border-radius:12px;padding:28px;position:relative;overflow:hidden}
+.action-card::after{content:'';position:absolute;top:-50%;right:-10%;width:200px;height:200px;background:radial-gradient(circle,rgba(6,182,212,.07) 0%,transparent 70%);pointer-events:none}
+.action-title{font-size:12px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.action-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.action-item{background:rgba(3,7,18,.5);border:1px solid var(--border-dim);border-radius:8px;padding:16px}
+.action-item-label{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+.action-item-value{font-size:13px;font-weight:700;color:var(--text-primary);line-height:1.4}
+.trend-section{margin-bottom:48px;animation:fadeUp .7s .4s ease-out both}
+.trend-card{background:var(--bg-card);border:1px solid var(--border-dim);border-radius:12px;padding:24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.trend-icon{width:48px;height:48px;background:rgba(6,182,212,0.1);border:1px solid var(--border-glow);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.trend-content{flex:1;min-width:200px}
+.trend-label{font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.trend-text{font-size:15px;font-weight:700;color:var(--text-primary)}
+.trend-tags{display:flex;gap:8px;flex-wrap:wrap}
+.trend-tag{padding:4px 10px;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);border-radius:4px;font-size:10px;color:var(--cyan-bright);font-weight:600}
+.share-section{margin-top:56px;padding-top:32px;border-top:1px solid var(--border-dim);animation:fadeUp .7s .5s ease-out both}
+.share-title{font-size:12px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;text-align:center}
+.share-grid{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.share-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--bg-card);border:1px solid var(--border-dim);border-radius:8px;font-size:12px;font-weight:600;color:var(--text-secondary);cursor:pointer;transition:all .25s;text-decoration:none}
+.share-btn:hover{background:var(--bg-card-hover);border-color:var(--border-glow);color:var(--cyan);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+.share-btn.primary{background:linear-gradient(135deg,rgba(6,182,212,0.15),rgba(6,182,212,0.05));border-color:rgba(6,182,212,0.3);color:var(--cyan-bright)}
+.share-btn.primary:hover{background:linear-gradient(135deg,rgba(6,182,212,0.25),rgba(6,182,212,0.1));box-shadow:0 4px 20px rgba(6,182,212,0.25)}}
+.feedback-area{margin-top:24px;max-width:500px;margin-left:auto;margin-right:auto}
+.feedback-label{font-size:11px;color:var(--text-muted);margin-bottom:8px;display:block;text-align:center}
+.feedback-input{display:block;width:100%;padding:12px 16px;background:var(--bg-card);border:1px solid var(--border-dim);border-radius:8px;font-size:13px;color:var(--text-primary);font-family:var(--font-display);transition:border-color .2s,box-shadow .2s;outline:none;resize:none}
+.feedback-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(6,182,212,0.1)}}
+.feedback-input::placeholder{color:var(--text-muted)}
+.feedback-submit{display:block;margin:12px auto 0;padding:10px 24px;background:linear-gradient(135deg,var(--cyan),var(--cyan-dim));border:none;border-radius:8px;font-size:12px;font-weight:700;color:var(--bg-void);cursor:pointer;transition:all .2s}
+.feedback-submit:hover{transform:translateY(-1px);box-shadow:0 4px 15px rgba(6,182,212,0.4)}
+.footer{display:flex;align-items:center;justify-content:space-between;padding:32px 0 0;border-top:1px solid var(--border-dim);margin-top:48px;flex-wrap:wrap;gap:16px}
+.footer-brand{font-size:12px;color:var(--text-muted)}.footer-brand span{margin-right:6px}
+.footer-meta{font-size:10px;color:var(--text-muted);margin-top:4px}
+.ocean-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:var(--bg-card);border:1px solid var(--border-dim);border-radius:6px;font-size:11px;font-weight:600;color:var(--text-secondary)}
+.ocean-badge span{font-size:14px}
+.skeleton-line{background:linear-gradient(90deg,var(--bg-card) 25%,var(--bg-card-hover) 50%,var(--bg-card) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:4px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skeleton-line{color:transparent!important;min-height:16px;display:block}
+@media(max-width:640px){.main-layout{padding:0 16px}.topbar-inner{padding:0 16px}.hero-section{padding:40px 0 28px}.insight-card{padding:20px}.action-card{padding:20px}.trend-card{padding:16px}.footer{flex-direction:column;align-items:flex-start}.must-know-banner{flex-direction:column;gap:8px;text-align:center}.why-preview{display:none}}
+</style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="topbar-inner">
-      <a href="/" class="topbar-brand">
-        <div class="brand-logo">🐬</div>
-        <div>
-          <div class="brand-text"><span class="brand-oc">Ocean</span> <span class="brand-en">Ten</span></div>
-          <div class="brand-sub">Premium Research</div>
-        </div>
-      </a>
-      <div class="topbar-right">
-        <div class="live-clock" id="liveClock">--:--:-- ICT</div>
-        <a href="/" class="back-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          Back to Home
-        </a>
-      </div>
-    </div>
-  </div>
+<div class="reading-progress" id="readingProgress" style="width:0%"></div>
+<div class="must-know-banner" id="mustKnowBanner">
+<span class="must-know-badge">⚡ MUST KNOW</span>
+<span class="must-know-text"><strong>GPT-5.4 + Rubin Platform</strong> — AI Race ดุเดือดสุดในปี 2026 ส่งผลต่อทุกอุตสาหกรรม</span>
+<button class="must-know-close" onclick="document.getElementById('mustKnowBanner').style.display='none'" aria-label="ปิด">✕</button>
+</div>
+<div class="topbar">
+<div class="topbar-inner">
+<a href="/" class="topbar-brand"><div class="brand-logo">🐬</div><div><div class="brand-text"><span class="brand-oc">Ocean</span> <span class="brand-en">Ten</span></div><div class="brand-sub">Premium Research</div></div></a>
+<div class="topbar-right">
+<div class="live-indicator"><span class="live-dot"></span>LIVE</div>
+<div class="live-clock" id="liveClock">--:--:-- ICT</div>
+<a href="/" class="back-btn">Back to Home</a>
+</div>
+</div>
+</div>
+<div class="main-layout">
+<div class="content-area">
+<section class="hero-section" id="heroSection">
+<div class="report-badge"><span class="dot"></span> AI &amp; Tech Intelligence</div>
+<div class="hero-date" id="reportDate">กำลังโหลด...</div>
+<h1 class="hero-title"><em>Tech &amp; AI</em><br/><span>Premium Report</span></h1>
+<p class="hero-sub">รายงานวิเคราะห์เชิงลึก AI และเทคโนโลยีล่าสุด — คัดกรองโดยทีม Ocean Ten ด้วยมาตรฐานระดับพรีเมียม</p>
+<div class="hero-meta">
+<div class="meta-chip" id="metaTimeChip">--:-- น. (ICT)</div>
+<div class="meta-chip">Tech &amp; AI</div>
+<div class="meta-chip">Premium</div>
+</div>
+</section>
+<div class="divider"></div>
+<section class="insights-section" id="insightsSection">
+<div class="section-label">🧠 วิเคราะห์เชิงลึก</div>
+<div id="insightsList">
+<div class="insight-card high-impact" id="insight-openai-gpt54">
+<div class="particle-container"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+<div class="insight-header"><div class="insight-header-left"><div class="insight-rank">1</div><div class="company-badge">🤖</div></div><div style="display:flex;gap:8px;align-items:center"><span class="insight-tag tag-ai">AI</span><span class="impact-badge high"><span class="impact-dot"></span>HIGH</span></div></div>
+<div class="insight-headline">OpenAI เปิดตัว GPT-5.4 พร้อม Context 1 ล้าน Token</div>
+<div class="insight-source">OpenAI Blog (openai.com), 5 มีนา 2026</div>
+<div class="tier-block"><div class="tier-label tier-what">What</div><div class="tier-body">OpenAI เปิดตัว GPT-5.4 รองรับ Context Window 1 ล้าน Token พร้อมฟีเจอร์ Step-by-step Planning และ Agentic Workflow สำหรับงานมืออาชีพ พร้อมเปิดตัว ChatGPT for Excel Add-in</div></div>
+<div class="tier-block"><div class="tier-label tier-why">Why It Matters</div><div class="tier-body">Context 1 ล้าน Token หมายถึงโมเดลสามารถอ่านเอกสารได้ทั้งเล่ม หรือ codebase ขนาดใหญ่ในครั้งเดียว ทำให้การวิเคราะห์เชิงลึกแม่นยำขึ้นมาก Agentic Workflow ช่วยให้ AI ทำงานต่อเนื่องได้หลายขั้นตอนโดยไม่ต้องคอยสั่ง</div></div>
+<div class="tier-block"><div class="tier-label tier-so">So What</div><div class="tier-body"><strong>งานมืออาชีพ เช่น การเงิน กฎหมาย วิศวกรรม จะเข้าถึง AI ที่ทำงานได้ดีขึ้นอย่างก้าวกระโดด ChatGPT for Excel จะทำให้ผู้ใช้ทั่วไปทำงาน spreadsheet ซับซ้อนได้ในคลิกเดียว</strong></div></div>
+<div class="tier-block"><div class="tier-label tier-now">Now What</div><div class="tier-body">องค์กรควรทดลอง GPT-5.4 กับงาน document analysis และ long-running workflows ติดตาม ChatGPT for Excel Add-in เพื่อเพิ่ม productivity ของทีม Business</div></div>
+<div class="why-preview"><div class="why-preview-label">💡 Why It Matters</div><div class="why-preview-text">Context 1 ล้าน Token หมายถึงโมเดลสามารถอ่านเอกสารได้ทั้งเล่ม หรือ codebase ขนาดใหญ่ในครั้งเดียว ทำให้การวิเคราะห์เชิงลึก</div></div>
+</div>
 
-  <div class="container">
-    <!-- HERO -->
-    <section class="hero-section" id="heroSection">
-      <div class="report-badge">
-        <span class="dot"></span>
-        AI &amp; Tech Intelligence
-      </div>
-      <div class="hero-date" id="reportDate">กำลังโหลด...</div>
-      <h1 class="hero-title">
-        <em>Tech &amp; AI</em><br/>
-        <span>Premium Report</span>
-      </h1>
-      <p class="hero-sub">
-        รายงานวิเคราะห์เชิงลึก AI และเทคโนโลยีล่าสุด — คัดกรองโดยทีม Ocean Ten ด้วยมาตรฐานระดับพรีเมียม
-      </p>
-      <div class="hero-meta">
-        <div class="meta-chip">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          <span id="metaTime">--</span>
-        </div>
-        <div class="meta-chip">
-          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-          <span>Tech &amp; AI</span>
-        </div>
-        <div class="meta-chip">
-          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-          <span>Premium</span>
-        </div>
-      </div>
-    </section>
+<div class="insight-card medium-impact" id="insight-google-gemini-flash-lite">
+<div class="particle-container"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+<div class="insight-header"><div class="insight-header-left"><div class="insight-rank">2</div><div class="company-badge">🔍</div></div><div style="display:flex;gap:8px;align-items:center"><span class="insight-tag tag-ai">AI</span><span class="impact-badge medium"><span class="impact-dot"></span>MEDIUM</span></div></div>
+<div class="insight-headline">Google Gemini 3.1 Flash-Lite ราคาถูกลง 2 เท่า ตอบโจทย์ Enterprise</div>
+<div class="insight-source">Google AI Blog, 3 มีนา 2026</div>
+<div class="tier-block"><div class="tier-label tier-what">What</div><div class="tier-body">Google เปิดตัว Gemini 3.1 Flash-Lite เน้นความเร็วสองเท่า และต้นทุนต่ำกว่ารุ่นก่อนมาก ออกแบบมาสำหรับ Massive Workloads ที่ต้องประมวลผลปริมาณมาก</div></div>
+<div class="tier-block"><div class="tier-label tier-why">Why It Matters</div><div class="tier-body">ราคาเป็นปัจจัยสำคัญสำหรับ Enterprise ที่ต้องเรียก API หลายล้านครั้งต่อวัน Flash-Lite ทำให้ AI ประมวลผลเร็วขึ้นและถูกลง เป็นการตอบโต้ราคากับ OpenAI โดยตรง</div></div>
+<div class="tier-block"><div class="tier-label tier-so">So What</div><div class="tier-body"><strong> Startups และ Enterprise ที่ต้องการ AI ราคาประหยัดจะได้ประโยชน์มาก การแข่งขันด้านราคาระหว่าง Google กับ OpenAI จะเร่งตัวขึ้น ทำให้ AI เข้าถึงได้ง่ายขึ้น</strong></div></div>
+<div class="tier-block"><div class="tier-label tier-now">Now What</div><div class="tier-body">ทีมงานควรเปรียบเทียบ Gemini Flash-Lite กับ GPT-4o-mini สำหรับ high-volume, low-latency use cases พิจารณาเปลี่ยนมาใช้ Gemini เพื่อลดต้นทุน</div></div>
+<div class="why-preview"><div class="why-preview-label">💡 Why It Matters</div><div class="why-preview-text">ราคาเป็นปัจจัยสำคัญสำหรับ Enterprise ที่ต้องเรียก API หลายล้านครั้งต่อวัน Flash-Lite ทำให้ AI ประมวลผลเร็วขึ้นและถูกลง เ</div></div>
+</div>
 
-    <div class="divider"></div>
+<div class="insight-card high-impact" id="insight-nvidia-rubin">
+<div class="particle-container"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+<div class="insight-header"><div class="insight-header-left"><div class="insight-rank">3</div><div class="company-badge">🎮</div></div><div style="display:flex;gap:8px;align-items:center"><span class="insight-tag tag-ai">AI</span><span class="impact-badge high"><span class="impact-dot"></span>HIGH</span></div></div>
+<div class="insight-headline">NVIDIA Rubin Platform ลดต้นทุน AI Training 10 เท่า</div>
+<div class="insight-source">NVIDIA GTC Conference, 2026</div>
+<div class="tier-block"><div class="tier-label tier-what">What</div><div class="tier-body">NVIDIA เปิดตัว Rubin Supercomputer Platform สำหรับ AI Training ขนาดยักษ์ ลดต้นทุนลง 10 เท่า และปรับปรุงประสิทธิภาพสำหรับ Trillion-parameter Models</div></div>
+<div class="tier-block"><div class="tier-label tier-why">Why It Matters</div><div class="tier-body">ต้นทุน Training เป็นอุปสรรคหลักในการพัฒนา AI ขนาดใหญ่ Rubin ลดต้นทุนลง 10 เท่า หมายความว่าบริษัทเล็กๆ ก็สามารถ Train โมเดลยักษ์ได้ ทำให้ AI กระจายตัวมากขึ้น</div></div>
+<div class="tier-block"><div class="tier-label tier-so">So What</div><div class="tier-body"><strong>NVIDIA � 现固 ตำแหน่งผู้นำ Hardware AI ต่อไปอีก 2-3 ปี แต่ AMD และ Intel ก็กำลังไล่ตาม นักวิจัยและ Startup จะเข้าถึง compute ราคาถูกลงอย่างมาก</strong></div></div>
+<div class="tier-block"><div class="tier-label tier-now">Now What</div><div class="tier-body">ติดตาม Rubin availability timeline สำหรับ research institutions และ enterprise AI labs พิจารณาใช้ Rubin-ready cloud instances เมื่อเปิดให้บริการ</div></div>
+<div class="why-preview"><div class="why-preview-label">💡 Why It Matters</div><div class="why-preview-text">ต้นทุน Training เป็นอุปสรรคหลักในการพัฒนา AI ขนาดใหญ่ Rubin ลดต้นทุนลง 10 เท่า หมายความว่าบริษัทเล็กๆ ก็สามารถ Train โมเ</div></div>
+</div>
 
-    <!-- KEY INSIGHTS -->
-    <section class="insights-section" id="insightsSection">
-      <div class="section-label">🧠 วิเคราะห์เชิงลึก</div>
-      <div id="insightsList">
-        <!-- Populated by JS -->
-        <div class="insight-card">
-          <div class="insight-header">
-            <div class="insight-rank skeleton-line">1</div>
-          </div>
-          <div class="insight-headline skeleton-line">กำลังโหลดข้อมูล...</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-header">
-            <div class="insight-rank skeleton-line">2</div>
-          </div>
-          <div class="insight-headline skeleton-line">กำลังโหลดข้อมูล...</div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-header">
-            <div class="insight-rank skeleton-line">3</div>
-          </div>
-          <div class="insight-headline skeleton-line">กำลังโหลดข้อมูล...</div>
-        </div>
-      </div>
-    </section>
+<div class="insight-card medium-impact" id="insight-apple-google-siri">
+<div class="particle-container"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+<div class="insight-header"><div class="insight-header-left"><div class="insight-rank">4</div><div class="company-badge">🍎</div></div><div style="display:flex;gap:8px;align-items:center"><span class="insight-tag tag-ai">AI</span><span class="impact-badge medium"><span class="impact-dot"></span>MEDIUM</span></div></div>
+<div class="insight-headline">Apple จับมือ Google ปฏิวัติ Siri ด้วย Gemini AI</div>
+<div class="insight-source">Apple Special Event, WWDC Preview 2026</div>
+<div class="tier-block"><div class="tier-label tier-what">What</div><div class="tier-body">Apple Overhaul Siri ครั้งใหญ่ โดยรวม Google Gemini Models เข้ามาทำให้ Siri มี On-screen Awareness, ทำงานข้ามแอป Real-time และรักษา Privacy ผ่าน Apple Private Cloud Compute</div></div>
+<div class="tier-block"><div class="tier-label tier-why">Why It Matters</div><div class="tier-body">Siri ตามหลัง ChatGPT และ Google Assistant มานาน Gemini ช่วยให้ Siri ทำงานซับซ้อนได้มากขึ้น แต่ยังคงรักษา Apple Privacy standard ซึ่งเป็นจุดขายหลัก</div></div>
+<div class="tier-block"><div class="tier-label tier-so">So What</div><div class="tier-body"><strong>Apple-Google partnership นี้เปลี่ยน competitive landscape ของ AI assistants ทั้ง ecosystem จะเปลี่ยน — Siri จะกลายเป็น AI hub ที่เชื่อมต่อทุกแอปบน iPhone/Mac</strong></div></div>
+<div class="tier-block"><div class="tier-label tier-now">Now What</div><div class="tier-body">นักพัฒนา iOS ควรเตรียม app สำหรับ Siri AI integrations ติดตาม Apple WWDC 2026 สำหรับ API ที่เปิดให้ third-party developers ใช้ Siri ข้ามแอป</div></div>
+<div class="why-preview"><div class="why-preview-label">💡 Why It Matters</div><div class="why-preview-text">Siri ตามหลัง ChatGPT และ Google Assistant มานาน Gemini ช่วยให้ Siri ทำงานซับซ้อนได้มากขึ้น แต่ยังคงรักษา Apple Privacy s</div></div>
+</div>
 
-    <div class="divider"></div>
+<div class="insight-card medium-impact" id="insight-china-opensource-ai">
+<div class="particle-container"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+<div class="insight-header"><div class="insight-header-left"><div class="insight-rank">5</div><div class="company-badge">🐉</div></div><div style="display:flex;gap:8px;align-items:center"><span class="insight-tag tag-ai">AI</span><span class="impact-badge medium"><span class="impact-dot"></span>MEDIUM</span></div></div>
+<div class="insight-headline">จีนครอง Open-Source AI — สภาคองเกรสสหรัฐเตือน</div>
+<div class="insight-source">US Congressional Advisory Board Report, มีนา 2026</div>
+<div class="tier-block"><div class="tier-label tier-what">What</div><div class="tier-body">คณะที่ปรึกษาสภาคองเกรสสหรัฐฯ เตือนว่าจีนกำลังสร้าง Self-reinforcing Competitive Advantage ใน Open-source AI โดย LLM ของจีนครองอันดับบนบน HuggingFace และ OpenRouter</div></div>
+<div class="tier-block"><div class="tier-label tier-why">Why It Matters</div><div class="tier-body">แม้ถูกจำกัดชิปขั้นสูง จีนก็ยังสร้าง open-source AI ที่เก่งมากได้ หมายความว่าการควบคุมชิปไม่สามารถหยุดยั้งจีนได้ Open-source AI ของจีนกำลังแพร่กระจายทั่วโลกเร็วกว่าที่คาด</div></div>
+<div class="tier-block"><div class="tier-label tier-so">So What</div><div class="tier-body"><strong>สหรัฐฯ อาจต้องทบทวนนโยบาย AI strategy ใหม่ US companies อาจเสียเปรียบในการแข่งขัน open-source AI โลกกำลังกลายเป็น multi-polar AI ecosystem</strong></div></div>
+<div class="tier-block"><div class="tier-label tier-now">Now What</div><div class="tier-body">ติดตาม policy developments เกี่ยวกับ US AI export controls ทีม AI ควรประเมิน Chinese open-source models (Qwen, DeepSeek) ว่ามีคุณภาพเพียงพอสำหรับ use cases หรือไม่</div></div>
+<div class="why-preview"><div class="why-preview-label">💡 Why It Matters</div><div class="why-preview-text">แม้ถูกจำกัดชิปขั้นสูง จีนก็ยังสร้าง open-source AI ที่เก่งมากได้ หมายความว่าการควบคุมชิปไม่สามารถหยุดยั้งจีนได้ Open-sou</div></div>
+</div>
 
-    <!-- INVESTMENT ACTION -->
-    <section class="action-section" id="actionSection">
-      <div class="section-label">💼 แนวทางลงทุน</div>
-      <div class="action-card">
-        <div class="action-title">
-          <span>📋</span> สรุปแนวทางจากบทวิเคราะห์
-        </div>
-        <div class="action-grid" id="actionGrid">
-          <div class="action-item">
-            <div class="action-item-label">โอกาสหลัก</div>
-            <div class="action-item-value" id="action1">-</div>
-          </div>
-          <div class="action-item">
-            <div class="action-item-label">ความเสี่ยง</div>
-            <div class="action-item-value" id="action2">-</div>
-          </div>
-          <div class="action-item">
-            <div class="action-item-label">แนวโน้ม</div>
-            <div class="action-item-value" id="action3">-</div>
-          </div>
-          <div class="action-item">
-            <div class="action-item-label">ระดับเฝ้าระวัง</div>
-            <div class="action-item-value" id="action4">-</div>
-          </div>
-        </div>
-      </div>
-    </section>
+</div>
+</section>
+<div class="divider"></div>
+<section class="action-section" id="actionSection">
+<div class="section-label">💼 แนวทางลงทุน</div>
+<div class="action-card">
+<div class="action-title"><span>📋</span> สรุปแนวทางจากบทวิเคราะห์</div>
+<div class="action-grid" id="actionGrid">
+<div class="action-item"><div class="action-item-label">โอกาสหลัก</div><div class="action-item-value" id="action1">-</div></div>
+<div class="action-item"><div class="action-item-label">ความเสี่ยง</div><div class="action-item-value" id="action2">-</div></div>
+<div class="action-item"><div class="action-item-label">แนวโน้ม</div><div class="action-item-value" id="action3">-</div></div>
+<div class="action-item"><div class="action-item-label">ระดับเฝ้าระวัง</div><div class="action-item-value" id="action4">-</div></div>
+</div>
+</div>
+</section>
+<div class="divider"></div>
+<section class="trend-section" id="trendSection">
+<div class="section-label">🌐 ภาพรวม</div>
+<div class="trend-card">
+<div class="trend-icon">🤖</div>
+<div class="trend-content">
+<div class="trend-label">Mega Trend ที่กำลังเกิดขึ้น</div>
+<div class="trend-text" id="megaTrend">กำลังโหลด...</div>
+</div>
+<div class="trend-tags" id="trendTags">
+<span class="trend-tag">Agentic AI</span>
+<span class="trend-tag">Physical AI</span>
+<span class="trend-tag">AI Integration</span>
+</div>
+</div>
+</section>
+<div class="share-section">
+<div class="share-title">📤 แชร์รายงานนี้</div>
+<div class="share-grid">
+<button class="share-btn primary" onclick="shareCopy()">📋 คัดลอกลิงก์</button>
+<button class="share-btn" onclick="shareTwitter()">🐦 Twitter</button>
+<button class="share-btn" onclick="shareFacebook()">📘 Facebook</button>
+</div>
+<div class="feedback-area">
+<div class="feedback-label">💬 Feedback หรือข้อเสนอแนะ</div>
+<textarea class="feedback-input" id="feedbackInput" rows="3" placeholder="แสดงความคิดเห็น... ทีม Ocean Ten จะพิจารณาทุก feedback"></textarea>
+<button class="feedback-submit" onclick="submitFeedback()">ส่ง Feedback</button>
+</div>
+</div>
+<footer class="footer">
+<div>
+<div class="footer-brand"><span>🌊</span> Ocean Ten — Premium Market Intelligence</div>
+<div class="footer-meta">Generated by AI • Deployed by Dolphin 🐬</div>
+</div>
+<div class="ocean-badge"><span>🐬</span> by Dolphin</div>
+</footer>
+</div>
+</div>
+<aside class="toc-sidebar">
+<div class="toc-title">📑 สารบัญ</div>
+<a class="toc-item" href="#insight-openai-gpt54">
+<div class="toc-rank">1</div><div class="toc-company">🤖</div><div class="toc-text"><div class="toc-label">OpenAI เปิดตัว GPT-5.4 พร้อม Context 1 ล้าน Token</div></div><span class="toc-impact high">high</span></a>
 
-    <div class="divider"></div>
+<a class="toc-item" href="#insight-google-gemini-flash-lite">
+<div class="toc-rank">2</div><div class="toc-company">🔍</div><div class="toc-text"><div class="toc-label">Google Gemini 3.1 Flash-Lite ราคาถูกลง 2 เท่า ตอบโจทย์ Enterprise</div></div><span class="toc-impact medium">medium</span></a>
 
-    <!-- BIG PICTURE TREND -->
-    <section class="trend-section" id="trendSection">
-      <div class="section-label">🌐 ภาพรวม</div>
-      <div class="trend-card">
-        <div class="trend-icon">🤖</div>
-        <div class="trend-content">
-          <div class="trend-label">Mega Trend ที่กำลังเกิดขึ้น</div>
-          <div class="trend-text" id="megaTrend">กำลังโหลด...</div>
-        </div>
-        <div class="trend-tags" id="trendTags">
-          <span class="trend-tag">Agentic AI</span>
-          <span class="trend-tag">Physical AI</span>
-          <span class="trend-tag">AI Integration</span>
-        </div>
-      </div>
-    </section>
+<a class="toc-item" href="#insight-nvidia-rubin">
+<div class="toc-rank">3</div><div class="toc-company">🎮</div><div class="toc-text"><div class="toc-label">NVIDIA Rubin Platform ลดต้นทุน AI Training 10 เท่า</div></div><span class="toc-impact high">high</span></a>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-      <div>
-        <div class="footer-brand"><span>🌊</span> Ocean Ten — Premium Market Intelligence</div>
-        <div class="footer-meta">Generated by AI • Deployed by Dolphin 🐬</div>
-      </div>
-      <div class="ocean-badge"><span>🐬</span> by Dolphin</div>
-    </footer>
-  </div>
+<a class="toc-item" href="#insight-apple-google-siri">
+<div class="toc-rank">4</div><div class="toc-company">🍎</div><div class="toc-text"><div class="toc-label">Apple จับมือ Google ปฏิวัติ Siri ด้วย Gemini AI</div></div><span class="toc-impact medium">medium</span></a>
 
-  <script>
-    // Live clock
-    function updateClock(){
-      var now=new Date();
-      var bkk=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
-      var h=String(bkk.getHours()).padStart(2,'0');
-      var m=String(bkk.getMinutes()).padStart(2,'0');
-      var s=String(bkk.getSeconds()).padStart(2,'0');
-      var el=document.getElementById('liveClock');
-      if(el)el.textContent=h+':'+m+':'+s+' ICT';
-      var meta=document.getElementById('metaTime');
-      if(meta)meta.textContent=h+':'+m+' น. (ICT)';
-      var d=String(bkk.getDate()).padStart(2,'0');
-      var mo=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
-      var y=bkk.getFullYear()+543;
-      var dateEl=document.getElementById('reportDate');
-      if(dateEl)dateEl.textContent=d+' '+mo[bkk.getMonth()]+' '+y+' • วิเคราะห์โดย Ocean Ten AI';
+<a class="toc-item" href="#insight-china-opensource-ai">
+<div class="toc-rank">5</div><div class="toc-company">🐉</div><div class="toc-text"><div class="toc-label">จีนครอง Open-Source AI — สภาคองเกรสสหรัฐเตือน</div></div><span class="toc-impact medium">medium</span></a>
+
+</div>
+</aside>
+</div>
+<script>
+function updateClock(){
+  var now=new Date();
+  var bkk=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
+  var h=String(bkk.getHours()).padStart(2,'0');
+  var m=String(bkk.getMinutes()).padStart(2,'0');
+  var s=String(bkk.getSeconds()).padStart(2,'0');
+  var el=document.getElementById('liveClock');
+  if(el)el.textContent=h+':'+m+':'+s+' ICT';
+  var meta=document.getElementById('metaTimeChip');
+  if(meta)meta.textContent=h+':'+m+' น. (ICT)';
+  var d=String(bkk.getDate()).padStart(2,'0');
+  var mo=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+  var y=bkk.getFullYear()+543;
+  var dateEl=document.getElementById('reportDate');
+  if(dateEl)dateEl.textContent=d+' '+mo[bkk.getMonth()]+' '+y+' • วิเคราะห์โดย Ocean Ten AI';
+}
+updateClock();
+setInterval(updateClock,1000);
+window.addEventListener('scroll',function(){
+  var el=document.getElementById('readingProgress');
+  if(!el)return;
+  var total=document.documentElement.scrollHeight-window.innerHeight;
+  el.style.width=(total>0?(window.scrollY/total*100):0)+'%';
+});
+document.querySelectorAll('.toc-item').forEach(function(item){
+  item.addEventListener('click',function(e){
+    var href=this.getAttribute('href');
+    if(href&&href.startsWith('#')){
+      e.preventDefault();
+      var id=href.substring(1);
+      var target=document.getElementById(id);
+      if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+      document.querySelectorAll('.toc-item').forEach(function(t){t.classList.remove('active')});
+      this.classList.add('active');
     }
-    updateClock();
-    setInterval(updateClock,1000);
-
-    function escHtml(str){
-      if(!str)return'';
-      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br/>');
-    }
-
-    function priorityTag(category){
-      var map={ai:'AI',hardware:'Hardware',software:'Software',policy:'Policy',consumer:'Consumer'};
-      return map[category]||'Tech';
-    }
-
-    // Load insights
-    fetch('/data/insights_data.json')
-      .then(function(r){return r.json()})
-      .then(function(data){
-        var aiItems=data.filter(function(i){return i.category==='ai'});
-        if(!aiItems.length){
-          document.getElementById('insightsList').innerHTML='<div style="color:var(--text-muted);font-size:14px;padding:20px 0">ยังไม่มีข้อมูล AI Report ในระบบ — รอให้ Squid รวบรวมข่าวและ Whale เขียนรายงาน</div>';
-          return;
-        }
-
-        var html='';
-        for(var i=0;i<aiItems.length;i++){
-          var item=aiItems[i];
-          var rank=i+1;
-          var tag=priorityTag(item.category);
-          html+='<div class="insight-card">';
-          html+='<div class="insight-header">';
-          html+='<div class="insight-rank">'+rank+'</div>';
-          html+='<span class="insight-tag tag-'+(item.category==='ai'?'ai':'chip')+'">'+tag+'</span>';
-          html+='</div>';
-          html+='<div class="insight-headline">'+escHtml(item.headline||'')+'</div>';
-          if(item.what){
-            html+='<div class="tier-block">';
-            html+='<div class="tier-label tier-what">What</div>';
-            html+='<div class="tier-body">'+escHtml(item.what)+'</div>';
-            html+='</div>';
-          }
-          if(item.why_matters){
-            html+='<div class="tier-block">';
-            html+='<div class="tier-label tier-why">Why It Matters</div>';
-            html+='<div class="tier-body">'+escHtml(item.why_matters)+'</div>';
-            html+='</div>';
-          }
-          if(item.so_what){
-            html+='<div class="tier-block">';
-            html+='<div class="tier-label tier-so">So What</div>';
-            html+='<div class="tier-body"><strong>'+escHtml(item.so_what)+'</strong></div>';
-            html+='</div>';
-          }
-          if(item.now_what){
-            html+='<div class="tier-block">';
-            html+='<div class="tier-label tier-now">Now What</div>';
-            html+='<div class="tier-body">'+escHtml(item.now_what)+'</div>';
-            html+='</div>';
-          }
-          html+='</div>';
-        }
-        document.getElementById('insightsList').innerHTML=html;
-
-        // Action grid from first item
-        if(aiItems[0]){
-          var first=aiItems[0];
-          var el1=document.getElementById('action1');
-          var el2=document.getElementById('action2');
-          var el3=document.getElementById('action3');
-          if(el1)el1.textContent=first.now_what?'ดู Supply Chain, Enterprise Software':'AI Infrastructure';
-          if(el2)el2.textContent='ความเสี่ยงจาก AI Regulation, การแข่งขันสูง';
-          if(el3)el3.textContent='ขาขึ้น (Bullish) — Mass Adoption กำลังเกิด';
-          if(el4)el4.textContent='GPT-5.4, Vera Rubin, Gemini Updates';
-        }
-
-        // Mega trend
-        var trendEl=document.getElementById('megaTrend');
-        if(trendEl&&aiItems.length>0){
-          var trends=aiItems.map(function(i){
-            if(i.headline.toLowerCase().includes('nvidia')||i.headline.toLowerCase().includes('chip'))return'AI Hardware Revolution';
-            if(i.headline.toLowerCase().includes('openai')||i.headline.toLowerCase().includes('agent'))return'Agentic AI Mass Adoption';
-            if(i.headline.toLowerCase().includes('apple')||i.headline.toLowerCase().includes('google'))return'Big Tech AI Integration';
-            return null;
-          }).filter(Boolean);
-          trendEl.textContent=trends[0]||'AI เปลี่ยนโลก — ทุกอุตสาหกรรมกำลังถูก Transform';
-        }
-
-        // Trend tags
-        var tagsEl=document.getElementById('trendTags');
-        if(tagsEl){
-          var seen={};
-          var tags=[];
-          for(var t=0;t<aiItems.length;t++){
-            var h=aiItems[t].headline.toLowerCase();
-            if(h.includes('agent')&&!seen['Agentic AI']){seen['Agentic AI']=true;tags.push('Agentic AI')}
-            if(h.includes('nvidia')||h.includes('chip')||h.includes('gpu')&&!seen['AI Hardware']){seen['AI Hardware']=true;tags.push('AI Hardware')}
-            if(h.includes('apple')||h.includes('google')||h.includes('microsoft')&&!seen['Big Tech AI']){seen['Big Tech AI']=true;tags.push('Big Tech AI')}
-            if(h.includes('robot')||h.includes('physical')||h.includes('autonomous')&&!seen['Physical AI']){seen['Physical AI']=true;tags.push('Physical AI')}
-          }
-          if(tags.length)tagsEl.innerHTML=tags.map(function(t){return'<span class="trend-tag">'+t+'</span>'}).join('');
-        }
-      })
-      .catch(function(err){
-        document.getElementById('insightsList').innerHTML='<div style="color:var(--red);font-size:14px;padding:20px 0">ไม่สามารถโหลดข้อมูลได้: '+err.message+'</div>';
-      });
-  </script>
+  });
+});
+fetch('/data/insights_data.json').then(function(r){return r.json()}).then(function(json){
+  var ai=json.insights||[];
+  if(ai.length){
+    document.getElementById('action1').textContent='AI Infrastructure + Enterprise Adoption';
+    document.getElementById('action2').textContent='ความเสี่ยง: AI Regulation, การแข่งขันสูง';
+    document.getElementById('action3').textContent='ขาขึ้น — Mass Adoption กำลังเกิด';
+    document.getElementById('action4').textContent='GPT-5.4, Vera Rubin, Gemini Updates';
+    var t=document.getElementById('megaTrend');
+    if(t)t.textContent='Agentic AI Mass Adoption + AI Hardware Revolution';
+  }
+}).catch(function(e){});
+function shareCopy(){navigator.clipboard.writeText(window.location.href).then(function(){alert('ลิงก์ถูกคัดลอกแล้ว!')})}
+function shareTwitter(){window.open('https://twitter.com/intent/tweet?text=Tech+AI+Premium+Report+by+Ocean+Ten&url='+encodeURIComponent(window.location.href),'_blank')}
+function shareFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank')}
+function submitFeedback(){
+  var i=document.getElementById('feedbackInput');
+  if(i&&i.value.trim()){alert('ขอบคุณสำหรับ feedback! ทีม Ocean Ten จะพิจารณาข้อเสนอแนะของคุณ 💙');i.value=''}else if(i){alert('กรุณาใส่ข้อเสนอแนะก่อนส่ง')}
+}
+</script>
 </body>
 </html>
