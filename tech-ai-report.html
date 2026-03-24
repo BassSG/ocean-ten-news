@@ -360,14 +360,23 @@ document.querySelectorAll('.toc-item').forEach(function(item){
   });
 });
 fetch('/data/insights_data.json').then(function(r){return r.json()}).then(function(json){
-  var ai=json.insights||[];
-  if(ai.length){
+  if(Array.isArray(json)&&json.length){
     document.getElementById('action1').textContent='AI Infrastructure + Enterprise Adoption';
     document.getElementById('action2').textContent='ความเสี่ยง: AI Regulation, การแข่งขันสูง';
     document.getElementById('action3').textContent='ขาขึ้น — Mass Adoption กำลังเกิด';
     document.getElementById('action4').textContent='GPT-5.4, Vera Rubin, Gemini Updates';
     var t=document.getElementById('megaTrend');
     if(t)t.textContent='Agentic AI Mass Adoption + AI Hardware Revolution';
+  } else if(json.insights){
+    var ai=json.insights||[];
+    if(ai.length){
+      document.getElementById('action1').textContent='AI Infrastructure + Enterprise Adoption';
+      document.getElementById('action2').textContent='ความเสี่ยง: AI Regulation, การแข่งขันสูง';
+      document.getElementById('action3').textContent='ขาขึ้น — Mass Adoption กำลังเกิด';
+      document.getElementById('action4').textContent='GPT-5.4, Vera Rubin, Gemini Updates';
+      var t=document.getElementById('megaTrend');
+      if(t)t.textContent='Agentic AI Mass Adoption + AI Hardware Revolution';
+    }
   }
 }).catch(function(e){});
 function shareCopy(){navigator.clipboard.writeText(window.location.href).then(function(){alert('ลิงก์ถูกคัดลอกแล้ว!')})}
