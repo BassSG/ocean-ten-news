@@ -1,91 +1,34 @@
 [
   {
-    "id": "openai-gpt54",
-    "summary": "OpenAI ปล่อย GPT-5.4 เมื่อ 5 มีนา 2026 ว่าคือโมเดลที่เก่งที่สุดสำหรับงานมืออาชีพ รองรับ Context Window 1 ล้าน Token, การวางแผนขั้นตอนระหว่างตอบ, และ Agentic Workflow ที่ขับเคลื่อน Long-running Tasks ได้ดีขึ้น พร้อมเปิดตัว ChatGPT for Excel Add-in",
-    "impact": "high",
-    "company": "openai",
-    "what": "OpenAI เปิดตัว GPT-5.4 รองรับ Context Window 1 ล้าน Token พร้อมฟีเจอร์ Step-by-step Planning และ Agentic Workflow สำหรับงานมืออาชีพ พร้อมเปิดตัว ChatGPT for Excel Add-in",
-    "why_matters": "Context 1 ล้าน Token หมายถึงโมเดลสามารถอ่านเอกสารได้ทั้งเล่ม หรือ codebase ขนาดใหญ่ในครั้งเดียว ทำให้การวิเคราะห์เชิงลึกแม่นยำขึ้นมาก Agentic Workflow ช่วยให้ AI ทำงานต่อเนื่องได้หลายขั้นตอนโดยไม่ต้องคอยสั่ง",
-    "so_what": "งานมืออาชีพ เช่น การเงิน กฎหมาย วิศวกรรม จะเข้าถึง AI ที่ทำงานได้ดีขึ้นอย่างก้าวกระโดด ChatGPT for Excel จะทำให้ผู้ใช้ทั่วไปทำงาน spreadsheet ซับซ้อนได้ในคลิกเดียว",
-    "now_what": "องค์กรควรทดลอง GPT-5.4 กับงาน document analysis และ long-running workflows ติดตาม ChatGPT for Excel Add-in เพื่อเพิ่ม productivity ของทีม Business",
-    "source": "OpenAI Blog (openai.com), 5 มีนา 2026",
     "category": "ai",
-    "title": "OpenAI เปิดตัว GPT-5.4 พร้อม Context 1 ล้าน Token"
+    "headline": "GPT-5.4, Nano Banana 2, and Claude Opus 4.6 Lead March 2026 AI Model Wave",
+    "what": "Major AI labs — OpenAI (GPT-5.4, GPT-5.3 Instant), Google DeepMind (Nano Banana 2), and Anthropic (Claude Opus 4.6) — all released significant model upgrades in March 2026. GPT-5.4 boasts an 83% benchmark success rate, a million-token context window, and native computer control. A broader industry trend is pivoting from raw parameter counts to 'knowledge density' — achieving more with less compute.",
+    "why_matters": "These releases signal the AI industry's shift toward efficiency, capability, and practical deployment rather than pure scale. Multimodal and agentic capabilities are now standard baseline features, not differentiating extras.",
+    "so_what": "Businesses can now access AI systems that are faster, cheaper, and more capable at complex multi-step tasks — lowering the barrier to automate knowledge work at scale.",
+    "now_what": "Evaluate which models best fit your workflow. GPT-5.4 excels at professional/complex tasks; Nano Banana 2 is ideal for high-quality image generation; Claude Opus 4.6 offers adaptive effort controls. Start prototyping one new AI-powered workflow this week."
   },
   {
-    "id": "google-gemini-flash-lite",
-    "summary": "Google เปิดตัว Gemini 3.1 Flash-Lite เมื่อ 3 มีนา 2026 มุ่งเป้างาน Massive Workloads ด้วยความเร็วสองเท่าของรุ่นก่อน แต่ต้นทุนต่ำกว่ามาก — เป็นการตอบโต้ด้านราคากับ OpenAI โดยตรง",
-    "impact": "medium",
-    "company": "google",
-    "what": "Google เปิดตัว Gemini 3.1 Flash-Lite เน้นความเร็วสองเท่า และต้นทุนต่ำกว่ารุ่นก่อนมาก ออกแบบมาสำหรับ Massive Workloads ที่ต้องประมวลผลปริมาณมาก",
-    "why_matters": "ราคาเป็นปัจจัยสำคัญสำหรับ Enterprise ที่ต้องเรียก API หลายล้านครั้งต่อวัน Flash-Lite ทำให้ AI ประมวลผลเร็วขึ้นและถูกลง เป็นการตอบโต้ราคากับ OpenAI โดยตรง",
-    "so_what": " Startups และ Enterprise ที่ต้องการ AI ราคาประหยัดจะได้ประโยชน์มาก การแข่งขันด้านราคาระหว่าง Google กับ OpenAI จะเร่งตัวขึ้น ทำให้ AI เข้าถึงได้ง่ายขึ้น",
-    "now_what": "ทีมงานควรเปรียบเทียบ Gemini Flash-Lite กับ GPT-4o-mini สำหรับ high-volume, low-latency use cases พิจารณาเปลี่ยนมาใช้ Gemini เพื่อลดต้นทุน",
-    "source": "Google AI Blog, 3 มีนา 2026",
     "category": "ai",
-    "title": "Google Gemini 3.1 Flash-Lite ราคาถูกลง 2 เท่า ตอบโจทย์ Enterprise"
-  },
-  {
-    "id": "nvidia-rubin",
-    "summary": "NVIDIA เปิดตัว Rubin Supercomputer Platform สำหรับ AI Workloads ขนาดยักษ์ มุ่งลดต้นทุน Training ลง 10 เท่า และเพิ่มประสิทธิภาพสำหรับ Trillion-parameter Models บริษัทยังคงเป็นผู้นำด้าน Hardware AI",
-    "impact": "high",
-    "company": "nvidia",
-    "what": "NVIDIA เปิดตัว Rubin Supercomputer Platform สำหรับ AI Training ขนาดยักษ์ ลดต้นทุนลง 10 เท่า และปรับปรุงประสิทธิภาพสำหรับ Trillion-parameter Models",
-    "why_matters": "ต้นทุน Training เป็นอุปสรรคหลักในการพัฒนา AI ขนาดใหญ่ Rubin ลดต้นทุนลง 10 เท่า หมายความว่าบริษัทเล็กๆ ก็สามารถ Train โมเดลยักษ์ได้ ทำให้ AI กระจายตัวมากขึ้น",
-    "so_what": "NVIDIA � 现固 ตำแหน่งผู้นำ Hardware AI ต่อไปอีก 2-3 ปี แต่ AMD และ Intel ก็กำลังไล่ตาม นักวิจัยและ Startup จะเข้าถึง compute ราคาถูกลงอย่างมาก",
-    "now_what": "ติดตาม Rubin availability timeline สำหรับ research institutions และ enterprise AI labs พิจารณาใช้ Rubin-ready cloud instances เมื่อเปิดให้บริการ",
-    "source": "NVIDIA GTC Conference, 2026",
-    "category": "ai",
-    "title": "NVIDIA Rubin Platform ลดต้นทุน AI Training 10 เท่า"
-  },
-  {
-    "id": "apple-google-siri",
-    "summary": "Apple ประกาศ Overhaul Siri ครั้งใหญ่ โดยรวม Google Gemini Models เข้ามาทำให้ Siri มี On-screen Awareness, ทำงานข้ามแอป Real-time และยังคงรักษา Privacy ผ่าน Apple Private Cloud Compute",
-    "impact": "medium",
-    "company": "apple",
-    "what": "Apple Overhaul Siri ครั้งใหญ่ โดยรวม Google Gemini Models เข้ามาทำให้ Siri มี On-screen Awareness, ทำงานข้ามแอป Real-time และรักษา Privacy ผ่าน Apple Private Cloud Compute",
-    "why_matters": "Siri ตามหลัง ChatGPT และ Google Assistant มานาน Gemini ช่วยให้ Siri ทำงานซับซ้อนได้มากขึ้น แต่ยังคงรักษา Apple Privacy standard ซึ่งเป็นจุดขายหลัก",
-    "so_what": "Apple-Google partnership นี้เปลี่ยน competitive landscape ของ AI assistants ทั้ง ecosystem จะเปลี่ยน — Siri จะกลายเป็น AI hub ที่เชื่อมต่อทุกแอปบน iPhone/Mac",
-    "now_what": "นักพัฒนา iOS ควรเตรียม app สำหรับ Siri AI integrations ติดตาม Apple WWDC 2026 สำหรับ API ที่เปิดให้ third-party developers ใช้ Siri ข้ามแอป",
-    "source": "Apple Special Event, WWDC Preview 2026",
-    "category": "ai",
-    "title": "Apple จับมือ Google ปฏิวัติ Siri ด้วย Gemini AI"
-  },
-  {
-    "id": "china-opensource-ai",
-    "summary": "คณะที่ปรึกษาสภาคองเกรสสหรัฐฯ เตือนว่าจีนกำลังสร้าง 'Self-reinforcing Competitive Advantage' ใน Open-source AI โดย LLM ของจีนครองอันดับบนบน HuggingFace และ OpenRouter แม้ถูกจำกัดชิปขั้นสูง",
-    "impact": "medium",
-    "company": "china",
-    "what": "คณะที่ปรึกษาสภาคองเกรสสหรัฐฯ เตือนว่าจีนกำลังสร้าง Self-reinforcing Competitive Advantage ใน Open-source AI โดย LLM ของจีนครองอันดับบนบน HuggingFace และ OpenRouter",
-    "why_matters": "แม้ถูกจำกัดชิปขั้นสูง จีนก็ยังสร้าง open-source AI ที่เก่งมากได้ หมายความว่าการควบคุมชิปไม่สามารถหยุดยั้งจีนได้ Open-source AI ของจีนกำลังแพร่กระจายทั่วโลกเร็วกว่าที่คาด",
-    "so_what": "สหรัฐฯ อาจต้องทบทวนนโยบาย AI strategy ใหม่ US companies อาจเสียเปรียบในการแข่งขัน open-source AI โลกกำลังกลายเป็น multi-polar AI ecosystem",
-    "now_what": "ติดตาม policy developments เกี่ยวกับ US AI export controls ทีม AI ควรประเมิน Chinese open-source models (Qwen, DeepSeek) ว่ามีคุณภาพเพียงพอสำหรับ use cases หรือไม่",
-    "source": "US Congressional Advisory Board Report, มีนา 2026",
-    "category": "ai",
-    "title": "จีนครอง Open-Source AI — สภาคองเกรสสหรัฐเตือน"
+    "headline": "AI Costs Are Collapsing — AI-Native Startups Are Booming",
+    "what": "Running advanced AI systems is getting dramatically cheaper, making powerful AI accessible to startups and SMBs. This cost decline is fueling the rise of 'AI-native startups' — companies built entirely around AI systems as their core product or infrastructure. The underlying hardware (Nvidia Vera Rubin, AMD Ryzen AI 400, Apple M5 chip) is delivering 4x AI task performance improvements.",
+    "why_matters": "When AI becomes cheap enough, it stops being a competitive advantage and becomes table stakes. The companies that figure out how to build on top of cheap AI fastest will capture the next wave of markets.",
+    "so_what": "Traditional businesses face pressure from AI-native competitors who can deliver comparable services at a fraction of the cost. Incumbents must either adopt AI aggressively or risk disruption.",
+    "now_what": "Audit your cost structure vs. an AI-native competitor. Identify 3 operational areas where cheaper AI could replace or augment current processes. Explore AI literacy training for your team — the US DOL's free 'Make America AI-Ready' text course is a starting point."
   },
   {
     "category": "macro",
-    "headline": "Fed คงดอกเบี้ย 3.50-3.75% — Hawkish Stance ต่อเนื่อง",
-    "what": "Federal Reserve มีมติคงอัตราดอกเบี้ยที่ 3.50-3.75% โดยประธาน Jerome Powell ยืนยันท่าที Hawkish ระมัดระวังเงินเฟ้อ พร้อมเปิดทาง Fed Rate Cut เพียง 1 ครั้งในปี 2026",
-    "why_matters": "ดอกเบี้ยสูง longer-for-longer กดดันทองคำโดยตรง DXY ฟื้นตัว +0.14 เป็นปัจจัยหนุน USD แข็ง",
-    "so_what": "ตลาดทองคำยังอยู่ในโหมด Risk-Off ระยะสั้น Bounce อาจถูกจำกัดโดย Fed Hawkish",
-    "now_what": "เฝ้าระวัง CPI (10 เม.ย.) และ NFP (3 เม.ย.) ถ้าเงินเฟ้อหรืองานออกมาแย่กว่าคาด อาจเห็น Fed Pivot ซึ่งจะหนุนทองคำกลับมา"
+    "headline": "Strait of Hormuz Closure Triggers Energy Crisis — Oil Surges Past $120/bbl",
+    "what": "A military conflict involving Iran, the US, and Israel that began Feb 28, 2026 led to the closure of the Strait of Hormuz on March 4. This chokepoint handles ~20% of global oil supply. Brent crude surged past $120/barrel, and the IEA called it the 'greatest global energy and food security challenge in history' — comparable to the 1970s oil crisis. Production in Kuwait, Iraq, Saudi Arabia, and the UAE all dropped significantly.",
+    "why_matters": "Energy is the circulatory system of the global economy. A sustained Hormuz closure means persistent supply shock, not a temporary blip. Supply chains, inflation, central bank policy, and consumer purchasing power are all affected simultaneously.",
+    "so_what": "Synchronized global slowdown is now underway. S&P Global PMIs fell across the US, eurozone, Australia, and India in March. The IMF's 3.3% global growth projection faces serious downside risk. Inflation is being revised upward globally.",
+    "now_what": "Review supply chain exposure to Middle East logistics routes. Accelerate energy efficiency investments. If you're a business with thin margins, stress-test your P&L at $130+/barrel oil scenarios. Consider hedging energy costs where possible."
   },
   {
     "category": "macro",
-    "headline": "US Q4 GDP ชะลอตัวเหลือ 0.7% — เศรษฐกิจถดถอยเริ่มชัด",
-    "what": "GDP สหรัฐฯ ไตรมาส 4 ปี 2025 ปรับลงเหลือ 0.7% (annualized) จากความกังวลสงครามอิหร่านกระทบห่วงโซ่อุปทาน",
-    "why_matters": "GDP ต่ำกว่า 1% เป็นสัญญาณเศรษฐกิจถดถอยชัดเจนในระดับเทคนิค",
-    "so_what": "ถ้าเศรษฐกิจถดถอยจริง Fed อาจถูกบังคับให้ pivot เร็วกว่าคาด ซึ่งจะเป็นบวกต่อทองคำในระยะยาว",
-    "now_what": "จับตา Leading Indicators และ PMI ในเดือน เม.ย. ถ้าข้อมูลยืนยันเศรษฐกิจถดถอย เตรียมปรับพอร์ตจาก Defensive เป็น Long Gold"
-  },
-  {
-    "category": "macro",
-    "headline": "NFP ก.พ. ติดลบ -92K — ตลาดแรงงานเริ่มส่งสัญญาณถดถอย",
-    "what": "Non-Farm Payrolls เดือน ก.พ. 2026 ติดลบ -92,000 ตำแหน่ง แสดงว่าตลาดแรงงานสหรัฐฯ เริ่มได้รับผลกระทบ",
-    "why_matters": "NFP ติดลบหนัก 92K เป็นสัญญาณเตือนที่ชัดเจนว่านโยบายดอกเบี้ยสูงเริ่มกระทบตลาดแรงงานจริง",
-    "so_what": "NFP แย่ = หุ้นลง + ทองลง (Risk-Off) แต่ถ้า Dollar ลงเยอะ ทองอาจกลับมาบวกได้เร็ว",
-    "now_what": "NFP ถัดไป 3 เม.ย. ถ้าฟื้นตัวเป็นบวก แรงซื้อทองอาจกลับเร็ว ถ้ายังติดลบต่อ เตรียมกลยุทธ์ Long Gold ระยะยาว"
+    "headline": "Central Banks Forced to Pause — Rate Cuts Delayed Amid Geopolitical Shock",
+    "what": "The ECB revised up its 2026 inflation projections and revised down growth forecasts, explicitly citing the Hormuz conflict. The Bank of England, previously expected to cut rates, is now widely expected to hold. The Reserve Bank of Australia already hiked in December 2025 and was considering another hike in March 2026. The US Federal Reserve is expected to maintain rates. J.P. Morgan forecasts global core inflation at 2.8% for 2026, but with divergent outcomes — acceleration in the US, moderation in Europe.",
+    "why_matters": "Central banks are caught between fighting inflation (which the energy shock makes worse) and supporting growth (which the conflict undermines). They have limited room to cut rates, meaning the usual recession buffer is gone. Businesses and governments that expected rate relief in 2026 may need to recalibrate.",
+    "so_what": "Cheap money era is effectively over for now. Capital allocation decisions made under assumptions of falling rates need to be revisited. Credit conditions will remain tight longer than markets anticipated.",
+    "now_what": "Review capital expenditure plans that assumed rate cuts. Prioritize debt refinancing where possible. Shift investment criteria toward cash-generative businesses with shorter payback periods. Monitor ECB and Fed communications closely for policy pivot signals."
   }
 ]

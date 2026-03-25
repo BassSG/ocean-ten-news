@@ -1,62 +1,92 @@
 {
   "gold": {
-    "current_price": 4371.38,
-    "percent_change": -0.83,
-    "weekly_high": 4508.85,
-    "weekly_low": 4356,
+    "current_price": 4549.8,
+    "percent_change": 1.69,
+    "day_high": 4555.055,
+    "day_low": 4455.885,
+    "year_high": 5602.225,
+    "year_low": 2956.565,
+    "price_avg_50": 5015.669,
+    "price_avg_200": 4254.503,
     "key_levels": {
-      "resistance": ["$4509", "$4577"],
-      "support": ["$4374", "$4255"]
-    },
-    "dxy": 99.28,
-    "treasury_yield_10y": null,
-    "analyst_targets": {
-      "jpmorgan": "$6,300 (Base)",
-      "bofa": "$6,000 by 2026"
-    },
-    "spdr": {
-      "holdings": "1,046.82",
-      "change": "-9.82",
-      "updatedTime": "06:00",
-      "monthly": {
-        "2026-01": "+15.11",
-        "2026-02": "+14.23",
-        "2026-03": "-15.36"
-      },
-      "lastUpdate": "2026-03-24T06:00:00.000000"
+      "resistance": [4600, 4700, 4818, 5000, 5045],
+      "support": [4455, 4319, 4099, 4000, 3800]
     }
   },
   "us_market": {
     "sp500": {
-      "latest": 6234.12,
-      "percent_change": -1.9
-    },
-    "nasdaq": {
-      "latest": 20891.33,
-      "percent_change": -2.1
-    },
-    "vix": 27.00,
-    "weekly_trend": "Bearish (Risk-Off) — S&P 500 ทะลุ 200-day MA สะท้อนความกังวลตลาดสูง VIX พุ่ง 27 จากแรงเทขายหุ้นเชิงรุก"
+      "latest": 6557.38,
+      "percent_change": -0.36,
+      "day_high": 6595.75,
+      "day_low": 6525.11,
+      "year_high": 7002.28,
+      "year_low": 4835.04,
+      "price_avg_50": 6857.76,
+      "price_avg_200": 6621.73
+    }
   },
   "oil_commodities": {
-    "brent_crude": {
-      "latest": 113,
-      "percent_change": 1.2
+    "wti": {
+      "current_price": 88.73,
+      "unit": "USD per barrel",
+      "note": "~$88.50-88.96 range, March 25 2026"
     },
-    "geopolitics": "ความขัดแย้ง US-Israel-Iran ยังดำเนินต่อเนื่อง กระทบช่องแคบฮอร์มุซ ซึ่งเป็นเส้นทางน้ำมัน 20% ของโลก"
+    "brent": {
+      "current_price": 104.49,
+      "unit": "USD per barrel",
+      "note": "~$104/barrel, March 25 2026"
+    },
+    "note": "Oil elevated due to geopolitical risk (Iran tensions) and OPEC+ supply management"
   },
   "key_economic_data": {
-    "fed_rate": "3.50-3.75% (คงดอกเบี้ย)",
-    "fed_outlook": "Hawkish stance — พร้อมตัดดอกเบี้ย 1 ครั้งในปี 2026 หากเงินเฟ้อลดลง",
-    "nfp_latest": "-92,000 jobs (ก.พ. 2026) — NFP ถัดไป: 3 เม.ย. 2569",
-    "cpi_latest": "คาด 3.2-3.4% — CPI ถัดไป: 10 เม.ย. 2569",
-    "gdp_q4": "0.7% (US Q4 2025) — ชะลอตัวชัด"
+    "fed_funds_rate": {
+      "current": "3.50% - 3.75%",
+      "effective_rate": 3.64,
+      "status": "HELD - second consecutive meeting",
+      "source": "FOMC March 18-19 2026",
+      "dot_plot": "One rate cut projected in 2026, timing uncertain",
+      "reason": "Elevated inflation, solid economic activity, geopolitical uncertainty"
+    },
+    "cpi": {
+      "headline": 2.4,
+      "core": 2.5,
+      "period": "February 2026",
+      "monthly_change": 0.3,
+      "release_date": "March 11 2026",
+      "note": "Lowest annual CPI since May 2025; food +0.4%, energy +0.6%, shelter +0.2%"
+    },
+    "non_farm_payrolls": {
+      "period": "February 2026",
+      "jobs_change": -92000,
+      "unemployment_rate": 4.4,
+      "avg_hourly_earnings": 37.32,
+      "earnings_mom_change": 0.4,
+      "earnings_yoy_change": 3.8,
+      "release_date": "March 6 2026",
+      "note": "First negative NFP print; unemployment steady despite job losses"
+    }
   },
   "analysis_summary": {
-    "direction": "Bearish — ทองคำร่วงสู่ $4,371 (ต่ำสุดปี 2026)",
-    "key_themes": "DXY แข็ง + Risk-Off + Fed Hawkish ฉุดทอง",
-    "key_risks": "VIX สูง 27 | น้ำมัน $113+ | สงครามอิหร่านยังไม่คลี่คลาย"
-  },
-  "date": "2026-03-24",
-  "updated": "2026-03-24T08:00:00+07:00"
+    "direction": "neutral",
+    "overall_market_brief": "Mixed signals: Gold and oil rally on geopolitical risk; equities under pressure from tariff/trade war concerns and weak labor data. Fed on hold with one cut projected for 2026.",
+    "gold_outlook": "Bullish - trading above 200-day MA (4254), buoyed by Iran geopolitical tensions and safe-haven demand. -13.7% from March highs but recovering.",
+    "sp500_outlook": "Bearish near-term - below 50-day MA (6857), below 200-day MA (6621), tariff/trade war fears weighing. Support at 6500.",
+    "oil_outlook": "Bullish - WTI near $89, Brent at $104+. OPEC+ supply discipline + Iran geopolitical risk keep energy elevated.",
+    "key_themes": [
+      "Fed holds rates at 3.5-3.75%, projects one 2026 cut",
+      "CPI cooling to 2.4% (lowest since May 2025) - disinflation trend intact",
+      "First negative NFP (-92K) signals labor market softening",
+      "Gold recovering (+1.69% today) on geopolitical safe-haven bid",
+      "Oil surges: WTI ~$89, Brent ~$104 on Iran/OPEC+ supply concerns",
+      "S&P 500 under pressure: below 50-day and 200-day MAs, trade war fears"
+    ],
+    "key_risks": [
+      "Trade war escalation (tariffs) could reignite inflation and derail Fed easing",
+      "Iran geopolitical situation - military conflict could spike oil above $100",
+      "Labor market deterioration beyond -92K NFP could signal recession",
+      "Gold rally at risk if dollar strengthens on safe-haven flows",
+      "S&P 500 could test 6400-6500 support if tariff tensions escalate"
+    ],
+    "timestamp": "2026-03-25T07:11:00 GMT+7"
+  }
 }
