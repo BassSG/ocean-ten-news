@@ -1,34 +1,50 @@
 [
   {
+    "id": "insight-openai-gpt54",
+    "company": "openai",
     "category": "ai",
-    "headline": "GPT-5.4, Nano Banana 2, and Claude Opus 4.6 Lead March 2026 AI Model Wave",
-    "what": "Major AI labs — OpenAI (GPT-5.4, GPT-5.3 Instant), Google DeepMind (Nano Banana 2), and Anthropic (Claude Opus 4.6) — all released significant model upgrades in March 2026. GPT-5.4 boasts an 83% benchmark success rate, a million-token context window, and native computer control. A broader industry trend is pivoting from raw parameter counts to 'knowledge density' — achieving more with less compute.",
-    "why_matters": "These releases signal the AI industry's shift toward efficiency, capability, and practical deployment rather than pure scale. Multimodal and agentic capabilities are now standard baseline features, not differentiating extras.",
-    "so_what": "Businesses can now access AI systems that are faster, cheaper, and more capable at complex multi-step tasks — lowering the barrier to automate knowledge work at scale.",
-    "now_what": "Evaluate which models best fit your workflow. GPT-5.4 excels at professional/complex tasks; Nano Banana 2 is ideal for high-quality image generation; Claude Opus 4.6 offers adaptive effort controls. Start prototyping one new AI-powered workflow this week."
+    "title": "OpenAI เปิดตัว GPT-5.4 พร้อม Context 1 ล้าน Token",
+    "source": "OpenAI Blog, 5 มี.ค. 2026",
+    "impact": "high",
+    "what": "OpenAI เปิดตัว GPT-5.4 ในเดือนมีนาคม 2026 มีทั้งรุ่น 'Thinking' และ 'Pro' โดดเด่นด้วยการลดความผิดพลาดลง 33% เทียบกับ GPT-5.2 รองรับ Context Window 1 ล้าน Token พร้อมฟีเจอร์ Step-by-step Planning และ Agentic Workflow สำหรับงานมืออาชีพ ต่อมาในวันที่ 17 มี.ค. เปิดตัว GPT-5.4 mini และ nano สำหรับงานที่ต้องการประสิทธิภาพสูง",
+    "why_matters": "Context 1 ล้าน Token หมายถึงโมเดลสามารถอ่านเอกสารได้ทั้งเล่ม หรือ codebase ขนาดใหญ่ในครั้งเดียว ทำให้การวิเคราะห์เชิงลึกแม่นยำขึ้นมาก Agentic Workflow ช่วยให้ AI ทำงานต่อเนื่องได้หลายขั้นตอนโดยไม่ต้องคอยสั่ง การลด error 33% ทำให้ใช้งานจริงได้น่าเชื่อถือกว่าเดิมอย่างมาก",
+    "so_what": "งานมืออาชีพ เช่น การเงิน กฎหมาย วิศวกรรม จะเข้าถึง AI ที่ทำงานได้ดีขึ้นอย่างก้าวกระโดด GPT-5.4 mini/nano ทำให้ startups สามารถใช้ AI ราคาถูกลงในงาน coding และ reasoning",
+    "now_what": "องค์กรควรทดลอง GPT-5.4 กับงาน document analysis และ long-running workflows ติดตาม API pricing ของ mini/nano เพื่อ optimize cost"
   },
   {
+    "id": "insight-google-gemini-flash-lite",
+    "company": "google",
     "category": "ai",
-    "headline": "AI Costs Are Collapsing — AI-Native Startups Are Booming",
-    "what": "Running advanced AI systems is getting dramatically cheaper, making powerful AI accessible to startups and SMBs. This cost decline is fueling the rise of 'AI-native startups' — companies built entirely around AI systems as their core product or infrastructure. The underlying hardware (Nvidia Vera Rubin, AMD Ryzen AI 400, Apple M5 chip) is delivering 4x AI task performance improvements.",
-    "why_matters": "When AI becomes cheap enough, it stops being a competitive advantage and becomes table stakes. The companies that figure out how to build on top of cheap AI fastest will capture the next wave of markets.",
-    "so_what": "Traditional businesses face pressure from AI-native competitors who can deliver comparable services at a fraction of the cost. Incumbents must either adopt AI aggressively or risk disruption.",
-    "now_what": "Audit your cost structure vs. an AI-native competitor. Identify 3 operational areas where cheaper AI could replace or augment current processes. Explore AI literacy training for your team — the US DOL's free 'Make America AI-Ready' text course is a starting point."
+    "title": "Google Gemini 3.1 Flash-Lite ราคาถูกลง 2 เท่า ตอบโจทย์ Enterprise",
+    "source": "Google Blog, 3 มี.ค. 2026",
+    "impact": "medium",
+    "what": "Google เปิดตัว Gemini 3.1 Flash Lite ให้ developers ผ่าน Google API เมื่อวันที่ 3 มีนาคม 2026 พร้อมกับ Gemini 3.1 Pro ที่ปล่อยในเดือนก่อนหน้า มีการอัปเดต Gemini for Home ทำให้ตอบเร็วขึ้น 40% และขยายเสียง Gemini ไปถึงแคนาดา รวมถึงการ integrate Gemini เข้ากับ Google Workspace",
+    "why_matters": "Flash-Lite ราคาถูกลง 2 เท่า หมายความว่า enterprise สามารถ deploy AI ในระดับ production ได้ทุก operation ต้นทุนต่ำลงอย่างมาก การ integrate เข้า Workspace ทำให้พนักงานใช้ AI ในงานประจำวันได้เลยโดยไม่ต้องเปลี่ยน workflow",
+    "so_what": "บริษัทที่ใช้ Google Workspace (Docs, Sheets, Slides) จะได้รับ AI ฟรีใน workflow เดิม สามารถลดเวลาทำงานเอกสารและ presentation ได้อย่างมหาศาล",
+    "now_what": "ทีม IT ควร mapping ว่า AI สามารถเข้ามาช่วยในงานใดได้บ้างใน Workspace ตั้งค่า Gemini for Home ในองค์กรเพื่อเพิ่ม productivity"
   },
   {
-    "category": "macro",
-    "headline": "Strait of Hormuz Closure Triggers Energy Crisis — Oil Surges Past $120/bbl",
-    "what": "A military conflict involving Iran, the US, and Israel that began Feb 28, 2026 led to the closure of the Strait of Hormuz on March 4. This chokepoint handles ~20% of global oil supply. Brent crude surged past $120/barrel, and the IEA called it the 'greatest global energy and food security challenge in history' — comparable to the 1970s oil crisis. Production in Kuwait, Iraq, Saudi Arabia, and the UAE all dropped significantly.",
-    "why_matters": "Energy is the circulatory system of the global economy. A sustained Hormuz closure means persistent supply shock, not a temporary blip. Supply chains, inflation, central bank policy, and consumer purchasing power are all affected simultaneously.",
-    "so_what": "Synchronized global slowdown is now underway. S&P Global PMIs fell across the US, eurozone, Australia, and India in March. The IMF's 3.3% global growth projection faces serious downside risk. Inflation is being revised upward globally.",
-    "now_what": "Review supply chain exposure to Middle East logistics routes. Accelerate energy efficiency investments. If you're a business with thin margins, stress-test your P&L at $130+/barrel oil scenarios. Consider hedging energy costs where possible."
+    "id": "insight-nvidia-rubin",
+    "company": "nvidia",
+    "category": "chip",
+    "title": "NVIDIA Vera Rubin เปิดตัวที่ GTC 2026 - ลดต้นทุน AI Training 10 เท่า",
+    "source": "NVIDIA News, 16 มี.ค. 2026",
+    "impact": "high",
+    "what": "NVIDIA เปิดตัว Vera Rubin platform ที่ GTC 2026 ในวันที่ 16 มีนาคม 2026 ประกอบด้วย Vera CPU และ Rubin GPU ออกแบบสำหรับ agentic AI workloads แพลตฟอร์มนี้ใช้ extreme co-design ข้าม 7 chips รวม NVLink 6, ConnectX-9 SuperNIC, BlueField-4 DPU และ Spectrum-6 Ethernet switch มีเป้าหมายลด inference token cost และจำนวน GPU ที่ต้องใช้ train large models ลงเมื่อเทียบกับ Blackwell",
+    "why_matters": "การลดต้นทุน GPU 10 เท่าหมายความว่า startups สามารถ train AI models ได้เองโดยไม่ต้องใช้เงินมหาศาล Vera Rubin จะวางจำหน่ายผ่าน partners ในครึ่งหลังของปี 2026 ซึ่งจะเปลี่ยนโฉม AI infrastructure ทั้งอุตสาหกรรม",
+    "so_what": "AI startups จะได้ประโยชน์มากที่สุด เพราะต้นทุนที่ลดลงทำให้เข้าถึง cutting-edge AI ได้ง่ายขึ้น บริษัทใหญ่ที่รอ upgrade จาก Blackwell อาจต้องรอหรือพิจารณา Rubin แทน",
+    "now_what": "วางแผนซื้อ hardware ใน Q3-Q4 2026 หลัง Rubin ออก market ศึกษา roadmap ของ cloud providers ที่จะ offer Rubin-based instances"
   },
   {
-    "category": "macro",
-    "headline": "Central Banks Forced to Pause — Rate Cuts Delayed Amid Geopolitical Shock",
-    "what": "The ECB revised up its 2026 inflation projections and revised down growth forecasts, explicitly citing the Hormuz conflict. The Bank of England, previously expected to cut rates, is now widely expected to hold. The Reserve Bank of Australia already hiked in December 2025 and was considering another hike in March 2026. The US Federal Reserve is expected to maintain rates. J.P. Morgan forecasts global core inflation at 2.8% for 2026, but with divergent outcomes — acceleration in the US, moderation in Europe.",
-    "why_matters": "Central banks are caught between fighting inflation (which the energy shock makes worse) and supporting growth (which the conflict undermines). They have limited room to cut rates, meaning the usual recession buffer is gone. Businesses and governments that expected rate relief in 2026 may need to recalibrate.",
-    "so_what": "Cheap money era is effectively over for now. Capital allocation decisions made under assumptions of falling rates need to be revisited. Credit conditions will remain tight longer than markets anticipated.",
-    "now_what": "Review capital expenditure plans that assumed rate cuts. Prioritize debt refinancing where possible. Shift investment criteria toward cash-generative businesses with shorter payback periods. Monitor ECB and Fed communications closely for policy pivot signals."
+    "id": "insight-apple-m5",
+    "company": "apple",
+    "category": "chip",
+    "title": "Apple M5 MacBook Pro เปิดตัว - Neural Accelerator ใหม่ พร้อม AI Compute สูงลิบ",
+    "source": "Apple Newsroom, 3 มี.ค. 2026",
+    "impact": "medium",
+    "what": "Apple เปิดตัว MacBook Air รุ่น M5 ในวันที่ 3 มีนาคม 2026 พร้อม CPU เร็วขึ้น, GPU รุ่นใหม่มี Neural Accelerator, เริ่มต้น storage 512GB (เพิ่มเป็น 2 เท่า), Wi-Fi 7 และ Bluetooth 6 พร้อมกันนั้น Apple ยังเปิดตัว M5 Pro และ M5 Max สำหรับ MacBook Pro ใช้ Fusion Architecture รวม 2 dies เป็น SoC เดียว ให้ performance เพิ่มขึ้นมาสำหรับงาน professional และ AI compute",
+    "why_matters": "M5 series มี Neural Accelerator ที่แรงกว่ารุ่นก่อนหน้าอย่างมาก หมายความว่า on-device AI (เช่น image generation, transcription, coding assistance) จะเร็วขึ้นมากโดยไม่ต้องต่อ internet Fusion Architecture แบบ 2-die ทำให้ performance per watt ดีขึ้นอย่างมีนัยสำคัญ",
+    "so_what": "นักพัฒนาและ creative professionals ที่ต้องการ on-device AI (video editing, music production, coding) จะได้รับประสบการณ์ที่เร็วและลื่นกว่าเดิมมาก Mac ที่ใช้ M5 จะ handle local AI workloads ได้ดีขึ้นโดยไม่กิน battery มาก",
+    "now_what": "พิจารณา upgrade MacBook Pro เป็น M5 Pro/Max สำหรับทีมที่ต้องทำ on-device AI development หรือ creative work"
   }
 ]
