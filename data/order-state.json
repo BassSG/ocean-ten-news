@@ -742,11 +742,11 @@
     "closedAt": null
   },
   "EKlaETun:RUN-1774411870214-320": {
-    "status": "triggered",
-    "closeReason": null,
-    "updatedAt": "2026-03-25T09:02:42.835247+00:00",
+    "status": "sl-hit",
+    "closeReason": "SL",
+    "updatedAt": "2026-03-25T10:27:07.217677+00:00",
     "triggeredAt": 1774412100,
-    "closedAt": null
+    "closedAt": 1774417500
   },
   "TESTER:RUN-1774416270791-865": {
     "status": null,
@@ -780,6 +780,20 @@
     "status": null,
     "closeReason": null,
     "updatedAt": "2026-03-25T09:02:42.835247+00:00",
+    "triggeredAt": null,
+    "closedAt": null
+  },
+  "TESTER:RUN-1774429843232-236": {
+    "status": null,
+    "closeReason": null,
+    "updatedAt": "2026-03-25T10:27:07.217677+00:00",
+    "triggeredAt": null,
+    "closedAt": null
+  },
+  "EBass:RUN-1774432936754-76": {
+    "status": null,
+    "closeReason": null,
+    "updatedAt": "2026-03-25T10:27:07.217677+00:00",
     "triggeredAt": null,
     "closedAt": null
   }
