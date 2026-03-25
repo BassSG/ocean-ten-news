@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-25T05:01:43.977950+00:00",
+  "generatedAt": "2026-03-25T06:40:28.598056+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1773162000,
-    "to": 1774399500
+    "from": 1773168300,
+    "to": 1774405800
   },
   "summary": {
     "totalOrders": 3,
@@ -22,14 +22,14 @@
   "orders": [
     {
       "source": "TESTER",
-      "runId": "RUN-1774407067910-872-ENF",
-      "orderKey": "TESTER:RUN-1774407067910-872-ENF",
-      "createdAt": "2026-03-25T02:51:08.913Z",
-      "orderType": "BUY_LIMIT",
-      "entry": 4578.5,
-      "sl": 4562.0,
-      "tp1": 4601.2,
-      "tpMost": 4615.0,
+      "runId": "RUN-1774416270791-865",
+      "orderKey": "TESTER:RUN-1774416270791-865",
+      "createdAt": "2026-03-25T05:24:44.375Z",
+      "orderType": "SELL_LIMIT",
+      "entry": 4565.11,
+      "sl": 4574.76,
+      "tp1": 4513.17,
+      "tpMost": 4513.17,
       "result": {
         "status": null,
         "triggered": false,
@@ -43,14 +43,14 @@
     },
     {
       "source": "EBass",
-      "runId": "RUN-1774405155134-69-ENF",
-      "orderKey": "EBass:RUN-1774405155134-69-ENF",
-      "createdAt": "2026-03-25T02:19:16.016Z",
-      "orderType": "BUY_LIMIT",
-      "entry": 4576.5,
-      "sl": 4562.5,
-      "tp1": 4596.0,
-      "tpMost": 4605.0,
+      "runId": "RUN-1774416150806-982",
+      "orderKey": "EBass:RUN-1774416150806-982",
+      "createdAt": "2026-03-25T05:23:04.185Z",
+      "orderType": "SELL_LIMIT",
+      "entry": 4572.12,
+      "sl": 4578.77,
+      "tp1": 4561.14,
+      "tpMost": 4561.14,
       "result": {
         "status": null,
         "triggered": false,
