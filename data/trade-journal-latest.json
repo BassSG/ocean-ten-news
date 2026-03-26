@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-26T05:44:14.293359+00:00",
+  "generatedAt": "2026-03-26T07:19:56.998808+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1773247500,
-    "to": 1774488600
+    "from": 1773253800,
+    "to": 1774494900
   },
   "summary": {
     "totalOrders": 3,
@@ -22,14 +22,14 @@
   "orders": [
     {
       "source": "TESTER",
-      "runId": "RUN-1774493443190-269",
-      "orderKey": "TESTER:RUN-1774493443190-269",
-      "createdAt": "2026-03-26T02:51:09.138Z",
+      "runId": "RUN-1774507842212-508",
+      "orderKey": "TESTER:RUN-1774507842212-508",
+      "createdAt": "2026-03-26T06:51:06.638Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4525.41,
-      "sl": 4537.94,
-      "tp1": 4513.17,
-      "tpMost": 4502.37,
+      "entry": 4460.13,
+      "sl": 4486.15,
+      "tp1": 4415.91,
+      "tpMost": 4415.91,
       "result": {
         "status": null,
         "triggered": false,
@@ -43,14 +43,14 @@
     },
     {
       "source": "EBass",
-      "runId": "RUN-1774500440559-934",
-      "orderKey": "EBass:RUN-1774500440559-934",
-      "createdAt": "2026-03-26T04:47:49.351Z",
+      "runId": "RUN-1774507942407-770",
+      "orderKey": "EBass:RUN-1774507942407-770",
+      "createdAt": "2026-03-26T06:54:01.799Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4524.91,
-      "sl": 4534.5,
-      "tp1": 4513.16,
-      "tpMost": 4502.36,
+      "entry": 4484.5,
+      "sl": 4504.5,
+      "tp1": 4446.5,
+      "tpMost": 4446.5,
       "result": {
         "status": null,
         "triggered": false,
@@ -64,14 +64,14 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1774501866223-463",
-      "orderKey": "EKlaETun:RUN-1774501866223-463",
-      "createdAt": "2026-03-26T05:11:23.149Z",
+      "runId": "RUN-1774509064626-468",
+      "orderKey": "EKlaETun:RUN-1774509064626-468",
+      "createdAt": "2026-03-26T07:11:15.788Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4524.43,
-      "sl": 4537.62,
-      "tp1": 4501.24,
-      "tpMost": 4489.08,
+      "entry": 4462.74,
+      "sl": 4477.08,
+      "tp1": 4434.06,
+      "tpMost": 4419.72,
       "result": {
         "status": null,
         "triggered": false,
