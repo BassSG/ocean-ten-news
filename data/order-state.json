@@ -1304,7 +1304,7 @@
   "EKlaETun:RUN-1774876264776-496": {
     "status": "sl-hit",
     "closeReason": "SL",
-    "updatedAt": "2026-04-01T22:05:12.575472+00:00",
+    "updatedAt": "2026-04-01T23:07:25.675978+00:00",
     "triggeredAt": 1774876500,
     "closedAt": 1774876500
   },
@@ -1561,10 +1561,10 @@
     "closedAt": null
   },
   "TESTER:RUN-1775058643394-951": {
-    "status": "pending",
+    "status": "triggered",
     "closeReason": null,
-    "updatedAt": "2026-04-01T22:05:12.575472+00:00",
-    "triggeredAt": null,
+    "updatedAt": "2026-04-01T23:07:25.675978+00:00",
+    "triggeredAt": 1775066400,
     "closedAt": null
   },
   "EBass:RUN-1775059433004-771": {
