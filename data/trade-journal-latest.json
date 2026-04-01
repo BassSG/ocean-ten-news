@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-01T21:10:28.269709+00:00",
+  "generatedAt": "2026-04-01T22:05:12.575472+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -43,14 +43,14 @@
     },
     {
       "source": "EBass",
-      "runId": "RUN-1775072843259-830",
-      "orderKey": "EBass:RUN-1775072843259-830",
-      "createdAt": "2026-04-01T19:48:45.379Z",
+      "runId": "RUN-1775080633483-693",
+      "orderKey": "EBass:RUN-1775080633483-693",
+      "createdAt": "2026-04-01T21:57:40.877Z",
       "orderType": "BUY_LIMIT",
-      "entry": 4752.8,
-      "sl": 4741.5,
-      "tp1": 4773.05,
-      "tpMost": 4777.97,
+      "entry": 4751.58,
+      "sl": 4743.38,
+      "tp1": 4764.07,
+      "tpMost": 4771.3,
       "result": {
         "status": null,
         "triggered": false,
