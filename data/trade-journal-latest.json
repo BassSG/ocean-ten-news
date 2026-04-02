@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-02T03:21:06.449350+00:00",
+  "generatedAt": "2026-04-02T05:21:25.322127+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1773804600,
-    "to": 1775085300
+    "from": 1773811800,
+    "to": 1775092500
   },
   "summary": {
     "totalOrders": 3,
@@ -43,14 +43,14 @@
     },
     {
       "source": "EBass",
-      "runId": "RUN-1775099241818-701",
-      "orderKey": "EBass:RUN-1775099241818-701",
-      "createdAt": "2026-04-02T03:08:34.679Z",
+      "runId": "RUN-1775103136137-897",
+      "orderKey": "EBass:RUN-1775103136137-897",
+      "createdAt": "2026-04-02T04:13:01.718Z",
       "orderType": "BUY_LIMIT",
-      "entry": 4665.0,
+      "entry": 4660.0,
       "sl": 4645.0,
-      "tp1": 4685.0,
-      "tpMost": 4685.0,
+      "tp1": 4678.0,
+      "tpMost": 4708.0,
       "result": {
         "status": null,
         "triggered": false,
