@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-12T23:42:34.157340+00:00",
+  "generatedAt": "2026-04-13T03:36:12.989044+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,16 +8,16 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1774478700,
-    "to": 1776022200
+    "from": 1774493100,
+    "to": 1776036600
   },
   "summary": {
     "totalOrders": 3,
-    "triggeredOrders": 2,
-    "slHits": 1,
+    "triggeredOrders": 1,
+    "slHits": 0,
     "tp1Hits": 0,
     "tpMostHits": 1,
-    "winRate": 50.0
+    "winRate": 100.0
   },
   "orders": [
     {
@@ -43,37 +43,37 @@
     },
     {
       "source": "EBass",
-      "runId": "RUN-1775843836206-778",
-      "orderKey": "EBass:RUN-1775843836206-778",
-      "createdAt": "2026-04-10T17:57:42.934Z",
-      "orderType": "BUY_LIMIT",
-      "entry": 4752.5,
-      "sl": 4747.8,
-      "tp1": 4763.75,
-      "tpMost": 4767.5,
+      "runId": "RUN-1776045737233-710",
+      "orderKey": "EBass:RUN-1776045737233-710",
+      "createdAt": "2026-04-13T02:03:31.963Z",
+      "orderType": "SELL_LIMIT",
+      "entry": 4726.0,
+      "sl": 4731.95,
+      "tp1": 4710.85,
+      "tpMost": 4706.88,
       "result": {
-        "status": "sl-hit",
-        "triggered": true,
-        "triggeredAt": 1776016800,
-        "closeReason": "SL",
-        "closedAt": 1776016800,
-        "timeInTradeMin": 0,
+        "status": null,
+        "triggered": false,
+        "triggeredAt": null,
+        "closeReason": null,
+        "closedAt": null,
+        "timeInTradeMin": null,
         "mfe": 0.0,
-        "mae": -86.455
+        "mae": 0.0
       }
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1775886729724-445",
-      "orderKey": "EKlaETun:RUN-1775886729724-445",
-      "createdAt": "2026-04-11T05:52:21.896Z",
+      "runId": "RUN-1776050387416-285",
+      "orderKey": "EKlaETun:RUN-1776050387416-285",
+      "createdAt": "2026-04-13T03:22:04.340Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4756.87,
-      "sl": 4762.5,
-      "tp1": 4736.18,
-      "tpMost": 4730.74,
+      "entry": 4723.0,
+      "sl": 4727.5,
+      "tp1": 4712.42,
+      "tpMost": 4706.88,
       "result": {
-        "status": "pending",
+        "status": null,
         "triggered": false,
         "triggeredAt": null,
         "closeReason": null,
