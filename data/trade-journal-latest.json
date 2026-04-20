@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-20T20:02:13.163254+00:00",
+  "generatedAt": "2026-04-20T21:24:59.297744+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1775419200,
-    "to": 1776699900
+    "from": 1775422800,
+    "to": 1776703500
   },
   "summary": {
     "totalOrders": 3,
@@ -33,24 +33,24 @@
       "result": {
         "status": "tpmost-hit",
         "triggered": true,
-        "triggeredAt": 1775419200,
+        "triggeredAt": 1775422800,
         "closeReason": "TPMost",
-        "closedAt": 1775419200,
+        "closedAt": 1775422800,
         "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": -147.965
+        "mae": -132.37
       }
     },
     {
       "source": "EBass",
-      "runId": "RUN-1776713837967-451",
-      "orderKey": "EBass:RUN-1776713837967-451",
-      "createdAt": "2026-04-20T19:37:48.280Z",
+      "runId": "RUN-1776717735649-18",
+      "orderKey": "EBass:RUN-1776717735649-18",
+      "createdAt": "2026-04-20T20:43:12.373Z",
       "orderType": "BUY_LIMIT",
-      "entry": 4806.9,
-      "sl": 4799.7,
-      "tp1": 4817.3,
-      "tpMost": 4817.3,
+      "entry": 4807.8,
+      "sl": 4799.5,
+      "tp1": 4817.0,
+      "tpMost": 4817.0,
       "result": {
         "status": null,
         "triggered": false,
@@ -64,14 +64,14 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1776707558204-519",
-      "orderKey": "EKlaETun:RUN-1776707558204-519",
-      "createdAt": "2026-04-20T17:52:50.670Z",
-      "orderType": "BUY_LIMIT",
-      "entry": 4794.98,
-      "sl": 4784.95,
-      "tp1": 4808.32,
-      "tpMost": 4838.56,
+      "runId": "RUN-1776719982966-43",
+      "orderKey": "EKlaETun:RUN-1776719982966-43",
+      "createdAt": "2026-04-20T21:20:01.031Z",
+      "orderType": "SELL_LIMIT",
+      "entry": 4838.56,
+      "sl": 4843.2,
+      "tp1": 4820.12,
+      "tpMost": 4820.12,
       "result": {
         "status": null,
         "triggered": false,
