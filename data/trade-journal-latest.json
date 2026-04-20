@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-20T03:59:16.409963+00:00",
+  "generatedAt": "2026-04-20T06:24:59.470417+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1775098800,
-    "to": 1776642300
+    "from": 1775107800,
+    "to": 1776651300
   },
   "summary": {
     "totalOrders": 3,
@@ -33,24 +33,24 @@
       "result": {
         "status": "tpmost-hit",
         "triggered": true,
-        "triggeredAt": 1775098800,
+        "triggeredAt": 1775107800,
         "closeReason": "TPMost",
-        "closedAt": 1775098800,
+        "closedAt": 1775107800,
         "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": -157.305
+        "mae": -138.695
       }
     },
     {
       "source": "EBass",
-      "runId": "RUN-1776650538497-357",
-      "orderKey": "EBass:RUN-1776650538497-357",
-      "createdAt": "2026-04-20T02:02:39.633Z",
-      "orderType": "BUY_LIMIT",
-      "entry": 4796.5,
-      "sl": 4785.25,
-      "tp1": 4806.25,
-      "tpMost": 4814.14,
+      "runId": "RUN-1776662250541-638",
+      "orderKey": "EBass:RUN-1776662250541-638",
+      "createdAt": "2026-04-20T05:17:53.832Z",
+      "orderType": "SELL_LIMIT",
+      "entry": 4793.15,
+      "sl": 4798.5,
+      "tp1": 4784.69,
+      "tpMost": 4775.17,
       "result": {
         "status": null,
         "triggered": false,
@@ -64,14 +64,14 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1776651584518-107",
-      "orderKey": "EKlaETun:RUN-1776651584518-107",
-      "createdAt": "2026-04-20T02:20:11.550Z",
+      "runId": "RUN-1776662384688-977",
+      "orderKey": "EKlaETun:RUN-1776662384688-977",
+      "createdAt": "2026-04-20T05:20:04.294Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4811.4,
-      "sl": 4815.5,
-      "tp1": 4797.23,
-      "tpMost": 4775.12,
+      "entry": 4792.65,
+      "sl": 4797.5,
+      "tp1": 4784.69,
+      "tpMost": 4775.17,
       "result": {
         "status": null,
         "triggered": false,
