@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-20T14:20:08.079600+00:00",
+  "generatedAt": "2026-04-20T15:54:08.649521+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,16 +8,16 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1775136600,
-    "to": 1776680100
+    "from": 1775142000,
+    "to": 1776685500
   },
   "summary": {
     "totalOrders": 3,
-    "triggeredOrders": 2,
-    "slHits": 1,
+    "triggeredOrders": 1,
+    "slHits": 0,
     "tp1Hits": 0,
     "tpMostHits": 1,
-    "winRate": 50.0
+    "winRate": 100.0
   },
   "orders": [
     {
@@ -33,24 +33,24 @@
       "result": {
         "status": "tpmost-hit",
         "triggered": true,
-        "triggeredAt": 1775136600,
+        "triggeredAt": 1775142000,
         "closeReason": "TPMost",
-        "closedAt": 1775136600,
+        "closedAt": 1775142000,
         "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": -108.015
+        "mae": -85.595
       }
     },
     {
       "source": "EBass",
-      "runId": "RUN-1776689841895-868",
-      "orderKey": "EBass:RUN-1776689841895-868",
-      "createdAt": "2026-04-20T12:57:54.629Z",
+      "runId": "RUN-1776698733575-363",
+      "orderKey": "EBass:RUN-1776698733575-363",
+      "createdAt": "2026-04-20T15:30:38.257Z",
       "orderType": "BUY_LIMIT",
-      "entry": 4799.2,
-      "sl": 4795.5,
-      "tp1": 4807.38,
-      "tpMost": 4810.44,
+      "entry": 4796.5,
+      "sl": 4793.0,
+      "tp1": 4802.38,
+      "tpMost": 4808.3,
       "result": {
         "status": null,
         "triggered": false,
@@ -64,23 +64,23 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1776676783049-870",
-      "orderKey": "EKlaETun:RUN-1776676783049-870",
-      "createdAt": "2026-04-20T09:20:06.176Z",
+      "runId": "RUN-1776696580468-618",
+      "orderKey": "EKlaETun:RUN-1776696580468-618",
+      "createdAt": "2026-04-20T14:51:58.715Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4804.65,
-      "sl": 4807.08,
+      "entry": 4837.38,
+      "sl": 4841.01,
       "tp1": 0.0,
       "tpMost": 0.0,
       "result": {
-        "status": "sl-hit",
-        "triggered": true,
-        "triggeredAt": 1776677400,
-        "closeReason": "SL",
-        "closedAt": 1776677400,
-        "timeInTradeMin": 0,
+        "status": null,
+        "triggered": false,
+        "triggeredAt": null,
+        "closeReason": null,
+        "closedAt": null,
+        "timeInTradeMin": null,
         "mfe": 0.0,
-        "mae": -21.465
+        "mae": 0.0
       }
     }
   ]
