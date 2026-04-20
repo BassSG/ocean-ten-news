@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-20T17:13:23.986274+00:00",
+  "generatedAt": "2026-04-20T18:35:11.655929+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1775146500,
-    "to": 1776690000
+    "from": 1775414700,
+    "to": 1776695400
   },
   "summary": {
     "totalOrders": 3,
@@ -33,24 +33,24 @@
       "result": {
         "status": "tpmost-hit",
         "triggered": true,
-        "triggeredAt": 1775146500,
+        "triggeredAt": 1775414700,
         "closeReason": "TPMost",
-        "closedAt": 1775146500,
+        "closedAt": 1775414700,
         "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": -90.44
+        "mae": -147.91
       }
     },
     {
       "source": "EBass",
-      "runId": "RUN-1776702736067-728",
-      "orderKey": "EBass:RUN-1776702736067-728",
-      "createdAt": "2026-04-20T16:33:46.677Z",
+      "runId": "RUN-1776709528965-406",
+      "orderKey": "EBass:RUN-1776709528965-406",
+      "createdAt": "2026-04-20T18:28:02.037Z",
       "orderType": "BUY_LIMIT",
-      "entry": 4787.25,
-      "sl": 4782.5,
-      "tp1": 4794.98,
-      "tpMost": 4794.98,
+      "entry": 4806.45,
+      "sl": 4803.0,
+      "tp1": 4815.93,
+      "tpMost": 4838.56,
       "result": {
         "status": null,
         "triggered": false,
@@ -64,14 +64,14 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1776696580468-618",
-      "orderKey": "EKlaETun:RUN-1776696580468-618",
-      "createdAt": "2026-04-20T14:51:58.715Z",
-      "orderType": "SELL_LIMIT",
-      "entry": 4837.38,
-      "sl": 4841.01,
-      "tp1": 0.0,
-      "tpMost": 0.0,
+      "runId": "RUN-1776707558204-519",
+      "orderKey": "EKlaETun:RUN-1776707558204-519",
+      "createdAt": "2026-04-20T17:52:50.670Z",
+      "orderType": "BUY_LIMIT",
+      "entry": 4794.98,
+      "sl": 4784.95,
+      "tp1": 4808.32,
+      "tpMost": 4838.56,
       "result": {
         "status": null,
         "triggered": false,
