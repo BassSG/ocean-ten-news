@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-21T06:07:17.863320+00:00",
+  "generatedAt": "2026-04-21T08:18:15.224409+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1775452500,
-    "to": 1776736800
+    "from": 1775460600,
+    "to": 1776744900
   },
   "summary": {
     "totalOrders": 3,
@@ -33,24 +33,24 @@
       "result": {
         "status": "tpmost-hit",
         "triggered": true,
-        "triggeredAt": 1775452500,
+        "triggeredAt": 1775460600,
         "closeReason": "TPMost",
-        "closedAt": 1775452500,
+        "closedAt": 1775460600,
         "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": -57.64
+        "mae": -69.72
       }
     },
     {
       "source": "EBass",
-      "runId": "RUN-1776749130129-648",
-      "orderKey": "EBass:RUN-1776749130129-648",
-      "createdAt": "2026-04-21T05:26:00.680Z",
+      "runId": "RUN-1776759155903-69",
+      "orderKey": "EBass:RUN-1776759155903-69",
+      "createdAt": "2026-04-21T08:14:03.173Z",
       "orderType": "BUY_LIMIT",
-      "entry": 4787.21,
-      "sl": 4784.87,
-      "tp1": 4792.63,
-      "tpMost": 4794.98,
+      "entry": 4768.97,
+      "sl": 4762.02,
+      "tp1": 4786.08,
+      "tpMost": 4786.08,
       "result": {
         "status": null,
         "triggered": false,
@@ -64,14 +64,14 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1776745179474-229",
-      "orderKey": "EKlaETun:RUN-1776745179474-229",
-      "createdAt": "2026-04-21T04:19:53.254Z",
-      "orderType": "BUY_LIMIT",
-      "entry": 4786.08,
-      "sl": 4783.25,
-      "tp1": 4794.98,
-      "tpMost": 4794.98,
+      "runId": "RUN-1776755985256-415",
+      "orderKey": "EKlaETun:RUN-1776755985256-415",
+      "createdAt": "2026-04-21T07:19:58.653Z",
+      "orderType": "SELL_LIMIT",
+      "entry": 4794.98,
+      "sl": 4802.0,
+      "tp1": 4786.08,
+      "tpMost": 4786.08,
       "result": {
         "status": null,
         "triggered": false,
