@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-21T21:00:04.359193+00:00",
+  "generatedAt": "2026-04-21T21:55:59.169793+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -64,13 +64,13 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1776791983319-932",
-      "orderKey": "EKlaETun:RUN-1776791983319-932",
-      "createdAt": "2026-04-21T17:19:58.696Z",
-      "orderType": "BUY_LIMIT",
-      "entry": 4698.73,
-      "sl": 4695.5,
-      "tp1": 4706.88,
+      "runId": "RUN-1776806380084-730",
+      "orderKey": "EKlaETun:RUN-1776806380084-730",
+      "createdAt": "2026-04-21T21:19:53.675Z",
+      "orderType": "SELL_LIMIT",
+      "entry": 4730.74,
+      "sl": 4736.98,
+      "tp1": 4720.69,
       "tpMost": 4706.88,
       "result": {
         "status": null,
