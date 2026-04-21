@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-21T00:08:04.626426+00:00",
+  "generatedAt": "2026-04-21T03:53:03.648959+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1775430900,
-    "to": 1776715200
+    "from": 1775444400,
+    "to": 1776728700
   },
   "summary": {
     "totalOrders": 3,
@@ -33,24 +33,24 @@
       "result": {
         "status": "tpmost-hit",
         "triggered": true,
-        "triggeredAt": 1775430900,
+        "triggeredAt": 1775444400,
         "closeReason": "TPMost",
-        "closedAt": 1775430900,
+        "closedAt": 1775444400,
         "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": -129.405
+        "mae": -106.645
       }
     },
     {
       "source": "EBass",
-      "runId": "RUN-1776721338806-551",
-      "orderKey": "EBass:RUN-1776721338806-551",
-      "createdAt": "2026-04-20T21:42:55.356Z",
+      "runId": "RUN-1776741930591-243",
+      "orderKey": "EBass:RUN-1776741930591-243",
+      "createdAt": "2026-04-21T03:30:50.933Z",
       "orderType": "BUY_LIMIT",
-      "entry": 4813.65,
-      "sl": 4807.5,
-      "tp1": 4821.98,
-      "tpMost": 4838.56,
+      "entry": 4788.0,
+      "sl": 4785.5,
+      "tp1": 4794.98,
+      "tpMost": 4800.8,
       "result": {
         "status": null,
         "triggered": false,
@@ -64,14 +64,14 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1776727183764-3",
-      "orderKey": "EKlaETun:RUN-1776727183764-3",
-      "createdAt": "2026-04-20T23:20:03.920Z",
-      "orderType": "SELL_LIMIT",
-      "entry": 4838.56,
-      "sl": 4843.0,
-      "tp1": 4825.0,
-      "tpMost": 4825.0,
+      "runId": "RUN-1776741582377-898",
+      "orderKey": "EKlaETun:RUN-1776741582377-898",
+      "createdAt": "2026-04-21T03:19:58.546Z",
+      "orderType": "BUY_LIMIT",
+      "entry": 4786.08,
+      "sl": 4783.25,
+      "tp1": 4794.98,
+      "tpMost": 4794.98,
       "result": {
         "status": null,
         "triggered": false,
