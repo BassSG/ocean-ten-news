@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-22T03:26:41.488236+00:00",
+  "generatedAt": "2026-04-22T05:39:16.458999+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1775529000,
-    "to": 1776813300
+    "from": 1775537100,
+    "to": 1776821400
   },
   "summary": {
     "totalOrders": 3,
@@ -33,24 +33,24 @@
       "result": {
         "status": "tpmost-hit",
         "triggered": true,
-        "triggeredAt": 1775529000,
+        "triggeredAt": 1775537100,
         "closeReason": "TPMost",
-        "closedAt": 1775529000,
+        "closedAt": 1775537100,
         "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": -113.945
+        "mae": -75.915
       }
     },
     {
       "source": "EBass",
-      "runId": "RUN-1776826635991-864",
-      "orderKey": "EBass:RUN-1776826635991-864",
-      "createdAt": "2026-04-22T02:57:56.581Z",
-      "orderType": "BUY_LIMIT",
-      "entry": 4745.7,
-      "sl": 4739.5,
-      "tp1": 4754.5,
-      "tpMost": 4754.5,
+      "runId": "RUN-1776835530252-715",
+      "orderKey": "EBass:RUN-1776835530252-715",
+      "createdAt": "2026-04-22T05:26:32.832Z",
+      "orderType": "SELL_LIMIT",
+      "entry": 4772.6,
+      "sl": 4774.8,
+      "tp1": 4767.85,
+      "tpMost": 4758.6,
       "result": {
         "status": null,
         "triggered": false,
@@ -64,14 +64,14 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1776824378850-333",
-      "orderKey": "EKlaETun:RUN-1776824378850-333",
-      "createdAt": "2026-04-22T02:19:51.384Z",
-      "orderType": "SELL_LIMIT",
-      "entry": 4767.85,
-      "sl": 4773.5,
-      "tp1": 4755.2,
-      "tpMost": 4744.52,
+      "runId": "RUN-1776834460907-751",
+      "orderKey": "EKlaETun:RUN-1776834460907-751",
+      "createdAt": "2026-04-22T05:08:21.507Z",
+      "orderType": "BUY_LIMIT",
+      "entry": 4745.0,
+      "sl": 4739.5,
+      "tp1": 4752.5,
+      "tpMost": 4752.5,
       "result": {
         "status": null,
         "triggered": false,
