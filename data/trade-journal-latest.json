@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-22T21:55:56.121343+00:00",
+  "generatedAt": "2026-04-22T22:55:41.701686+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1775595600,
-    "to": 1776876300
+    "from": 1775599200,
+    "to": 1776883500
   },
   "summary": {
     "totalOrders": 3,
