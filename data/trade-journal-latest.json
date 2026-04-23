@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T14:01:09.794193+00:00",
+  "generatedAt": "2026-04-23T16:17:27.350479+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,16 +8,16 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1775653200,
-    "to": 1776937500
+    "from": 1775661300,
+    "to": 1776945600
   },
   "summary": {
     "totalOrders": 4,
-    "triggeredOrders": 1,
-    "slHits": 0,
+    "triggeredOrders": 3,
+    "slHits": 2,
     "tp1Hits": 0,
     "tpMostHits": 1,
-    "winRate": 100.0
+    "winRate": 33.33
   },
   "orders": [
     {
@@ -33,12 +33,12 @@
       "result": {
         "status": "tpmost-hit",
         "triggered": true,
-        "triggeredAt": 1775654100,
+        "triggeredAt": 1775661300,
         "closeReason": "TPMost",
-        "closedAt": 1775655900,
-        "timeInTradeMin": 30,
-        "mfe": 7.83,
-        "mae": -23.31
+        "closedAt": 1775661300,
+        "timeInTradeMin": 0,
+        "mfe": 0.0,
+        "mae": -47.44
       }
     },
     {
@@ -52,14 +52,14 @@
       "tp1": 4685.35,
       "tpMost": 4668.62,
       "result": {
-        "status": null,
-        "triggered": false,
-        "triggeredAt": null,
-        "closeReason": null,
-        "closedAt": null,
-        "timeInTradeMin": null,
+        "status": "sl-hit",
+        "triggered": true,
+        "triggeredAt": 1776940200,
+        "closeReason": "SL",
+        "closedAt": 1776940200,
+        "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": 0.0
+        "mae": -36.485
       }
     },
     {
@@ -73,14 +73,14 @@
       "tp1": 4685.5,
       "tpMost": 4685.5,
       "result": {
-        "status": null,
-        "triggered": false,
-        "triggeredAt": null,
-        "closeReason": null,
-        "closedAt": null,
-        "timeInTradeMin": null,
+        "status": "sl-hit",
+        "triggered": true,
+        "triggeredAt": 1776940200,
+        "closeReason": "SL",
+        "closedAt": 1776940200,
+        "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": 0.0
+        "mae": -35.355
       }
     },
     {
