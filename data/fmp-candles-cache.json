@@ -1,11 +1,11 @@
 {
   "symbol": "XAUUSD",
   "interval": "15min",
-  "updatedAt": "2026-05-05T17:03:47.800327+00:00",
+  "updatedAt": "2026-05-05T17:05:33.451696+00:00",
   "count": 6737,
   "from": 1769446800,
   "to": 1777986000,
-  "newAdded": 17,
+  "newAdded": 0,
   "candles": [
     {
       "time": 1769446800,
