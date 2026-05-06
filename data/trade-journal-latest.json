@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-06T15:42:22.808690+00:00",
+  "generatedAt": "2026-05-06T17:46:42.343812+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,16 +8,16 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1776782700,
-    "to": 1778067000
+    "from": 1776789900,
+    "to": 1778074200
   },
   "summary": {
     "totalOrders": 3,
-    "triggeredOrders": 2,
-    "slHits": 1,
+    "triggeredOrders": 1,
+    "slHits": 0,
     "tp1Hits": 0,
     "tpMostHits": 1,
-    "winRate": 50.0
+    "winRate": 100.0
   },
   "orders": [
     {
@@ -33,47 +33,47 @@
       "result": {
         "status": "tpmost-hit",
         "triggered": true,
-        "triggeredAt": 1776782700,
+        "triggeredAt": 1776789900,
         "closeReason": "TPMost",
-        "closedAt": 1776782700,
+        "closedAt": 1776789900,
         "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": -55.785
+        "mae": -45.31
       }
     },
     {
       "source": "EBass",
-      "runId": "RUN-1778062784873-288",
-      "orderKey": "EBass:RUN-1778062784873-288",
-      "createdAt": "2026-05-06T10:22:22.465Z",
+      "runId": "RUN-1778083182388-304",
+      "orderKey": "EBass:RUN-1778083182388-304",
+      "createdAt": "2026-05-06T16:01:33.009Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4704.5,
-      "sl": 4710.0,
-      "tp1": 4694.5,
-      "tpMost": 4681.0,
+      "entry": 4697.8,
+      "sl": 4708.5,
+      "tp1": 4682.5,
+      "tpMost": 4674.0,
       "result": {
-        "status": "sl-hit",
-        "triggered": true,
-        "triggeredAt": 1778063400,
-        "closeReason": "SL",
-        "closedAt": 1778063400,
-        "timeInTradeMin": 0,
+        "status": null,
+        "triggered": false,
+        "triggeredAt": null,
+        "closeReason": null,
+        "closedAt": null,
+        "timeInTradeMin": null,
         "mfe": 0.0,
-        "mae": -9.025
+        "mae": 0.0
       }
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1776838779547-671",
-      "orderKey": "EKlaETun:RUN-1776838779547-671",
-      "createdAt": "2026-04-22T06:20:08.308Z",
+      "runId": "RUN-1778083505169-648",
+      "orderKey": "EKlaETun:RUN-1778083505169-648",
+      "createdAt": "2026-05-06T16:06:51.832Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4767.85,
-      "sl": 4774.5,
-      "tp1": 4758.0,
-      "tpMost": 4758.0,
+      "entry": 4698.7,
+      "sl": 4708.8,
+      "tp1": 4680.0,
+      "tpMost": 4668.6,
       "result": {
-        "status": "pending",
+        "status": null,
         "triggered": false,
         "triggeredAt": null,
         "closeReason": null,
