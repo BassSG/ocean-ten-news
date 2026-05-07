@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-07T10:40:53.333855+00:00",
+  "generatedAt": "2026-05-07T12:59:36.667391+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1776851100,
-    "to": 1778135400
+    "from": 1776859200,
+    "to": 1778143500
   },
   "summary": {
     "totalOrders": 3,
@@ -33,24 +33,24 @@
       "result": {
         "status": "tpmost-hit",
         "triggered": true,
-        "triggeredAt": 1776851100,
+        "triggeredAt": 1776859200,
         "closeReason": "TPMost",
-        "closedAt": 1776853800,
-        "timeInTradeMin": 45,
-        "mfe": 5.99,
-        "mae": -25.01
+        "closedAt": 1776859200,
+        "timeInTradeMin": 0,
+        "mfe": 0.0,
+        "mae": -29.27
       }
     },
     {
       "source": "EBass",
-      "runId": "RUN-1778149181380-21",
-      "orderKey": "EBass:RUN-1778149181380-21",
-      "createdAt": "2026-05-07T10:21:28.402Z",
+      "runId": "RUN-1778155729111-952",
+      "orderKey": "EBass:RUN-1778155729111-952",
+      "createdAt": "2026-05-07T12:10:20.144Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4740.5,
-      "sl": 4745.2,
-      "tp1": 4730.75,
-      "tpMost": 4730.75,
+      "entry": 4748.5,
+      "sl": 4756.0,
+      "tp1": 4733.5,
+      "tpMost": 4720.5,
       "result": {
         "status": null,
         "triggered": false,
@@ -64,14 +64,14 @@
     },
     {
       "source": "EKlaETun",
-      "runId": "RUN-1778148738177-425",
-      "orderKey": "EKlaETun:RUN-1778148738177-425",
-      "createdAt": "2026-05-07T10:13:50.332Z",
-      "orderType": "SELL_LIMIT",
-      "entry": 4740.5,
-      "sl": 4746.5,
-      "tp1": 4731.0,
-      "tpMost": 4731.0,
+      "runId": "RUN-1778152645793-217",
+      "orderKey": "EKlaETun:RUN-1778152645793-217",
+      "createdAt": "2026-05-07T11:19:11.800Z",
+      "orderType": "BUY_LIMIT",
+      "entry": 4723.2,
+      "sl": 4719.5,
+      "tp1": 4730.7,
+      "tpMost": 4737.0,
       "result": {
         "status": null,
         "triggered": false,
