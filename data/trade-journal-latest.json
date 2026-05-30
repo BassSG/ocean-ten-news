@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-30T04:35:32.862801+00:00",
+  "generatedAt": "2026-05-30T07:43:40.438632+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -59,7 +59,7 @@
         "closedAt": 1780072200,
         "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": -18.91
+        "mae": -18.945
       }
     },
     {
