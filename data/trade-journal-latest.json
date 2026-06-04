@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-04T02:07:16.255554+00:00",
+  "generatedAt": "2026-06-04T07:07:09.298861+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1779230700,
-    "to": 1780524000
+    "from": 1779248700,
+    "to": 1780542000
   },
   "summary": {
     "totalOrders": 3,
@@ -33,24 +33,24 @@
       "result": {
         "status": "tpmost-hit",
         "triggered": true,
-        "triggeredAt": 1779230700,
+        "triggeredAt": 1779248700,
         "closeReason": "TPMost",
-        "closedAt": 1779230700,
+        "closedAt": 1779248700,
         "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": -296.145
+        "mae": -279.895
       }
     },
     {
       "source": "EBass",
-      "runId": "RUN-1780535761549-54",
-      "orderKey": "EBass:RUN-1780535761549-54",
-      "createdAt": "2026-06-04T01:16:31.554Z",
+      "runId": "RUN-1780556800814-740",
+      "orderKey": "EBass:RUN-1780556800814-740",
+      "createdAt": "2026-06-04T07:06:51.196Z",
       "orderType": "SELL_LIMIT",
-      "entry": 4471.0,
-      "sl": 4482.5,
-      "tp1": 4460.0,
-      "tpMost": 4453.7,
+      "entry": 4472.17,
+      "sl": 4484.06,
+      "tp1": null,
+      "tpMost": null,
       "result": {
         "status": null,
         "triggered": false,
