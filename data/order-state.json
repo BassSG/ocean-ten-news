@@ -1563,9 +1563,9 @@
   "TESTER:RUN-1775058643394-951": {
     "status": "tpmost-hit",
     "closeReason": "TPMost",
-    "updatedAt": "2026-06-28T21:09:57.807149+00:00",
-    "triggeredAt": 1781193600,
-    "closedAt": 1781193600
+    "updatedAt": "2026-06-28T22:36:11.166888+00:00",
+    "triggeredAt": 1781196300,
+    "closedAt": 1781196300
   },
   "EBass:RUN-1775059433004-771": {
     "status": null,
@@ -4475,7 +4475,7 @@
   "EKlaETun:RUN-1779412908240-774": {
     "status": "tpmost-hit",
     "closeReason": "TPMost",
-    "updatedAt": "2026-06-28T21:09:57.807149+00:00",
+    "updatedAt": "2026-06-28T22:36:11.166888+00:00",
     "triggeredAt": null,
     "closedAt": null
   },
@@ -5537,10 +5537,10 @@
     "closedAt": null
   },
   "EBass:RUN-1782495125732-854": {
-    "status": null,
-    "closeReason": null,
-    "updatedAt": "2026-06-28T21:09:57.807149+00:00",
-    "triggeredAt": null,
-    "closedAt": null
+    "status": "sl-hit",
+    "closeReason": "SL",
+    "updatedAt": "2026-06-28T22:36:11.166888+00:00",
+    "triggeredAt": 1782669600,
+    "closedAt": 1782670500
   }
 }
