@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-07-15T19:21:02.471560+00:00",
+  "checkedAt": "2026-07-15T20:35:03.778024+00:00",
   "ok": true,
   "issues": [],
   "freshnessMinutes": {
@@ -7,8 +7,8 @@
     "tradeJournal": 0
   },
   "counts": {
-    "fmpCandles": 11396,
+    "fmpCandles": 11401,
     "ordersInLatestJournal": 2,
-    "trackedOrderStates": 864
+    "trackedOrderStates": 865
   }
 }
