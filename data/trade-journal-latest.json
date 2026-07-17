@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T20:28:00.640749+00:00",
+  "generatedAt": "2026-07-17T21:25:12.303069+00:00",
   "symbol": "XAUUSD",
   "interval": "15min",
   "qualityGate": {
@@ -8,8 +8,8 @@
   },
   "candles": {
     "count": 1000,
-    "from": 1783006200,
-    "to": 1784304900
+    "from": 1783008000,
+    "to": 1784306700
   },
   "summary": {
     "totalOrders": 2,
@@ -33,12 +33,12 @@
       "result": {
         "status": "tpmost-hit",
         "triggered": true,
-        "triggeredAt": 1783006200,
+        "triggeredAt": 1783008000,
         "closeReason": "TPMost",
-        "closedAt": 1783006200,
+        "closedAt": 1783008000,
         "timeInTradeMin": 0,
         "mfe": 0.0,
-        "mae": -643.875
+        "mae": -638.635
       }
     },
     {
