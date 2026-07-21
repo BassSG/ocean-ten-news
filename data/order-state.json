@@ -1563,9 +1563,9 @@
   "TESTER:RUN-1775058643394-951": {
     "status": "tpmost-hit",
     "closeReason": "TPMost",
-    "updatedAt": "2026-07-21T06:12:18.594556+00:00",
-    "triggeredAt": 1783314900,
-    "closedAt": 1783314900
+    "updatedAt": "2026-07-21T09:10:58.971156+00:00",
+    "triggeredAt": 1783325700,
+    "closedAt": 1783325700
   },
   "EBass:RUN-1775059433004-771": {
     "status": null,
@@ -6174,10 +6174,10 @@
     "closedAt": null
   },
   "EBass:RUN-1784602428250-34": {
-    "status": null,
-    "closeReason": null,
-    "updatedAt": "2026-07-21T06:12:18.594556+00:00",
-    "triggeredAt": null,
-    "closedAt": null
+    "status": "sl-hit",
+    "closeReason": "SL",
+    "updatedAt": "2026-07-21T09:10:58.971156+00:00",
+    "triggeredAt": 1784602800,
+    "closedAt": 1784602800
   }
 }
